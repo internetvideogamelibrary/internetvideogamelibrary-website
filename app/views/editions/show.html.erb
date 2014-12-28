@@ -5,8 +5,8 @@
 		<img src="/sample_coverart.jpg">
 	</div>
 	<div class="col-sm-9">
-		<h1><%= @edition.title %></h1>
-		<%= @edition.platform.display_title %>
+		<h1><%= @edition.title %>
+		<small><%= @edition.platform.display_title %></small></h1>
 
 		<%= simple_format(@edition.description) %></p>
 	</div>

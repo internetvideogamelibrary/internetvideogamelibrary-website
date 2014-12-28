@@ -1,4 +1,7 @@
 class EditionsController < ApplicationController
+	def new
+		@edition = Edition.new
+	end
 	def index
 		@editions = Edition.all
 	end

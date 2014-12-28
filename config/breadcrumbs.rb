@@ -6,6 +6,11 @@ crumb :editions do
 	link "Games", editions_path
 end
 
+crumb :new_edition do
+	link "New edition", new_edition_path
+	parent :editions
+end
+
 crumb :edition do |edition|
 	link edition.title, editions_path(edition)
 	parent :editions
