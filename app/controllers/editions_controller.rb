@@ -21,7 +21,7 @@ class EditionsController < ApplicationController
 		end
 	end
 	def index
-		@editions = Edition.all
+		@editions = Edition.where(status: Edition.statuses[:active])
 	end
 	def show
 		@edition = Edition.find(params[:id])

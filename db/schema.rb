@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141228212733) do
+ActiveRecord::Schema.define(version: 20141228215942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20141228212733) do
     t.string   "coverart_content_type"
     t.integer  "coverart_file_size"
     t.datetime "coverart_updated_at"
+    t.integer  "status"
   end
 
   add_index "editions", ["platform_id"], name: "index_editions_on_platform_id", using: :btree
