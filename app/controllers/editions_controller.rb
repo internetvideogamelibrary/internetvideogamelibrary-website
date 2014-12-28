@@ -1,4 +1,6 @@
 class EditionsController < ApplicationController
+	before_filter :authenticate_user!,
+	:only => [:new, :create]
 	def new
 		@edition = Edition.new
 		@work = Work.new
