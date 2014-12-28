@@ -3,16 +3,16 @@
 # Table name: editions
 #
 #  id           :integer          not null, primary key
-#  title        :string(255)
-#  developer    :string(255)
-#  publisher    :string(255)
-#  release_date :datetime
-#  description  :text
-#  platform_id  :integer
-#  region_id    :integer
+#  title        :string(255)      not null
+#  developer    :string(255)      not null
+#  publisher    :string(255)      not null
+#  release_date :datetime         not null
+#  description  :text             not null
+#  platform_id  :integer          not null
+#  region_id    :integer          not null
 #  created_at   :datetime
 #  updated_at   :datetime
-#  work_id      :integer
+#  work_id      :integer          not null
 #
 
 require 'rails_helper'
