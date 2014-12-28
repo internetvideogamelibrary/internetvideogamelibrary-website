@@ -1,12 +1,6 @@
-<td>
-	<%= edition.title %>
-</td>
-<td>
-	<%= edition.description %>
-</td>
-<td>
-	<%= edition.release_date %>
-</td>
-<td>
-	<%= edition.platform.title %>
-</td>
+<%= link_to(edition, class: "list-group-item") do %>
+	<h4 class="list-group-item-heading"><%= edition.title %> (<%= edition.platform.display_title %>)</h4>
+	<p class="list-group-item-text">
+		Released in <%=edition.region.title%> at <%= edition.release_date.strftime('%d/%m/%Y') %>
+	</p>
+<% end %>
