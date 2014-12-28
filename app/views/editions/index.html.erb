@@ -1,10 +1,6 @@
-<div class="container">
-<div class="row">
-	<h3>Games</h3>
-	<div class="list-group">
-		<% @editions.each do |edition| %>
-			<%= render edition %>
-		<% end %>
-	</div>
-</div>
+<% breadcrumb :editions %>
+<div class="list-group">
+	<% @editions.each do |edition| %>
+		<%= render edition %>
+	<% end %>
 </div>
