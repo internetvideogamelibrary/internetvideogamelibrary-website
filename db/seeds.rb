@@ -8,7 +8,7 @@
 user = CreateAdminService.new.call
 puts 'CREATED ADMIN USER: ' << user.email
 
-platform = Platform.create(:title => 'Nintendo Entertainment System')
+platform = Platform.create(:title => 'Nintendo Entertainment System', :display_title => 'NES')
 puts 'CREATED A PLATFORM: ' << platform.title
 region = Region.create(:title => 'Japan')
 puts 'CREATED A REGION: ' << region.title
