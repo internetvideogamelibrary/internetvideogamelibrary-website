@@ -5,35 +5,36 @@
 <div class="col-md-3"></div>
 <div class="col-md-9">
 	<h3>Edition info</h3>
+	<h6>Information related to this edition: medium, developer, publisher</h6>
 	<%= form_for @edition, :html => {:class => "form-horizontal"} do |f| %>
 		<div class="form-group">
 			<%= f.label :title, "Title:", :class => "col-lg-3 control-label" %>
 			<div class="col-lg-8">
-				<%= f.text_field :title, :class => "form-control" %>
+				<%= f.text_field :title, :required => true, :class => "form-control" %>
 			</div>
 		</div>
 		<div class="form-group">
 			<%= f.label :developer, "Developer:", :class => "col-lg-3 control-label" %>
 			<div class="col-lg-8">
-				<%= f.text_field :developer, :class => "form-control" %>
+				<%= f.text_field :developer, :required => true, :class => "form-control" %>
 			</div>
 		</div>
 		<div class="form-group">
 			<%= f.label :publisher, "Publisher:", :class => "col-lg-3 control-label" %>
 			<div class="col-lg-8">
-				<%= f.text_field :publisher, :class => "form-control" %>
+				<%= f.text_field :publisher, :required => true, :class => "form-control" %>
 			</div>
 		</div>
 		<div class="form-group">
 			<%= f.label :description, "Description:", :class => "col-lg-3 control-label" %>
 			<div class="col-lg-8">
-				<%= f.text_area :description, :cols => 40, :rows => 20, :class => "form-control" %>
+				<%= f.text_area :description, :cols => 40, :rows => 20, :required => true, :class => "form-control" %>
 			</div>
 		</div>
 		<div class="form-group">
 			<%= f.label :release_date, "Release date:", :class => "col-lg-3 control-label" %>
 			<div class="col-lg-8">
-				<%= f.date_field :release_date, :class => "form-control" %>
+				<%= f.date_field :release_date, :required => true, :class => "form-control" %>
 			</div>
 		</div>
 		<div class="form-group">
@@ -52,6 +53,24 @@
 				</div>
 			</div>
 		</div>
+		<div class="form-group">
+		<h3>Game info</h3>
+		<h6>Original title, characters, awards and setting apply to all editions related to this game.</h6>
+		</div>
+		<%= fields_for @work do |w| %>
+		<div class="form-group">
+			<%= w.label :title, "Original title:", :class => "col-lg-3 control-label" %>
+			<div class="col-lg-8">
+				<%= w.text_field :original_title, :required => true, :class => "form-control" %>
+			</div>
+		</div>
+		<div class="form-group">
+			<%= w.label :original_release_date, "Original release date:", :class => "col-lg-3 control-label" %>
+			<div class="col-lg-8">
+				<%= w.date_field :original_release_date, :required => true, :class => "form-control" %>
+			</div>
+		</div>
+		<% end %>
 		<div class="form-group">
 			<label class="col-md-3 control-label"></label>
 			<div class="col-md-8">

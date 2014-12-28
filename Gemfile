@@ -19,6 +19,7 @@ gem 'annotate'
 gem 'foreigner'
 gem 'active_link_to'
 gem 'gretel'
+gem 'bootstrap-validator-rails'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
