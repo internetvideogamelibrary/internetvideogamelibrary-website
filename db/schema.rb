@@ -11,22 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141228193243) do
+ActiveRecord::Schema.define(version: 20141228201518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "editions", force: true do |t|
-    t.string   "title"
-    t.string   "developer"
-    t.string   "publisher"
-    t.datetime "release_date"
-    t.text     "description"
-    t.integer  "platform_id"
-    t.integer  "region_id"
+    t.string   "title",        null: false
+    t.string   "developer",    null: false
+    t.string   "publisher",    null: false
+    t.datetime "release_date", null: false
+    t.text     "description",  null: false
+    t.integer  "platform_id",  null: false
+    t.integer  "region_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "work_id"
+    t.integer  "work_id",      null: false
   end
 
   add_index "editions", ["platform_id"], name: "index_editions_on_platform_id", using: :btree
