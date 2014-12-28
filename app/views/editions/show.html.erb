@@ -2,7 +2,7 @@
 <div class="row">
 	<div class="col-sm-1"></div>
 	<div class="col-sm-2">
-		<img src="/sample_coverart.jpg">
+		<%= image_tag @edition.coverart.url %>
 	</div>
 	<div class="col-sm-9">
 		<h1><%= @edition.title %>

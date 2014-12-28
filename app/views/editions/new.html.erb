@@ -2,11 +2,18 @@
 <div class="container">
 <h1>Add a new game</h1>
 <hr>
-<div class="col-md-3"></div>
-<div class="col-md-9">
-	<h3>Edition info</h3>
-	<h6>Information related to this edition: medium, developer, publisher</h6>
 	<%= form_for @edition, :html => {:class => "form-horizontal"} do |f| %>
+<div class="col-md-3">
+		<div class="form-group">
+			<h6>Add a cover image for this game edition</h6>
+			<div >
+				<%= f.file_field :coverart  %>
+			</div>
+		</div>
+</div>
+<div class="col-md-9">
+	<h3>Game edition info</h3>
+	<h6>Information related to this edition: medium, developer, publisher</h6>
 		<div class="form-group">
 			<%= f.label :title, "Title:", :class => "col-lg-3 control-label" %>
 			<div class="col-lg-8">
