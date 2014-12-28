@@ -17,6 +17,7 @@ gem 'therubyracer', :platform=>:ruby
 gem 'upmin-admin'
 gem 'annotate'
 gem 'foreigner'
+gem 'active_link_to'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

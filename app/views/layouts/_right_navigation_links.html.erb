@@ -1,0 +1,8 @@
+<%# add navigation links to this file %>
+<% if user_signed_in? %>
+	<%= active_link_to 'Edit account', edit_user_registration_path, :wrap_tag => :li %>
+	<%= active_link_to 'Sign out', destroy_user_session_path, :method=>'delete', :wrap_tag => :li %>
+<% else %>
+	<%= active_link_to 'Sign in', new_user_session_path, :wrap_tag => :li %>
+	<%= active_link_to 'Sign up', new_user_registration_path, :wrap_tag => :li %>
+<% end %>
