@@ -1,6 +1,6 @@
 class EditionsController < ApplicationController
 	before_filter :authenticate_user!,
-	:only => [:new, :create, :to_review, :review]
+	:only => [:new, :create, :edit, :update, :to_review, :review]
 
 	before_filter :reviewer_only,
 	:only => [:to_review, :review]
