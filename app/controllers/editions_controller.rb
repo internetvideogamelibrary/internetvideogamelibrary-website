@@ -49,11 +49,11 @@ class EditionsController < ApplicationController
 		if @edition == nil or (@edition.status != Edition.statuses[:active] and not (current_user.admin? || current_user.reviewer?))
 				redirect_to :back, :alert => "Game not found"
 		else
-			 @other_editions_count = Edition.where("work_id = ? and id <> ?",@edition.work.id,@edition.id).count()
-			 @other_editions = Edition.where("work_id = ? and id <> ?",@edition.work.id,@edition.id).limit(5)
+			@other_editions_count = Edition.where("work_id = ? and id <> ?",@edition.work.id,@edition.id).count()
+			@other_editions = Edition.where("work_id = ? and id <> ?",@edition.work.id,@edition.id).limit(5)
 		end
 		rescue ActionController::RedirectBackError
-		  redirect_to '/', :alert => "Game not found"
+			redirect_to '/', :alert => "Game not found"
 	end
 	def to_review
 		@editions = Edition.where(status: Edition.statuses[:unreviewed])
@@ -76,7 +76,7 @@ class EditionsController < ApplicationController
 			redirect_to to_review_editions_path
 		end
 		rescue ActionController::RedirectBackError
-		  redirect_to '/', :alert => "Unknown option"
+			redirect_to '/', :alert => "Unknown option"
 	end
 
 	private
@@ -88,9 +88,9 @@ class EditionsController < ApplicationController
 	end
 	def reviewer_only
 		unless current_user.admin?
-		  redirect_to :back, :alert => "Access denied."
+			redirect_to :back, :alert => "Access denied."
 		end
 		rescue ActionController::RedirectBackError
-		  redirect_to '/', :alert => "Access denied."
+			redirect_to '/', :alert => "Access denied."
 	end
 end
