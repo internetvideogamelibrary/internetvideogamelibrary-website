@@ -119,7 +119,7 @@ Platform.create(:title => "Unix/Linux")
 Platform.create(:title => "Vectrex")
 Platform.create(:title => "VIC-20")
 Platform.create(:title => "Virtual Boy")
-Platform.create(:title => "Wii", :priority => 6)
+platform2 = Platform.create(:title => "Wii", :priority => 6)
 Platform.create(:title => "Wii U", :priority => 7)
 Platform.create(:title => "Windows Mobile")
 Platform.create(:title => "WonderSwan")
@@ -132,7 +132,7 @@ Platform.create(:title => "Zodiac")
 
 puts 'CREATED A PLATFORM: ' << platform.title
 
-Region.create(:title => "North America")
+region2 = Region.create(:title => "North America")
 region = Region.create(:title => 'Japan')
 Region.create(:title => "Europe")
 Region.create(:title => "Australia")
@@ -150,7 +150,7 @@ Media.create(:title => 'HD DVD')
 Media.create(:title => 'Mini DVD')
 Media.create(:title => 'Nintendo Optical Disc')
 Media.create(:title => 'UMD')
-Media.create(:title => 'Virtual Console (Digital Download)')
+media2 = Media.create(:title => 'Virtual Console (Digital Download)')
 Media.create(:title => 'Steam (Digital Download)')
 Media.create(:title => 'Origin (Digital Download)')
 Media.create(:title => 'Digital Download')
@@ -166,4 +166,7 @@ Let\'s face it: you\'re in deep, deep trouble.
 6 levels of increasing challenge
 Intricate subterranean caverns
 Exciting sound effects', :platform_id => platform.id, :region_id => region.id, :work_id => work.id, :media_id => media.id, :status => Edition.statuses[:active])
+puts 'CREATED A EDITION (GAME): ' << edition.title
+
+edition = Edition.create(:title => 'Spelunker', :developer => 'MicroGraphicImage', :publisher => 'Tozai Games', :release_date => '2008-03-17', :description => 'Wander through miles of uncharted caves in search of the legendary underground pyramid and its vast treasures. To complete your adventure, you will swing from ropes and ladders, run across unstable terrain and down ravines, as well as operate elevators, mining carts and rafts. You will collect keys, bombs, flares, jewels, sacks of gold coins, and other valuable items as you navigate the hazardous terrain. But beware of the scalding steam vents, poisonous bats, and the avenging spiririts of dead spelunkers that lurk in every corner of the massive underground labyrinth.', :platform_id => platform2.id, :region_id => region2.id, :work_id => work.id, :media_id => media2.id, :status => Edition.statuses[:active])
 puts 'CREATED A EDITION (GAME): ' << edition.title
