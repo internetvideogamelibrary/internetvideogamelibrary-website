@@ -131,7 +131,15 @@ Platform.create(:title => "Zeebo")
 Platform.create(:title => "Zodiac")
 
 puts 'CREATED A PLATFORM: ' << platform.title
+
+Region.create(:title => "North America")
 region = Region.create(:title => 'Japan')
+Region.create(:title => "Europe")
+Region.create(:title => "Australia")
+Region.create(:title => "Korea")
+Region.create(:title => "Worldwide")
+Region.create(:title => "South America")
+Region.create(:title => "Asia")
 puts 'CREATED A REGION: ' << region.title
 
 Media.create(:title => 'Blu-Ray Disc')
