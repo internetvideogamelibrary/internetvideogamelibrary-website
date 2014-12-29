@@ -8,10 +8,24 @@ class EditionsController < ApplicationController
 		@edition = Edition.new
 		@work = Work.new
 	end
-	def create
+	def existing_work_create
 		@edition = Edition.new(edition_params)
-		@work = Work.new(work_params)
-		if @work.save!
+		work_option = params.permit(:work_option)[:work_option]
+		unless work_option == "existing"
+			@work = Work.new(work_params)
+			if @work.save!
+				@edition.work_id = @work.id
+				if @edition.save
+					flash[:success] = "Your edition will now be reviewed and soon will be online!"
+					redirect_to editions_path
+				else
+					render 'new'
+				end
+			else
+				render 'new'
+			end
+		else
+			@work = Work.find_by_id(params.require(:existing_work).permit(:id)[:id])
 			@edition.work_id = @work.id
 			if @edition.save
 				flash[:success] = "Your edition will now be reviewed and soon will be online!"
@@ -19,8 +33,33 @@ class EditionsController < ApplicationController
 			else
 				render 'new'
 			end
+		end
+	end
+	def existing_work
+		@edition = Edition.new
+		@work = Work.new
+		@existing_work = Work.new
+	end
+	def create
+		@edition = Edition.new(edition_params)
+		@existing_work = Work.find_by(original_title: work_params[:original_title], original_release_date: work_params[:original_release_date])
+		unless @existing_work.present?
+			@work = Work.new(work_params)
+			if @work.save!
+				@edition.work_id = @work.id
+				if @edition.save
+					flash[:success] = "Your edition will now be reviewed and soon will be online!"
+					redirect_to editions_path
+				else
+					render 'new'
+				end
+			else
+				render 'new'
+			end
 		else
-			render 'new'
+			@work = Work.new(work_params)
+			flash[:warning] = "Oops! There is already a work with that information. Please choose what you think is right."
+			render 'existing_work'
 		end
 	end
 	def index

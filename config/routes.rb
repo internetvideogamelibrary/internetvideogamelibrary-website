@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 		collection do
 			get 'to_review'
 			post 'review'
+			get 'existing_work'
+			post 'existing_work_create'
 		end
 	end
 end
