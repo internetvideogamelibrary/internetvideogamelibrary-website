@@ -1,6 +1,21 @@
-<%= link_to(edition, class: "list-group-item") do %>
+<div class="list-group-item"><%= link_to(edition, class: "list-group-item") do %>
 	<h4 class="list-group-item-heading"><%= edition.title %> (<%= edition.platform.display_title %>)</h4>
 	<p class="list-group-item-text">
 		Released in <%=edition.region.title%> at <%= edition.release_date.strftime('%d/%m/%Y') %>
 	</p>
 <% end %>
+<%- if edition.status == Edition.statuses[:unreviewed] %>
+	<%= form_for edition, :url => {:action => 'review'}, :method => :post do |e| %>
+		<%= e.hidden_field :id %>
+		<div class="control-group">
+			<%= radio_button_tag :review_option, 'delete' %>
+			<%= label_tag :review_option_delete, 'Delete' %>
+			<%= radio_button_tag :review_option, 'accept' %>
+			<%= label_tag :review_option_accept, 'Accept' %>
+		</div>
+		<div class="form-buttons">
+			<%= submit_tag "Review game", :class => "btn btn-primary" %>
+		</div>
+	<% end %>
+<% end -%>
+</div>

@@ -6,6 +6,11 @@ crumb :editions do
 	link "Games", editions_path
 end
 
+crumb :editions_to_review do
+	link "Reviewing editions", to_review_editions_url
+	parent :editions
+end
+
 crumb :new_edition do
 	link "New edition", new_edition_path
 	parent :editions

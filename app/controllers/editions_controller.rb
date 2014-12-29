@@ -1,6 +1,9 @@
 class EditionsController < ApplicationController
 	before_filter :authenticate_user!,
-	:only => [:new, :create]
+	:only => [:new, :create, :to_review, :review]
+
+	before_filter :reviewer_only,
+	:only => [:to_review, :review]
 	def new
 		@edition = Edition.new
 		@work = Work.new
@@ -24,8 +27,36 @@ class EditionsController < ApplicationController
 		@editions = Edition.where(status: Edition.statuses[:active])
 	end
 	def show
-		@edition = Edition.find(params[:id])
+		@edition = Edition.find_by_id(params[:id])
+		if @edition == nil or (@edition.status != Edition.statuses[:active] and not (current_user.admin? || current_user.reviewer?))
+				redirect_to :back, :alert => "Game not found"
+		end
+		rescue ActionController::RedirectBackError
+		  redirect_to '/', :alert => "Game not found"
 		# @other_editions = Edition.find_by_work_id(@edition.work_id) insersect with edition
+	end
+	def to_review
+		@editions = Edition.where(status: Edition.statuses[:unreviewed])
+	end
+	def review
+		review_option = params.permit(:review_option)[:review_option]
+		unless (review_option == "delete" or review_option == "accept")
+			redirect_to :back, :alert => "Unknown option"
+		else
+			edition_id = params.require(:edition).permit(:id)[:id]
+			edition = Edition.find_by_id(edition_id)
+			if review_option == "delete"
+				edition.status = Edition.statuses[:deleted]
+			end
+			if review_option == "accept"
+				edition.status = Edition.statuses[:active]
+			end
+			edition.save!
+
+			redirect_to to_review_editions_path
+		end
+		rescue ActionController::RedirectBackError
+		  redirect_to '/', :alert => "Unknown option"
 	end
 
 	private
@@ -34,5 +65,12 @@ class EditionsController < ApplicationController
 	end
 	def work_params
 		params.require(:work).permit(:original_title, :original_release_date)
+	end
+	def reviewer_only
+		unless current_user.admin?
+		  redirect_to :back, :alert => "Access denied."
+		end
+		rescue ActionController::RedirectBackError
+		  redirect_to '/', :alert => "Access denied."
 	end
 end

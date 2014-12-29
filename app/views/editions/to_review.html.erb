@@ -1,0 +1,8 @@
+<% breadcrumb :editions_to_review %>
+<div class="list-group">
+	<% @editions.each do |edition| %>
+		<%= render edition %>
+	<% end %>
+</div>
+<%= link_to("Add new edition", new_edition_path) %>
+

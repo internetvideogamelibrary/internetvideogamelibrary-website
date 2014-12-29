@@ -34,6 +34,6 @@ class Edition < ActiveRecord::Base
 
 	private
 	def set_default_status
-		self.status = :unreviewed unless status.present?
+		self.status = Edition.statuses[:unreviewed] if status == nil
 	end
 end
