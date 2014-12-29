@@ -32,6 +32,15 @@ class Edition < ActiveRecord::Base
 	belongs_to :media
 
 	before_save :set_default_status
+	before_validation { coverart.clear if @delete_coverart }
+
+	def delete_coverart
+		@delete_coverart ||= false
+	end
+
+	def delete_coverart=(value)
+		@delete_coverart  = !value.to_i.zero?
+	end
 
 	private
 	def set_default_status

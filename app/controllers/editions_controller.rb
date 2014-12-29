@@ -120,7 +120,7 @@ class EditionsController < ApplicationController
 
 	private
 	def edition_params
-		params.require(:edition).permit(:title,:developer,:publisher,:description,:release_date,:platform_id,:region_id, :coverart, :media_id)
+		params.require(:edition).permit(:title,:developer,:publisher,:description,:release_date,:platform_id,:region_id, :coverart, :media_id, :delete_coverart)
 	end
 	def work_params
 		params.require(:work).permit(:original_title, :original_release_date)

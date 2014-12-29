@@ -7,7 +7,11 @@
 		<div class="form-group">
 			<h6>Add a cover image for this game edition</h6>
 			<div >
-				<%= f.file_field :coverart  %>
+				<% if @edition.coverart.exists? %>
+					<%= image_tag @edition.coverart.url(:thumb) %><br/>
+					<%= f.check_box :delete_coverart %>Delete Image<br/>
+				<% end %>
+				<%= f.file_field :coverart %>
 			</div>
 		</div>
 		<div class="bs-callout bs-callout-warning">
