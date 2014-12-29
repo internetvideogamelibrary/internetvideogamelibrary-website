@@ -133,6 +133,21 @@ Platform.create(:title => "Zodiac")
 puts 'CREATED A PLATFORM: ' << platform.title
 region = Region.create(:title => 'Japan')
 puts 'CREATED A REGION: ' << region.title
+
+Media.create(:title => 'Blu-Ray Disc')
+media = Media.create(:title => 'Cartridge')
+Media.create(:title => 'CD')
+Media.create(:title => 'DVD')
+Media.create(:title => 'HD DVD')
+Media.create(:title => 'Mini DVD')
+Media.create(:title => 'Nintendo Optical Disc')
+Media.create(:title => 'UMD')
+Media.create(:title => 'Virtual Console (Digital Download)')
+Media.create(:title => 'Steam (Digital Download)')
+Media.create(:title => 'Origin (Digital Download)')
+Media.create(:title => 'Digital Download')
+
+puts 'CREATED A MEDIA: ' << media.title
 work = Work.create(:original_title => 'Spelunker', :original_release_date => '1983-01-01')
 puts 'CREATED A WORK (GAME): ' << work.original_title
 edition = Edition.create(:title => 'Spelunker', :developer => 'MicroGraphicImage', :publisher => 'Brøderbund', :release_date => '1985-12-6', :description => 'Who knows what fabulous treasures - and unspeakable dangers - await you in the world\'s deepest cave? This is one game you can really get into...and into...and into.
@@ -142,5 +157,5 @@ Wander through miles of uncharted passageways, swinging on ropes and ladders, tu
 Let\'s face it: you\'re in deep, deep trouble.
 6 levels of increasing challenge
 Intricate subterranean caverns
-Exciting sound effects', :platform_id => platform.id, :region_id => region.id, :work_id => work.id)
+Exciting sound effects', :platform_id => platform.id, :region_id => region.id, :work_id => work.id, :media_id => media.id, :status => Edition.statuses[:active])
 puts 'CREATED A EDITION (GAME): ' << edition.title

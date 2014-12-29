@@ -29,6 +29,7 @@ class Edition < ActiveRecord::Base
 	belongs_to :platform
 	belongs_to :region
 	belongs_to :work
+	belongs_to :media
 
 	before_save :set_default_status
 
