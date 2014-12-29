@@ -24,4 +24,15 @@
 		<li class="list-group-item text-right"><span class="pull-left"><strong>Media:</strong></span> <%= @edition.media.title %></li>
 		</ul>
 	</div>
+	<div class="col-sm-9">
+		<%- if @other_editions_count > 0 %>
+			<h6>Other editions (<%= @other_editions_count %>)</h6>
+
+			<% @other_editions.each do |other| %>
+				<%= link_to other do %>
+					<%= image_tag other.coverart.url(:thumb) %>
+				<% end %>
+			<% end %>
+		<% end -%>
+	</div>
 </div>

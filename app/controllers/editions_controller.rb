@@ -31,9 +31,10 @@ class EditionsController < ApplicationController
 		if @edition == nil or (@edition.status != Edition.statuses[:active] and not (current_user.admin? || current_user.reviewer?))
 				redirect_to :back, :alert => "Game not found"
 		end
+		 @other_editions_count = Edition.where("work_id = ? and id <> ?",@edition.work.id,@edition.id).count()
+		 @other_editions = Edition.where("work_id = ? and id <> ?",@edition.work.id,@edition.id).limit(5)
 		rescue ActionController::RedirectBackError
 		  redirect_to '/', :alert => "Game not found"
-		# @other_editions = Edition.find_by_work_id(@edition.work_id) insersect with edition
 	end
 	def to_review
 		@editions = Edition.where(status: Edition.statuses[:unreviewed])
