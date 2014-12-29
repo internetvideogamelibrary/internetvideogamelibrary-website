@@ -26,6 +26,24 @@ class EditionsController < ApplicationController
 	def index
 		@editions = Edition.where(status: Edition.statuses[:active])
 	end
+	def edit
+		@edition = Edition.find_by_id(params[:id])
+		@work = @edition.work
+	end
+	def update
+		@edition = Edition.find(params[:id])
+		@work = @edition.work
+		if @work.update_attributes(work_params)
+			if @edition.update_attributes(edition_params)
+				flash[:success] = "Your edition will now be reviewed and soon will be online!"
+				redirect_to editions_path
+			else
+				render 'edit'
+			end
+		else
+			render 'edit'
+		end
+	end
 	def show
 		@edition = Edition.find_by_id(params[:id])
 		if @edition == nil or (@edition.status != Edition.statuses[:active] and not (current_user.admin? || current_user.reviewer?))
