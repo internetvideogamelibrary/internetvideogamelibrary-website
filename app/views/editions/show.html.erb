@@ -15,14 +15,15 @@
 	<div class="col-sm-1"></div>
 	<div class="col-sm-2">
 		<ul class="list-group">
-		<li class="list-group-item text-right"><span class="pull-left"><strong>Original title:</strong></span> <%= @edition.work.original_title %></li>
-		<li class="list-group-item text-right"><span class="pull-left"><strong>Original release date:</strong></span> <%= @edition.work.original_release_date.strftime('%d/%m/%Y') %></li>
-		<li class="list-group-item text-right"><span class="pull-left"><strong>Developer:</strong></span> <%= @edition.developer %></li>
-		<li class="list-group-item text-right"><span class="pull-left"><strong>Publisher:</strong></span> <%= @edition.publisher %></li>
-		<li class="list-group-item text-right"><span class="pull-left"><strong>Region:</strong></span> <%= @edition.region.title %></li>
-		<li class="list-group-item text-right"><span class="pull-left"><strong>Release date:</strong></span> <%= @edition.release_date.strftime('%d/%m/%Y') %></li>
-		<li class="list-group-item text-right"><span class="pull-left"><strong>Media:</strong></span> <%= @edition.media.title %></li>
+			<li class="list-group-item text-right"><span class="pull-left"><strong>Original title:</strong></span> <%= @edition.work.original_title %></li>
+			<li class="list-group-item text-right"><span class="pull-left"><strong>Original release date:</strong></span> <%= @edition.work.original_release_date.strftime('%d/%m/%Y') %></li>
+			<li class="list-group-item text-right"><span class="pull-left"><strong>Developer:</strong></span> <%= @edition.developer %></li>
+			<li class="list-group-item text-right"><span class="pull-left"><strong>Publisher:</strong></span> <%= @edition.publisher %></li>
+			<li class="list-group-item text-right"><span class="pull-left"><strong>Region:</strong></span> <%= @edition.region.title %></li>
+			<li class="list-group-item text-right"><span class="pull-left"><strong>Release date:</strong></span> <%= @edition.release_date.strftime('%d/%m/%Y') %></li>
+			<li class="list-group-item text-right"><span class="pull-left"><strong>Media:</strong></span> <%= @edition.media.title %></li>
 		</ul>
+		<%= link_to "Edit this edition", edit_edition_path(@edition) %>
 	</div>
 	<div class="col-sm-9">
 		<%- if @other_editions_count > 0 %>
