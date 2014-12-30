@@ -10,6 +10,10 @@ class WorkController < ApplicationController
 			end
 		end
 	end
+	def combine
+		@work = Work.find(params[:id])
+		@same_work_data = Work.where("id <> ? and original_title = ? and original_release_date = ?", @work.id, @work.original_title, @work.original_release_date)
+	end
 	def work_params
 		params.require(:work).permit(:original_title, :original_release_date)
 	end

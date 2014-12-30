@@ -9,6 +9,10 @@ Rails.application.routes.draw do
 		collection do
 			post 'search'
 		end
+		member do
+			get 'combine'
+			post 'do_combine'
+		end
 	end
 	resources :editions, :path => "games" do
 		collection do

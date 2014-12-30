@@ -24,6 +24,7 @@
 			<li class="list-group-item text-right"><span class="pull-left"><strong>Media:</strong></span> <%= @edition.media.title %></li>
 		</ul>
 		<%= link_to "Edit this edition", edit_edition_path(@edition) %>
+		<%= link_to "Combine", combine_work_path(@edition.work) %>
 	</div>
 	<div class="col-sm-9">
 		<%- if @other_editions_count > 0 %>
