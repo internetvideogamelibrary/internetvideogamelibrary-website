@@ -76,23 +76,25 @@
 			</div>
 		</div>
 		<div class="form-group">
-		<h3>Game info</h3>
-		<h6>Original title, characters, awards and setting apply to all editions related to this game.</h6>
+			<h3>Game info</h3>
+			<h6>Original title, characters, awards and setting apply to all editions related to this game.</h6>
 		</div>
-		<%= fields_for @work do |w| %>
-		<div class="form-group">
-			<%= w.label :title, "Original title:", :class => "col-lg-3 control-label" %>
-			<div class="col-lg-8">
-				<%= w.text_field :original_title, :required => true, :class => "form-control" %>
-			</div>
+		<div id="work">
+			<%= fields_for @work do |w| %>
+				<div class="form-group">
+					<%= w.label :title, "Original title:", :class => "col-lg-3 control-label" %>
+					<div class="col-lg-8">
+						<%= w.text_field :original_title, :required => true, :class => "form-control" %>
+					</div>
+				</div>
+				<div class="form-group">
+					<%= w.label :original_release_date, "Original release date:", :class => "col-lg-3 control-label" %>
+					<div class="col-lg-8">
+						<%= w.date_field :original_release_date, :required => true, :class => "form-control" %>
+					</div>
+				</div>
+			<% end %>
 		</div>
-		<div class="form-group">
-			<%= w.label :original_release_date, "Original release date:", :class => "col-lg-3 control-label" %>
-			<div class="col-lg-8">
-				<%= w.date_field :original_release_date, :required => true, :class => "form-control" %>
-			</div>
-		</div>
-		<% end %>
 		<div class="form-group">
 			<label class="col-md-3 control-label"></label>
 			<div class="col-md-8">

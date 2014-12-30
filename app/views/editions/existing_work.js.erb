@@ -1,0 +1,2 @@
+$('#work').html('<%= escape_javascript(render partial: "existing_work", locals:  { :work => @work , :existing_work => @existing_work} ) %>');
+$("form").data('bootstrapValidator').resetForm();
