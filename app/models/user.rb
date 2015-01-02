@@ -24,17 +24,17 @@
 #
 
 class User < ActiveRecord::Base
-  enum role: [:user, :reviewer, :admin]
-  after_initialize :set_default_role, :if => :new_record?
+	enum role: [:user, :reviewer, :admin]
+	after_initialize :set_default_role, :if => :new_record?
 
-  has_many :game_shelves
+	has_many :game_shelves
 
-  def set_default_role
-    self.role ||= :user
-  end
+	def set_default_role
+		self.role ||= :user
+	end
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
+	# Include default devise modules. Others available are:
+	# :confirmable, :lockable, :timeoutable and :omniauthable
+	devise :database_authenticatable, :registerable, :confirmable,
+		:recoverable, :rememberable, :trackable, :validatable
 end
