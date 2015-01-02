@@ -11,5 +11,6 @@
 #
 
 class GameShelf < ActiveRecord::Base
-  belongs_to :user
+	enum shelf_types: [:wishlist, :backlog, :playing, :finished, :custom]
+	belongs_to :user
 end
