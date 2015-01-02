@@ -27,6 +27,8 @@ class User < ActiveRecord::Base
   enum role: [:user, :reviewer, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
+  has_many :game_shelves
+
   def set_default_role
     self.role ||= :user
   end
