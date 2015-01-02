@@ -20,5 +20,8 @@ Rails.application.routes.draw do
 			post 'review'
 			get 'existing_work'
 		end
+		member do
+			put 'split'
+		end
 	end
 end

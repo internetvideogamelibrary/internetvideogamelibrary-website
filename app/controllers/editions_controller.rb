@@ -17,6 +17,26 @@ class EditionsController < ApplicationController
 			  format.js
 		end
 	end
+	def split
+		@edition = Edition.find(params[:id])
+		if @edition.present?
+			@work = Work.new(:original_title => @edition.work.original_title, :original_release_date => @edition.work.original_release_date)
+			if @work.save
+				@edition.work_id = @work.id
+				if @edition.save
+					flash[:success] = "Edition was splitted successfully."
+					redirect_to @edition
+				else
+					redirect_to @edition
+				end
+			else
+				redirect_to @edition
+			end
+		else
+			redirect_to edition_path
+		end
+	end
+
 	def create
 		@edition = Edition.new(edition_params)
 		work_option = params.permit(:work_option)[:work_option]
