@@ -163,9 +163,10 @@ edition = Edition.create(:title => 'Spelunker', :developer => 'MicroGraphicImage
 Wander through miles of uncharted passageways, swinging on ropes and ladders, tumbling over subterranean falls and plunging to the very depths of the earth on an abandoned mine railroad. Deadly steam vents and boiling lava pits threaten you at every turn. Chattering bats and the spirits of dead Spelunkers beg you to join them, permanently.
 
 Let\'s face it: you\'re in deep, deep trouble.
-6 levels of increasing challenge
-Intricate subterranean caverns
-Exciting sound effects', :platform_id => platform.id, :region_id => region.id, :work_id => work.id, :media_id => media.id, :status => Edition.statuses[:active])
+
+* 6 levels of increasing challenge
+* Intricate subterranean caverns
+* Exciting sound effects', :platform_id => platform.id, :region_id => region.id, :work_id => work.id, :media_id => media.id, :status => Edition.statuses[:active])
 puts 'CREATED A EDITION (GAME): ' << edition.title
 
 edition = Edition.create(:title => 'Spelunker', :developer => 'MicroGraphicImage', :publisher => 'Tozai Games', :release_date => '2008-03-17', :description => 'Wander through miles of uncharted caves in search of the legendary underground pyramid and its vast treasures. To complete your adventure, you will swing from ropes and ladders, run across unstable terrain and down ravines, as well as operate elevators, mining carts and rafts. You will collect keys, bombs, flares, jewels, sacks of gold coins, and other valuable items as you navigate the hazardous terrain. But beware of the scalding steam vents, poisonous bats, and the avenging spiririts of dead spelunkers that lurk in every corner of the massive underground labyrinth.', :platform_id => platform2.id, :region_id => region2.id, :work_id => work.id, :media_id => media2.id, :status => Edition.statuses[:active])
