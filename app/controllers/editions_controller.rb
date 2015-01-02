@@ -11,8 +11,8 @@ class EditionsController < ApplicationController
 		@work = Work.new
 	end
 	def existing_work
-		@work = Work.find_by_id(1)
-		@existing_work = Work.find_by_id(1)
+		@work = Work.new(work_params)
+		@existing_work = Work.find_by_id(params.require(:existing_work).permit(:id)[:id])
 		respond_to do |format|
 			  format.js
 		end
