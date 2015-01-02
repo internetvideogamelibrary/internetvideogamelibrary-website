@@ -18,6 +18,7 @@
 #  coverart_file_size    :integer
 #  coverart_updated_at   :datetime
 #  status                :integer
+#  media_id              :integer          not null
 #
 
 FactoryGirl.define do
