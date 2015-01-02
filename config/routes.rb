@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 		end
 		member do
 			get 'combine'
-			post 'do_combine'
+			patch 'do_combine'
 		end
 	end
 	resources :editions, :path => "games" do
