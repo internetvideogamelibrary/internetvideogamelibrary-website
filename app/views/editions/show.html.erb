@@ -1,40 +1,71 @@
 <% breadcrumb :edition, @edition %>
-<div class="row">
+<div class="row" class="center-block">
 	<div class="col-sm-3">
-		<%= image_tag @edition.coverart.url(:medium) %>
+		<div class="container-fluid">
+			<div class="row">
+				<%= image_tag @edition.coverart.url(:medium) %>
+			</div>
+			<div class="row">
+				<div class="col-sm-10" style="padding-left:0; padding-right:0;">
+					<input type="submit" class="btn btn-primary btn-block" value="Add to Wishlist">
+				</div>
+				<div class="col-sm-2" style="padding-left:0; padding-right:0;">
+					<button type="button" class="btn btn-primary btn-block" value="+" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						+
+						<span class="caret"></span>
+					</button>
+					<ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">Action</a></li>
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">Another action</a></li>
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">Something else here</a></li>
+						<li role="presentation" class="divider"></li>
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">Separated link</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<ul class="list-group">
+					<li class="list-group-item text-center"><strong>Game information</strong></li>
+					<li class="list-group-item text-right"><span class="pull-left"><strong>Original title:</strong></span> <%= @edition.work.original_title %></li>
+					<li class="list-group-item text-right"><span class="pull-left"><strong>Original release date:</strong></span> <%= @edition.work.original_release_date.strftime('%d/%m/%Y') %></li>
+					<li class="list-group-item text-center"><strong>Game edition information</strong></li>
+					<li class="list-group-item text-right"><span class="pull-left"><strong>Developer:</strong></span> <%= @edition.developer %></li>
+					<li class="list-group-item text-right"><span class="pull-left"><strong>Publisher:</strong></span> <%= @edition.publisher %></li>
+					<li class="list-group-item text-right"><span class="pull-left"><strong>Region:</strong></span> <%= @edition.region.title %></li>
+					<li class="list-group-item text-right"><span class="pull-left"><strong>Release date:</strong></span> <%= @edition.release_date.strftime('%d/%m/%Y') %></li>
+					<li class="list-group-item text-right"><span class="pull-left"><strong>Media:</strong></span> <%= @edition.media.title %></li>
+				</ul>
+			</div>
+			<div class="row">
+				<%= link_to "Edit this edition", edit_edition_path(@edition) %>
+				|
+				<%= link_to "Combine", combine_work_path(@edition.work) %>
+			</div>
+		</div>
 	</div>
 	<div class="col-sm-9">
-		<h1><%= @edition.title %>
-		<small><%= @edition.platform.display_title %></small></h1>
+		<div class="container-fluid">
+			<div class="row">
+				<h1><%= @edition.title %>
+				<small><%= @edition.platform.display_title %></small></h1>
+			</div>
 
-		<%= @description %>
-	</div>
-</div>
-<div class="row">
-	<div class="col-sm-3">
-		<ul class="list-group">
-			<li class="list-group-item text-center"><strong>Game information</strong></li>
-			<li class="list-group-item text-right"><span class="pull-left"><strong>Original title:</strong></span> <%= @edition.work.original_title %></li>
-			<li class="list-group-item text-right"><span class="pull-left"><strong>Original release date:</strong></span> <%= @edition.work.original_release_date.strftime('%d/%m/%Y') %></li>
-			<li class="list-group-item text-center"><strong>Game edition information</strong></li>
-			<li class="list-group-item text-right"><span class="pull-left"><strong>Developer:</strong></span> <%= @edition.developer %></li>
-			<li class="list-group-item text-right"><span class="pull-left"><strong>Publisher:</strong></span> <%= @edition.publisher %></li>
-			<li class="list-group-item text-right"><span class="pull-left"><strong>Region:</strong></span> <%= @edition.region.title %></li>
-			<li class="list-group-item text-right"><span class="pull-left"><strong>Release date:</strong></span> <%= @edition.release_date.strftime('%d/%m/%Y') %></li>
-			<li class="list-group-item text-right"><span class="pull-left"><strong>Media:</strong></span> <%= @edition.media.title %></li>
-		</ul>
-		<%= link_to "Edit this edition", edit_edition_path(@edition) %>
-		<%= link_to "Combine", combine_work_path(@edition.work) %>
-	</div>
-	<div class="col-sm-9">
-		<%- if @other_editions_count > 0 %>
-			<h6>Other editions (<%= @other_editions_count %>)</h6>
+			<div class="row">
+				<%= @description %>
+			</div>
+			<%- if @other_editions_count > 0 %>
+				<div class="row">
+					<h6>Other editions (<%= @other_editions_count %>)</h6>
+				</div>
 
-			<% @other_editions.each do |other| %>
-				<%= link_to other do %>
-					<%= image_tag other.coverart.url(:thumb) %>
+				<% @other_editions.each do |other| %>
+					<div class="col-sm-2 thumb">
+						<%= link_to other do %>
+							<%= image_tag other.coverart.url(:thumb) %>
+						<% end %>
+					</div>
 				<% end %>
-			<% end %>
-		<% end -%>
+			<% end -%>
+		</div>
 	</div>
 </div>
