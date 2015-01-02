@@ -25,8 +25,8 @@ class EditionsController < ApplicationController
 			if @work.save!
 				@edition.work_id = @work.id
 				if @edition.save
-					flash[:success] = "Your edition will now be reviewed and soon will be online!"
-					redirect_to editions_path
+					flash[:success] = "Your edition was added!"
+					redirect_to @edition
 				else
 					render 'new'
 				end
@@ -37,8 +37,8 @@ class EditionsController < ApplicationController
 			@work = Work.find_by_id(params.require(:existing_work).permit(:id)[:id])
 			@edition.work_id = @work.id
 			if @edition.save
-				flash[:success] = "Your edition will now be reviewed and soon will be online!"
-				redirect_to editions_path
+				flash[:success] = "Your edition was added!"
+				redirect_to @edition
 			else
 				render 'new'
 			end

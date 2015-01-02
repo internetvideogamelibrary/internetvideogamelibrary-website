@@ -27,6 +27,15 @@ class Edition < ActiveRecord::Base
 	has_attached_file :coverart, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 	validates_attachment_content_type :coverart, :content_type => /\Aimage\/.*\Z/
 
+	validates :title, presence: true
+	validates :developer, presence: true
+	validates :publisher, presence: true
+	validates :release_date, presence: true
+	validates :platform_id, presence: true
+	validates :region_id, presence: true
+	validates :work_id, presence: true
+	validates :media_id, presence: true
+
 	belongs_to :platform
 	belongs_to :region
 	belongs_to :work
@@ -45,6 +54,6 @@ class Edition < ActiveRecord::Base
 
 	private
 	def set_default_status
-		self.status = Edition.statuses[:unreviewed] if status == nil
+		self.status = Edition.statuses[:active] if status == nil
 	end
 end
