@@ -11,6 +11,8 @@ class GameItem(scrapy.Item):
     publisher = scrapy.Field()
     release_date = scrapy.Field()
     platforms = scrapy.Field()
+    image_url = scrapy.Field()
+    genres = scrapy.Field()
 
 from scrapy.contrib.spiders import CrawlSpider, Rule
 from scrapy.contrib.linkextractors.lxmlhtml import LxmlLinkExtractor
@@ -34,6 +36,7 @@ class SteamSpider(CrawlSpider):
         game = GameItem()
         game['url'] = w3lib.url.url_query_cleaner(response.url, [])
         game['description'] = response.xpath("string(//div[@id='game_area_description'])").re(re.compile('\r\n\t\t\t\t\t\tAbout This Game\r\n\t\t\t\t\t\t(.*)', re.UNICODE|re.DOTALL))
+        game['image_url'] = response.xpath("//*[@id='game_highlights']/div[2]/div/div[1]/img/@src").extract()
 
         platforms = response.xpath("(//div[@class='game_area_purchase_game'])[1]//span[contains(@class,'platform_img')]").extract()
         game['platforms'] = []
@@ -44,6 +47,12 @@ class SteamSpider(CrawlSpider):
                 game['platforms'].append(match.group(1))
 
         game['title'] = response.xpath("(//div[@class='details_block'])[1]").re(re.compile('Title:</b> ([^<]*)', re.UNICODE))
+        genres = response.xpath("(//div[@class='details_block'])[1]").re(re.compile('Genre:</b>[^<]*(.*)<br>', re.UNICODE))[0]
+
+        game['genres'] = []
+        for match in re.finditer(re.compile(r'<a href="[^"]*">([^<]*)</a>', re.UNICODE), genres):
+            game['genres'].append(match.group(1))
+
         game['developer'] = response.xpath("(//div[@class='details_block'])[1]").re(re.compile('Developer:</b>[^<]*<a href="[^"]*">([^<]*)', re.UNICODE))
         game['publisher'] = response.xpath("(//div[@class='details_block'])[1]").re(re.compile('Publisher:</b>[^<]*<a href="[^"]*">([^<]*)', re.UNICODE))
         #game['release_date'] = time.strptime(response.xpath("(//div[@class='details_block'])[1]").re(re.compile('Release Date:</b> ([^<]*)', re.UNICODE))[0], '%d %b, %Y')
