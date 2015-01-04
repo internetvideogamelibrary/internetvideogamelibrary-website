@@ -1,6 +1,8 @@
+require "github/markup"
+
 class EditionsController < ApplicationController
 	before_filter :authenticate_user!,
-	:only => [:new, :create, :to_review, :review]
+	:only => [:new, :create, :edit, :update, :to_review, :review]
 
 	before_filter :reviewer_only,
 	:only => [:to_review, :review]
@@ -8,34 +10,92 @@ class EditionsController < ApplicationController
 		@edition = Edition.new
 		@work = Work.new
 	end
+	def existing_work
+		@work = Work.new(work_params)
+		@existing_work = Work.find_by_id(params.require(:existing_work).permit(:id)[:id])
+		respond_to do |format|
+			  format.js
+		end
+	end
+	def split
+		@edition = Edition.find(params[:id])
+		if @edition.present?
+			@work = Work.new(:original_title => @edition.work.original_title, :original_release_date => @edition.work.original_release_date)
+			if @work.save
+				@edition.work_id = @work.id
+				if @edition.save
+					flash[:success] = "Edition was splitted successfully."
+					redirect_to @edition
+				else
+					redirect_to @edition
+				end
+			else
+				redirect_to @edition
+			end
+		else
+			redirect_to edition_path
+		end
+	end
+
 	def create
 		@edition = Edition.new(edition_params)
-		@work = Work.new(work_params)
-		if @work.save!
-			@edition.work_id = @work.id
-			if @edition.save
-				flash[:success] = "Your edition will now be reviewed and soon will be online!"
-				redirect_to editions_path
+		work_option = params.permit(:work_option)[:work_option]
+		unless work_option == "existing"
+			@work = Work.new(work_params)
+			if @work.save!
+				@edition.work_id = @work.id
+				if @edition.save
+					flash[:success] = "Your edition was added!"
+					redirect_to @edition
+				else
+					render 'new'
+				end
 			else
 				render 'new'
 			end
 		else
-			render 'new'
+			@work = Work.find_by_id(params.require(:existing_work).permit(:id)[:id])
+			@edition.work_id = @work.id
+			if @edition.save
+				flash[:success] = "Your edition was added!"
+				redirect_to @edition
+			else
+				render 'new'
+			end
 		end
 	end
 	def index
 		@editions = Edition.where(status: Edition.statuses[:active])
+	end
+	def edit
+		@edition = Edition.find_by_id(params[:id])
+		@work = @edition.work
+	end
+	def update
+		@edition = Edition.find(params[:id])
+		@work = @edition.work
+		if @work.update_attributes(work_params)
+			if @edition.update_attributes(edition_params)
+				flash[:success] = "Your edition will now be reviewed and soon will be online!"
+				redirect_to editions_path
+			else
+				render 'edit'
+			end
+		else
+			render 'edit'
+		end
 	end
 	def show
 		@edition = Edition.find_by_id(params[:id])
 		if @edition == nil or (@edition.status != Edition.statuses[:active] and not (current_user.admin? || current_user.reviewer?))
 				redirect_to :back, :alert => "Game not found"
 		else
-			 @other_editions_count = Edition.where("work_id = ? and id <> ?",@edition.work.id,@edition.id).count()
-			 @other_editions = Edition.where("work_id = ? and id <> ?",@edition.work.id,@edition.id).limit(5)
+			@other_editions_count = Edition.where("work_id = ? and status = ? and id <> ?",@edition.work.id,Edition.statuses[:active],@edition.id).count()
+			@other_editions = Edition.where("work_id = ? and status = ? and id <> ?",@edition.work.id,Edition.statuses[:active],@edition.id).limit(5)
+			@description = GitHub::Markup.render('README.md', @edition.description).html_safe
 		end
 		rescue ActionController::RedirectBackError
-		  redirect_to '/', :alert => "Game not found"
+			redirect_to '/', :alert => "Game not found"
 	end
 	def to_review
 		@editions = Edition.where(status: Edition.statuses[:unreviewed])
@@ -58,21 +118,21 @@ class EditionsController < ApplicationController
 			redirect_to to_review_editions_path
 		end
 		rescue ActionController::RedirectBackError
-		  redirect_to '/', :alert => "Unknown option"
+			redirect_to '/', :alert => "Unknown option"
 	end
 
 	private
 	def edition_params
-		params.require(:edition).permit(:title,:developer,:publisher,:description,:release_date,:platform_id,:region_id, :coverart, :media_id)
+		params.require(:edition).permit(:title,:developer,:publisher,:description,:release_date,:platform_id,:region_id, :coverart, :media_id, :delete_coverart)
 	end
 	def work_params
 		params.require(:work).permit(:original_title, :original_release_date)
 	end
 	def reviewer_only
 		unless current_user.admin?
-		  redirect_to :back, :alert => "Access denied."
+			redirect_to :back, :alert => "Access denied."
 		end
 		rescue ActionController::RedirectBackError
-		  redirect_to '/', :alert => "Access denied."
+			redirect_to '/', :alert => "Access denied."
 	end
 end

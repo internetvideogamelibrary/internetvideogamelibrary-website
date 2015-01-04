@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141229010221) do
+ActiveRecord::Schema.define(version: 20150102192922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,16 @@ ActiveRecord::Schema.define(version: 20141229010221) do
   add_index "editions", ["platform_id"], name: "index_editions_on_platform_id", using: :btree
   add_index "editions", ["region_id"], name: "index_editions_on_region_id", using: :btree
   add_index "editions", ["work_id"], name: "index_editions_on_work_id", using: :btree
+
+  create_table "game_shelves", force: true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.integer  "shelf_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "game_shelves", ["user_id"], name: "index_game_shelves_on_user_id", using: :btree
 
   create_table "media", force: true do |t|
     t.string   "title",      null: false
@@ -94,5 +104,7 @@ ActiveRecord::Schema.define(version: 20141229010221) do
   add_foreign_key "editions", "platforms", name: "editions_platform_id_fk"
   add_foreign_key "editions", "regions", name: "editions_region_id_fk"
   add_foreign_key "editions", "works", name: "editions_work_id_fk"
+
+  add_foreign_key "game_shelves", "users", name: "game_shelves_user_id_fk"
 
 end

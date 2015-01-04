@@ -1,0 +1,21 @@
+<div class="form-group has-error">
+	<p><small class="help-block" style="">We've found a game by that name. Do you want to use the existing one or create a new one?</small></p>
+	<%= hidden_field_tag "existing_work[id]", existing_work.id %>
+	<div class="col-lg-4">
+	<%= radio_button_tag :work_option, 'existing', :checked => true %>
+	<%= label_tag :review_option_existing, 'Use existing' %>
+	<%= label_tag :title, "Original title: " + existing_work.original_title %>
+	<%= label_tag :original_release_date, "Original release date: " + existing_work.original_release_date.strftime('%d/%m/%Y') %>
+	</div>
+	<div class="col-lg-3"></div>
+	<%= fields_for @work do |w| %>
+		<div class="col-lg-4">
+		<%= radio_button_tag :work_option, 'new' %>
+		<%= label_tag :work_option_new, 'Create new game' %>
+		<%= w.label :title, "Original title: " + work.original_title %>
+		<%= w.hidden_field :original_title, :required => true, :class => "form-control" %>
+		<%= w.label :original_release_date, "Original release date: " + work.original_release_date.strftime('%d/%m/%Y') %>
+		<%= w.hidden_field :original_release_date, :required => true, :class => "form-control" %>
+		</div>
+	<% end %>
+</div>

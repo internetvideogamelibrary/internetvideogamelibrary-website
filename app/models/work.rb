@@ -10,5 +10,5 @@
 #
 
 class Work < ActiveRecord::Base
-	has_many :edition
+	has_many :editions
 end

@@ -24,15 +24,26 @@
 #
 
 class User < ActiveRecord::Base
-  enum role: [:user, :reviewer, :admin]
-  after_initialize :set_default_role, :if => :new_record?
+	enum role: [:user, :reviewer, :admin]
+	after_initialize :set_default_role, :if => :new_record?
 
-  def set_default_role
-    self.role ||= :user
-  end
+	after_commit :create_game_shelves, :on => :create
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
+	has_many :game_shelves
+
+	def set_default_role
+		self.role ||= :user
+	end
+
+	def create_game_shelves
+		GameShelf.create(:title => "Wishlist", :shelf_type => GameShelf::shelf_types[:wishlist], :user_id => id)
+		GameShelf.create(:title => "Backlog", :shelf_type => GameShelf::shelf_types[:backlog], :user_id => id)
+		GameShelf.create(:title => "Playing", :shelf_type => GameShelf::shelf_types[:playing], :user_id => id)
+		GameShelf.create(:title => "Finished", :shelf_type => GameShelf::shelf_types[:finished], :user_id => id)
+	end
+
+	# Include default devise modules. Others available are:
+	# :confirmable, :lockable, :timeoutable and :omniauthable
+	devise :database_authenticatable, :registerable, :confirmable,
+		:recoverable, :rememberable, :trackable, :validatable
 end
