@@ -18,8 +18,8 @@ class EditionSeedsItemExporter(BaseItemExporter):
         except:
             release_date = datetime.strptime(itemdict['release_date'], '%b %Y').strftime('%Y-%m-01')
 
-        self.file.write('work = Work.create(:original_title => "%s", :original_release_date => \'%s\')\n' % (itemdict['title'].replace('"', r'\"'), release_date))
-        self.file.write("edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => \"%s\", :release_date => \"%s\", :title => \"%s\", :developer => \"%s\", :publisher => \"%s\", :coverart_remote_url => '%s')\n" % (itemdict['description'].replace('\r','\n').strip().replace('"', r'\"').replace('\t', ''), release_date, itemdict['title'].replace('"', r'\"'), itemdict['developer'].replace('"', r'\"'), itemdict['publisher'].replace('"', r'\"'), itemdict['image_url']) )
+        self.file.write('work = Work.create(:original_title => "%s", :original_release_date => \'%s\')\n' % (itemdict['title'].replace('&amp;','&').replace('"', r'\"'), release_date))
+        self.file.write("edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => \"%s\", :release_date => \"%s\", :title => \"%s\", :developer => \"%s\", :publisher => \"%s\", :coverart_remote_url => '%s')\n" % (itemdict['description'].replace('\r','\n').replace('&amp;','&').replace('\\', '\\\\').replace('"', r'\"').replace('\t', '').strip(), release_date, itemdict['title'].replace('&amp;','&').replace('"', r'\"'), itemdict['developer'].replace('"', r'\"'), itemdict['publisher'].replace('"', r'\"'), itemdict['image_url']) )
         for genre in itemdict['genres']:
             self.file.write('#genre = Genre.find_by_title("%s")\n' % genre)
             self.file.write('#if genre.present?\n')
