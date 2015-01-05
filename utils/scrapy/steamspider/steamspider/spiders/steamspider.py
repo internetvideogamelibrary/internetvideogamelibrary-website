@@ -48,7 +48,6 @@ class SteamSpider(CrawlSpider):
 
         game = GameItem()
         game['url'] = w3lib.url.url_query_cleaner(response.url, [])
-        game['description'] = response.xpath("string(//div[@id='game_area_description'])").re(re.compile('\r\n\t\t\t\t\t\tAbout This Game\r\n\t\t\t\t\t\t(.*)', re.UNICODE|re.DOTALL))[0]
         game['image_url'] = response.xpath("//*[@id='game_highlights']/div[2]/div/div[1]/img/@src").extract()[0]
 
         platforms = response.xpath("(//div[@class='game_area_purchase_game'])[1]//span[contains(@class,'platform_img')]").extract()
@@ -60,6 +59,14 @@ class SteamSpider(CrawlSpider):
                 game['platforms'].append(match.group(1))
 
         game['title'] = response.xpath("(//div[@class='details_block'])[1]").re(re.compile('Title:</b> ([^<]*)', re.UNICODE))[0]
+
+        game['description'] = response.xpath("string(//div[@id='game_area_description'])").re(re.compile('\r\n\t\t\t\t\t\tAbout This Game\r\n\t\t\t\t\t\t(.*)', re.UNICODE|re.DOTALL))
+        if len(game['description']) > 0:
+            game['description'] = game['description'][0]
+        else:
+            game['description'] = ''
+            log.msg("Game %s has no description. Using blank for now." % game['title'], level=log.WARNING)
+
         genres = response.xpath("(//div[@class='details_block'])[1]").re(re.compile('Genre:</b>[^<]*(.*)<br>', re.UNICODE))
         game['genres'] = []
         if len(genres) > 0:
@@ -83,6 +90,11 @@ class SteamSpider(CrawlSpider):
             log.msg("Game %s has no publisher. Using blank for now." % game['title'], level=log.WARNING)
 
         #game['release_date'] = time.strptime(response.xpath("(//div[@class='details_block'])[1]").re(re.compile('Release Date:</b> ([^<]*)', re.UNICODE))[0], '%d %b, %Y')
-        game['release_date'] = response.xpath("(//div[@class='details_block'])[1]").re(re.compile('Release Date:</b> ([^<]*)', re.UNICODE))[0]
+        game['release_date'] = response.xpath("(//div[@class='details_block'])[1]").re(re.compile('Release Date:</b> ([^<]*)', re.UNICODE))
+        if len(game['release_date']) > 0:
+            game['release_date'] = game['release_date'][0]
+        else:
+            game['release_date'] = ''
+            log.msg("Game %s has no release date. Using blank for now." % game['title'], level=log.WARNING)
 
         return game
