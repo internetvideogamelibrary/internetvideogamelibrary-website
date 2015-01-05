@@ -1,4 +1,4 @@
-require "github/markup"
+require "github/markdown"
 
 class EditionsController < ApplicationController
 	before_filter :authenticate_user!,
@@ -92,7 +92,7 @@ class EditionsController < ApplicationController
 		else
 			@other_editions_count = Edition.where("work_id = ? and status = ? and id <> ?",@edition.work.id,Edition.statuses[:active],@edition.id).count()
 			@other_editions = Edition.where("work_id = ? and status = ? and id <> ?",@edition.work.id,Edition.statuses[:active],@edition.id).limit(5)
-			@description = GitHub::Markup.render('README.md', @edition.description).html_safe
+			@description = GitHub::Markdown.render_gfm(@edition.description).html_safe
 		end
 		rescue ActionController::RedirectBackError
 			redirect_to '/', :alert => "Game not found"

@@ -22,8 +22,7 @@ gem 'gretel'
 gem 'bootstrap-validator-rails'
 gem "paperclip", "~> 4.2"
 gem 'aws-sdk'
-gem "github-markup"
-gem "redcarpet"
+gem "github-markdown"
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
