@@ -24,7 +24,7 @@ class EditionsController < ApplicationController
 			if @work.save
 				@edition.work_id = @work.id
 				if @edition.save
-					flash[:success] = "Edition was splitted successfully."
+					flash[:notice] = "Edition was splitted successfully."
 					redirect_to @edition
 				else
 					redirect_to @edition
@@ -45,7 +45,7 @@ class EditionsController < ApplicationController
 			if @work.save!
 				@edition.work_id = @work.id
 				if @edition.save
-					flash[:success] = "Your edition was added!"
+					flash[:notice] = "Your edition was added!"
 					redirect_to @edition
 				else
 					render 'new'
@@ -57,7 +57,7 @@ class EditionsController < ApplicationController
 			@work = Work.find_by_id(params.require(:existing_work).permit(:id)[:id])
 			@edition.work_id = @work.id
 			if @edition.save
-				flash[:success] = "Your edition was added!"
+				flash[:notice] = "Your edition was added!"
 				redirect_to @edition
 			else
 				render 'new'
@@ -76,7 +76,7 @@ class EditionsController < ApplicationController
 		@work = @edition.work
 		if @work.update_attributes(work_params)
 			if @edition.update_attributes(edition_params)
-				flash[:success] = "Your edition will now be reviewed and soon will be online!"
+				flash[:notice] = "Your changes were saved!"
 				redirect_to editions_path
 			else
 				render 'edit'
