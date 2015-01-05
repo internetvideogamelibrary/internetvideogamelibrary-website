@@ -24,6 +24,8 @@
 class Edition < ActiveRecord::Base
 	enum statuses: [:unreviewed, :active, :deleted]
 
+	has_and_belongs_to_many :genres
+
 	has_attached_file :coverart, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 	validates_attachment_content_type :coverart, :content_type => /\Aimage\/.*\Z/
 
