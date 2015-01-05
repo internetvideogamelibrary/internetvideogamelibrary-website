@@ -155,6 +155,19 @@ Media.create(:title => 'UMD')
 media2 = Media.create(:title => 'Virtual Console (Digital Download)')
 
 puts 'CREATED A MEDIA: ' << media.title
+
+Genre.create(:title => 'Action')
+Genre.create(:title => 'Adventure')
+Genre.create(:title => 'FPS')
+Genre.create(:title => 'Indie')
+Genre.create(:title => 'Massively Multiplayer')
+Genre.create(:title => 'Racing')
+Genre.create(:title => 'RPG')
+Genre.create(:title => 'Shooter')
+Genre.create(:title => 'Simulation')
+Genre.create(:title => 'Sports')
+Genre.create(:title => 'Strategy')
+
 work = Work.create(:original_title => 'Spelunker', :original_release_date => '1983-01-01')
 puts 'CREATED A WORK (GAME): ' << work.original_title
 edition = Edition.create(:title => 'Spelunker', :developer => 'MicroGraphicImage', :publisher => 'Brøderbund', :release_date => '1985-12-6', :description => 'Who knows what fabulous treasures - and unspeakable dangers - await you in the world\'s deepest cave? This is one game you can really get into...and into...and into.
