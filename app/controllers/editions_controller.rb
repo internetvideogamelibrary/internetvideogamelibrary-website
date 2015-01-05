@@ -77,7 +77,7 @@ class EditionsController < ApplicationController
 		if @work.update_attributes(work_params)
 			if @edition.update_attributes(edition_params)
 				flash[:notice] = "Your changes were saved!"
-				redirect_to editions_path
+				redirect_to @edition
 			else
 				render 'edit'
 			end
