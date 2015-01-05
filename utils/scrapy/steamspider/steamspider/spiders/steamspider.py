@@ -30,11 +30,19 @@ class SteamSpider(CrawlSpider):
     name = 'steam'
     allowed_domains = ['store.steampowered.com']
     #start_urls = ['http://store.steampowered.com/search/?term=#sort_by=_ASC&category1=998&page=1']
-    start_urls = ['http://store.steampowered.com/app/730',
-    'http://store.steampowered.com/app/221100/']
+    start_urls = ['http://store.steampowered.com/app/730/',
+    'http://store.steampowered.com/app/221100/',
+    'http://store.steampowered.com/app/211720/',
+    'http://store.steampowered.com/app/337070/']
     rules = (Rule (LxmlLinkExtractor(allow=['store.steampowered.com/app/\d+'], process_value=clean_url_args), callback='parse_game'),)
 
     def parse_game(self, response):
+        if response.xpath("/html/body/div[2]/div[2]/div/div[2]/div[1]/div[1]/a[1]/text()").extract()[0] != "All Games":
+            return None
+
+        if response.xpath('//*[@id="game_area_purchase"]/div[1]/div/h1/text()').extract()[0] == "Downloadable Content":
+            return None
+
         game = GameItem()
         game['url'] = w3lib.url.url_query_cleaner(response.url, [])
         game['description'] = response.xpath("string(//div[@id='game_area_description'])").re(re.compile('\r\n\t\t\t\t\t\tAbout This Game\r\n\t\t\t\t\t\t(.*)', re.UNICODE|re.DOTALL))[0]
