@@ -41,6 +41,9 @@
 						<li class="list-group-item text-right"><span class="pull-left"><strong>Release date:</strong></span> <%= @edition.release_date.strftime('%d/%m/%Y') %></li>
 					<% end -%>
 					<li class="list-group-item text-right"><span class="pull-left"><strong>Media:</strong></span> <%= @edition.media.title %></li>
+					<%- if @edition.genres.length > 0 %>
+						<li class="list-group-item text-right"><span class="pull-left"><strong>Genres:</strong></span> <% @edition.genres.each_with_index do |g, i| %><% if i > 0 %>, <% end %><%= g.title %><% end %></li>
+					<% end -%>
 				</ul>
 			</div>
 			<div class="row">
