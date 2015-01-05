@@ -26,12 +26,20 @@
 				<ul class="list-group">
 					<li class="list-group-item text-center"><strong>Game information</strong></li>
 					<li class="list-group-item text-right"><span class="pull-left"><strong>Original title:</strong></span> <%= @edition.work.original_title %></li>
-					<li class="list-group-item text-right"><span class="pull-left"><strong>Original release date:</strong></span> <%= @edition.work.original_release_date.strftime('%d/%m/%Y') %></li>
+					<%- if @edition.work.original_release_date.present? %>
+						<li class="list-group-item text-right"><span class="pull-left"><strong>Original release date:</strong></span> <%= @edition.work.original_release_date.strftime('%d/%m/%Y') %></li>
+					<% end -%>
 					<li class="list-group-item text-center"><strong>Game edition information</strong></li>
-					<li class="list-group-item text-right"><span class="pull-left"><strong>Developer:</strong></span> <%= @edition.developer %></li>
+					<%- if @edition.developer.present? %>
+						<li class="list-group-item text-right"><span class="pull-left"><strong>Developer:</strong></span> <%= @edition.developer %></li>
+					<% end -%>
+					<%- if @edition.publisher.present? %>
 					<li class="list-group-item text-right"><span class="pull-left"><strong>Publisher:</strong></span> <%= @edition.publisher %></li>
+					<% end -%>
 					<li class="list-group-item text-right"><span class="pull-left"><strong>Region:</strong></span> <%= @edition.region.title %></li>
-					<li class="list-group-item text-right"><span class="pull-left"><strong>Release date:</strong></span> <%= @edition.release_date.strftime('%d/%m/%Y') %></li>
+					<%- if @edition.release_date.present? %>
+						<li class="list-group-item text-right"><span class="pull-left"><strong>Release date:</strong></span> <%= @edition.release_date.strftime('%d/%m/%Y') %></li>
+					<% end -%>
 					<li class="list-group-item text-right"><span class="pull-left"><strong>Media:</strong></span> <%= @edition.media.title %></li>
 				</ul>
 			</div>

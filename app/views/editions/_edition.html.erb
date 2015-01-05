@@ -1,7 +1,7 @@
 <div class="list-group-item"><%= link_to(edition, class: "list-group-item") do %>
 	<h4 class="list-group-item-heading"><%= edition.title %> (<%= edition.platform.display_title %>)</h4>
 	<p class="list-group-item-text">
-		Released in <%=edition.region.title%> at <%= edition.release_date.strftime('%d/%m/%Y') %>
+		Released in <%=edition.region.title%> <%- if edition.release_date.present? %>at <%= edition.release_date.strftime('%d/%m/%Y') %><% end -%>
 	</p>
 <% end %>
 <%- if edition.status == Edition.statuses[:unreviewed] %>

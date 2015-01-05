@@ -28,9 +28,6 @@ class Edition < ActiveRecord::Base
 	validates_attachment_content_type :coverart, :content_type => /\Aimage\/.*\Z/
 
 	validates :title, presence: true
-	validates :developer, presence: true
-	validates :publisher, presence: true
-	validates :release_date, presence: true
 	validates :platform_id, presence: true
 	validates :region_id, presence: true
 	validates :work_id, presence: true
