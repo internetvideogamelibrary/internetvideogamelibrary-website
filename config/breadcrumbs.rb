@@ -26,14 +26,14 @@ crumb :edit_expansion do |expansion|
 	parent :edition, expansion.edition
 end
 
-crumb :new_expansion do |edition|
-	link "New expansion", new_edition_expansion_path(edition)
-	parent :edition, edition
+crumb :new_expansion do |expansion|
+	link "New expansion", new_edition_expansion_path(expansion.edition)
+	parent :edition, expansion.edition
 end
 
-crumb :expansion do |edition, expansion|
-	link "Expansion", new_edition_expansion_path(edition, expansion)
-	parent :edition, edition
+crumb :expansion do |expansion|
+	link "Expansion", new_edition_expansion_path(expansion.edition, expansion)
+	parent :edition, expansion.edition
 end
 
 # crumb :projects do
