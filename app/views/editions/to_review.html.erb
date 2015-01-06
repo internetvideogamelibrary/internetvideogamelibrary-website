@@ -1,6 +1,13 @@
 <% breadcrumb :editions_to_review %>
-<div class="list-group">
-	<% @editions.each do |edition| %>
+<div class="row">
+	<% @editions.each_with_index do |edition, i| %>
+		<%- if i > 0 && ( i % 6 == 0 ) %>
+			<div class="clearfix visible-md visible-lg"></div>
+		<% elsif i > 0 && (i % 4 == 0) %>
+			<div class="clearfix visible-sm"></div>
+		<% elsif i > 0 && (i % 3 == 0) %>
+			<div class="clearfix visible-xs"></div>
+		<% end -%>
 		<%= render edition %>
 	<% end %>
 </div>
