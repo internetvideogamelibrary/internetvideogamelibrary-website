@@ -2,9 +2,21 @@
 	<div class="col-md-3">
 		<div class="form-group">
 			<h6>Add a cover image for this game edition</h6>
-			<div >
-				<%= f.file_field :coverart  %>
-			</div>
+		</div>
+		<div class="form-group">
+			<% if @edition.coverart.exists? %>
+				<%= image_tag @edition.coverart.url(:thumb) %><br/>
+				<div class="checkbox">
+					<label>
+						<%= f.check_box :delete_coverart %>Delete Image
+					</label>
+				</div>
+			<% end %>
+		</div>
+		<div class="form-group">
+			<span class="file-input btn btn-default btn-file">
+				Browse&hellip; <%= f.file_field :coverart  %>
+		</span>
 		</div>
 		<div class="bs-callout bs-callout-warning">
 			<h4>Guidelines</h4>
