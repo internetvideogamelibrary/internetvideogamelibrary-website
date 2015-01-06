@@ -21,6 +21,11 @@ crumb :edition do |edition|
 	parent :editions
 end
 
+crumb :edit_expansion do |expansion|
+	link "Editing DLC/Expansion: #{expansion.title}", edit_edition_expansion_path(expansion.edition, expansion)
+	parent :edition, expansion.edition
+end
+
 crumb :new_expansion do |edition|
 	link "New expansion", new_edition_expansion_path(edition)
 	parent :edition, edition

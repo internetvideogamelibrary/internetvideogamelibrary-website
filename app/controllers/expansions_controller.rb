@@ -35,6 +35,20 @@ class ExpansionsController < ApplicationController
 		rescue ActionController::RedirectBackError
 			redirect_to '/', :alert => "Game not found"
 	end
+	def edit
+		@expansion = Expansion.find_by_id(params[:id])
+		@edition = @expansion.edition
+	end
+	def update
+		@expansion = Expansion.find(params[:id])
+		@edition = @expansion.edition
+		if @expansion.update_attributes(expansion_params)
+			flash[:notice] = "Your changes were saved!"
+			redirect_to [@edition, @expansion]
+		else
+			render 'edit'
+		end
+	end
 
 	private
 
