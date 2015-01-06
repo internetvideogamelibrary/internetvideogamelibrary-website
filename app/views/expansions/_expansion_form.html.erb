@@ -1,0 +1,40 @@
+<%= form_for [@edition, @expansion], :html => {:class => "form-horizontal"} do |f| %>
+	<div class="col-md-3">
+		<div class="form-group">
+			<h6>Add a cover image for this game edition</h6>
+			<div >
+				<%= f.file_field :coverart  %>
+			</div>
+		</div>
+		<div class="bs-callout bs-callout-warning">
+			<h4>Guidelines</h4>
+			<ul>
+				<li>Be careful about duplicates. Search if the game edition you are trying to add is not already in our library.</li>
+				<li>The game info is about every edition of this game (in multiple platforms), while the edition info is exclusive to this edition</li>
+				<li>A DLC is not an edition. It should be filled in as a DLC/Expansion, by going into the edition and clicking on "new DLC/Expansion"</li>
+			</ul>
+		</div>
+	</div>
+	<div class="col-md-9">
+		<h3>Game DLC/Expansion info</h3>
+		<h6>Information related to this edition: medium, developer, publisher</h6>
+		<div class="form-group">
+			<%= f.label :title, "Title:", :class => "col-lg-3 control-label" %>
+			<div class="col-lg-8">
+				<%= f.text_field :title, :required => true, :class => "form-control" %>
+			</div>
+		</div>
+		<div class="form-group">
+			<%= f.label :description, "Description:", :class => "col-lg-3 control-label" %>
+			<div class="col-lg-8">
+				<%= f.text_area :description, :cols => 40, :rows => 20, :required => true, :class => "form-control" %>
+			</div>
+		</div>
+		<div class="form-group">
+			<%= f.label :release_date, "Release date:", :class => "col-lg-3 control-label" %>
+			<div class="col-lg-8">
+				<%= f.date_field :release_date, :required => true, :class => "form-control" %>
+			</div>
+		</div>
+	</div>
+<% end %>
