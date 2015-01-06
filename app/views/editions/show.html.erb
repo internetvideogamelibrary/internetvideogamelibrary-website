@@ -49,9 +49,6 @@
 			<div class="row">
 				<%= link_to "Edit this edition", edit_edition_path(@edition) %>
 			</div>
-			<div class="row">
-				<%= link_to "Add DLC/Expansion", new_edition_expansion_path(@edition) %>
-			</div>
 		</div>
 	</div>
 	<div class="col-sm-9">
@@ -90,21 +87,28 @@
 				|
 				<%= link_to "Combine", combine_work_path(@edition.work) %>
 				</div>
-			<%- if @edition.expansions.length > 0 %>
-				<div class="row">
-					<h6>Game expansions (<%= @edition.expansions.length %>)</h6>
-				</div>
+				<div class="row vertical-align">
+					<div class="col-sm-2" style="padding-left: 10px; padding-right: 10px;">
+						<h6>DLCs/Expansions<%- if @edition.expansions.length > 0 %> (<%= @edition.expansions.length %>)<% end -%>:</h6>
+					</div>
 
-				<div class="row">
-					<% @edition.expansions.each do |e| %>
-						<div class="col-sm-2 thumb">
-							<%= link_to [@edition,e] do %>
-								<%= image_tag e.coverart.url(:thumb) %>
-							<% end %>
+					<%- if @edition.expansions.length > 0 %>
+						<% @edition.expansions.each do |e| %>
+							<div class="col-sm-2 thumb">
+								<%= link_to [@edition,e] do %>
+									<%= image_tag e.coverart.url(:thumb) %>
+								<% end %>
+							</div>
+						<% end %>
+					<% else %>
+						<div class="col-sm-2">
+							<h6>None found.</h6>
 						</div>
-					<% end %>
+					<% end -%>
 				</div>
-			<% end -%>
+				<div class="row">
+					<%= link_to "Add DLC/Expansion", new_edition_expansion_path(@edition) %>
+				</div>
 		</div>
 	</div>
 </div>
