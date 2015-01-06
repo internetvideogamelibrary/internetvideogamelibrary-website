@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
-  get 'work/search'
 
 	mount Upmin::Engine => '/admin'
 	root to: 'editions#index'
 	devise_for :users
 	resources :users
-	resources :work do
+	resources :works do
 		collection do
-			post 'search'
+			get 'search'
 		end
 		member do
 			get 'combine'

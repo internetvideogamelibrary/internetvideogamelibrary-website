@@ -15,7 +15,7 @@ $(document).ready(function() {
 		.bootstrapValidator({
 		}).on('success.form.bv', function(e) {
 			if($('[name="work_option"]').length == 0) {
-				$.ajax({url: "<%= work_search_path %>",
+				$.ajax({url: "<%= search_works_path %>",
 					type: "get",
 					cache: false,
 					data: { "work[original_title]": $('[name="work[original_title]"]').val(),

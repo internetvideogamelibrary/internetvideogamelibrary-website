@@ -1,2 +1,2 @@
-module WorkHelper
+module WorksHelper
 end

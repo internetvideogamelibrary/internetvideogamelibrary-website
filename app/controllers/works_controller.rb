@@ -1,4 +1,4 @@
-class WorkController < ApplicationController
+class WorksController < ApplicationController
 	def search
 		params = work_params
 		@work = Work.find_by(original_title: params[:original_title], original_release_date: params[:original_release_date])
