@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150105195118) do
+ActiveRecord::Schema.define(version: 20150106014538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20150105195118) do
   add_index "editions", ["media_id"], name: "index_editions_on_media_id", using: :btree
   add_index "editions", ["platform_id"], name: "index_editions_on_platform_id", using: :btree
   add_index "editions", ["region_id"], name: "index_editions_on_region_id", using: :btree
+  add_index "editions", ["title"], name: "index_editions_on_title", using: :btree
   add_index "editions", ["work_id"], name: "index_editions_on_work_id", using: :btree
 
   create_table "editions_genres", force: true do |t|
