@@ -11,6 +11,10 @@ crumb :editions_to_review do
 	parent :editions
 end
 
+crumb :edit_edition do |edition|
+	link "Editing game edition: #{edition.title}", edit_edition_path(edition)
+	parent :editions
+end
 crumb :new_edition do
 	link "New edition", new_edition_path
 	parent :editions
