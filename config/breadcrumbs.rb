@@ -26,6 +26,11 @@ crumb :new_expansion do |edition|
 	parent :edition, edition
 end
 
+crumb :expansion do |edition, expansion|
+	link "Expansion", new_edition_expansion_path(edition, expansion)
+	parent :edition, edition
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end

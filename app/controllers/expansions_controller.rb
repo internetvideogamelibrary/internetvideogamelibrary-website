@@ -1,6 +1,11 @@
 class ExpansionsController < ApplicationController
 	before_filter :authenticate_user!,
 	:only => [:new, :create, :edit, :update]
+	def show
+		@expansion = Expansion.find_by_id(params[:id])
+		@edition = @expansion.edition
+		@description = GitHub::Markdown.render_gfm(@expansion.description).html_safe
+	end
 	def create
 		@edition = Edition.find_by_id(params[:edition_id])
 		if @edition == nil
