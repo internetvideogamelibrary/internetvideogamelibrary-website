@@ -4,4 +4,5 @@
 		<%= render edition %>
 	<% end %>
 </div>
+<%= will_paginate @collection, renderer: BootstrapPagination::Rails %>
 <%= link_to("Add new edition", new_edition_path) %>

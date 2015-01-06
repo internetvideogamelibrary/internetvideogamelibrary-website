@@ -65,7 +65,7 @@ class EditionsController < ApplicationController
 		end
 	end
 	def index
-		@editions = Edition.where(status: Edition.statuses[:active])
+		@editions = Edition.where(status: Edition.statuses[:active]).paginate(:page => params[:page]).order('id DESC')
 	end
 	def edit
 		@edition = Edition.find_by_id(params[:id])
