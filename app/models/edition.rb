@@ -24,8 +24,6 @@
 class Edition < ActiveRecord::Base
 	enum statuses: [:unreviewed, :active, :deleted]
 
-	has_and_belongs_to_many :genres
-
 	has_attached_file :coverart, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 	validates_attachment_content_type :coverart, :content_type => /\Aimage\/.*\Z/
 
@@ -39,6 +37,10 @@ class Edition < ActiveRecord::Base
 	belongs_to :region
 	belongs_to :work
 	belongs_to :media
+
+	has_many :expansions
+
+	has_and_belongs_to_many :genres
 
 	before_save :set_default_status
 	before_validation { coverart.clear if @delete_coverart }

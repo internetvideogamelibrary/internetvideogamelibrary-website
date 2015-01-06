@@ -23,5 +23,7 @@ Rails.application.routes.draw do
 		member do
 			put 'split'
 		end
+		resources :expansion do
+		end
 	end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150106014538) do
+ActiveRecord::Schema.define(version: 20150106143442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,21 @@ ActiveRecord::Schema.define(version: 20150106014538) do
   end
 
   add_index "editions_genres", ["edition_id", "genre_id"], name: "index_editions_genres_on_edition_id_and_genre_id", using: :btree
+
+  create_table "expansions", force: true do |t|
+    t.string   "title"
+    t.datetime "release_date"
+    t.text     "description"
+    t.string   "coverart_file_name"
+    t.string   "coverart_content_type"
+    t.integer  "coverart_file_size"
+    t.datetime "coverart_updated_at"
+    t.integer  "edition_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "expansions", ["edition_id"], name: "index_expansions_on_edition_id", using: :btree
 
   create_table "game_shelves", force: true do |t|
     t.integer  "user_id"

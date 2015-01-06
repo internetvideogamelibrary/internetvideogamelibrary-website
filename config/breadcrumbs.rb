@@ -17,8 +17,13 @@ crumb :new_edition do
 end
 
 crumb :edition do |edition|
-	link edition.title, editions_path(edition)
+	link edition.title, edition_path(edition)
 	parent :editions
+end
+
+crumb :new_expansion do |edition|
+	link "New expansion", new_edition_expansion_path(edition)
+	parent :edition, edition
 end
 
 # crumb :projects do
