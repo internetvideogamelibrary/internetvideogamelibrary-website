@@ -71,26 +71,30 @@
 					<h6>Other editions (<%= @other_editions_count %>)</h6>
 				</div>
 
-				<% @other_editions.each do |other| %>
-					<div class="col-sm-2 thumb">
-						<%= link_to other do %>
-							<%= image_tag other.coverart.url(:thumb) %>
-						<% end %>
-					</div>
-				<% end %>
+				<div class="row">
+					<% @other_editions.each do |other| %>
+						<div class="col-sm-2 thumb">
+							<%= link_to other do %>
+								<%= image_tag other.coverart.url(:thumb) %>
+							<% end %>
+						</div>
+					<% end %>
+				</div>
 			<% end -%>
 			<%- if @edition.expansions.length > 0 %>
 				<div class="row">
 					<h6>Game expansions (<%= @edition.expansions.length %>)</h6>
 				</div>
 
-				<% @edition.expansions.each do |e| %>
-					<div class="col-sm-2 thumb">
-						<%= link_to [@edition,e] do %>
-							<%= image_tag e.coverart.url(:thumb) %>
-						<% end %>
-					</div>
-				<% end %>
+				<div class="row">
+					<% @edition.expansions.each do |e| %>
+						<div class="col-sm-2 thumb">
+							<%= link_to [@edition,e] do %>
+								<%= image_tag e.coverart.url(:thumb) %>
+							<% end %>
+						</div>
+					<% end %>
+				</div>
 			<% end -%>
 		</div>
 	</div>
