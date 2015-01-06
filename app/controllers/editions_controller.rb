@@ -8,7 +8,8 @@ class EditionsController < ApplicationController
 	:only => [:to_review, :review]
 	def new
 		@edition = Edition.new
-		@work = Work.new
+		@work = Work.find_by_id(params[:work_id])
+		@work = Work.new unless @work.present?
 	end
 	def existing_work
 		@work = Work.new(work_params)

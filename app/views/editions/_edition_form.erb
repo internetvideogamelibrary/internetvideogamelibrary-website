@@ -90,6 +90,10 @@
 		</div>
 		<div id="work">
 			<%= fields_for @work do |w| %>
+				<%- if @work.id.present? %>
+					<%= hidden_field_tag "work_option", "existing" %>
+					<%= hidden_field_tag "existing_work[id]", @work.id %>
+				<% end -%>
 				<div class="form-group">
 					<%= w.label :title, "Original title:", :class => "col-lg-3 control-label" %>
 					<div class="col-lg-8">

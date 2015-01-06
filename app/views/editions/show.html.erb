@@ -48,8 +48,6 @@
 			</div>
 			<div class="row">
 				<%= link_to "Edit this edition", edit_edition_path(@edition) %>
-				|
-				<%= link_to "Combine", combine_work_path(@edition.work) %>
 			</div>
 			<div class="row">
 				<%= link_to "Add DLC/Expansion", new_edition_expansion_path(@edition) %>
@@ -66,12 +64,12 @@
 			<div class="row">
 				<%= @description %>
 			</div>
-			<%- if @other_editions_count > 0 %>
-				<div class="row">
-					<h6>Other editions (<%= @other_editions_count %>)</h6>
+			<div class="row vertical-align">
+				<div class="col-sm-2">
+					<h6>Other editions<%- if @other_editions_count > 0 %> (<%= @other_editions_count %>)<% end -%>:</h6>
 				</div>
 
-				<div class="row">
+				<%- if @other_editions_count > 0 %>
 					<% @other_editions.each do |other| %>
 						<div class="col-sm-2 thumb">
 							<%= link_to other do %>
@@ -79,8 +77,19 @@
 							<% end %>
 						</div>
 					<% end %>
+				<% else %>
+					<div class="col-sm-2">
+						<h6>None found.</h6>
+					</div>
+				<% end -%>
+			</div>
+				<div class="row">
+				<%= link_to "All editions", @edition.work %>
+				|
+				<%= link_to "Add new edition", new_edition_path(:work_id => @edition.work) %>
+				|
+				<%= link_to "Combine", combine_work_path(@edition.work) %>
 				</div>
-			<% end -%>
 			<%- if @edition.expansions.length > 0 %>
 				<div class="row">
 					<h6>Game expansions (<%= @edition.expansions.length %>)</h6>
