@@ -2,6 +2,10 @@ crumb :root do
 	link "Home", root_path
 end
 
+crumb :work do |work|
+	link work.original_title, work_path(work)
+end
+
 crumb :editions do
 	link "Games", editions_path
 end

@@ -39,6 +39,12 @@ class WorksController < ApplicationController
 		@work = Work.find(params[:id])
 		@same_work_data = Work.where("id <> ? and original_title = ? and original_release_date = ?", @work.id, @work.original_title, @work.original_release_date)
 	end
+	def show
+		@work = Work.find(params[:id])
+		@editions = Edition.where(work_id: @work.id).paginate(:page => params[:page]).order('release_date desc')
+	end
+
+	private
 	def work_params
 		params.require(:work).permit(:original_title, :original_release_date)
 	end

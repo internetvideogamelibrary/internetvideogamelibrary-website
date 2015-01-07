@@ -1,0 +1,15 @@
+<% breadcrumb :work, @work %>
+
+<% @editions.each do |e| %>
+	<div class="media">
+		<%= link_to(e, :class => 'media-left media-middle', :style => 'width:100px') do %>
+			<%= image_tag e.coverart.url(:thumb) %>
+		<% end %>
+		<div class="media-body">
+			<h4 class="media-heading"><%= link_to(e) do %><%= e.title %> (<%= e.platform.display_title %>)<% end %></h4>
+			Released on <%= e.release_date.strftime('%d/%m/%Y') %> at <%= e.region.title %><br />
+			<%= link_to 'details', e %> | <%= link_to 'edit', edit_edition_path(e) %> | <%= link_to 'split', split_edition_path(e), method: :put %>
+		</div>
+	</div>
+<% end %>
+<%= will_paginate @editions, renderer: BootstrapPagination::Rails %>
