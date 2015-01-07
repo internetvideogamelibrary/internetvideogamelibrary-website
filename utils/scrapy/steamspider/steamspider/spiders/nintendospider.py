@@ -31,6 +31,13 @@ class NintendoSpider(CrawlSpider):
         game['url'] = response.url
         game['title'] = response.xpath("//div[@id='game-detail-page']/h1/text()").extract()[0]
         game['platforms'] = []
+
+        game['publisher'] = response.xpath("//div[@class='game-info']/ul/li[contains(.,'Publisher')]/span[2]").extract()
+        if len(game['publisher']) > 0:
+            game['publisher'] = game['publisher'][0]
+        else:
+            game['publisher'] = ''
+            log.msg("Game %s has no publisher. Using blank for now." % game['title'], level=log.WARNING)
         game['description'] = ''
         game['genres'] = []
         game['developer'] = ''
