@@ -1,15 +1,31 @@
 <% breadcrumb :work, @work %>
 
-<% @editions.each do |e| %>
-	<div class="media">
-		<%= link_to(e, :class => 'media-left media-middle', :style => 'width:100px') do %>
-			<%= image_tag e.coverart.url(:thumb) %>
-		<% end %>
-		<div class="media-body">
-			<h4 class="media-heading"><%= link_to(e) do %><%= e.title %> (<%= e.platform.display_title %>)<% end %></h4>
-			Released on <%= e.release_date.strftime('%d/%m/%Y') %> at <%= e.region.title %><br />
-			<%= link_to 'details', e %> | <%= link_to 'edit', edit_edition_path(e) %> | <%= link_to 'split', split_edition_path(e), method: :put %>
+<div class="container-fluid">
+	<div class="row">
+		<h1><%= @work.original_title %><% if @work.original_release_date.present? %> <small>originally released in <%= @work.original_release_date.strftime('%d/%m/%Y')%></small><% end %></h1>
+	</div>
+	<div class="row">
+		<%= link_to "Add new edition", new_edition_path(:work_id => @work) %>
+		|
+		<%= link_to "Combine", combine_work_path(@work) %>
+	</div>
+	<div class="row">&nbsp;</div>
+	<div class="row">
+		<div class="col-md-9">
+			<% @editions.each do |e| %>
+				<div class="media">
+					<%= link_to(e, :class => 'media-left media-middle', :style => 'width:100px') do %>
+						<%= image_tag e.coverart.url(:thumb) %>
+					<% end %>
+					<div class="media-body">
+						<h4 class="media-heading"><%= link_to(e) do %><%= e.title %> (<%= e.platform.display_title %>)<% end %></h4>
+						Released on <%= e.release_date.strftime('%d/%m/%Y') if e.release_date.present? %> at <%= e.region.title %><br />
+						<%= link_to 'details', e %> | <%= link_to 'edit', edit_edition_path(e) %> | <%= link_to 'split', split_edition_path(e), method: :put %>
+					</div>
+				</div>
+			<% end %>
 		</div>
 	</div>
-<% end %>
+</div>
+
 <%= will_paginate @editions, renderer: BootstrapPagination::Rails %>

@@ -6,6 +6,11 @@ crumb :work do |work|
 	link work.original_title, work_path(work)
 end
 
+crumb :combine do |work|
+	link "Combining editions of #{work.original_title}", combine_work_path(work)
+	parent :work, work
+end
+
 crumb :editions do
 	link "Games", editions_path
 end
