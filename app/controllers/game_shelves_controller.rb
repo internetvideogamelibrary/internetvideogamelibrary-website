@@ -2,10 +2,13 @@ class GameShelvesController < ApplicationController
 	before_filter :authenticate_user!
 
 	before_filter :game_shelf_exist,
-	:only => :add_edition
+	:only => [:add_edition, :add_expansion]
 
 	before_filter :edition_present_and_exists,
-	:only => :add_edition
+	:only => [:add_edition]
+
+	before_filter :expansion_present_and_exists,
+	:only => [:add_expansion]
 
 	def add_edition
 		game_shelf = GameShelf.find_by_id(params[:id])
@@ -17,6 +20,19 @@ class GameShelvesController < ApplicationController
 			render json: { :shelf_item => @shelf_item }
 		else
 			render 'add_edition'
+		end
+	end
+
+	def add_expansion
+		game_shelf = GameShelf.find_by_id(params[:id])
+		expansion = Expansion.find_by_id(params[:expansion_id])
+
+		@shelf_item = add_game(game_shelf, expansion)
+
+		if request.xhr?
+			render json: { :shelf_item => @shelf_item }
+		else
+			render 'add_expansion'
 		end
 	end
 
@@ -83,6 +99,29 @@ class GameShelvesController < ApplicationController
 				render json: { :status => :edition_missing }
 			else
 				render 'edition_missing'
+			end
+
+			return false
+		end
+	end
+
+	def expansion_present_and_exists
+		if params[:expansion_id].present?
+			if Expansion.find_by_id(params[:expansion_id]).present?
+				return true
+			else
+				if request.xhr?
+					render json: { :status => :expansion_unknown }
+				else
+					render 'expansion_unknown'
+				end
+				return false
+			end
+		else
+			if request.xhr?
+				render json: { :status => :expansion_missing }
+			else
+				render 'expansion_missing'
 			end
 
 			return false

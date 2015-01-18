@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 		resources :game_shelves do
 			member do
 				put 'add_edition'
+				put 'add_expansion'
 			end
 		end
 	end
