@@ -6,24 +6,13 @@ class GameShelvesController < ApplicationController
 
 	before_filter :edition_present_and_exists,
 	:only => :add_edition
+
 	def add_edition
 		game_shelf = GameShelf.find_by_id(params[:id])
 		edition = Edition.find_by_id(params[:edition_id])
 
-		# if game shelf is not custom, we need to change the game shelf instead of creating a new item
-		if game_shelf.shelf_type != GameShelf.shelf_types[:custom]
-			@shelf_item = ShelfItem.joins(:game_shelf).where("shelf_type != ? and user_id = ? and item_type = 'Edition' and item_id = ?", GameShelf.shelf_types[:custom], current_user.id, edition.id).first
-			if(@shelf_item.present?)
-				@shelf_item.game_shelf = game_shelf
-			else
-				@shelf_item = game_shelf.shelf_items.new
-				@shelf_item.item = edition
-			end
-		else
-			@shelf_item = game_shelf.shelf_items.new
-			@shelf_item.item = edition
-		end
-		@shelf_item.save
+		@shelf_item = add_game(game_shelf, edition)
+
 		if request.xhr?
 			render json: { :shelf_item => @shelf_item }
 		else
@@ -44,6 +33,24 @@ class GameShelvesController < ApplicationController
   end
 
 	private
+
+	def add_game(game_shelf, game)
+		# if game shelf is not custom, we need to change the game shelf instead of creating a new item
+		if game_shelf.shelf_type != GameShelf.shelf_types[:custom]
+			shelf_item = ShelfItem.joins(:game_shelf).where("shelf_type != ? and user_id = ? and item_type = ? and item_id = ?", GameShelf.shelf_types[:custom], current_user.id, game.class.name, game.id).first
+			if(shelf_item.present?)
+				shelf_item.game_shelf = game_shelf
+			else
+				shelf_item = game_shelf.shelf_items.new
+				shelf_item.item = game
+			end
+		else
+			shelf_item = game_shelf.shelf_items.new
+			shelf_item.item = game
+		end
+		shelf_item.save
+		return shelf_item
+	end
 
 	def game_shelf_exist
 		if GameShelf.find_by_id(params[:id]).present?
