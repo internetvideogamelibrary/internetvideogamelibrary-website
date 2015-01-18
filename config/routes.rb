@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
-
 	mount Upmin::Engine => '/admin'
 	root to: 'editions#index'
 	devise_for :users
-	resources :users
+	resources :users do
+		resources :game_shelves do
+			member do
+				put 'add_edition'
+			end
+		end
+	end
 	resources :works do
 		collection do
 			get 'search'
