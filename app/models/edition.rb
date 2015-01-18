@@ -39,6 +39,7 @@ class Edition < ActiveRecord::Base
 	belongs_to :media
 
 	has_many :expansions
+	has_many :shelf_items, :as => :item
 
 	has_and_belongs_to_many :genres
 
