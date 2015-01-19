@@ -1,6 +1,6 @@
 $(".editions.show,.expansions.show").ready(function() {
 	$(".btn.game_shelf").data("loading-text", "Loading...");
-	$(document).on('ajax:success', 'a.game_shelf', function(status, data, xhr) {
+	$(".editions.show,.expansions.show").on('ajax:success', 'a.game_shelf', function(status, data, xhr) {
 		var btn = $(".btn.game_shelf");
 		if(data.status == 'success') {
 			var t = $(status.target);
@@ -38,11 +38,11 @@ $(".editions.show,.expansions.show").ready(function() {
 		btn.button("reset");
 		$('a.game_shelf:not(.btn)').unbind("click");
 	});
-	$(document).on('ajax:beforeSend', 'a.game_shelf', function(status, data, xhr) {
+	$(".editions.show,.expansions.show").on('ajax:beforeSend', 'a.game_shelf', function(status, data, xhr) {
 		$(".btn.game_shelf").button("loading");
 		$('a.game_shelf:not(.btn)').click(function() { return false} );
 	});
-	$(document).on('ajax:error', 'a.game_shelf', function(status, data, xhr) {
+	$(".editions.show,.expansions.show").on('ajax:error', 'a.game_shelf', function(status, data, xhr) {
 		$(".btn.game_shelf").button("reset");
 		$('a.game_shelf:not(.btn)').unbind("click");
 	});
