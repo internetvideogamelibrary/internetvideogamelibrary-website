@@ -1,0 +1,86 @@
+<% breadcrumb :game_shelf, @game_shelf %>
+
+<div class="container-fluid">
+	<div class="row">
+		<h1>Games in <%= @game_shelf.title %> </h1>
+	</div>
+	<div class="row">&nbsp;</div>
+	<div class="row">
+		<div class="col-sm-3">
+			<h4>Game Shelves</h4>
+			<% @game_shelves.each do |gs| %>
+				<div class="row">
+					<%= link_to([gs.user, gs]) do %><%= gs.title %> (<%= gs.shelf_items.count %>)<% end %>
+				</div>
+			<% end %>
+		</div>
+		<div class="col-sm-9">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Cover art</th>
+						<th>Title</th>
+						<th>Platform</th>
+						<th>Release date</th>
+						<th>Region</th>
+						<th>Added on</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @shelf_items.each do |i| %>
+						<tr>
+							<% e = i.item %>
+							<% if e.class.name == 'Edition' %>
+								<td>
+									<%= link_to(e, :class => 'media-left media-middle', :style => 'width:100px') do %>
+										<%= image_tag e.coverart.url(:thumb) %>
+									<% end %>
+								</td>
+								<td>
+									<%= link_to(e) do %><%= e.title %><% end %>
+								</td>
+								<td>
+									<%= e.platform.display_title %>
+								</td>
+								<td>
+									<%= e.release_date.strftime('%d/%m/%Y') if e.release_date.present? %>
+								</td>
+								<td>
+									<%= e.region.title %>
+								</td>
+							<% elsif e.class.name == 'Expansion' %>
+								<td>
+									<%= link_to([e.edition, e], :class => 'media-left media-middle', :style => 'width:100px') do %>
+										<%= image_tag e.coverart.url(:thumb) %>
+									<% end %>
+								</td>
+								<td>
+									<%= link_to(e.title, [e.edition, e]) %>
+								</td>
+								<td>
+									<%= e.edition.platform.display_title %>
+								</td>
+								<td>
+									<%= e.release_date.strftime('%d/%m/%Y') if e.release_date.present? %>
+								</td>
+								<td>
+									<%= e.edition.region.title %>
+								</td>
+							<% end %>
+							<td>
+								<%= i.created_at.strftime('%d/%m/%Y') if i.created_at.present? %>
+							</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+			<%- if @shelf_items.count == 0 %>
+				<div class="row text-center">
+					No items found.
+				</div>
+			<% end -%>
+		</div>
+	</div>
+</div>
+
+<%= will_paginate @shelf_items, renderer: BootstrapPagination::Rails %>

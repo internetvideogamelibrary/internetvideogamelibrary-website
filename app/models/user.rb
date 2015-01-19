@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
 
 	after_commit :create_game_shelves, :on => :create
 
-	has_many :game_shelves
+	has_many :game_shelves, -> {order 'shelf_type asc, id asc'}
 
 	def set_default_role
 		self.role ||= :user

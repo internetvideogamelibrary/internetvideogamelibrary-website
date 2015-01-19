@@ -2,6 +2,15 @@ crumb :root do
 	link "Home", root_path
 end
 
+crumb :game_shelves do |user|
+	link "Game shelves", user_game_shelves_path(user)
+end
+
+crumb :game_shelf do |game_shelf|
+	link game_shelf.title, user_game_shelf_path(game_shelf.user, game_shelf)
+	parent :game_shelves, game_shelf.user
+end
+
 crumb :work do |work|
 	link work.original_title, work_path(work)
 end

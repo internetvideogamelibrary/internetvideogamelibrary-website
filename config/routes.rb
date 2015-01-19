@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 	mount Upmin::Engine => '/admin'
+	authenticated :user do
+		root to: 'game_shelves#index', as: :authenticated_root
+	end
 	root to: 'editions#index'
 	devise_for :users
 	resources :users do

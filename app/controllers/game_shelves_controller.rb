@@ -2,7 +2,7 @@ class GameShelvesController < ApplicationController
 	before_filter :authenticate_user!
 
 	before_filter :game_shelf_exist,
-	:only => [:add_edition, :add_expansion]
+	:only => [:add_edition, :add_expansion, :show]
 
 	before_filter :edition_present_and_exists,
 	:only => [:add_edition]
@@ -12,6 +12,17 @@ class GameShelvesController < ApplicationController
 
 	before_filter :item_present_and_exists,
 	:only => [:remove_item]
+
+	def index
+		game_shelf = GameShelf.find_by(user_id: current_user.id, shelf_type: GameShelf.shelf_types[:backlog])
+		redirect_to [current_user, game_shelf]
+	end
+
+	def show
+		@game_shelf = GameShelf.find_by_id(params[:id])
+		@shelf_items = ShelfItem.where(game_shelf_id: @game_shelf.id).paginate(:page => params[:page]).order('created_at asc')
+		@game_shelves = current_user.game_shelves -> {order 'shelf_type asc, id asc'}
+	end
 
 	def add_edition
 		game_shelf = GameShelf.find_by_id(params[:id])
