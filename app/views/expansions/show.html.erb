@@ -7,7 +7,7 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-10" style="padding-left:0; padding-right:0;">
-					<%= add_link_to_game_shelf current_user, @expansion, :wishlist, html_role: "button", html_class: "btn btn-primary btn-block", :title => "Add to Wishlist" %>
+					<%= add_link_to_game_shelf current_user, @expansion, html_role: "button", checked_html_class: "btn btn-default btn-block", unchecked_html_class: "btn btn-primary btn-block", :unchecked_title => "Add to Wishlist" %>
 				</div>
 				<div class="col-sm-2" style="padding-left:0; padding-right:0;">
 					<button type="button" class="btn btn-primary btn-block" value="+" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -16,16 +16,16 @@
 					</button>
 					<ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
 						<li role="presentation">
-								<%= add_link_to_game_shelf current_user, @expansion, :wishlist, html_role: "menuitem", html_tabindex: "-1" %>
+								<%= add_link_to_game_shelf current_user, @expansion, shelf_type: :wishlist, html_role: "menuitem", html_tabindex: "-1" %>
 						</li>
 						<li role="presentation">
-								<%= add_link_to_game_shelf current_user, @expansion, :backlog, html_role: "menuitem", html_tabindex: "-1" %>
+								<%= add_link_to_game_shelf current_user, @expansion, shelf_type: :backlog, html_role: "menuitem", html_tabindex: "-1" %>
 						</li>
 						<li role="presentation">
-								<%= add_link_to_game_shelf current_user, @expansion, :playing, html_role: "menuitem", html_tabindex: "-1" %>
+								<%= add_link_to_game_shelf current_user, @expansion, shelf_type: :playing, html_role: "menuitem", html_tabindex: "-1" %>
 						</li>
 						<li role="presentation">
-								<%= add_link_to_game_shelf current_user, @expansion, :finished, html_role: "menuitem", html_tabindex: "-1" %>
+								<%= add_link_to_game_shelf current_user, @expansion, shelf_type: :finished, html_role: "menuitem", html_tabindex: "-1" %>
 						</li>
 					</ul>
 				</div>

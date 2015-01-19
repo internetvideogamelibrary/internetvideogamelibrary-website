@@ -1,5 +1,5 @@
 <% if checked %>
-	<%= shelf.title %>
+	<a href="#" role="<%= html_role %>" tabindex="<%= html_tabindex %>" class="<%= html_class %>"><%= title %></a>
 <% else %>
 	<% if game.class.name == 'Edition' %>
 		<%= link_to title, add_edition_user_game_shelf_path(shelf.user, shelf, :edition_id => game.id), method: :put, remote: true, class: html_class, role: html_role, tabindex: html_tabindex %>
