@@ -2,7 +2,7 @@ class GameShelvesController < ApplicationController
 	before_filter :authenticate_user!
 
 	before_filter :game_shelf_exist,
-	:only => [:add_edition, :add_expansion, :remove_item]
+	:only => [:add_edition, :add_expansion]
 
 	before_filter :edition_present_and_exists,
 	:only => [:add_edition]

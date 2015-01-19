@@ -4,10 +4,12 @@ Rails.application.routes.draw do
 	devise_for :users
 	resources :users do
 		resources :game_shelves do
+			collection do
+				put 'remove_item'
+			end
 			member do
 				put 'add_edition'
 				put 'add_expansion'
-				put 'remove_item'
 			end
 		end
 	end

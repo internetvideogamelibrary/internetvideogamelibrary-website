@@ -29,7 +29,7 @@ module GameShelvesHelper
 
 
 		render :partial => "shared/add_link_to_game_shelf", :locals =>
-		{:shelf => shelf, :game => game, :checked => (shelf_item.present?),
+		{:shelf => shelf, :shelf_item => shelf_item, :game => game, :checked => (shelf_item.present?),
 			:html_class => html_class, :html_role => html_role, :html_tabindex => html_tabindex, :title => title}
 	end
 end
