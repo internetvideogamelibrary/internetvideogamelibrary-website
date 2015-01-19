@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150114200759) do
+ActiveRecord::Schema.define(version: 20150119115035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20150114200759) do
     t.datetime "updated_at"
   end
 
+  add_index "game_shelves", ["user_id", "shelf_type"], name: "index_game_shelves_on_user_id_and_shelf_type", using: :btree
   add_index "game_shelves", ["user_id"], name: "index_game_shelves_on_user_id", using: :btree
 
   create_table "genres", force: true do |t|
