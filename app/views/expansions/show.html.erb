@@ -15,10 +15,18 @@
 						<span class="caret"></span>
 					</button>
 					<ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
-						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Wishlist</a></li>
-						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Backlog</a></li>
-						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Playing</a></li>
-						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Finished</a></li>
+						<li role="presentation">
+								<%= add_link_to_game_shelf current_user, @expansion, :wishlist, html_role: "menuitem", html_tabindex: "-1" %>
+						</li>
+						<li role="presentation">
+								<%= add_link_to_game_shelf current_user, @expansion, :backlog, html_role: "menuitem", html_tabindex: "-1" %>
+						</li>
+						<li role="presentation">
+								<%= add_link_to_game_shelf current_user, @expansion, :playing, html_role: "menuitem", html_tabindex: "-1" %>
+						</li>
+						<li role="presentation">
+								<%= add_link_to_game_shelf current_user, @expansion, :finished, html_role: "menuitem", html_tabindex: "-1" %>
+						</li>
 					</ul>
 				</div>
 			</div>
