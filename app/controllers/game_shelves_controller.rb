@@ -20,7 +20,7 @@ class GameShelvesController < ApplicationController
 		@shelf_item = add_game(game_shelf, edition)
 
 		if request.xhr?
-			render json: { :shelf_item => @shelf_item }
+			render json: { :status => :success, :shelf_item => @shelf_item }
 		else
 			render 'add_edition'
 		end
@@ -33,7 +33,7 @@ class GameShelvesController < ApplicationController
 		@shelf_item = add_game(game_shelf, expansion)
 
 		if request.xhr?
-			render json: { :shelf_item => @shelf_item }
+			render json: { :status => :success, :shelf_item => @shelf_item }
 		else
 			render 'add_expansion'
 		end
@@ -48,7 +48,7 @@ class GameShelvesController < ApplicationController
 		shelf_item.destroy
 
 		if request.xhr?
-			render json: { :status => :shelf_item_removed }
+			render json: { :status => :success, :message => :shelf_item_removed }
 		else
 			render 'remove_item'
 		end
