@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 			member do
 				put 'add_edition'
 				put 'add_expansion'
+				put 'remove_item'
 			end
 		end
 	end

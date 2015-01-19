@@ -2,13 +2,16 @@ class GameShelvesController < ApplicationController
 	before_filter :authenticate_user!
 
 	before_filter :game_shelf_exist,
-	:only => [:add_edition, :add_expansion]
+	:only => [:add_edition, :add_expansion, :remove_item]
 
 	before_filter :edition_present_and_exists,
 	:only => [:add_edition]
 
 	before_filter :expansion_present_and_exists,
 	:only => [:add_expansion]
+
+	before_filter :item_present_and_exists,
+	:only => [:remove_item]
 
 	def add_edition
 		game_shelf = GameShelf.find_by_id(params[:id])
@@ -36,8 +39,20 @@ class GameShelvesController < ApplicationController
 		end
 	end
 
-  def remove_from
-  end
+	def remove_item
+		shelf_item = ShelfItem.find_by_id(params[:item_id])
+
+		@shelf = shelf_item.game_shelf
+		@game = shelf_item.item
+
+		shelf_item.destroy
+
+		if request.xhr?
+			render json: { :status => :shelf_item_removed }
+		else
+			render 'remove_item'
+		end
+	end
 
   def create
   end
@@ -69,7 +84,8 @@ class GameShelvesController < ApplicationController
 	end
 
 	def game_shelf_exist
-		if GameShelf.find_by_id(params[:id]).present?
+		game_shelf = GameShelf.find_by_id(params[:id])
+		if game_shelf.present? and game_shelf.user.id == current_user.id
 			return true
 		else
 			if request.xhr?
@@ -122,6 +138,30 @@ class GameShelvesController < ApplicationController
 				render json: { :status => :expansion_missing }
 			else
 				render 'expansion_missing'
+			end
+
+			return false
+		end
+	end
+
+	def item_present_and_exists
+		if params[:item_id].present?
+			shelf_item = ShelfItem.find_by_id(params[:item_id])
+			if shelf_item.present? and shelf_item.game_shelf.user_id == current_user.id
+				return true
+			else
+				if request.xhr?
+					render json: { :status => :item_unknown }
+				else
+					render 'item_unknown'
+				end
+				return false
+			end
+		else
+			if request.xhr?
+				render json: { :status => :item_missing }
+			else
+				render 'item_missing'
 			end
 
 			return false
