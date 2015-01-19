@@ -91,11 +91,15 @@ class GameShelvesController < ApplicationController
 			if request.xhr?
 				render json: { :status => :game_shelf_unknown }
 			else
-				render 'game_shelf_unknown'
+				redirect_to :back, :alert => "Game shelf unknown."
+				return false
 			end
 
 			return false
 		end
+
+		rescue ActionController::RedirectBackError
+			redirect_to user_game_shelves_path, :alert => "Game shelf unknown."
 	end
 
 	def edition_present_and_exists
