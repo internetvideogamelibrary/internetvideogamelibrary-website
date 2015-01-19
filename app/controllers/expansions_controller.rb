@@ -1,6 +1,13 @@
 class ExpansionsController < ApplicationController
 	before_filter :authenticate_user!,
 	:only => [:new, :create, :edit, :update]
+
+	before_filter :expansion_exists,
+	:only => [:show, :edit]
+
+	before_filter :edition_exists,
+	:only => [:new, :create]
+
 	def show
 		@expansion = Expansion.find_by_id(params[:id])
 		@edition = @expansion.edition
@@ -8,9 +15,6 @@ class ExpansionsController < ApplicationController
 	end
 	def create
 		@edition = Edition.find_by_id(params[:edition_id])
-		if @edition == nil
-			redirect_to :back, :alert => "Game not found"
-		end
 
 		@expansion = Expansion.new(expansion_params)
 		@expansion.edition = @edition
@@ -22,18 +26,10 @@ class ExpansionsController < ApplicationController
 			render 'new'
 		end
 
-		rescue ActionController::RedirectBackError
-			redirect_to '/', :alert => "Game not found"
 	end
 	def new
 		@edition = Edition.find_by_id(params[:edition_id])
-		if @edition == nil
-			redirect_to :back, :alert => "Game not found"
-		end
-
 		@expansion = @edition.expansions.build
-		rescue ActionController::RedirectBackError
-			redirect_to '/', :alert => "Game not found"
 	end
 	def edit
 		@expansion = Expansion.find_by_id(params[:id])
@@ -54,5 +50,31 @@ class ExpansionsController < ApplicationController
 
 	def expansion_params
 		params.require(:expansion).permit(:title,:description,:release_date, :coverart, :delete_coverart)
+	end
+
+	def expansion_exists
+		expansion = Expansion.find_by_id(params[:id])
+		if expansion.present?
+			return true
+		else
+			redirect_to :back, :alert => "Game not found"
+			return false
+		end
+
+		rescue ActionController::RedirectBackError
+			redirect_to '/', :alert => "Game not found"
+	end
+
+	def edition_exists
+		edition = Edition.find_by_id(params[:edition_id])
+		if edition.present?
+			return true
+		else
+			redirect_to :back, :alert => "Game not found"
+			return false
+		end
+
+		rescue ActionController::RedirectBackError
+			redirect_to '/', :alert => "Game not found"
 	end
 end
