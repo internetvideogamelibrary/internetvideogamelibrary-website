@@ -7,7 +7,7 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-10" style="padding-left:0; padding-right:0;">
-					<input type="submit" class="btn btn-primary btn-block" value="Add to Wishlist">
+					<%= add_link_to_game_shelf current_user, @expansion, :wishlist, html_role: "button", html_class: "btn btn-primary btn-block", :title => "Add to Wishlist" %>
 				</div>
 				<div class="col-sm-2" style="padding-left:0; padding-right:0;">
 					<button type="button" class="btn btn-primary btn-block" value="+" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

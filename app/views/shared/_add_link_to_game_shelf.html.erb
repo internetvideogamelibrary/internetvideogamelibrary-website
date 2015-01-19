@@ -2,8 +2,8 @@
 	<%= shelf.title %>
 <% else %>
 	<% if game.class.name == 'Edition' %>
-		<%= link_to shelf.title, add_edition_user_game_shelf_path(shelf.user, shelf, :edition_id => game.id), method: :put, remote: true, role: html_role, tabindex: html_tabindex %>
+		<%= link_to title, add_edition_user_game_shelf_path(shelf.user, shelf, :edition_id => game.id), method: :put, remote: true, class: html_class, role: html_role, tabindex: html_tabindex %>
 	<% elsif game.class.name == 'Expansion' %>
-		<%= link_to shelf.title, add_expansion_user_game_shelf_path(shelf.user, shelf, :expansion_id => game.id), method: :put, remote: true, role: html_role, tabindex: html_tabindex %>
+		<%= link_to title, add_expansion_user_game_shelf_path(shelf.user, shelf, :expansion_id => game.id), method: :put, remote: true, class: html_class, role: html_role, tabindex: html_tabindex %>
 	<% end %>
 <% end %>
