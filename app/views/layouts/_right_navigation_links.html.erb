@@ -1,9 +1,8 @@
 <%# add navigation links to this file %>
 <% if user_signed_in? %>
-	<%= active_link_to 'My Games', user_game_shelves_path(current_user), :wrap_tag => :li %>
-	<%= active_link_to 'Edit account', edit_user_registration_path, :wrap_tag => :li %>
-	<%= active_link_to 'Sign out', destroy_user_session_path, :method=>'delete', :wrap_tag => :li %>
+	<%= active_link_to user_game_shelves_path(current_user), :wrap_tag => :li do %> <i class="fa fa-book"></i> My games<% end %>
+	<%= active_link_to edit_user_registration_path, :wrap_tag => :li do %> <i class="fa fa-edit"></i> Edit account <% end %>
+	<%= active_link_to destroy_user_session_path, :method=>'delete', :wrap_tag => :li do %> <i class="fa fa-sign-out"></i> Sign out <% end %>
 <% else %>
-	<%= active_link_to 'Sign in', new_user_session_path, :wrap_tag => :li %>
-	<%= active_link_to 'Sign up', new_user_registration_path, :wrap_tag => :li %>
+	<%= active_link_to new_user_session_path, :wrap_tag => :li do %> <i class="fa fa-sign-in"></i> Sign in <% end %>
 <% end %>
