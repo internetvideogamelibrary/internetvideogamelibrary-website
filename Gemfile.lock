@@ -97,6 +97,8 @@ GEM
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.6)
+    font-awesome-rails (4.2.0.0)
+      railties (>= 3.2, < 5.0)
     foreigner (1.7.1)
       activerecord (>= 3.0.0)
     github-markdown (0.6.8)
@@ -316,6 +318,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   faker
+  font-awesome-rails
   foreigner
   github-markdown
   gretel
