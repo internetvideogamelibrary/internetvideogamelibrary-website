@@ -1,9 +1,9 @@
 <% breadcrumb :work, @work %>
 
+<div class="page-header">
+	<h1><%= @work.original_title %><% if @work.original_release_date.present? %> <small>originally released in <%= @work.original_release_date.strftime('%d/%m/%Y')%></small><% end %></h1>
+</div>
 <div class="container-fluid">
-	<div class="row">
-		<h1><%= @work.original_title %><% if @work.original_release_date.present? %> <small>originally released in <%= @work.original_release_date.strftime('%d/%m/%Y')%></small><% end %></h1>
-	</div>
 	<div class="row">
 		<%= link_to "Add new edition", new_edition_path(:work_id => @work) %>
 		|
