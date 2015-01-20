@@ -1,4 +1,6 @@
 class WorksController < ApplicationController
+	before_filter :work_exists,
+	:only => [:combine, :show]
 	def search
 		params = work_params
 		@work = Work.find_by(original_title: params[:original_title], original_release_date: params[:original_release_date])
@@ -47,5 +49,18 @@ class WorksController < ApplicationController
 	private
 	def work_params
 		params.require(:work).permit(:original_title, :original_release_date)
+	end
+
+	def work_exists
+		work = Work.find_by_id(params[:id])
+		if work.present?
+			return true
+		else
+			redirect_to :back, :alert => "Game not found"
+			return false
+		end
+
+		rescue ActionController::RedirectBackError
+			redirect_to '/', :alert => "Game not found"
 	end
 end
