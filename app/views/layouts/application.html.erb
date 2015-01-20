@@ -17,6 +17,8 @@
 			</div>
 			<%= yield %>
 		</div>
-		<%= debug(params) if Rails.env.development? %>
 	</body>
+	<footer class="footer">
+		<%= debug(params) if Rails.env.development? %>
+	</footer>
 </html>
