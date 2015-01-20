@@ -22,6 +22,21 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def finish_signup
+		@user = User.find(params[:id])
+		authorize @user
+		if request.patch? && params[:user]
+			@user.attributes = user_params
+			@user.skip_reconfirmation!
+			if @user.save
+				sign_in(@user, :bypass => true)
+				redirect_to @user, notice: 'Your profile was successfully updated.'
+			else
+				@show_errors = true
+			end
+		end
+	end
+
 	def destroy
 		user = User.find(params[:id])
 		authorize user
@@ -33,6 +48,10 @@ class UsersController < ApplicationController
 
 	def secure_params
 		params.require(:user).permit(:role)
+	end
+
+	def user_params
+		params.require(:user).permit(:email)
 	end
 
 end

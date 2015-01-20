@@ -18,6 +18,10 @@ class UserPolicy
     @current_user.admin?
   end
 
+	def finish_signup?
+		@current_user.admin? or @current_user == @user
+	end
+
   def destroy?
     return false if @current_user == @user
     @current_user.admin?

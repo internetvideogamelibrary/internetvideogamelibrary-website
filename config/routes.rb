@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 		root to: 'game_shelves#index', as: :authenticated_root
 	end
 	root to: 'editions#index'
-	devise_for :users
+	devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
+	match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 	resources :users do
 		resources :game_shelves do
 			collection do
