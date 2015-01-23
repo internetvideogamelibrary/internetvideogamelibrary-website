@@ -16,6 +16,7 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
+gem "acts_as_follower"
 gem 'pg'
 gem 'pundit'
 gem 'therubyracer', :platform=>:ruby

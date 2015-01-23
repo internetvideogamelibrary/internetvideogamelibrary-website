@@ -29,6 +29,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    acts_as_follower (0.2.1)
     addressable (2.3.6)
     annotate (2.6.5)
       activerecord (>= 2.3.0)
@@ -306,6 +307,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_link_to
+  acts_as_follower
   annotate
   aws-sdk
   better_errors
