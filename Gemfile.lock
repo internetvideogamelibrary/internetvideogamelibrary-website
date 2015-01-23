@@ -124,6 +124,10 @@ GEM
     kaminari (0.16.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    koala (1.11.0)
+      addressable
+      faraday
+      multi_json
     launchy (2.4.3)
       addressable (~> 2.3)
     libv8 (3.16.14.7)
@@ -327,6 +331,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
+  koala
   launchy
   omniauth
   omniauth-facebook

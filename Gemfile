@@ -15,6 +15,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
+gem "koala"
 gem 'omniauth-google-oauth2'
 gem "acts_as_follower"
 gem 'pg'

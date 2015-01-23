@@ -73,12 +73,7 @@ class User < ActiveRecord::Base
 			# Get the existing user by email if the provider gives us a verified email.
 			# If no verified email was provided we assign a temporary email and ask the
 			# user to verify it on the next step via UsersController.finish_signup
-			if auth.provider == 'google_oauth2'
-				email = auth.info.email
-			else
-				email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
-				email = auth.info.email if email_is_verified
-			end
+			email = auth.info.email
 			user = User.where(:email => email).first if email
 
 			# Create the user if it's a new registration
@@ -91,6 +86,20 @@ class User < ActiveRecord::Base
 				)
 				user.skip_confirmation!
 				user.save!
+				if auth.provider == "facebook"
+					# we should link every friend
+					Koala.config.api_version = "v2.2"
+					@graph = Koala::Facebook::API.new(auth.credentials.token)
+					friends = @graph.get_connections("me", "friends")
+					friends.each do |f|
+						user_identity = Identity.find_by(provider: "facebook", uid: f["id"])
+						if(user_identity.present?)
+							user_friend = user_identity.user
+							user_friend.follow(user)
+							user.follow(user_friend)
+						end
+					end
+				end
 			end
 		end
 
