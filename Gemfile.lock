@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/toptal/chewy.git
+  revision: e771cdcaf4a6bc975a64c19ef5072f5b7c555913
+  specs:
+    chewy (0.6.2)
+      activesupport (>= 3.2)
+      elasticsearch (>= 1.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -86,6 +94,14 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    elasticsearch (1.0.6)
+      elasticsearch-api (= 1.0.6)
+      elasticsearch-transport (= 1.0.6)
+    elasticsearch-api (1.0.6)
+      multi_json
+    elasticsearch-transport (1.0.6)
+      faraday
+      multi_json
     erubis (2.7.0)
     execjs (2.2.2)
     factory_girl (4.5.0)
@@ -319,6 +335,7 @@ DEPENDENCIES
   bootstrap-sass
   bootstrap-validator-rails
   capybara
+  chewy!
   coffee-rails (~> 4.0.0)
   database_cleaner
   devise
