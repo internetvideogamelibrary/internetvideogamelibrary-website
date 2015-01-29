@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+	get 'search', to: 'search#search'
+
 	mount Upmin::Engine => '/admin'
 	authenticated :user do
 		root to: 'game_shelves#index', as: :authenticated_root
