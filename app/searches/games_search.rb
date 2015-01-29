@@ -54,4 +54,3 @@ class GamesSearch
 	#	index.filter(terms: {tags: tags}) if tags?
 	#end
 end
-
