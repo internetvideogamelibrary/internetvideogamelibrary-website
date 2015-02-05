@@ -6,6 +6,8 @@ class Expansion < ActiveRecord::Base
 	belongs_to :edition
 	before_validation { coverart.clear if @delete_coverart }
 
+	update_index 'games#expansion', :self
+
 	def delete_coverart
 		@delete_coverart ||= false
 	end

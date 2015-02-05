@@ -46,6 +46,9 @@ class Edition < ActiveRecord::Base
 	before_save :set_default_status
 	before_validation { coverart.clear if @delete_coverart }
 
+	update_index 'games#edition', :self
+	update_index 'games#expansion', :expansions
+
 	def coverart_remote_url=(url_value)
 		self.coverart = URI.parse(url_value)
 		@coverart_remote_url = url_value
