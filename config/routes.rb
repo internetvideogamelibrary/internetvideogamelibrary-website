@@ -2,10 +2,6 @@ Rails.application.routes.draw do
 	get 'search', to: 'search#search'
 
 	mount Upmin::Engine => '/admin'
-	authenticated :user do
-		root to: 'game_shelves#index', as: :authenticated_root
-	end
-	root to: 'editions#index'
 	devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
 	match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 	resources :users do
@@ -39,5 +35,11 @@ Rails.application.routes.draw do
 		end
 		resources :expansions do
 		end
+	end
+	authenticated :user do
+		root to: 'game_shelves#index', as: :authenticated_root
+	end
+	unauthenticated do
+		root to: 'editions#index'
 	end
 end
