@@ -12,7 +12,11 @@
 	<% @games.each do |game| %>
 		<li>
 			<h3>
-				<%= link_to game.title, game%>
+				<% if game.class.name == 'Expansion' %>
+					<%= link_to game.title, [game.edition, game]%>
+				<% else %>
+					<%= link_to game.title, game%>
+				<% end %>
 			</h3>
 		</li>
 	<% end %>
