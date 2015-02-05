@@ -1,23 +1,33 @@
-<h1>Games Search</h1>
+<div class="page-header">
+	<h1>Games Search results</h1>
+</div>
 
-<%= form_for search_path, method: :get do |f| %>
-	<p>
-	<%= f.label "Search for" %>
-	<%= text_field_tag :q, params[:q] %>
-	<%= submit_tag "Go", name: nil %>
-	</p>
-<% end %>
-
-<ul>
-	<% @games.each do |game| %>
-		<li>
-			<h3>
+<div class="row">
+	<div class="col-md-9">
+		<% @games.each do |game| %>
+			<div class="media">
 				<% if game.class.name == 'Expansion' %>
-					<%= link_to game.title, [game.edition, game]%>
+					<div class="media-left media-middle">
+						<%= link_to([game.edition, game], :style => 'width:100px') do %>
+							<%= image_tag game.coverart.url(:thumb), :class => 'media-object' %>
+						<% end %>
+					</div>
+					<div class="media-body media-middle">
+						<h4 class="media-heading"><%= link_to([game.edition, game]) do %><%= game.title %> (<%= game.edition.platform.display_title %>)<% end %></h4>
+						Released on <%= game.release_date.strftime('%d/%m/%Y') if game.release_date.present? %> at <%= game.edition.region.title %><br />
+					</div>
 				<% else %>
-					<%= link_to game.title, game%>
+					<div class="media-left media-middle">
+						<%= link_to(game, :style => 'width:100px') do %>
+							<%= image_tag game.coverart.url(:thumb), :class => 'media-object' %>
+						<% end %>
+					</div>
+					<div class="media-body media-middle">
+						<h4 class="media-heading"><%= link_to(game) do %><%= game.title %> (<%= game.platform.display_title %>)<% end %></h4>
+						Released on <%= game.release_date.strftime('%d/%m/%Y') if game.release_date.present? %> at <%= game.region.title %><br />
+					</div>
 				<% end %>
-			</h3>
-		</li>
-	<% end %>
-</ul>
+			</div>
+		<% end %>
+	</div>
+</div>
