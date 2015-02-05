@@ -35,7 +35,24 @@ class GamesSearch
 	#end
 
 	def query_string
-		index.query(query_string: {fields: [:title, :author, :description], query: query, default_operator: 'and'}) if query.present?
+		index.query(bool: {
+				should: [
+					{
+						multi_match: {
+							fields: [:title, :author, :description],
+							query: query
+						}
+					},
+					{
+						multi_match: {
+							fields: [:title, :author, :description],
+							query: query,
+							fuzziness: 'AUTO'
+						}
+					}
+				]
+			}
+		) if query.present?
 	end
 
 	#def author_id_filter
