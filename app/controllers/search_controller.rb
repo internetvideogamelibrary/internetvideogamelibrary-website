@@ -3,7 +3,9 @@ class SearchController < ApplicationController
 	:only => [:search]
 	def search
 		@search = GamesSearch.new(query: params[:q])
-		@games = @search.search.only(:id).load(edition: {scope: Edition.includes(:work)})
+		results = @search.search.only(:id)
+		@qty = results.count
+		@games = results.paginate(:page => params[:page]).load(edition: {scope: Edition.includes(:work)})
 	end
 
 	private

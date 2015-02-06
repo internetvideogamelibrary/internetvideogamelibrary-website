@@ -1,5 +1,5 @@
 <div class="page-header">
-	<h1>Games Search results</h1>
+	<h1><%= @qty %> results searching for "<%= strip_tags params[:q] %>"</h1>
 </div>
 
 <div class="row">
@@ -31,3 +31,4 @@
 		<% end %>
 	</div>
 </div>
+<%= will_paginate @games, renderer: BootstrapPagination::Rails %>
