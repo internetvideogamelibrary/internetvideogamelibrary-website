@@ -1,0 +1,34 @@
+<div class="page-header">
+	<h1><%= @qty %> results searching for "<%= strip_tags params[:q] %>"</h1>
+</div>
+
+<div class="row">
+	<div class="col-md-9">
+		<% @games.each do |game| %>
+			<div class="media">
+				<% if game.class.name == 'Expansion' %>
+					<div class="media-left media-middle">
+						<%= link_to([game.edition, game], :style => 'width:100px') do %>
+							<%= image_tag game.coverart.url(:thumb), :class => 'media-object' %>
+						<% end %>
+					</div>
+					<div class="media-body media-middle">
+						<h4 class="media-heading"><%= link_to([game.edition, game]) do %><%= game.title %> (<%= game.edition.platform.display_title %>)<% end %></h4>
+						Released on <%= game.release_date.strftime('%d/%m/%Y') if game.release_date.present? %> at <%= game.edition.region.title %><br />
+					</div>
+				<% else %>
+					<div class="media-left media-middle">
+						<%= link_to(game, :style => 'width:100px') do %>
+							<%= image_tag game.coverart.url(:thumb), :class => 'media-object' %>
+						<% end %>
+					</div>
+					<div class="media-body media-middle">
+						<h4 class="media-heading"><%= link_to(game) do %><%= game.title %> (<%= game.platform.display_title %>)<% end %></h4>
+						Released on <%= game.release_date.strftime('%d/%m/%Y') if game.release_date.present? %> at <%= game.region.title %><br />
+					</div>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+</div>
+<%= will_paginate @games, renderer: BootstrapPagination::Rails %>
