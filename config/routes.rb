@@ -43,6 +43,6 @@ Rails.application.routes.draw do
 		root to: 'game_shelves#index', as: :authenticated_root
 	end
 	unauthenticated do
-		root to: 'editions#index'
+		root to: 'games#index'
 	end
 end
