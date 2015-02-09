@@ -58,7 +58,7 @@ class WorksController < ApplicationController
 			end
 		end
 
-		if @split_editions.length > 0 && @keep_editions.length > 0
+		if @split_editions.length > 0 && @keep_editions.length > 0 && (@split_edition.length+@keep_editions.length == @work.editions.length)
 			@split_work = Work.new(:original_title => @work.original_title, :original_release_date => @work.original_release_date)
 			if @split_work.save
 				@work.editions.each do |e|
@@ -68,10 +68,12 @@ class WorksController < ApplicationController
 					end
 				end
 			end
+			flash[:notice] = "New edition created!"
+			redirect_to work_path(@split_work)
+		else
+			flash[:error] = "You have to split at least one edition. All editions must be checked."
+			render 'split'
 		end
-
-		flash[:success] = "New edition created!"
-		redirect_to work_path(@split_work)
 	end
 	def combine
 		@work = Work.find(params[:id])
