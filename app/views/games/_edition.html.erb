@@ -1,0 +1,23 @@
+<div class="col-md-2 col-sm-3 col-xs-4 word-break">
+	<%= link_to(edition, :class => 'thumbnail text-center') do %>
+		<%= image_tag edition.coverart.url(:medium) %>
+		<%= edition.title %> - <%= edition.platform.display_title %><br />
+	<% end %>
+	<%- if edition.status == Edition.statuses[:unreviewed] %>
+		<div class="container">
+			<%= form_for edition, :url => {:action => 'review'}, :method => :post do |e| %>
+				<%= e.hidden_field :id %>
+				<div class="control-group">
+					<%= radio_button_tag :review_option, 'delete' %>
+					<%= label_tag :review_option_delete, 'Delete' %>
+					<%= radio_button_tag :review_option, 'accept' %>
+					<%= label_tag :review_option_accept, 'Accept' %>
+				</div>
+				<div class="form-buttons">
+					<%= submit_tag "Review edition", :class => "btn btn-primary" %>
+				</div>
+			<% end %>
+		</div>
+	<% end -%>
+</div>
+
