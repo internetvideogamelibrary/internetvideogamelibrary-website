@@ -8,7 +8,7 @@ class EditionsController < ApplicationController
 	:only => [:to_review, :review]
 
 	before_filter :edition_exists,
-	:only => [:split, :edit, :update, :show]
+	:only => [:edit, :update, :show]
 
 	before_filter :edition_visible,
 	:only => [:show]
@@ -23,21 +23,6 @@ class EditionsController < ApplicationController
 		@existing_work = Work.find_by_id(params.require(:existing_work).permit(:id)[:id])
 		respond_to do |format|
 			  format.js
-		end
-	end
-	def split
-		@edition = Edition.find(params[:id])
-		@work = Work.new(:original_title => @edition.work.original_title, :original_release_date => @edition.work.original_release_date)
-		if @work.save
-			@edition.work_id = @work.id
-			if @edition.save
-				flash[:notice] = "Edition was splitted successfully."
-				redirect_to @edition
-			else
-				redirect_to @edition
-			end
-		else
-			redirect_to @edition
 		end
 	end
 

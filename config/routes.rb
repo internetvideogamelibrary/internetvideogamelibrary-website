@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 		member do
 			get 'combine'
 			patch 'do_combine'
+			get 'split'
+			patch 'do_split'
 		end
 	end
 	resources :editions, :path => "games" do
@@ -29,9 +31,6 @@ Rails.application.routes.draw do
 			get 'to_review'
 			post 'review'
 			get 'existing_work'
-		end
-		member do
-			put 'split'
 		end
 		resources :expansions do
 		end
