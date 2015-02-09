@@ -1,11 +1,15 @@
-<% breadcrumb :editions %>
+<% breadcrumb :games %>
 <div class="row">
-	<% @editions.each_with_index do |edition, i| %>
+	<% @games.each_with_index do |game, i| %>
 		<%- if i > 0 && ( (i % 6 == 0) || (i % 4 == 0) || (i % 3 == 0) )%>
 			<div class="clearfix<%- if (i % 6 == 0) %> visible-md visible-lg<% end -%><%- if (i % 4 == 0) %> visible-sm<% end -%><%- if (i % 3 == 0) %> visible-xs<% end-%>"></div>
 		<% end -%>
-		<%= render edition %>
+		<%- if game.class.name == "Expansion" %>
+			<%= render partial: "expansion", locals: {expansion: game} %>
+		<% else %>
+			<%= render partial: "edition", locals: {edition: game} %>
+		<% end -%>
 	<% end %>
 </div>
 <%= will_paginate @collection, renderer: BootstrapPagination::Rails %>
-<%= link_to("Add new edition", new_edition_path) %>
+<%= link_to("Add new game", new_edition_path) %>

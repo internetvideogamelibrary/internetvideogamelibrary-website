@@ -1,2 +1,2 @@
-module SearchHelper
+module GamesHelper
 end

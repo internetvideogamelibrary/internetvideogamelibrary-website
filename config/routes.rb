@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-	get 'search', to: 'search#search'
+	resources :games do
+		collection do
+			get 'search'
+		end
+	end
 
 	mount Upmin::Engine => '/admin'
 	devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
@@ -26,7 +30,7 @@ Rails.application.routes.draw do
 			patch 'do_split'
 		end
 	end
-	resources :editions, :path => "games" do
+	resources :editions do
 		collection do
 			get 'to_review'
 			post 'review'

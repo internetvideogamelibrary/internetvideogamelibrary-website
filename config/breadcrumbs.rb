@@ -25,27 +25,27 @@ crumb :combine do |work|
 	parent :work, work
 end
 
-crumb :editions do
-	link "Games", editions_path
+crumb :games do
+	link "Games", games_path
 end
 
 crumb :editions_to_review do
 	link "Reviewing editions", to_review_editions_url
-	parent :editions
+	parent :games
 end
 
 crumb :edit_edition do |edition|
 	link "Editing game edition: #{edition.title}", edit_edition_path(edition)
-	parent :editions
+	parent :games
 end
 crumb :new_edition do
 	link "New edition", new_edition_path
-	parent :editions
+	parent :games
 end
 
 crumb :edition do |edition|
 	link edition.title, edition_path(edition)
-	parent :editions
+	parent :games
 end
 
 crumb :edit_expansion do |expansion|
