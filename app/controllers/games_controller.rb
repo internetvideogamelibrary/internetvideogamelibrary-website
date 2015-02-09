@@ -24,6 +24,6 @@ class GamesController < ApplicationController
 		end
 
 		rescue ActionController::RedirectBackError
-			redirect_to editions_path, :alert => "You have to type a query string"
+			redirect_to games_path, :alert => "You have to type a query string"
 	end
 end
