@@ -28,8 +28,8 @@ class Edition < ActiveRecord::Base
 	friendly_id :plataform_and_name, use: :slugged
 	def plataform_and_name
 		[
-			[->{ platform.title }, :title],
-			[->{ platform.title }, ->{ region.title }, :title],
+			[->{ platform.display_title }, :title],
+			[->{ platform.display_title }, ->{ region.title }, :title],
 		]
 	end
 

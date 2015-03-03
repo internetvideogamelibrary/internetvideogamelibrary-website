@@ -128,6 +128,8 @@ class EditionsController < ApplicationController
 			return false
 		end
 
+		rescue ActiveRecord::RecordNotFound
+			redirect_to '/', :alert => "Game not found"
 		rescue ActionController::RedirectBackError
 			redirect_to '/', :alert => "Game not found"
 	end
