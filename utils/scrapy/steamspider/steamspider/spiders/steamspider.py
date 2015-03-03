@@ -58,7 +58,7 @@ class SteamSpider(CrawlSpider):
             if match:
                 game['platforms'].append(match.group(1))
 
-        game['title'] = response.xpath("(//div[@class='details_block'])[1]").re(re.compile('Title:</b> ([^<]*)', re.UNICODE))[0]
+        game['title'] = response.xpath("string((//div[@class='apphub_AppName'])[1])").extract()[0]
 
         game['description'] = response.xpath("string(//div[@id='game_area_description'])").re(re.compile('\r\n\t\t\t\t\t\tAbout This Game\r\n\t\t\t\t\t\t(.*)', re.UNICODE|re.DOTALL))
         if len(game['description']) > 0:
