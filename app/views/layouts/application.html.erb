@@ -8,6 +8,7 @@
 		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 		<%= csrf_meta_tags %>
 		<%= favicon_link_tag 'favicon.ico' %>
+		<%= render 'layouts/googleanalytics' %>
 	</head>
 	<body class="<%= controller_name %> <%= action_name %>">
 		<%= render 'layouts/navigation' %>
