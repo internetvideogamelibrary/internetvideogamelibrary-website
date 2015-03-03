@@ -99,13 +99,16 @@
 				<%= link_to "Combine", combine_work_path(@edition.work) %>
 			</div>
 			<div class="row">&nbsp;</div>
-			<div class="row vertical-align">
+			<div class="row">
 				<div class="col-sm-2" style="padding-left: 10px; padding-right: 10px;">
 					<h6>DLCs/Expansions<%- if @edition.expansions.length > 0 %> (<%= @edition.expansions.length %>)<% end -%>:</h6>
 				</div>
 
 				<%- if @edition.expansions.length > 0 %>
-					<% @edition.expansions.each do |e| %>
+					<% @edition.expansions.each_with_index do |e,i| %>
+						<%- if (i-1) > 0 && ((i-1) % 6 == 0) %>
+							<div class="clearfix"></div>
+						<% end -%>
 						<div class="col-sm-2 thumb">
 							<%= link_to [@edition,e] do %>
 								<%= image_tag e.coverart.url(:thumb) %>
