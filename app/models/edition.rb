@@ -22,6 +22,8 @@
 #
 
 class Edition < ActiveRecord::Base
+	include HashableParams
+
 	enum statuses: [:unreviewed, :active, :deleted]
 
 	has_attached_file :coverart, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"

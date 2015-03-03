@@ -11,28 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150123194347) do
+ActiveRecord::Schema.define(version: 20150303000757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "editions", force: true do |t|
-    t.string   "title",                 null: false
+    t.string   "title",                              null: false
     t.string   "developer"
     t.string   "publisher"
     t.datetime "release_date"
     t.text     "description"
-    t.integer  "platform_id",           null: false
-    t.integer  "region_id",             null: false
+    t.integer  "platform_id",                        null: false
+    t.integer  "region_id",                          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "work_id",               null: false
+    t.integer  "work_id",                            null: false
     t.string   "coverart_file_name"
     t.string   "coverart_content_type"
     t.integer  "coverart_file_size"
     t.datetime "coverart_updated_at"
     t.integer  "status"
-    t.integer  "media_id",              null: false
+    t.integer  "media_id",                           null: false
+    t.hstore   "params_hash",           default: {}, null: false
   end
 
   add_index "editions", ["media_id"], name: "index_editions_on_media_id", using: :btree
