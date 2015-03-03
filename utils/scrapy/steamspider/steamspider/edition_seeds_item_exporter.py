@@ -46,7 +46,7 @@ class EditionSeedsItemExporter(BaseItemExporter):
             self.file.write('end\n')
 
         for platform in itemdict['platforms']:
-            self.file.write('#edition.add_parameter(:platform => "%s")\n' % platform)
+            self.file.write('edition.put_hash("%s", true)\n' % platform)
 
         if "region" in itemdict:
             self.file.write('region = nil\n')
