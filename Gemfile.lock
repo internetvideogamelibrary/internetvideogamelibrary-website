@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/toptal/chewy.git
-  revision: e771cdcaf4a6bc975a64c19ef5072f5b7c555913
+  revision: 5c4c22ce163b37e0a577acee0614792fc2e60895
   specs:
     chewy (0.6.2)
       activesupport (>= 3.2)
