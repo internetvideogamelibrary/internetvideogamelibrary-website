@@ -106,7 +106,7 @@
 
 				<%- if @edition.expansions.length > 0 %>
 					<% @edition.expansions.each_with_index do |e,i| %>
-						<%- if (i-1) > 0 && ((i-1) % 6 == 0) %>
+						<%- if (i+1) > 0 && ((i+1) % 6 == 0) %>
 							<div class="clearfix"></div>
 						<% end -%>
 						<div class="col-sm-2 thumb">
