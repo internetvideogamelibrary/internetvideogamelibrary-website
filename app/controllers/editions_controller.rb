@@ -5,7 +5,7 @@ class EditionsController < ApplicationController
 	:only => [:new, :create, :edit, :update, :to_review, :review]
 
 	before_filter :reviewer_only,
-	:only => [:to_review, :review]
+	:only => [:new, :create, :edit, :update, :to_review, :review]
 
 	before_filter :edition_exists,
 	:only => [:edit, :update, :show]

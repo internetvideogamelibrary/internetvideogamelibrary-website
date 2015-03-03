@@ -2,6 +2,9 @@ class WorksController < ApplicationController
 	before_filter :work_exists,
 	:only => [:combine, :show, :split, :do_split]
 
+	before_filter :reviewer_only,
+	:only => [:combine, :do_combine, :split, :do_split]
+
 	before_filter :authenticate_user!,
 	:only => [:combine, :do_combine, :split, :do_split]
 	def search
@@ -89,6 +92,13 @@ class WorksController < ApplicationController
 		params.require(:work).permit(:original_title, :original_release_date)
 	end
 
+	def reviewer_only
+		unless current_user.admin?
+			redirect_to :back, :alert => "Access denied."
+		end
+		rescue ActionController::RedirectBackError
+			redirect_to '/', :alert => "Access denied."
+	end
 	def work_exists
 		work = Work.friendly.find(params[:id])
 		if work.present?

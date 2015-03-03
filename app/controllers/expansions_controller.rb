@@ -2,6 +2,9 @@ class ExpansionsController < ApplicationController
 	before_filter :authenticate_user!,
 	:only => [:new, :create, :edit, :update]
 
+	before_filter :reviewer_only,
+	:only => [:new, :create, :edit, :update]
+
 	before_filter :expansion_exists,
 	:only => [:show, :edit]
 
@@ -67,6 +70,13 @@ class ExpansionsController < ApplicationController
 			redirect_to '/', :alert => "Game not found"
 	end
 
+	def reviewer_only
+		unless current_user.admin?
+			redirect_to :back, :alert => "Access denied."
+		end
+		rescue ActionController::RedirectBackError
+			redirect_to '/', :alert => "Access denied."
+	end
 	def edition_exists
 		edition = Edition.friendly.find(params[:edition_id])
 		if edition.present?
