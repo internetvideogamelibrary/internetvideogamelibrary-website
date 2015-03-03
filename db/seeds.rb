@@ -6,8 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Chewy.strategy(:atomic) do
-	user = CreateAdminService.new.call
-	puts 'CREATED ADMIN USER: ' << user.email
+#	user = CreateAdminService.new.call
+#	puts 'CREATED ADMIN USER: ' << user.email
 
 	Platform.create(:title => "3DO")
 	Platform.create(:title => "Acorn Archimedes")
