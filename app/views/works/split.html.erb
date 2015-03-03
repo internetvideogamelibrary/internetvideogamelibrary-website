@@ -1,0 +1,32 @@
+<% breadcrumb :split, @work %>
+
+<div class="page-header">
+	<h1><%= link_to @work.original_title, @work %></h1>
+</div>
+
+<%= form_for @work, :url => do_split_work_path, :html => {:class => "form-horizontal"} do |f| %>
+	<div class="col-md-12">
+		<div class="form-group">
+			<div class="row">
+				<div class="col-md-1 text-center"><strong>Keep</strong></div>
+				<div class="col-md-1 text-center"><strong>Split</strong></div>
+				<div class="col-md-10"><strong>Edition</strong></div>
+			</div>
+			<% @work.editions.each do |e| %>
+				<div class="row">
+					<div class="radio col-md-1 text-center"><%= radio_button_tag 'editions['+e.id.to_s+']', 'keep', true %></div>
+					<div class="radio col-md-1 text-center"><%= radio_button_tag 'editions['+e.id.to_s+']', 'split' %></div>
+					<div class="col-md-10">
+						<%= e.title %> (<%= e.platform.title %>), released on <%= e.release_date.strftime('%d/%m/%Y') %> at <%= e.region.title %>
+					</div>
+				</div>
+			<% end %>
+		</div>
+		<div class="form-group">
+			<input type="submit" class="btn btn-primary" value="Split">
+			<span></span>
+			<input type="reset" class="btn btn-default" value="Cancel">
+		</div>
+	</div>
+<% end %>
+

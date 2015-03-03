@@ -10,7 +10,21 @@
 #
 
 class Work < ActiveRecord::Base
+	include FriendlyId
 	has_many :editions
+
+	friendly_id :original_title_slug, use: :slugged
+	def original_title_slug
+		[
+			:original_title,
+			[->{ editions.first.platform.display_title if editions.first }, :original_title],
+			[->{ editions.first.platform.display_title if editions.first }, ->{ editions.first.region.title if editions.first }, :original_title],
+			[:original_title, 2],
+			[:original_title, 3],
+			[:original_title, 4],
+			[:original_title, 5]
+		]
+	end
 
 	update_index 'games#edition', :editions
 	#update_index ( 'games#expansion' ) { editions.expansions }

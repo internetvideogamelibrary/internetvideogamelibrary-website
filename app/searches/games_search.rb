@@ -1,3 +1,4 @@
+require 'chewy/query/filters'
 class GamesSearch
 	include ActiveModel::Model
 	#SORT = {title: {'title.sorted' => :asc}, year: {year: :desc}, relevance: :_score}
@@ -33,6 +34,10 @@ class GamesSearch
 	#def sorting
 	#	index.order(SORT[sort.to_sym])
 	#end
+	#
+	def all
+		index.filter{ match_all }
+	end
 
 	def query_string
 		index.query(bool: {

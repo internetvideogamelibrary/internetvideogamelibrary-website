@@ -11,33 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150123194347) do
+ActiveRecord::Schema.define(version: 20150303034954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "editions", force: true do |t|
-    t.string   "title",                 null: false
+    t.string   "title",                              null: false
     t.string   "developer"
     t.string   "publisher"
     t.datetime "release_date"
     t.text     "description"
-    t.integer  "platform_id",           null: false
-    t.integer  "region_id",             null: false
+    t.integer  "platform_id",                        null: false
+    t.integer  "region_id",                          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "work_id",               null: false
+    t.integer  "work_id",                            null: false
     t.string   "coverart_file_name"
     t.string   "coverart_content_type"
     t.integer  "coverart_file_size"
     t.datetime "coverart_updated_at"
     t.integer  "status"
-    t.integer  "media_id",              null: false
+    t.integer  "media_id",                           null: false
+    t.hstore   "params_hash",           default: {}, null: false
+    t.string   "slug"
   end
 
   add_index "editions", ["media_id"], name: "index_editions_on_media_id", using: :btree
   add_index "editions", ["platform_id"], name: "index_editions_on_platform_id", using: :btree
   add_index "editions", ["region_id"], name: "index_editions_on_region_id", using: :btree
+  add_index "editions", ["slug"], name: "index_editions_on_slug", unique: true, using: :btree
   add_index "editions", ["title"], name: "index_editions_on_title", using: :btree
   add_index "editions", ["work_id"], name: "index_editions_on_work_id", using: :btree
 
@@ -59,9 +63,11 @@ ActiveRecord::Schema.define(version: 20150123194347) do
     t.integer  "edition_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
 
   add_index "expansions", ["edition_id"], name: "index_expansions_on_edition_id", using: :btree
+  add_index "expansions", ["slug"], name: "index_expansions_on_slug", unique: true, using: :btree
 
   create_table "follows", force: true do |t|
     t.integer  "followable_id",                   null: false
@@ -75,6 +81,19 @@ ActiveRecord::Schema.define(version: 20150123194347) do
 
   add_index "follows", ["followable_id", "followable_type"], name: "fk_followables", using: :btree
   add_index "follows", ["follower_id", "follower_type"], name: "fk_follows", using: :btree
+
+  create_table "friendly_id_slugs", force: true do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "game_shelves", force: true do |t|
     t.integer  "user_id"
@@ -163,7 +182,10 @@ ActiveRecord::Schema.define(version: 20150123194347) do
     t.datetime "original_release_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
+
+  add_index "works", ["slug"], name: "index_works_on_slug", unique: true, using: :btree
 
   add_foreign_key "editions", "platforms", name: "editions_platform_id_fk"
   add_foreign_key "editions", "regions", name: "editions_region_id_fk"

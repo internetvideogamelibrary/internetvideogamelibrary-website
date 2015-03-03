@@ -25,7 +25,7 @@
 				</label>
 				<% @work.editions.each do |e| %>
 					<div>
-						<%= e.title %> (<%= e.platform.title %>), released on <%= e.release_date.strftime('%d/%m/%Y') %> at <%= e.region.title %> <%= link_to 'details', e %> <%= link_to 'edit', edit_edition_path(e) %> <%= link_to 'split', split_edition_path(e), method: :put %>
+						<%= e.title %> (<%= e.platform.title %>), released on <%= e.release_date.strftime('%d/%m/%Y') %> at <%= e.region.title %> <%= link_to 'details', e %> <%= link_to 'edit', edit_edition_path(e) %>
 					</div>
 				<% end %>
 			</div>
@@ -36,7 +36,7 @@
 					</label>
 					<% s.editions.each do |e| %>
 						<div>
-							<%= e.title %> (<%= e.platform.title %>), released on <%= e.release_date.strftime('%d/%m/%Y') %> at <%= e.region.title %> <%= link_to 'details', e %> <%= link_to 'edit', edit_edition_path(e) %> <%= link_to 'split', split_edition_path(e), method: :put %>
+							<%= e.title %> (<%= e.platform.title %>), released on <%= e.release_date.strftime('%d/%m/%Y') %> at <%= e.region.title %> <%= link_to 'details', e %> <%= link_to 'edit', edit_edition_path(e) %>
 						</div>
 					<% end %>
 				</div>

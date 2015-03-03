@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-	get 'search', to: 'search#search'
+	resources :games do
+		collection do
+			get 'search'
+		end
+	end
 
 	mount Upmin::Engine => '/admin'
 	devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
@@ -22,16 +26,15 @@ Rails.application.routes.draw do
 		member do
 			get 'combine'
 			patch 'do_combine'
+			get 'split'
+			patch 'do_split'
 		end
 	end
-	resources :editions, :path => "games" do
+	resources :editions do
 		collection do
 			get 'to_review'
 			post 'review'
 			get 'existing_work'
-		end
-		member do
-			put 'split'
 		end
 		resources :expansions do
 		end
@@ -40,6 +43,6 @@ Rails.application.routes.draw do
 		root to: 'game_shelves#index', as: :authenticated_root
 	end
 	unauthenticated do
-		root to: 'editions#index'
+		root to: 'games#index'
 	end
 end
