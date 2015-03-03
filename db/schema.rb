@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303024040) do
+ActiveRecord::Schema.define(version: 20150303034954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,9 +63,11 @@ ActiveRecord::Schema.define(version: 20150303024040) do
     t.integer  "edition_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
 
   add_index "expansions", ["edition_id"], name: "index_expansions_on_edition_id", using: :btree
+  add_index "expansions", ["slug"], name: "index_expansions_on_slug", unique: true, using: :btree
 
   create_table "follows", force: true do |t|
     t.integer  "followable_id",                   null: false
