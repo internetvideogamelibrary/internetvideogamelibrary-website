@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303014451) do
+ActiveRecord::Schema.define(version: 20150303024040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -180,7 +180,10 @@ ActiveRecord::Schema.define(version: 20150303014451) do
     t.datetime "original_release_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
+
+  add_index "works", ["slug"], name: "index_works_on_slug", unique: true, using: :btree
 
   add_foreign_key "editions", "platforms", name: "editions_platform_id_fk"
   add_foreign_key "editions", "regions", name: "editions_region_id_fk"

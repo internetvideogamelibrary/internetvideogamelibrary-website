@@ -20,7 +20,7 @@ class WorksController < ApplicationController
 		@older_work = nil
 		@combine_works = []
 		@combine_work_ids.each do |w|
-			@work = Work.find_by_id(w)
+			@work = Work.friendly.find(w)
 			@combine_works << @work
 			if @older_work.present? == false
 				@older_work = @work
@@ -41,10 +41,10 @@ class WorksController < ApplicationController
 		redirect_to combine_work_path(@older_work)
 	end
 	def split
-		@work = Work.find(params[:id])
+		@work = Work.friendly.find(params[:id])
 	end
 	def do_split
-		@work = Work.find(params[:id])
+		@work = Work.friendly.find(params[:id])
 		@editions = params.require(:editions)
 
 		@split_editions = []
@@ -76,11 +76,11 @@ class WorksController < ApplicationController
 		end
 	end
 	def combine
-		@work = Work.find(params[:id])
+		@work = Work.friendly.find(params[:id])
 		@same_work_data = Work.where("id <> ? and original_title = ? and original_release_date = ?", @work.id, @work.original_title, @work.original_release_date)
 	end
 	def show
-		@work = Work.find(params[:id])
+		@work = Work.friendly.find(params[:id])
 		@editions = Edition.where(work_id: @work.id).paginate(:page => params[:page]).order('release_date desc')
 	end
 
@@ -90,7 +90,7 @@ class WorksController < ApplicationController
 	end
 
 	def work_exists
-		work = Work.find_by_id(params[:id])
+		work = Work.friendly.find(params[:id])
 		if work.present?
 			return true
 		else
@@ -98,6 +98,8 @@ class WorksController < ApplicationController
 			return false
 		end
 
+		rescue ActiveRecord::RecordNotFound
+			redirect_to '/', :alert => "Game not found"
 		rescue ActionController::RedirectBackError
 			redirect_to '/', :alert => "Game not found"
 	end
