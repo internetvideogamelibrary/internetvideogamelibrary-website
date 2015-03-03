@@ -15,6 +15,8 @@ class GameItem(scrapy.Item):
     platforms = scrapy.Field()
     image_url = scrapy.Field()
     genres = scrapy.Field()
+    expansion = scrapy.Field()
+    parent_title = scrapy.Field()
 
 from scrapy.contrib.spiders import CrawlSpider, Rule
 from scrapy.contrib.linkextractors.lxmlhtml import LxmlLinkExtractor
@@ -32,8 +34,8 @@ class SteamSpider(CrawlSpider):
     allowed_domains = ['store.steampowered.com']
     start_urls = []
     for i in range(1, 380):
-        start_urls.append('http://store.steampowered.com/search/?sort_by=&sort_order=0&category1=998&page=%d' % i)
-    #start_urls = ['http://store.steampowered.com/app/730/',
+        #start_urls.append('http://store.steampowered.com/search/?sort_by=&sort_order=0&category1=998&page=%d' % i)
+        start_urls.append('http://store.steampowered.com/search/?sort_by=&sort_order=0&category1=21&page=%d' % i)
     #'http://store.steampowered.com/app/221100/',
     #'http://store.steampowered.com/app/211720/',
     #'http://store.steampowered.com/app/337070/']
@@ -43,12 +45,15 @@ class SteamSpider(CrawlSpider):
         if response.xpath("//div[contains(@class,'breadcrumbs')]/div[1]/a[1]/text()").extract()[0] != "All Games":
             return None
 
-        if len(response.xpath("//div[contains(@class,'game_area_dlc_bubble')]").extract()) > 0:
+        if len(response.xpath("//div[contains(@class,'game_area_dlc_bubble')]").extract()) <= 0:
             return None
 
         game = GameItem()
         game['url'] = w3lib.url.url_query_cleaner(response.url, [])
         game['image_url'] = response.xpath("//*[@id='game_highlights']/div[2]/div/div[1]/img/@src").extract()[0]
+
+        game['expansion'] = True
+        game['parent_title'] = response.xpath("//div[contains(@class,'game_area_dlc_bubble')]/div/p/a/text()").extract()[0]
 
         platforms = response.xpath("(//div[@class='game_area_purchase_game'])[1]//span[contains(@class,'platform_img')]").extract()
         game['platforms'] = []
@@ -60,12 +65,20 @@ class SteamSpider(CrawlSpider):
 
         game['title'] = response.xpath("string((//div[@class='apphub_AppName'])[1])").extract()[0]
 
-        game['description'] = response.xpath("string(//div[@id='game_area_description'])").re(re.compile('\r\n\t\t\t\t\t\tAbout This Game\r\n\t\t\t\t\t\t(.*)', re.UNICODE|re.DOTALL))
-        if len(game['description']) > 0:
-            game['description'] = game['description'][0]
+        if(game['expansion']):
+            game['description'] = response.xpath("string(//div[@id='game_area_description'])").re(re.compile('\r\n\t\t\t\t\t\tAbout This Content\r\n\t\t\t\t\t\t(.*)', re.UNICODE|re.DOTALL))
+            if len(game['description']) > 0:
+                game['description'] = game['description'][0]
+            else:
+                game['description'] = ''
+                log.msg("Game %s has no description. Using blank for now." % game['title'], level=log.WARNING)
         else:
-            game['description'] = ''
-            log.msg("Game %s has no description. Using blank for now." % game['title'], level=log.WARNING)
+            game['description'] = response.xpath("string(//div[@id='game_area_description'])").re(re.compile('\r\n\t\t\t\t\t\tAbout This Game\r\n\t\t\t\t\t\t(.*)', re.UNICODE|re.DOTALL))
+            if len(game['description']) > 0:
+                game['description'] = game['description'][0]
+            else:
+                game['description'] = ''
+                log.msg("Game %s has no description. Using blank for now." % game['title'], level=log.WARNING)
 
         genres = response.xpath("(//div[@class='details_block'])[1]").re(re.compile('Genre:</b>[^<]*(.*)<br>', re.UNICODE))
         game['genres'] = []
@@ -90,11 +103,15 @@ class SteamSpider(CrawlSpider):
             log.msg("Game %s has no publisher. Using blank for now." % game['title'], level=log.WARNING)
 
         #game['release_date'] = time.strptime(response.xpath("(//div[@class='details_block'])[1]").re(re.compile('Release Date:</b> ([^<]*)', re.UNICODE))[0], '%d %b, %Y')
-        game['release_date'] = response.xpath("(//div[@class='details_block'])[1]").re(re.compile('Release Date:</b> ([^<]*)', re.UNICODE))
+        game['release_date'] = response.xpath("(//div[@class='details_block'])[1]").re(re.compile('Release Date:</b> \s*([^<]*)', re.UNICODE|re.MULTILINE))
         if len(game['release_date']) > 0:
             game['release_date'] = game['release_date'][0]
         else:
-            game['release_date'] = ''
-            log.msg("Game %s has no release date. Using blank for now." % game['title'], level=log.WARNING)
+            game['release_date'] = response.xpath("(//div[@class='details_block'])[2]").re(re.compile('Release Date:</b> \s*([^<]*)', re.UNICODE|re.MULTILINE))
+            if len(game['release_date']) > 0:
+                game['release_date'] = game['release_date'][0]
+            else:
+                game['release_date'] = ''
+                log.msg("Game %s has no release date. Using blank for now." % game['title'], level=log.WARNING)
 
         return game
