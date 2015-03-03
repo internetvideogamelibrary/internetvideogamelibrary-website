@@ -57,11 +57,11 @@ class EditionsController < ApplicationController
 		@editions = Edition.where(status: Edition.statuses[:active]).paginate(:page => params[:page]).order('title')
 	end
 	def edit
-		@edition = Edition.find_by_id(params[:id])
+		@edition = Edition.friendly.find(params[:id])
 		@work = @edition.work
 	end
 	def update
-		@edition = Edition.find(params[:id])
+		@edition = Edition.friendly.find(params[:id])
 		@work = @edition.work
 		if @work.update_attributes(work_params)
 			if @edition.update_attributes(edition_params)
@@ -75,7 +75,7 @@ class EditionsController < ApplicationController
 		end
 	end
 	def show
-		@edition = Edition.find_by_id(params[:id])
+		@edition = Edition.friendly.find(params[:id])
 		@other_editions_count = Edition.where("work_id = ? and status = ? and id <> ?",@edition.work.id,Edition.statuses[:active],@edition.id).count()
 		@other_editions = Edition.where("work_id = ? and status = ? and id <> ?",@edition.work.id,Edition.statuses[:active],@edition.id).limit(5)
 		@description = GitHub::Markdown.render_gfm(@edition.description).html_safe
@@ -89,7 +89,7 @@ class EditionsController < ApplicationController
 			redirect_to :back, :alert => "Unknown option"
 		else
 			edition_id = params.require(:edition).permit(:id)[:id]
-			edition = Edition.find_by_id(edition_id)
+			edition = Edition.friendly.find(edition_id)
 			if review_option == "delete"
 				edition.status = Edition.statuses[:deleted]
 			end
@@ -120,7 +120,7 @@ class EditionsController < ApplicationController
 	end
 
 	def edition_exists
-		edition = Edition.find_by_id(params[:id])
+		edition = Edition.friendly.find(params[:id])
 		if edition.present?
 			return true
 		else
@@ -133,7 +133,7 @@ class EditionsController < ApplicationController
 	end
 
 	def edition_visible
-		edition = Edition.find_by_id(params[:id])
+		edition = Edition.friendly.find(params[:id])
 		if edition.status != Edition.statuses[:active] and not (current_user and (current_user.admin? || current_user.reviewer?))
 			redirect_to :back, :alert => "Game not found"
 			return false

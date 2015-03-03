@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303000757) do
+ActiveRecord::Schema.define(version: 20150303014451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,11 +35,13 @@ ActiveRecord::Schema.define(version: 20150303000757) do
     t.integer  "status"
     t.integer  "media_id",                           null: false
     t.hstore   "params_hash",           default: {}, null: false
+    t.string   "slug"
   end
 
   add_index "editions", ["media_id"], name: "index_editions_on_media_id", using: :btree
   add_index "editions", ["platform_id"], name: "index_editions_on_platform_id", using: :btree
   add_index "editions", ["region_id"], name: "index_editions_on_region_id", using: :btree
+  add_index "editions", ["slug"], name: "index_editions_on_slug", unique: true, using: :btree
   add_index "editions", ["title"], name: "index_editions_on_title", using: :btree
   add_index "editions", ["work_id"], name: "index_editions_on_work_id", using: :btree
 
@@ -77,6 +79,19 @@ ActiveRecord::Schema.define(version: 20150303000757) do
 
   add_index "follows", ["followable_id", "followable_type"], name: "fk_followables", using: :btree
   add_index "follows", ["follower_id", "follower_type"], name: "fk_follows", using: :btree
+
+  create_table "friendly_id_slugs", force: true do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "game_shelves", force: true do |t|
     t.integer  "user_id"

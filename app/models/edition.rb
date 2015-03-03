@@ -23,6 +23,15 @@
 
 class Edition < ActiveRecord::Base
 	include HashableParams
+	include FriendlyId
+
+	friendly_id :plataform_and_name, use: :slugged
+	def plataform_and_name
+		[
+			[->{ platform.title }, :title],
+			[->{ platform.title }, ->{ region.title }, :title],
+		]
+	end
 
 	enum statuses: [:unreviewed, :active, :deleted]
 
