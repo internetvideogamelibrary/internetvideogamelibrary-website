@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 	if ENV['CANONICAL_HOST']
-		constraints(:host => Regexp.new("^(?!#{Regexp.escape(ENV['CANONICAL_HOST'])})")) do
-			match "/(*path)" => redirect { |params, req| "http://#{ENV['CANONICAL_HOST']}/#{params[:path].pluralize}" },  via: [:get, :post]
-		end
+#		constraints(:host => Regexp.new("^(?!#{Regexp.escape(ENV['CANONICAL_HOST'])})")) do
+#			match "/(*path)" => redirect { |params, req| "http://#{ENV['CANONICAL_HOST']}/#{params[:path].pluralize}" },  via: [:get, :post]
+#		end
 	end
 
 	resources :games do
