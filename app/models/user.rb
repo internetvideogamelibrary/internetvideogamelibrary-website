@@ -42,6 +42,7 @@ class User < ActiveRecord::Base
 		GameShelf.create(:title => "Backlog", :shelf_type => GameShelf::shelf_types[:backlog], :user_id => id)
 		GameShelf.create(:title => "Playing", :shelf_type => GameShelf::shelf_types[:playing], :user_id => id)
 		GameShelf.create(:title => "Finished", :shelf_type => GameShelf::shelf_types[:finished], :user_id => id)
+		GameShelf.create(:title => "Played", :shelf_type => GameShelf::shelf_types[:played], :user_id => id)
 	end
 
 	# Include default devise modules. Others available are:
