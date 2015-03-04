@@ -15,12 +15,13 @@ class EditionsController < ApplicationController
 
 	def new
 		@edition = Edition.new
-		@work = Work.find_by_id(params[:work_id])
-		@work = Work.new unless @work.present?
+		@work = Work.friendly.find(params[:work_id])
+		rescue ActiveRecord::RecordNotFound
+			@work = Work.new
 	end
 	def existing_work
 		@work = Work.new(work_params)
-		@existing_work = Work.find_by_id(params.require(:existing_work).permit(:id)[:id])
+		@existing_work = Work.friendly.find(params.require(:existing_work).permit(:id)[:id])
 		respond_to do |format|
 			  format.js
 		end
