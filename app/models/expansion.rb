@@ -1,7 +1,14 @@
+require "babosa"
+
 class Expansion < ActiveRecord::Base
 	include FriendlyId
 
 	friendly_id :title_and_platform, use: :slugged
+
+	def normalize_friendly_id(input)
+		input.to_s.to_slug.normalize.to_s
+	end
+
 	def title_and_platform
 		[
 			:title,

@@ -20,12 +20,18 @@
 #  status                :integer
 #  media_id              :integer          not null
 #
+require "babosa"
 
 class Edition < ActiveRecord::Base
 	include HashableParams
 	include FriendlyId
 
 	friendly_id :plataform_and_name, use: :slugged
+
+	def normalize_friendly_id(input)
+		input.to_s.to_slug.normalize.to_s
+	end
+
 	def plataform_and_name
 		[
 			[->{ platform.display_title }, :title],

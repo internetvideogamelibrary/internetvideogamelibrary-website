@@ -8,12 +8,18 @@
 #  created_at            :datetime
 #  updated_at            :datetime
 #
+require "babosa"
 
 class Work < ActiveRecord::Base
 	include FriendlyId
 	has_many :editions
 
 	friendly_id :original_title_slug, use: :slugged
+
+	def normalize_friendly_id(input)
+		input.to_s.to_slug.normalize.to_s
+	end
+
 	def original_title_slug
 		[
 			:original_title,
