@@ -25,12 +25,15 @@ def open_game(game_url)
 	doc.xpath("//Data/Game/Genres/genre").each do |genre|
 		genres << genre.text.sub("Role-Playing", "RPG").sub("Flight Simulator","Simulation")
 	end
-	cover = "http://thegamesdb.net/banners/" + doc.xpath("//Data/Game/Images/boxart[@side='front']").text
+	cover = doc.xpath("//Data/Game/Images/boxart[@side='front']").text
+	if not cover.empty?
+		cover = ", :coverart_remote_url => 'http://thegamesdb.net/banners/" + doc.xpath("//Data/Game/Images/boxart[@side='front']").text + "'"
+	end
 
 
 	print <<-endofgame
 work = Work.create(:original_title => "#{title}", :original_release_date => '#{release}')
-edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "#{description}", :release_date => "#{release}", :title => "#{title}", :developer => "#{developer}", :publisher => "#{publisher}", :coverart_remote_url => '#{cover}')
+edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "#{description}", :release_date => "#{release}", :title => "#{title}", :developer => "#{developer}", :publisher => "#{publisher}"#{cover})
 endofgame
 
 	genres.each do |genre|
@@ -49,11 +52,11 @@ end
 endofgame
 end
 
-doc = Nokogiri::XML open("http://thegamesdb.net/api/GetPlatformGames.php?platform=6")
+doc = Nokogiri::XML open("http://thegamesdb.net/api/GetPlatformGames.php?platform=41")
 print <<-endofgame
 media = Media.find_by_title("Cartridge")
 region = Region.find_by_title("North America")
-platform = Platform.find_by_title("Super Nintendo")
+platform = Platform.find_by_title("Nintendo Game Boy Color")
 endofgame
 
 doc.xpath("//Data/Game/id").each do |id|
