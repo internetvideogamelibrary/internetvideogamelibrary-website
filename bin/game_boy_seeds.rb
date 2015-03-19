@@ -1,3 +1,4 @@
+Chewy.strategy(:atomic) do
 media = Media.find_by_title("Cartridge")
 region = Region.find_by_title("North America")
 platform = Platform.find_by_title("Nintendo Game Boy")
@@ -6339,3 +6340,4 @@ end
 	work = nil
 	edition = nil
 	genre = nil
+	end
