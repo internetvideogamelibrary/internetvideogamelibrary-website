@@ -355,6 +355,7 @@ DEPENDENCIES
   jquery-turbolinks
   koala
   launchy
+  nokogiri
   omniauth
   omniauth-facebook
   omniauth-google-oauth2
