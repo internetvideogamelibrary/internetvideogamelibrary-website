@@ -128,10 +128,12 @@
 					</div>
 				<% end -%>
 			</div>
-			<div class="row">&nbsp;</div>
-			<div class="row">
-				<%= link_to "Add DLC/Expansion", new_edition_expansion_path(@edition) %>
-			</div>
+			<%- if current_user.present? and current_user.admin? %>
+				<div class="row">&nbsp;</div>
+				<div class="row">
+					<%= link_to "Add DLC/Expansion", new_edition_expansion_path(@edition) %>
+				</div>
+			<% end -%>
 		</div>
 	</div>
 </div>

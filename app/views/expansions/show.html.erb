@@ -43,9 +43,11 @@
 					<% end -%>
 				</ul>
 			</div>
-			<div class="row">
-				<%= link_to "Edit this expansion", edit_edition_expansion_path(@edition, @expansion) %>
-			</div>
+			<%- if current_user.present? and current_user.admin? %>
+				<div class="row">
+					<%= link_to "Edit this expansion", edit_edition_expansion_path(@edition, @expansion) %>
+				</div>
+			<% end -%>
 		</div>
 	</div>
 	<div class="col-sm-9">
