@@ -59,9 +59,11 @@
 					<% end -%>
 				</ul>
 			</div>
-			<div class="row">
-				<%= link_to "Edit this edition", edit_edition_path(@edition) %>
-			</div>
+			<%- if current_user.present? and current_user.admin? %>
+				<div class="row">
+					<%= link_to "Edit this edition", edit_edition_path(@edition) %>
+				</div>
+			<% end -%>
 		</div>
 	</div>
 	<div class="col-sm-9">
@@ -96,10 +98,12 @@
 			<div class="row">&nbsp;</div>
 			<div class="row">
 				<%= link_to "All editions", @edition.work %>
-				|
-				<%= link_to "Add new edition", new_edition_path(:work_id => @edition.work) %>
-				|
-				<%= link_to "Combine", combine_work_path(@edition.work) %>
+				<%- if current_user.present? and current_user.admin? %>
+					|
+					<%= link_to "Add new edition", new_edition_path(:work_id => @edition.work) %>
+					|
+					<%= link_to "Combine", combine_work_path(@edition.work) %>
+				<% end -%>
 			</div>
 			<div class="row">&nbsp;</div>
 			<div class="row">
