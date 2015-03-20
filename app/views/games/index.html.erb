@@ -12,4 +12,6 @@
 	<% end %>
 </div>
 <%= will_paginate @collection, renderer: BootstrapPagination::Rails %>
-<%= link_to("Add new game", new_edition_path) %>
+<%- if current_user.present? and current_user.admin? %>
+	<%= link_to("Add new game", new_edition_path) %>
+<% end -%>
