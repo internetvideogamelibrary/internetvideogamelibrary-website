@@ -12,7 +12,7 @@ Chewy.strategy(:atomic) do
 	edition = nil
 	genre = nil
 	work = Work.create(:original_title => "3D Tetris", :original_release_date => '1996-03-22')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The mesmerizing force of Tetris returns with virtual style! This thrilling animated puzzler takes dexterity and split-second timing to the extreme with dimensional blocks and challenging planes. 3-D Tetris propels players at a demanding pace where quick response and strategy rule. Tetris devotees of all levels will crave this latest sensation of brain-teasing fun!", :release_date => "1996-03-22", :title => "3D Tetris", :developer => ""T&E Soft"", :publisher => "Nintendo", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/14736-1.jpg')
+	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The mesmerizing force of Tetris returns with virtual style! This thrilling animated puzzler takes dexterity and split-second timing to the extreme with dimensional blocks and challenging planes. 3-D Tetris propels players at a demanding pace where quick response and strategy rule. Tetris devotees of all levels will crave this latest sensation of brain-teasing fun!", :release_date => "1996-03-22", :title => "3D Tetris", :developer => "T&E Soft", :publisher => "Nintendo", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/14736-1.jpg')
 	genre = Genre.find_by_title("Puzzle")
 	if genre.present?
 		edition.genres << genre
@@ -43,7 +43,7 @@ Blast your pinball at rotating planets and turn them into dust in the Cosmic wor
 	work = Work.create(:original_title => "Golf", :original_release_date => '1995-11-01')
 	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Tee off for 18 holes of realistic 3-D links! Virtual Boy Golf elevates the game to an incredible new level!
 
-Determine your strategy as you ponder the conditions. Check your position and the distance to the pin. Select a club and adjust your swing. Consider the wind factor carefully or you could end up out of bounds! Each dimensional fairway provides harrowing hazards to challenge players of all handicaps. Swing into action and go for a hole in one!", :release_date => "1995-11-01", :title => "Golf", :developer => ""T&E Soft"", :publisher => "Nintendo", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/14739-1.jpg')
+Determine your strategy as you ponder the conditions. Check your position and the distance to the pin. Select a club and adjust your swing. Consider the wind factor carefully or you could end up out of bounds! Each dimensional fairway provides harrowing hazards to challenge players of all handicaps. Swing into action and go for a hole in one!", :release_date => "1995-11-01", :title => "Golf", :developer => "T&E Soft", :publisher => "Nintendo", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/14739-1.jpg')
 	genre = Genre.find_by_title("Sports")
 	if genre.present?
 		edition.genres << genre
@@ -100,7 +100,7 @@ Hester, the unknown twin sister, makes her debut appearance. Watch out as the ac
 	work = Work.create(:original_title => "Red Alarm", :original_release_date => '1995-08-14')
 	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Bursting through incredible dimensions of Virtual space the final mission is clear. Obliterate all enemies and obstacles created by KAOS and terminate this menacing battle system from within.
 
-Employing an impressive arsenal of high-tech weapons and evasive maneuvers the Tech-Wing Fighter speeds on. Spinning deaths, spy pods and mosquito mechs appear from everywhere! The fate of humanity will soon be defined. Red Alarm! Red Alarm! Alarm Condition Red!!", :release_date => "1995-08-14", :title => "Red Alarm", :developer => ""T&E Soft"", :publisher => "Nintendo", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/14748-1.jpg')
+Employing an impressive arsenal of high-tech weapons and evasive maneuvers the Tech-Wing Fighter speeds on. Spinning deaths, spy pods and mosquito mechs appear from everywhere! The fate of humanity will soon be defined. Red Alarm! Red Alarm! Alarm Condition Red!!", :release_date => "1995-08-14", :title => "Red Alarm", :developer => "T&E Soft", :publisher => "Nintendo", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/14748-1.jpg')
 	genre = Genre.find_by_title("Shooter")
 	if genre.present?
 		edition.genres << genre
