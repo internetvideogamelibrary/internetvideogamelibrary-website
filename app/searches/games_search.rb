@@ -53,7 +53,7 @@ class GamesSearch
 						multi_match: {
 							fields: [:title],#, :author, :description],
 							query: query,
-							fuzziness: "1",
+							fuzziness: "AUTO",
 							operator: "AND"
 						}
 					}
