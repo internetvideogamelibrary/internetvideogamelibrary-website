@@ -44,15 +44,17 @@ class GamesSearch
 				should: [
 					{
 						multi_match: {
-							fields: [:title, :author, :description],
-							query: query
+							fields: [:title],# :author, :description],
+							query: query,
+							operator: "AND"
 						}
 					},
 					{
 						multi_match: {
-							fields: [:title, :author, :description],
+							fields: [:title],#, :author, :description],
 							query: query,
-							fuzziness: 'AUTO'
+							fuzziness: "1",
+							operator: "AND"
 						}
 					}
 				]
