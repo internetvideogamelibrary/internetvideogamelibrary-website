@@ -40,6 +40,8 @@ class WorksController < ApplicationController
 			end
 			work.delete
 		end
+		@older_work.slug = nil
+		@older_work.save()
 		flash[:success] = "Your editions were combined!"
 		redirect_to combine_work_path(@older_work)
 	end
