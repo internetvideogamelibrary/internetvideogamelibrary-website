@@ -14,7 +14,7 @@ class ExpansionsController < ApplicationController
 	def show
 		@expansion = Expansion.friendly.find(params[:id])
 		@edition = @expansion.edition
-		@description = GitHub::Markdown.render_gfm(@expansion.description).html_safe
+		@description = GitHub::Markdown.render_gfm(@expansion.description.present? ? @expansion.description : "").html_safe
 	end
 	def create
 		@edition = Edition.friendly.find(params[:edition_id])
