@@ -1,3 +1,6 @@
+<% content_for :title do %>
+All games - <% if params[:page] %> page <%= params[:page] %> - <% end %>Internet Video Game Library
+<% end %>
 <% breadcrumb :games %>
 <div class="row">
 	<% @games.each_with_index do |game, i| %>

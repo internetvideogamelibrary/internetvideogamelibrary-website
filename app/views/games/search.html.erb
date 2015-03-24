@@ -1,3 +1,6 @@
+<% content_for :title do %>
+Results for "<%= strip_tags params[:q] %>" - <% if params[:page] %> page <%= params[:page] %> - <% end %>Internet Video Game Library
+<% end %>
 <div class="page-header">
 	<h1><%= @qty %> results searching for "<%= strip_tags params[:q] %>"</h1>
 </div>

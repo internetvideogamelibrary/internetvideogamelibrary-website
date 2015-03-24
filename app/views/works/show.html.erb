@@ -1,3 +1,6 @@
+<% content_for :title do %>
+All editions for <%=@work.original_title%>, <% if @work.original_release_date.present? %> originally released in <%= @work.original_release_date.strftime('%d/%m/%Y')%><% end %> - Internet Video Game Library
+<% end %>
 <% breadcrumb :work, @work %>
 
 <div class="page-header">
