@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 	resources :works do
 		collection do
 			get 'search'
+			get 'search_index'
 		end
 		member do
 			get 'combine'

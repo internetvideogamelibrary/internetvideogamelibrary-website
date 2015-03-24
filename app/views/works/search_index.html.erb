@@ -1,0 +1,20 @@
+<% content_for :title do %>
+Results for "<%= strip_tags params[:q] %>" - <% if params[:page] %> page <%= params[:page] %> - <% end %>Internet Video Game Library
+<% end %>
+<div class="page-header">
+	<h1><%= @qty %> results searching for "<%= strip_tags params[:q] %>"</h1>
+</div>
+
+<div class="row">
+	<div class="col-md-9">
+		<% @games.each do |game| %>
+			<div class="media">
+				<div class="media-body media-middle">
+					<h4 class="media-heading"><%= link_to(game) do %><%= game.original_title %><% end %></h4>
+					Released on <%= game.original_release_date.strftime('%d/%m/%Y') if game.original_release_date.present? %><br />
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>
+<%= will_paginate @games, renderer: BootstrapPagination::Rails %>

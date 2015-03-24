@@ -7,6 +7,9 @@ class WorksController < ApplicationController
 
 	before_filter :authenticate_user!,
 	:only => [:combine, :do_combine, :split, :do_split]
+
+	before_filter :has_query,
+	:only => [:search_index]
 	def search
 		params = work_params
 		@work = Work.find_by(original_title: params[:original_title], original_release_date: params[:original_release_date])
@@ -17,6 +20,12 @@ class WorksController < ApplicationController
 				format.json { render :json => { :status => :none_exists }  }
 			end
 		end
+	end
+	def search_index
+		@search = WorksSearch.new(query: params[:q])
+		results = @search.search.only(:id)
+		@games = results.paginate(:page => params[:page]).load()
+		@qty = @games.count
 	end
 	def do_combine
 		@combine_work_ids = params.require(:work_ids)
@@ -114,5 +123,15 @@ class WorksController < ApplicationController
 			redirect_to '/', :alert => "Game not found"
 		rescue ActionController::RedirectBackError
 			redirect_to '/', :alert => "Game not found"
+	end
+	def has_query
+		if params[:q].present?
+			true
+		else
+			redirect_to :back, :alert => "You have to type a query string"
+		end
+
+		rescue ActionController::RedirectBackError
+			redirect_to games_path, :alert => "You have to type a query string"
 	end
 end
