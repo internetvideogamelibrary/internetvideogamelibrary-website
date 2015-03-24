@@ -47,7 +47,7 @@ class WorksController < ApplicationController
 				edition.work_id = @older_work.id
 				edition.save
 			end
-			work.delete
+			work.destroy
 		end
 		@older_work.slug = nil
 		@older_work.save()
