@@ -61,7 +61,7 @@ class WorksController < ApplicationController
 			end
 		end
 
-		if @split_editions.length > 0 && @keep_editions.length > 0 && (@split_edition.length+@keep_editions.length == @work.editions.length)
+		if @split_editions.length > 0 && @keep_editions.length > 0 && (@split_editions.length+@keep_editions.length == @work.editions.length)
 			@split_work = Work.new(:original_title => @work.original_title, :original_release_date => @work.original_release_date)
 			if @split_work.save
 				@work.editions.each do |e|
