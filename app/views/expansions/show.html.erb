@@ -1,3 +1,7 @@
+<% content_for :title do %>
+<%=@expansion.title%> - Expansion/DLC of <%=@expansion.edition.title%> - <%=@expansion.edition.platform.title%> - Internet Video Game Library
+<% end %>
+
 <% breadcrumb :expansion, @expansion %>
 <div class="row" class="center-block">
 	<div class="col-sm-3">
