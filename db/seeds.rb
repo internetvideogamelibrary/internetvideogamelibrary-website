@@ -139,6 +139,7 @@ Chewy.strategy(:atomic) do
 	region2 = Region.create(:title => "North America")
 	Region.create(:title => "South America")
 	Region.create(:title => "Worldwide")
+	Region.create(:title => "Brazil")
 	puts 'CREATED A REGION: ' << region.title
 
 	Media.create(:title => 'Blu-Ray Disc')
