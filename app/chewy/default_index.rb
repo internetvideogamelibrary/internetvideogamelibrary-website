@@ -37,9 +37,27 @@ class DefaultIndex < Chewy::Index
               'leafgreen,leaf green',
               'pokemon,pocket monsters,ポケットモンスター'
             ]
+          },
+          edgeNGram_filter: {
+            type: "edgeNGram",
+            min_gram: 2,
+            max_gram: 20
+          }
+        },
+        tokenizer: {
+          edge_ngram_tokenizer: {
+            type: "edgeNGram",
+            min_gram: "2",
+            max_gram: "5",
+            token_chars: [ "letter", "digit" ]
           }
         },
         analyzer: {
+          edge_nGram_analyzer: {
+            type: "custom",
+            tokenizer: "whitespace",
+            filter: %w(lowercase asciifolding my_synonym_filter edgeNGram_filter)
+          },
           title: {
             tokenizer: 'standard',
             filter: %w(lowercase asciifolding my_synonym_filter)

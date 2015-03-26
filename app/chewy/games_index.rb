@@ -3,6 +3,7 @@ class GamesIndex < DefaultIndex
 
   define_type Expansion.includes(edition: [:genres, :platform, :region, :work]) do
     field :title, analyzer: 'title'
+    field :titleraw, analyzer: 'edge_nGram_analyzer', search_analyzer: 'title', value: ->{ title }
     field :release_date, type: 'date'
     field :original_title, value: -> { edition.work.original_title }
     field :original_release_date, value: -> { edition.work.original_release_date }
@@ -22,6 +23,7 @@ class GamesIndex < DefaultIndex
 
   define_type Edition.includes(:genres, :platform, :region, :work) do
     field :title, analyzer: 'title'
+    field :titleraw, analyzer: 'edge_nGram_analyzer', search_analyzer: 'title', value: ->{ title }
     field :release_date, type: 'date'
     field :original_title, value: -> { work.original_title }
     field :original_release_date, value: -> { work.original_release_date }
