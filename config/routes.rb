@@ -46,10 +46,11 @@ Rails.application.routes.draw do
 		resources :expansions do
 		end
 	end
-	authenticated :user do
-		root to: 'game_shelves#index', as: :authenticated_root
-	end
-	unauthenticated do
-		root to: 'games#index'
-	end
+#	authenticated :user do
+#		root to: 'game_shelves#index', as: :authenticated_root
+#	end
+#	unauthenticated do
+#		root to: 'games#index'
+#	end
+	root to:'index#show'
 end
