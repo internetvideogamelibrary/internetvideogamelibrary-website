@@ -91,7 +91,9 @@ class WorksController < ApplicationController
 	end
 	def combine
 		@work = Work.friendly.find(params[:id])
-		@same_work_data = Work.where("id <> ? and original_title = ? and original_release_date = ?", @work.id, @work.original_title, @work.original_release_date)
+		@search = WorksSearch.new(query: @work.original_title)
+		results = @search.search.only(:id)
+		@same_work_data = results.load()
 	end
 	def show
 		@work = Work.friendly.find(params[:id])
