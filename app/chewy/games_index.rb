@@ -19,6 +19,7 @@ class GamesIndex < Chewy::Index
 		field :region_id, value: ->{ edition.region_id }, type: 'integer'
 		field :description
 		field :genres, index: 'not_analyzed', value: ->{ edition.genres.map(&:title) }
+		field :created_at, value: ->{ created_at.to_i }, type: 'integer'
 	end
 
 	define_type Edition.includes(:genres, :platform, :region, :work) do
@@ -33,5 +34,6 @@ class GamesIndex < Chewy::Index
 		field :region_id, type: 'integer'
 		field :description
 		field :genres, index: 'not_analyzed', value: ->{ genres.map(&:title) }
+		field :created_at, value: ->{ created_at.to_i }, type: 'integer'
 	end
 end
