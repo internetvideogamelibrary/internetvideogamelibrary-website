@@ -1,0 +1,47 @@
+<div class="jumbotron">
+	<div class="container">
+		<h1>Internet Video Game Library</h1>
+		<p>Welcome to Internet Video Game Library! Here you can keep track of your backlog and get information about all your games.</p>
+		<p><%= link_to new_user_registration_path, class: "btn btn-primary btn-lg"  do%>Sign up now &raquo;<% end %></p>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+			<h2>All game releases in one place!</h2>
+			<p>Japanese, European, North American or Brazillian. All releases organized and linked so that you can easily navigate between one another.</p>
+		</div>
+		<div class="col-md-4">
+			<h2>Custom lists</h2>
+			<p>We already preparated five lists for you: Wishlist, Backlog, Playing, Played and Finished. But if you want to keep track of the games you achieved 100%, you can create another list.</p>
+		</div>
+		<div class="col-md-4">
+			<h2>Community built</h2>
+			<p>Everyone can sign up to edit and insert new games. This way, the database is always up-to-date.</p>
+		</div>
+	</div>
+
+	<div class="row">
+		<h2>Recently added games</h2>
+	</div>
+
+	<div class="row">
+		<% @games.each_with_index do |game, i| %>
+			<%- if i > 0 && ( (i % 6 == 0) || (i % 4 == 0) || (i % 3 == 0) )%>
+				<div class="clearfix<%- if (i % 6 == 0) %> visible-md visible-lg<% end -%><%- if (i % 4 == 0) %> visible-sm<% end -%><%- if (i % 3 == 0) %> visible-xs<% end-%>"></div>
+			<% end -%>
+			<%- if game.class.name == "Expansion" %>
+				<%= render partial: "games/expansion", locals: {expansion: game} %>
+			<% else %>
+				<%= render partial: "games/edition", locals: {edition: game} %>
+			<% end -%>
+		<% end %>
+	</div>
+
+	<hr>
+
+	<footer>
+		<p>&copy; Internet Video Game Library 2015</p>
+	</footer>
+</div>
