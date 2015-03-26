@@ -93,7 +93,10 @@ class WorksController < ApplicationController
 		@work = Work.friendly.find(params[:id])
 		@search = WorksSearch.new(query: @work.original_title)
 		results = @search.search.only(:id)
-		@same_work_data = results.load()
+		@same_work_data = []
+		results.load().each do |w|
+			@same_work_data << w unless w.id == @work.id
+		end
 	end
 	def show
 		@work = Work.friendly.find(params[:id])
