@@ -156,6 +156,7 @@ Chewy.strategy(:atomic) do
 	Media.create(:title => 'UMD')
 	media2 = Media.create(:title => 'Virtual Console (Digital Download)')
 	Media.create(:title => 'GD-ROM')
+	Media.create(:title => 'PlayStation Vita game card')
 
 	puts 'CREATED A MEDIA: ' << media.title
 
