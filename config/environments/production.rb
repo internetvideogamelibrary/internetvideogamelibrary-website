@@ -104,4 +104,11 @@ Rails.application.configure do
 		  :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
 	  }
   }
+
+	config.middleware.use ExceptionNotification::Rack,
+		:email => {
+		:email_prefix => "[IVGLib-ERROR] ",
+		:sender_address => %{"notifier" <notifier@internetvideogamelibrary.com>},
+		:exception_recipients => %w{renato.lond@gmail.com}
+	  }
 end
