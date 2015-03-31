@@ -2,1049 +2,1049 @@ Chewy.strategy(:atomic) do
 	media = Media.find_by_title("DVD")
 	region = Region.find_by_title("North America")
 	platform = Platform.find_by_title("Sony PlayStation 2")
-	work = Work.create(:original_title => "Devil May Cry", :original_release_date => '2001-10-17')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Set in modern times on the fictional Mallet Island, the story centers on the characters Dante and Trish and their quest to confront the demon lord Mundus. The story is told primarily through a mixture of cutscenes, which use the game's engine and several pre-rendered full motion videos.", :release_date => "2001-10-17", :title => "Devil May Cry", :developer => "Capcom", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/15-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Devil May Cry 3: Dante's Awakening", :original_release_date => '2005-02-17')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Set in modern times in an enchanted tower named Temen-ni-gru, the story centers on the dysfunctional relationship between Dante and his brother Vergil. The events of the game take place just as Dante has opened up the Devil May Cry agency, and before Dante's demonic heritage has reached its full potential.", :release_date => "2005-02-17", :title => "Devil May Cry 3: Dante's Awakening", :developer => "Capcom", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/16-2.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Final Fantasy X-2", :original_release_date => '2003-11-18')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The game's story follows the character Yuna from Final Fantasy X as she seeks to resolve political conflicts in the fictional world of Spira before it leads to war.
-
-The story begins as Yuna, Rikku and Paine recover Yuna's stolen Garment Grid from the Leblanc Syndicate in the first of several encounters in which they vie for spheres. The game is punctuated by a narration of Yuna addressing Tidus, as though she is recounting the events of the game to him as they occur in a style reminiscent of Tidus' own narration in Final Fantasy X. Although Yuna's quest is to find clues that may lead her to Tidus, much of the storyline of the game follows the clash of the factions that have established themselves in the time since the coming of the Eternal Calm in Final Fantasy X, and the uncovering of hidden legacies from Spira's ancient history. A significant portion of the game's events are unnecessary for the completion of the main storyline, but much of the depth of the story—including characterization and background details—are featured in the optional content, which generally follows how each part of Spira is healing in the time since the passing of Sin.", :release_date => "2003-11-18", :title => "Final Fantasy X-2", :developer => "Square Enix", :publisher => "Square Enix", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/19-1.jpg')
-	genre = Genre.find_by_title("RPG")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Final Fantasy X", :original_release_date => '2001-12-20')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "There are seven main playable characters in Final Fantasy X. Tidus is a cheerful young teenager and the star blitzball player for the Zanarkand Abes. He has long resented his father, a renowned blitzball player who disappeared during Tidus's youth. Yuna is the daughter of the High Summoner Braska, who defeated Sin to bring about the Calm, a time of peace. Yuna embarks on a pilgrimage to obtain the final aeon and defeat Sin. Kimahri Ronso is a young warrior of the Ronso tribe who watched over Yuna during her childhood. Wakka is a blitzball player and devout follower of the Yevon order. Lulu is a stoic and self-possessed, but well-meaning Black Mage. Auron is a taciturn former warrior monk, and finally Rikku is a perky Al Bhed girl with extensive knowledge of machinery. The primary antagonists of the game are Maester Seymour Guado and the other maesters of the Yevon religion, while the enormous whale-like monster Sin serves as the primary source of conflict.", :release_date => "2001-12-20", :title => "Final Fantasy X", :developer => "Squaresoft", :publisher => "Squaresoft", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/20-1.jpg')
-	genre = Genre.find_by_title("RPG")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "God Hand", :original_release_date => '2006-10-10')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "God Hand puts players in the role of Gene, a martial artist who is bestowed with one of the legendary \"God Hands\", a pair of divine arms that were once used to save the world from a demon called Angra. Gene and his companion Olivia are eventually caught up in an attempt by a group of demons known as the Four Devas to resurrect Angra for purposes of world domination. The game mixes western and Japanese-themed comedy, containing over-the-top characters and storyline events. The gameplay combines traditional elements of the beat 'em up genre with new features. These include being able to map and string together a large repertoire of fighting techniques to the gamepad's face buttons in order to create unique combo attacks.", :release_date => "2006-10-10", :title => "God Hand", :developer => "Clover Studio", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/25-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Fighting")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "God of War", :original_release_date => '2005-03-22')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "This action/adventure/combat game makes powerful use of the darkly imaginative world of Ancient Greek mythology, where the realms of the mortal and the divine collide in a pervasive atmosphere of brute force and violence. Playing as Kratos, throughout the game players will wield double blades bound to his body by long chains, weapons symbolic of this vicious world to which he is bound and the fate from which he seeks to escape. Featuring an hour of cinematic sequences and a deep combat system incorporating context-sensitive actions and an extensive range of combos, GOD OF WAR takes players through various environments that will have them fighting fierce enemies, swinging on ropes, scaling mountain cliffs, swimming through rivers and sliding down zip lines. The result is a unique and thrilling adventure through Greek mythology.", :release_date => "2005-03-22", :title => "God of War", :developer => "Sony", :publisher => "Sony", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/26-2.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Adventure")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Killzone", :original_release_date => '2004-11-02')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The game is set in an era of space colonization where the Helghast Empire has recovered from its defeat in the First Helghan War and launched a blitzkrieg against the outer Interplanetary Strategic Alliance (I.S.A.) colony planet Vekta. Vekta's orbital Strategic Defense (S.D.) platforms failed during the initial assault, allowing the Helghast to land swarms of soldiers onto the surface and making it all the more difficult for the outnumbered I.S.A. forces.
-In the game, the Helghast are a faction of human descendants who colonized the planet Helghan many generations ago. The planet's harsh environment forced the Helghast to adapt and mutate so much that they can no longer be considered human. They are stronger, faster and more resilient than their human cousins, and possess a burning hatred for humanity. Except for a small number of half-breed Helghast and trained troopers, they require a gas mask and air processing tank that creates air similar to that found on the planet Helghan.
-The player takes control of I.S.A. Captain Jan Templar, who is fighting off the Helghast invasion. Templar and his squad are called back to the base for reassignment, and are promptly sent to find the I.S.A. operative Gregor Hakha and the information in his possession. During the course of the game, the player also takes control of several other characters, such as Shadow Marshal Luger (a female special operations assassin), a heavy weapons specialist Staff Sergeant Rico Velasquez (a Helghast-hating soldier with an itchy trigger finger), and Colonel Hakha, a half-Helghast, half-Human spy.
-
-As the game progresses the player discovers that General Stuart Adams, a high ranking ISA officer, is a traitor and a servant of Joseph Lente (the commanding General of The Third Helghast Special Forces Army) and was responsible for sabotaging the SD platforms, rendering them unable to defend against the Helghast. The Earth Defense Fleet (EDF) go to assist the Vektan Army, however Adams kills General Voughton and receives his security key, allowing him to reboot the platforms, and prepare an ambush for the EDF relief force.
-Jan and the others confront Lente, only to find out that Hakha was a commander in chief for him. Lente says that Hakha's family was ashamed to even be related to him, except his brother who talked of his heroism. Because of this, Lente had Hakha's brother shot down. With anger in his eyes, Hakha shoots Lente dead.
-The team fly to the central SD platform and confront Adams, who is wounded by Templar. The platform begins to break up and Adams is killed by falling debris while trying to escape. Finally, the team restore the SD platform, allowing the EDF fleet to fight off the Helghast.", :release_date => "2004-11-02", :title => "Killzone", :developer => "Guerrilla Games", :publisher => "SCEE", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/35-2.jpg')
-	genre = Genre.find_by_title("Shooter")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Metal Gear Solid 3: Snake Eater", :original_release_date => '2004-11-17')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Set in the 60s and using the Cold War as its inspiration, Metal Gear Solid 3: Snake Eater forces the player to adopt a number of new skills to survive in Snake's new jungle environment. Danger lurks everywhere as Snake explores the beautifully-realised forests, encampments and rivers, with guards patrolling key routes, dangerous animals to contend with, and the uneven terrain and noisy foliage making the silent approaches the Metal Gear hero is famed for virtually impossible.
-
-    Gameplay set in Cold War era 1960's
-    Camoflage System: Use different combinations of uniform and face paints to blend into your environment
-    Food: Capture and eat animals & plants to sustain Snake's health and abilities
-    Close Quarters Combat (CQC): Take on enemies up close and personal with knives and martial arts techniques for silent kills
-    Exclusive content for the PAL version includes:
-    Duel Mode - Battle through the game's Boss Fights independently
-    Demo Theatre - Watch all the cut scenes in sequence
-    European Extreme difficulty level
-    2 New Levels in Snake Vs Monkey Mode
-    New Face Paint and Camoflage Designs not available in US or Japanese versions", :release_date => "2004-11-17", :title => "Metal Gear Solid 3: Snake Eater", :developer => "Konami", :publisher => "Konami", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/44-2.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Adventure")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Stealth")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Okami", :original_release_date => '2006-09-19')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The game is set in Nippon based on Japanese classic history, and begins with a flashback to events 100 years prior to the game's present, and describes how Shiranui, a pure white wolf, and Nagi, a swordsman, together fought the eight-headed demon Orochi to save Kamiki Village and the maiden Nami, Nagi's beloved. Shiranui and Nagi are unable to defeat Orochi but manage to seal the demon away. In the game's present, Susano, a descendant of Nagi and self-proclaimed greatest warrior, breaks Orochi's seal due to the fact that he does not believe in the legend, and Orochi escapes and curses the lands, sapping the life from every living being. Sakuya, the wood sprite and guardian of Kamiki Village, calls forth Amaterasu, the sun goddess, known to the villagers as the reincarnation of the white wolf Shiranui, and pleads her to remove the curse that covers the land. Accompanied by the artist Issun (an inch-high Poncle), Amaterasu is able to restore the land to its former beauty. Throughout the journey, Amaterasu is hounded by Waka, a strange but powerful individual that seems to have the gift of foresight, and further teases Amaterasu and Issun to his own mysterious ends. Additionally, Amaterasu locates several Celestial Gods who have hidden in the constellations that bestow upon the goddess powers of the Celestial Brush to aid in her quest.", :release_date => "2006-09-19", :title => "Okami", :developer => "Clover Studio", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/51-2.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Adventure")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Final Fantasy XII", :original_release_date => '2006-03-16')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The game takes place in the fictional location of Ivalice, where the empires of Archadia and Rozarria are waging an endless war. Dalmasca, a small kingdom, is caught between the warring nations. When Dalmasca becomes annexed by Archadia, its princess, Ashe, creates a resistance movement. During the struggle, she meets Vaan, a young adventurer who dreams of commanding an airship. They are quickly joined by a band of allies; together, they rally against the tyranny of the Archadian Empire.", :release_date => "2006-03-16", :title => "Final Fantasy XII", :developer => "Square Enix", :publisher => "Square Enix", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/87-2.jpg')
-	genre = Genre.find_by_title("RPG")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "God of War II", :original_release_date => '2007-03-13')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Kratos is now the God of War, having defeated the Olympian god Ares. Shunned by the other gods and still haunted by nightmares from his past, Kratos decides to join an army of Spartans in an attack on the city of Rhodes. Kratos also ignores a warning from the goddess Athena that his lust for revenge is alienating the other gods.", :release_date => "2007-03-13", :title => "God of War II", :developer => "Sony", :publisher => "Sony", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/88-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Adventure")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Monster Hunter 2", :original_release_date => '2006-02-16')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Monster Hunter 2 has an improved weapon tree and upgradeable armors. As in all Monster Hunter games, armor pieces can be worn to obtain skills and abilities. A new feature in Monster Hunter 2 is the use of gems. Gems add skill points to complement those added by armor and weapons. Gems are created by combining ore and/or monster parts. Gems can be attached and detached from armor and weapons that have special gem slots.
-
-Along with the various species of monster returning from the first Monster Hunter, Monster Hunter 2 contains many new monsters, such as the metallic wind dragon Kushala Daora, the lion-headed dragon Teo Teskatoru (named Teostra in the North American and PAL versions of Monster Hunter Freedom 2) and his female counterpart Nana Teskatory (named Lunastra in the North American and PAL versions of MHF2), the primates Babakonga and Dodobrango (Congalala and Blangonga in MHF2), the bull or minotaur-like monster Rajang, and the chameleon-like dragon Oonazuchi (Chameleos in MHF2). With new monsters also comes the prospect of new weapons and armor.", :release_date => "2006-02-16", :title => "Monster Hunter 2", :developer => "Capcom", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/93-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("RPG")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Dirge of Cerberus: Final Fantasy VII", :original_release_date => '2006-08-15')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Set after the events of Final Fantasy VII and the Final Fantasy VII: Advent Children movie, Dirge of Cerberus lets players take the role of the mysterious Vincent Valentine.
-
-After a new organization arises from the events known as \"Meteorfall\", Vincent is called to the surviving town of Kalm by Reeve Tuesti, an old ally who controlled Cait Sith. Vincent has been invited to the town's celebration, but during the festivities, a group of soldiers attacks the town, killing and capturing the people. It is up to Vincent to protect the innocent once more, and find out why these soldiers are also after him.
-
-While set in the world of Final Fantasy VII, Dirge of Cerberus is an action shooter that runs through twelve chapters. The on-screen action can be controlled by the analog controller, or via the Playstation 2's mouse and keyboard accessories, making it more in line with PC-style shooters. Being a character driven shooter, the perspective can be changed from first to third person on the fly to navigate through the multi-level environments.
-
-Several items and characters from the series make their return, as well as the Chaos break limits system, which allows Vincent to take the monstrous forms he changed into from Final Fantasy VII to inflict more damage on the enemy. Taking a nod from its RPG-based parent, the game does allow Vincent to find the usual healing items, materia spells and gil from the Final Fantasy universe, in which he can buy and sell for other new items.
-
-The game also features a weapon customization system, which allows the player to mix and match weapon parts to form more powerful attack items and abilities.", :release_date => "2006-08-15", :title => "Dirge of Cerberus: Final Fantasy VII", :developer => "Square Enix", :publisher => "Square Enix", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/839-2.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "MotorStorm: Arctic Edge", :original_release_date => '2009-10-20')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Motorstorm: Arctic Edge is an arcade racer pitting you against 8 other racers, human or AI in a competition to win in The Festival. The backdrop for the game is Alaska where you have to race on icy tracks in mountainous regions. Beside the other racers you have to take into account avalanches, broken ice bridges and a lot of other dangers on the route to victory.
-
-The game is very fast-paced and it sees you racing around in cars, snowmobiles and trucks. You can select different wheels, exhausts, spoilers and more for your vehicles.", :release_date => "2009-10-20", :title => "MotorStorm: Arctic Edge", :developer => "BigBig Studios", :publisher => "Sony", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/858-1.jpg')
-	genre = Genre.find_by_title("Racing")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Indiana Jones and the Staff of Kings", :original_release_date => '2009-06-12')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The plot centers around Indy's search for the Staff of Moses. The game is mostly about a quest which takes you around the world on various quests, fighting Nazis, Panamanian hunters, and Tong thugs, and trying to find artifacts which will unlock other possible things for you to get and do. Although the staff of Moses is never mentioned in the beginning of the game, the plot is set about finding the staff, but the actual part of the story where the quest about finding the staff of Moses first start taking place is a lot further on in the game.", :release_date => "2009-06-12", :title => "Indiana Jones and the Staff of Kings", :developer => "A2M", :publisher => "LucasArts", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/904-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Headhunter: Redemption", :original_release_date => '2004-09-21')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "In the 21st century, a dreadful virus wiped out millions. The vaccine was found, but at the time the world was engulfed into chaos. A new world order emerged, splitting the world into two distinct yet dependent worlds: Above and Below.
-
-The world Above reflects a chrome city, a high-rise, high-tech metropolis served by elevators and elevated freeways. A place for hardworkers and law-abiding people. On the contrary to Above, the world Below, which is the product of earthquake damages, is a subterranean network of labour colonies. Those who are not wanted Above for one reason or another are sent Below.
-
-One day, now veteran Headhunter, Jack Wade, took a call to investigate an intrusion to the upper levels. Facing the trespasser, Jack saw a potential in the girl and instead of turning her in, he gave her a second chance... to become his apprentice. Jack is back, but this time, he's not alone but accompanied by his sidekick Leeza X. Together, they will face whatever threat lurks from the world Below.
-
-The gameplay is set in 3rd-person view with ability to rotate camera or set it behind your back at the single click. Headhunter's main accessory is IRIS (Intelligent Realtime Information Scanner). Once you get the IRIS, you'll be able to scan every item just by pointing the gun at it, or use the scanner in 1st-person view which will let you examine the surroundings in more detail. Also, IRIS will provide you with a full 3D map info even displaying the enemies so you can avoid them or use stealth if necessary. Enemies will hear you running and shooting, so if you decide to take an action, be aware that they will surround you and launch a team strike at you from all the sides. You only effective aid against them, beside your weapon, of course, is the ability to perform a roll or lean against the walls and fire from the corners, although aiming itself may not be easy as your hand will not be steady while on the move or panicking.", :release_date => "2004-09-21", :title => "Headhunter: Redemption", :developer => "Amuze", :publisher => "SEGA", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/920-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Tourist Trophy: The Real Riding Simulator", :original_release_date => '2006-04-04')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "A motorcycle-racing simulator with an abundance of options, Tourist Trophy lets players choose from over 100 bikes from makers like Buell, Ducati, and Kawasaki, and race them on one of 35 real and fantasy tracks. Custom rider option let you choose how your character looks and handles a bike, while a quick-play \"Arcade\" mode lets you pick a race and go. Play a one-on-one race, a time trial, or a regular race that allows you to race using modified bikes.
-
-\"Tourist Trophy\" mode challenges you to a variety of races, but before you hit the pavement, you'll have to earn a license. There are four license levels that you can earn: Novice, Junior, Expert, and Super. New motorcycles and equipment become available with each new level. Once a license has been secured, move onto \"Challenge\" mode and earn a bike by competing in race events that also open up extra bikes and gear as rewards.", :release_date => "2006-04-04", :title => "Tourist Trophy: The Real Riding Simulator", :developer => "Polyphony Digital", :publisher => "Sony", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/20285-1.jpg')
-	genre = Genre.find_by_title("Racing")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Mega Man X Collection", :original_release_date => '2006-01-10')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Mega Man X Collection contains the first six games in the Mega Man X series. Mega Man X and Mega Man X2 are based on their appearances on the SNES. Mega Man X3, also originally on the SNES, is based on its 32-bit update for the PlayStation, Sega Saturn, and PC. The remaining three games are based on their PlayStation renditions. All the games now use save files, including the first few titles that originally necessitated a password for continuation, though upon loading save data, the player is still greeted with the old, fully-functional password entry screen, complete with the correct password to access the saved game. Mega Man Battle & Chase is a game that is unlocked after completing the first three games. It is a classic series kart-racing game previously unreleased in North America. Mega Man X Collection also contains unlockable artwork and music. Both the PlayStation 2 and GameCube versions are identica", :release_date => "2006-01-10", :title => "Mega Man X Collection", :developer => "Capcom", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/1003-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Psychonauts", :original_release_date => '2005-04-19')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The story is set in Whispering Rock Psychic Summer Camp, a remote US government training facility under the guise of a children's summer camp. The area was hit centuries ago by a meteor made of psitanium (a fictional element that can grant psychic powers or strengthen existing powers), creating a huge crater. The psitanium affected the local wildlife, giving them limited psychic powers, such as bears with the ability to attack with telekinetic claws and cougars with pyrokinesis. The Native Americans of the area called psitanium \"whispering rock\", which they used to build arrowheads. When settlers began inhabiting the region, the psychoactive properties of the meteor slowly drove them insane. An asylum was built to house the afflicted, but within fifteen years the asylum had more residents than the town did. The government relocated the remaining inhabitants and flooded the crater to prevent further settlement, creating what is now Lake Oblongata. The asylum still stands but has fallen into disrepair.", :release_date => "2005-04-19", :title => "Psychonauts", :developer => "BudCat", :publisher => "Majesco", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/1004-1.jpg')
-	genre = Genre.find_by_title("Adventure")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "FlatOut 2", :original_release_date => '2006-06-30')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "This game is themed more on the street racing/import tuner scene than its predecessor. Another notable change is the tire grip; players can now take more control of their car, worrying less about skidding in tight turns. The game has three car classes: derby, race and street.", :release_date => "2006-06-30", :title => "FlatOut 2", :developer => "Bugbear", :publisher => "Konami", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/4416-1.jpg')
-	genre = Genre.find_by_title("Racing")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Kingdom Hearts II", :original_release_date => '2006-03-28')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Sora, Donald, and Goofy are back in the third installment (second for PS2) of the Kingdom Hearts series, continuing where Kingdom Hearts: Chain of Memories left off. The trio awakens from their sleep and goes to Twilight Town. When the game begins, you will first have control over a boy name Roxas who wields a dual-Keyblade. He is trying to enjoy the remainder of his summer vacation with his friends but he keeps having flash-backs of someone else's memories.
-
-When he meets up with Sora, the two learns they have a special connection with one another. Afterwards, the group will continue their search for King Mickey and Riku. This time, they will travel to new worlds and work with various characters from the Disney and Final Fantasy universes. This includes worlds from not only Disney's animated movies but other movies as well like Pirates of the Caribbean and TRON.
-
-In Kingdom Hearts II, Sora and his friends will battle various enemies including the Heartless from Kingdom Hearts, but also a group of enemies called Nobodies. Nobodies are \"nonexistent beings\" who are under the control of Organization XIII - a group of 13 members in black coats that Sora and his friends have reduced down to just half.
-
-Gameplay is very similar to Kingdom Hearts: the player controls Sora with Donald and Goofy helping with their magic and attacks. Sora can use various magic powers as well as use Summon which will call upon the aid of special Disney characters that will temporarily fight alongside him. A new feature of combat are \"Reaction Commands\". Some enemies will leave themselves open during attacks, and if the player presses the Reaction Command button when prompted Sora will take advantage of the situation, either turning an enemy's attack against them, striking from a defenseless side for extra damage, or avoiding an otherwise unavoidable attack. As the trio levels up and progresses in the game they will gain new abilities that they can equip. Also, after Mickey meets the party, if Sora is KO'd the player will have the option of controlling Mickey and defending Sora until he can recover.", :release_date => "2006-03-28", :title => "Kingdom Hearts II", :developer => "Square Enix", :publisher => "Square Enix", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/1903-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("RPG")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "ICO", :original_release_date => '2001-12-06')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The game's main protagonist is Ico, a young boy with a pair of horns on his head—considered a bad omen by his village. As part of the village's tradition, he is taken by a group of warriors to a castle surrounded by water and locked inside one of the sarcophagi in a crypt. Some time after the warriors depart, a tremor runs through the castle, and Ico is able to take advantage of it to escape his confines. As he searches the castle, he comes across Yorda, a captive girl who speaks in an unknown language. Ico helps Yorda escape, but finds that she is hunted by shadow-like creatures (the souls of other horned children sacrificed to the fortress) that attempt to drag her body into the portals from which they emerged. Though Ico cannot be harmed by the shadows and is able to drive them away from Yorda, he finds he cannot defeat the enemies with his simple weapons. The pair make their way through the abandoned castle, eventually arriving at the bridge leading to land. As they cross, the Queen, ruler of the fortress and Yorda's mother, appears and tells Yorda that as her daughter she cannot leave the castle. Ico and Yorda attempt to flee, but the Queen destroys part of the bridge in their path; although Yorda tries to save him, Ico falls off the bridge and loses consciousness.", :release_date => "2001-12-06", :title => "ICO", :developer => "Team ICO", :publisher => "Sony", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/2239-1.jpg')
-	genre = Genre.find_by_title("Adventure")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Puzzle")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Shadow of the Colossus", :original_release_date => '2005-10-27')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The game focuses on a young man named Wander who must travel across a vast expanse on horseback and defeat sixteen beings, simply known as colossi, to restore the life of a girl. The game is unusual within the action-adventure genre in that there are no towns or dungeons to explore, no characters with which to interact, and no enemies to defeat other than the colossi. Shadow of the Colossus has been described as a puzzle game, as each colossus' weakness must be identified and exploited before it can be defeated.", :release_date => "2005-10-27", :title => "Shadow of the Colossus", :developer => "Sony", :publisher => "Sony", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/2240-2.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Adventure")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Samurai Warriors 2: Empires", :original_release_date => '2007-02-27')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Blur the line between game and art because for the first time in the Samurai Warriors series, characters and worlds are rendered in beautiful 3D. Choose from one of the beloved characters from the Dynasty Warriors series. Using a vast 3D map of China, conduct your domestic affairs and diplomacy, or choose to go to war. Link devastating attacks using the Advanced Tactics System. 26 different scenarios offer the challenge of a lifetime. Over 40 base commands are at your fingertips to manage your kingdom as its ruler. Will you rule over an era of peace or assert your dominance in war?", :release_date => "2007-02-27", :title => "Samurai Warriors 2: Empires", :developer => "Omega Force", :publisher => "KOEI", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/17089-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Strategy")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Samurai Warriors 2", :original_release_date => '2006-09-19')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Experience the epic struggle to unite Japan! This historic action saga pits three powerful factions against each other for control of the Empire of the Sun. Samurai Warriors 2 gets even more epic with ten new battle-hungry warriors, including mysterious ninja, Kotaro Fuma, legendary Musashi Miyamoto, and Ievasu Tokugawa, the man who unified Japan. All in all, there are 26 playable characters, each equipped with powerful new (and previously forbidden) secret techniques! Castle and field combat blend seamlessly in three modes: Story, Free, and Survival, which feature 70 cinematic sequences. Team with friends in co-op play, or take 'em on in Sugoroku, a bonus four-player party game.", :release_date => "2006-09-19", :title => "Samurai Warriors 2", :developer => "Omega Force", :publisher => "KOEI", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/17086-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Dead To Rights", :original_release_date => '2002-11-18')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Meet Jack Slate, a cop framed for murder and facing execution. Slate escapes from Iron Point Maximum-Security Penitentiary to bring down the criminals that framed. In Dead to Rights, you play the role of Slate, as he fights through the hard streets and corrupt enemies of Grant City. There are plenty of ways go about bringing the conspirators to justice--Jack can perform disarm moves, shoot different weapons, pick locks, fight hand-to-hand, and play minigames such as arm wrestling, bench press, and dancing. In this gritty, crime-noir inspired epic, you're always on the run.", :release_date => "2002-11-18", :title => "Dead To Rights", :developer => "Namco", :publisher => "Namco", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/2313-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Shooter")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Kingdom Hearts", :original_release_date => '2002-09-16')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "For the first time ever, Disney films come together in one game, but it's up to you make it their world the happiest place on Earth. Kingdom Hearts follows Sora in his quest to find his friends and Court Wizard Donald and Captain Goofy as they set out to find the missing King Mickey. The three searchers meet and embark on a magnificent, but dangerous, journey across familiar Disney worlds filled with monsters. Over 100 characters appear in the game including Jafar, Tarzan, and Hercules.", :release_date => "2002-09-16", :title => "Kingdom Hearts", :developer => "SquareSoft", :publisher => "Square", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/2559-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("RPG")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "2006 FIFA World Cup", :original_release_date => '2006-04-24')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Celebrating the 2006 FIFA World Cup Germany - the world's largest sporting event - 2006 FIFA World Cup brings you to the games with the world's superstar players, 12 official stadiums that will be used at 2006 FIFA World Cup Germany and stadiums from each qualifying region. Gamers can play as their favorite team from qualification right through to a virtual reproduction of the tournament in Germany.
-
-In addition to enabling gamers to participate in the 2006 FIFA World Cup Germany by taking control of one of 127 national teams, the game features new compelling modes of play, including the Global Challenge that recreates classic moments in FIFA World Cup history. Furthermore, the game supports up to eight-way multiplayer matches and boasts a plethora of in-game unlockable content such as legendary players and exclusive apparel.", :release_date => "2006-04-24", :title => "2006 FIFA World Cup", :developer => "Electronic Arts Canada", :publisher => "Electronic Arts", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/10398-1.jpg')
-	genre = Genre.find_by_title("Sports")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Viewtiful Joe", :original_release_date => '2003-10-07')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Joe is no ordinary man and Viewtiful Joe is no ordinary game. Capcom's new superhero action game mixes funky cartoon-style visuals with classic side-scrolling gameplay and introduces the world's quirkiest million dollar action hero. More than just any ordinary dude, Joe must transform into the ultimate superhero. It's up to you to activate the correct view mode like \"slow\" or \"zoom in\" in order to clobber your enemies with beautiful style. You can also speed up or slow down your visual effects for even more \"viewtiful\" moves. Viewtiful Joe mixes an innovative viewpoint with an amazing stunt-filled action movie universe.", :release_date => "2003-10-07", :title => "Viewtiful Joe", :developer => "Clover Studio", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/2775-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Adventure")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Rayman Raving Rabbids", :original_release_date => '2006-11-14')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "In the fourth Rayman game of the main series, Rabbids invade the earth and lock up Rayman in a prison inside a coliseum. He is forced to take part in more than 75 mini-games, called trials. Rayman will get to throw cows, milk cows, make Rabbids dance - even race warthogs and eagles... all for the amusement of the Rabbids. After winning games, Rayman will earn plungers which can be used to construct a ladder to escape from the jail cell. After completing three trials in the coliseum, a boss game must be completed; such as an on-rails first person shooter, or a racing game.
-
-During the Story Mode, the player unlocks special mini-games which can then be played in Score Mode to unlock new content (such as music, wardrobes and challenges) and improve scores. Getting a high score in Score Mode also generates a password to allow players to submit their high score to an online rankings system via Ubisoft's home page. The game can be played in single player mode and multiplayer modes (up to four people in competitative or co-operative gameplay).", :release_date => "2006-11-14", :title => "Rayman Raving Rabbids", :developer => "Ubisoft", :publisher => "Ubisoft", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/2933-1.jpg')
-	genre = Genre.find_by_title("Puzzle")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Monsters vs. Aliens", :original_release_date => '2009-03-24')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Monsters vs. Aliens is based on the animated movie of the same name. During the course of the game the player takes control over three characters from the movie which all feature different gameplay elements. Missing Link, a mix between fish and human, has to survive levels which are similar to most licensed games from animated movies: a 3rd person platformer. 
-
-The sections with B.o.B., a slime monster, are more puzzle oriented. He can swallow enemies or items and use them to spit on other enemies. These are also used to press switches and as safety procedure when crossing bars - if B.o.B. had nothing solid in him he would just slip through them. With B.o.B. the player also has to solve mazes and shooting sequences. The last character is Gigantika, a 15 meters high woman. She uses trucks as inline skates and has to avoid obstacles by jumping or mastering quick time events (pressing a displayed button in a limited time).
-
-In co-op mode the second player takes the role of a Dr. Cockroach and supports the main player with appropriate actions, e.g. shooting. The player can unlock a lot of bonus material, e.g. concept art, deleted scenes (in this case: levels) or audio commentaries.", :release_date => "2009-03-24", :title => "Monsters vs. Aliens", :developer => "Beenox Inc.", :publisher => "Activision", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3137-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Puzzle")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "BloodRayne", :original_release_date => '2002-10-15')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "BloodRayne is a 2002 third-person action-adventure video game and the first game in the BloodRayne series.", :release_date => "2002-10-15", :title => "BloodRayne", :developer => "Terminal Reality", :publisher => "Majesco", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/4211-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Horror")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Resident Evil: Dead Aim", :original_release_date => '2003-06-17')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "In a combination of a horror game and light-gun game, Resident Evil: Dead Aim puts you on a cruise ship infested with zombies. You start off as Bruce McGivern, a US government agent sent to stop Morpheus D. Duvall from spreading the zombie T-virus any further. Along the way you'll run into Fongling, a Chinese government agent who is aboard the cruise ship for the same reason, and you'll also end up playing as her. All you really need to know is that there are zombies and you have to kill them.
-
-You'll pick up several different guns through the course of the game, including a magnum, a shotgun, and an assault rifle, but like in other Resident Evil games, zombies are difficult to put down permanently, and ammo can be very scarce.", :release_date => "2003-06-17", :title => "Resident Evil: Dead Aim", :developer => "Cavia", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3945-2.jpg')
-	genre = Genre.find_by_title("Horror")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Shooter")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Resident Evil Outbreak", :original_release_date => '2004-03-31')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Resident Evil Outbreak returns you to the Umbrella Corporations disaster that consumed Racoon city. You play one of eight ordinary citizens of Racoon city attempting to survive the carnage caused by the T-Virus. 
-
-There are five different scenarios in this game. Initially only one is open to you, this is concerned with the outbreak in the city, but upon its completion further scenarios with different plots and locations become available. 
-
-Gameplay is similar to the previous Resident Evil games. It consists mainly of exploring, solving puzzles, finding items and of course surviving. This is also the first game of the resident evil franchise that can be played on-line, with up to four people playing cooperatively in order to survive.", :release_date => "2004-03-31", :title => "Resident Evil Outbreak", :developer => "Capcom", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3946-1.jpg')
-	genre = Genre.find_by_title("Horror")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Puzzle")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Shooter")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Resident Evil Outbreak File 2", :original_release_date => '2005-02-15')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Raccoon City has been infected by the Umbrella corporations deadly T-Virus. A mutagenic toxin that turns its human victims into flesh eating zombies. The few survivors must try to escape the city before the government deploys its final solution to the problem of Raccoon City...
-
-Once again you find yourself playing the eight characters of the original Resident Evil: Outbreak in more scenarios set in the ruins of what used to be Raccoon City.
-
-The new game has several new scenarios and boasts new gameplay developments for the Resident Evil series. Loading times have been reduced and while the previous Outbreak was on-line enabled in the US, this game is the first on-line Resident Evil game in Europe.
-
-The locals featured in this game include both the familiar (The Raccoon Police Department) and the exotic (A mutated jungle at mid-day) ones. The game boasts a hefty amount of unlockable material such as artworks, notes, trivia, and character costumes. The game is backwards compatible with your save file from Resident Evil: Outbreak, meaning that you can take your unlocked content to this new setting.", :release_date => "2005-02-15", :title => "Resident Evil Outbreak File 2", :developer => "Capcom", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3947-1.jpg')
-	genre = Genre.find_by_title("Horror")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Puzzle")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Shooter")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Street Fighter Alpha Anthology", :original_release_date => '2006-06-13')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The original Street Fighter Alpha, as well as Alpha 2, Alpha 3 and Super Gem Fighter Mini Mix are ported from their original arcade releases, while Alpha 2 Gold is a remixed version that combines elements from the previous console version and the Japanese arcade release Street Fighter Zero 2 Alpha. The version of Alpha 2 Gold allows player to select Cammy in all the game modes, including the single-player Arcade Mode (in which she is given her own storyline and ending), not just Versus and Training.", :release_date => "2006-06-13", :title => "Street Fighter Alpha Anthology", :developer => "Capcom", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5361-1.jpg')
-	genre = Genre.find_by_title("Fighting")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Playboy: The Mansion", :original_release_date => '2005-01-25')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The player can mold the famed Playboy Mansion to their own needs and wants, and has the option of experiencing the infamous Playboy Playmate parties in locations such as the Grotto and the Clubhouse. Hef, as well as all other characters in the game, can build three types of relationships with other characters: casual, business, and romantic. Each month, the player has to print an issue of the magazine. To do that you need a cover shoot, a centerfold, an essay from a celebrity, interview with a celebrity, a pictorial about a subject and an article about a subject. The player must hire photographers and writers to create each issue. All the characters have interests, such as sports and music, and writers on those topics will produce higher-quality articles. In the game, the player is the photographer during photo shoots. The game contains many sexual references, including homosexual relationships.", :release_date => "2005-01-25", :title => "Playboy: The Mansion", :developer => "Ubisoft", :publisher => "Ubisoft", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5362-1.jpg')
-	genre = Genre.find_by_title("Construction and Management Simulation")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Ar tonelico: Melody of Elemia", :original_release_date => '2007-02-06')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The story of Ar tonelico: Melody of Elemia takes place in the world of Sol Ciel, a world consisting of two floating islands connected by the Tower of Ar tonelico. Long ago people had built up a great civilization under the guidance of the goddesses the Trio of Elemia, but over the years things have changed; there were two disasters that have lead towards the destruction of the world. In the first disaster most of the lands and skies were lost, in the second the super civilization was lost; now in the third era another disaster is beginning. Viruses born in the Altar of Apostles have begun to appear, though normally not in physical form have now taken on the form of monsters and could destroy the world. In the upper levels of the Tower is a city called Platina where the Knights of Elemia reside; their job is to control virus outbreaks to preserve the tower. One such knight is Lyner Barsett; the main character of the story, he will need to go on a quest to find the Hymn Crystal which can save the Tower of Ar tonelico and the whole world.", :release_date => "2007-02-06", :title => "Ar tonelico: Melody of Elemia", :developer => "Gust", :publisher => "NIS", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5889-1.jpg')
-	genre = Genre.find_by_title("RPG")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Atelier Iris: Eternal Mana", :original_release_date => '2005-06-28')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "In the land of Regallzine, there is a special guild of alchemists - people who possess magic powers they draw creatures called \"mana\". The alchemists are able to manipulate elements and to fuse magical items. One of such alchemists suddenly got the idea of resurrecting an ancient god, claiming it will bring peace and happiness to humanity. To stop the madman, another alchemist, a young man named Klein, enters the scene. Klein is a particularly skillful magic user and has his way with mana, so with the help of his powers he hopes to stop the planned resurrection and to save the world.
-
-The gameplay features traditional turn-based battles against randomly encountered enemies and a role-playing system based on the spiritual mana creatures. The characters use mana to create magical items and also equip it to learn special abilities and to gain bonuses when leveling up. Some mana creatures must be given gifts in order to obey you and to become more powerful. Mana-equipping can also grant you physical abilities which you can use to solve puzzles in dungeons.", :release_date => "2005-06-28", :title => "Atelier Iris: Eternal Mana", :developer => "Gust", :publisher => "NIS", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5890-1.jpg')
-	genre = Genre.find_by_title("RPG")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "A-Train 6", :original_release_date => '2004-03-19')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "In A Train 6 your goal as a the head of a major transport company is to build up an effective railway network.
-
-You will gain the main amount of your income by transporting passengers and cargo. It is also possible to earn money by buying and selling land, housing planning and developing the local industry. It is crucial to keep optimizing the schedules, in order to improve the cost-effectiveness of your transport network.
-
-The game is completely in 3D and offers 40 trains, each with its individual advantages and disadvantages, such as speed, capacity and costs per mile. The game features a total amount of 80 buildings and allows you to play in 6 different scenarios, all of which include unique tasks and possibilities.", :release_date => "2004-03-19", :title => "A-Train 6", :developer => "Artdink Corporation", :publisher => "Artdink Corporation", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5891-1.jpg')
-	genre = Genre.find_by_title("Construction and Management Simulation")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "ATV Offroad Fury", :original_release_date => '2001-02-05')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Off-road racing game where you can choose from among 12 ATV models from manufacturers like Honda, Yamaha, and Kawasaki. You can even customize your rider's apparel and your ATV's specs before you enter into 6 event types spanning more than 20 tracks", :release_date => "2001-02-05", :title => "ATV Offroad Fury", :developer => "Rainbow Studios, Inc.", :publisher => "Sony", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5892-1.jpg')
-	genre = Genre.find_by_title("Racing")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "ATV Offroad Fury 3", :original_release_date => '2004-11-02')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "ATV Offroad Fury 3 features competitive off-road circuit racing gameplay, as well as freestyle-trick based gameplay. Games can be played single player, or local multiplayer with up to four players split-screen. Online play is also fully supported with additional features such as a bulletin board feature and friends lists.
-
-The core career mode centers around the player entering racing and freestyle championships. New tracks, vehicles and outfits can be unlocked along the way.", :release_date => "2004-11-02", :title => "ATV Offroad Fury 3", :developer => "Climax Racing", :publisher => "Sony", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5893-1.jpg')
-	genre = Genre.find_by_title("Racing")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Backyard Baseball", :original_release_date => '2002-05-30')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Build the championship baseball team of your dreams and play with the Pros in your own backyard. Create the lineup, take the field and direct all of the action. Earn new pitching and batting power-ups to light up the scoreboard! The Backyard Baseball’ game includes kid versions of hard-hitting, base-stealing, tough-fielding players including Barry Bonds, Randy Johnson, Mike Piazza and Ichiro.", :release_date => "2002-05-30", :title => "Backyard Baseball", :developer => "Humongous Entertainment, Inc.", :publisher => "Atari", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5895-1.jpg')
-	genre = Genre.find_by_title("Sports")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Tekken 5", :original_release_date => '2005-06-24')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Loved across the world for its amazing characters, explosive graphics and lightning-fast gameplay, Tekken 5 promises to deliver the next generation of blistered fingers and bleary eyes as it brings players the ultimate, most visually stunning fighting experience ever seen in a Tekken game.
-Tekken 5 brings back the popular cast of characters from the previous games along with three new characters for a total of 20 default characters to start, with even more to unlock as you progress in the game. The game allows players to use fight money to customize their character with various accessories such as hats, glasses and an assortment of different costumes. Each of the new characters is equipped with a variety of deadly techniques, and the returning characters have been updated with new moves and combos. New to Tekken 5 is a bonus action adventure game that unfolds a side story to the action-packed fighting sequences.
-After the completion of The King of Iron Fist Tournament 4, a fierce battle between father and son unfolded at Mishima Zaibatsu headquarters. Jin emerges as the victor in this battle and continues to defeat Heihachi, his grandfather - but spares both Kazuya and Heihachi's lives in honour of his mother who loved peace. Soon after Jin's departure, a swarm of Jacks arrive at Honmaru and begin to attack Heihachi and Kazuya - and in order to escape, Kazuya thrusts Heihachi into the swarm of Jacks. A great explosion destroys Honmaru, and a man watching from afar reports, \"Heihachi Mishima is dead.\" While many presume the death of Heihachi Mishima will end the reign of Mishima Zaibatsu, an announcement is made for the fifth King of Iron Fist Tournament, with an unknown replacement to Heihachi leading the organization. The fight begins once again.", :release_date => "2005-06-24", :title => "Tekken 5", :developer => "Namco", :publisher => "Namco", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3753-2.jpg')
-	genre = Genre.find_by_title("Fighting")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "SSX 3", :original_release_date => '2003-10-31')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Players can discover the open mountain in the newest version of the smash-hit SSX snowboarding franchise.
-
-SSX 3 allows gamers to go anywhere gravity will take them. Players will discover a colossal mountain where they can immerse themselves in a free-roaming snow paradise. The ultimate all-mountain experience, SSX 3 features all-new events and courses, awe-inspiring tricks and a cast of cool, customisable characters. Discover the open terrain, explore its hidden crevices, and conquer its peaks.
-
-Produced under the EA SPORTS BIG brand, the SSX 3 development team at EA Canada is adding technologies that bring to life rich natural graphics such as snow that sparkles and blows in the wind and realistic character shadowing. A new gameplay experience allows users to seamlessly ride from one awesome area to the next- entering competitions, taking on Big Challenges and discovering hidden collectibles. SSX 3 has blown out the trick component with unlimited combos and new, over-the-top tricks.
-
-In addition to the new boarding venues, Big Challenges rewards players for completing any of the more than 100 unique challenges as they explore the mountain's vast world. Grind billboards, board press logs, even hand plant the fence line.
-
-The musical soundtrack features a broad range of music from artists including the X-Ecutioners, Felix Da Housecat, Queens of the Stone Age, N.E.R.D., and many more.", :release_date => "2003-10-31", :title => "SSX 3", :developer => "Electronic Arts", :publisher => "EA Canada", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3760-2.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Adventure")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Racing")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Sports")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Tekken Tag Tournament", :original_release_date => '2000-11-24')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Forget the fancy full-motion video intros of the past. The cutting-edge gameplay that is promised in the extended intros of fighting games is finally realised in Tekken Tag Tournament This visually stunning action game contains fully rendered 3-D characters who can execute smoothly animated martial-arts moves. With polygonal characters and texture maps this real, you will end up looking for the coin slot on your PS2.
-
-With more than 30 characters to fight against or beside, this game allows you to pull off the ultimate human combo: tag-team fighting. By choosing two fighters who have broadly divergent skills, you can increase your threat to the other fighters greatly. Also, switching out fighters can give an overextended partner enough time to rest up his or her stamina for the next tag. See what happens when one partner throws a foe, tags, and the other partner comes in to keep the foe... uh... airborne. Tekken Tag Tournament contains 20 classic characters from other parts of the acclaimed Tekken series, as well as 12 new characters who can be unlocked during gameplay.", :release_date => "2000-11-24", :title => "Tekken Tag Tournament", :developer => "Namco", :publisher => "Namco", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3770-2.jpg')
-	genre = Genre.find_by_title("Fighting")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Tom Clancy's Splinter Cell: Pandora Tomorrow", :original_release_date => '2004-03-23')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Pandora Tomorrow takes place in Indonesia during the spring of 2006, in which the United States has established a military presence in the newly independent country of East Timor to train that country's military forces in their fight against anti-separatist Indonesian guerrilla militias. Foremost among these Indonesian militias is the Darah Dan Doa (Blood and Prayer), led by Suhadi Sadono.", :release_date => "2004-03-23", :title => "Tom Clancy's Splinter Cell: Pandora Tomorrow", :developer => "Ubisoft", :publisher => "Ubisoft", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/4196-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Metal Saga", :original_release_date => '2006-04-25')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "A follow-up to the Metal Max games, Metal Saga is set in the same post-apocalyptic world as its predecessors - a world populated by bounty hunters, rangers, bandits, and mutant monsters. You take the role of a bounty hunter who has to travel the world, looking for \"wanted\" people. Accompanied by a soldier, a mechanic, and a cyborg dog, the hero must survive a journey west that will ultimately take him to remote places and lead him to battles against evil.
-
-Metal Saga has a less linear story line that one would normally expect from a Japanese RPG - a story line that develops according to the missions you decide to take, which in their turn lead to new events and finally to different endings. The combat system features traditional party management and turn-based battles, with the addition of Metal Max's trademark tank combat. When you acquire tanks for your characters, you can use them in battles. Tanks get damaged and broken, but you will be able to customize them by finding parts scattered across the world and assembling them to build new models. Based on the model of tank many different kinds of weapons, cannons, and accessories can be equipped to it, making for hundreds of different options. Tanks can even be given a custom paint job that is saved to the memory card.", :release_date => "2006-04-25", :title => "Metal Saga", :developer => "Crea-Tech", :publisher => "Atlus", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5375-1.jpg')
-	genre = Genre.find_by_title("RPG")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Red Dead Revolver", :original_release_date => '2005-05-03')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Learn the ways of the Wild West as a bounty hunter seeking vengeance. Red Dead Revolver tells the story of Red, a man on a mission to kill General Diego--the rogue Mexican general who murdered Red's family for gold. As Red, you'll have a variety of weapons to choose from, including pistols, rifles, shotguns, and dynamite. Dusty towns, windswept prairies, rugged saloons--the game integrates all of the elements of a classic Western movie.", :release_date => "2005-05-03", :title => "Red Dead Revolver", :developer => "Rockstar San Dego", :publisher => "Rockstar Games", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5376-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Shooter")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Resident Evil 4", :original_release_date => '2005-10-25')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Picking up six years after Resident Evil 2, the fourth game in the series follows former cop (now US agent) Leon S. Kennedy to Europe on a top secret mission to investigate the disappearance of the president's daughter Ashley. As Leon encounters unimaginable horrors, he must find out who or what is behind everything. Old friends...and enemies...lurk around every corner as Leon attempts to find out who is truly behind the kidnapping of the president's daughter.
-
-Resident Evil 4 is a major change from the previous installments. Instead of a fixed third person perspective, the game features a new \"behind the back\" movement camera angle and an \"over the shoulder\" aiming feature that allows players to control their gun movement for specific body part hits. It features a brand new AI system and more open environments that allow enemies to work together to capture and corner Leon. Enemies are now humans, which allows them to climb up ladders, open doors, and use weapons throughout the game.", :release_date => "2005-10-25", :title => "Resident Evil 4", :developer => "Capcom", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3928-1.jpg')
-	genre = Genre.find_by_title("Horror")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Shooter")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Gran Turismo 4", :original_release_date => '2005-02-22')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "GT4 continues in its predecessors' footsteps by offering an extremely large list of cars; the PAL version features 721 cars from 80 manufacturers. 
-
-Players now accumulate points by winning races in the normal first-person driving mode, called A-Spec mode. Each race event can yield up to a maximum of 200 A-Spec points. Generally, a win using a car with less of an advantage over the AI opponents is worth more points. Points can only be won once, so to win further points from a previously-won event, it must be re-won using a car with less of an advantage over the AI. There are also the 34 Missions which can yield 250 points each. Despite this, A-Spec points are experience points, not money.", :release_date => "2005-02-22", :title => "Gran Turismo 4", :developer => "Polyphony Digital", :publisher => "Sony", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3929-1.jpg')
-	genre = Genre.find_by_title("Racing")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Grand Theft Auto: San Andreas", :original_release_date => '2004-10-26')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Grand Theft Auto: San Andreas takes place within the state San Andreas, which is based on sections of California and Nevada. It comprises three major fictional cities: Los Santos corresponds to real-life Los Angeles; San Fierro corresponds to real-life San Francisco; and Las Venturas and the surrounding desert correspond to real-life Las Vegas and the Nevada and Arizona desert.", :release_date => "2004-10-26", :title => "Grand Theft Auto: San Andreas", :developer => "Rockstar", :publisher => "Rockstar", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3930-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Sandbox")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Knockout Kings 2001", :original_release_date => '2000-10-20')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Fight as your favorite boxers including Sugar Ray Lewis, Muhammad Ali, Lennox Lewis, Oscar De La Hoya and plenty more past winners and current champions. There's also plenty of things to do, including a straight up arcade game (so you can beat your mates to the punch!) and a career mode, where you can take your chosen player from the rookie list to the world stage, all in one day.", :release_date => "2000-10-20", :title => "Knockout Kings 2001", :developer => "EA", :publisher => "EA", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/8716-1.jpg')
-	genre = Genre.find_by_title("Fighting")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Sports")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "XIII", :original_release_date => '2003-11-18')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The president of the United States of America has been assassinated and you are the prime suspect. In XIII, you must unravel a conspiracy that left your memory erased, the President dead, and a bullet wound in your head. Evade assailants eager to end your life or use them as human shields. Select from a deadly arsenal of weapons including silent crossbows, furious automatic weapons, and ashtrays. Face off against other players in multiplayer modes such as Barfight or go co-op in Cover Me mode. Uncover both your shadowy past and America's darkest corridors of power.", :release_date => "2003-11-18", :title => "XIII", :developer => "Ubisoft", :publisher => "Ubisoft", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/4214-2.jpg')
-	genre = Genre.find_by_title("Shooter")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Need for Speed: Carbon", :original_release_date => '2006-10-31')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The gameplay is based upon rival street racing crews. Players run a crew and can hire specific street racers to be in their crew and the active friendly racer is known as a wingman. Each hirable street racer has two skills, one which is a racing skill (scout, blocker, and drafter) and a non-race skill (fixer, mechanic, and fabricator). Each skill has different properties from finding hidden alleys/back streets (shortcuts) to reducing police attention. Cars driven by the wingmen are also different; blockers drive muscles, drafters drive exotics and scouts drive tuners (although the first two unlockable wingmen (Neville and Sal) drive cars according to the player's chosen car class at the start of the game). In career mode, players have to race tracks and win to conquer territories and face off against bosses to conquer districts.", :release_date => "2006-10-31", :title => "Need for Speed: Carbon", :developer => "EA", :publisher => "Electronic Arts", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/4207-1.jpg')
-	genre = Genre.find_by_title("Racing")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Metal Gear Solid 2: Sons Of Liberty", :original_release_date => '2001-11-13')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "A stealth action video game directed by Hideo Kojima, developed by Konami Computer Entertainment Japan and published by Konami for the PlayStation 2 in 2001. It is the sixth canonical game in the Metal Gear series and the sequel to Metal Gear Solid. The story revolves around a massive offshore clean-up facility that has been seized by terrorists calling themselves the \"Sons of Liberty.\" They demand a massive ransom in exchange for the life of the President of the United States, and threaten to destroy the facility and create a cataclysmic environmental disaster if their demands are not met. The motives and identities of many of the antagonists and allies change rapidly, as the heroes discover a world-shaking conspiracy constructed by a powerful organization known as the Patriots.", :release_date => "2001-11-13", :title => "Metal Gear Solid 2: Sons Of Liberty", :developer => "Konami", :publisher => "Konami", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3854-2.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Adventure")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Stealth")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "TimeSplitters 2", :original_release_date => '2002-10-18')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "In TimeSplitters 2 the evil race of TimeSplitters are travelling back into human history, authoring events that are leading to the enslavement of mankind. Controlling a motley crew of renegade characters, you must hunt them down across environments such as the gangster-filled 1920s, the temples and lush jungles of the Aztecs, Soviet military installations of the Cold War and futuristic robot-factories in space.
-
-TimeSplitters 2 delivers involved single-player and cooperative story modes; it has a complex narrative, multiple objective-based episodes and animated cut-scenes. The game engine has been extensively upgraded to accommodate bigger environments and special graphic effects, and the MapMaker has been enhanced, giving more options to the advanced gamer looking for customisable game scenarios.", :release_date => "2002-10-18", :title => "TimeSplitters 2", :developer => "Free Radical", :publisher => "Eidos Interactive", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3878-2.jpg')
-	genre = Genre.find_by_title("Shooter")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Castlevania: Curse of Darkness", :original_release_date => '2005-11-05')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Curse of Darkness is set in the year 1479, three years after the events of Castlevania III: Dracula's Curse. Though defeated by vampire hunter Trevor Belmont, Dracula's curse continues to ravage the European countryside, spreading disease, mob violence, and heresy in its wake. Amidst all this devastation is Hector, a Devil Forgemaster who had formerly worked under the employ of Dracula but betrayed him sometime during the events of Castlevania III. Eventually growing disgusted with Dracula's brutal methods, Hector leaves Castlevania and relinquishes his powers to live amongst humans, settling down to live a peaceful life. When Hector's fiance Rosaly is accused of witchcraft and burned at the stake, Hector learns that her murder was directed by his fellow Forgemaster, Isaac. Seeking revenge, Hector chases his former colleague back to his old home, and back to the demonic life he believed he had left behind him.", :release_date => "2005-11-05", :title => "Castlevania: Curse of Darkness", :developer => "Konami", :publisher => "Konami", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5922-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Adventure")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Champions of Norrath", :original_release_date => '2004-02-10')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Champions of Norrath is a third-person dungeon crawler based on the EverQuest universe. There are five character classes to choose from (Barbarian Warrior, Wood Elf Ranger, High Elf Cleric, Dark Elf Shadow Knight, Erudite Wizard), each may be male or female. The game spans five acts that cover various randomly-generated locations across the world of Norrath.
-
-Up to four people may play on a single console offline using a multitap, and up to four people online - one per console - via a broadband connection using the Sony Network Adapter.", :release_date => "2004-02-10", :title => "Champions of Norrath", :developer => "Snowblind Studios", :publisher => "Sony", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5923-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("RPG")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Champions: Return to Arms", :original_release_date => '2005-02-07')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The sequel to Champions of Norrath, Champions: Return to Arms is an action RPG that puts players in the EverQuest universe. The evil Innoruuk was destroyed and his remains (shards) have been scattered throughout the Planes of Power. The player must find the shards and choose between good or evil: Destroy them to rid of Innoruuk or collect them to restore him.
-
-The game has seven playable races (two new ones from the original) and more online features. Players can import characters from the first game. It can be played single-player or with up to four players (online or with multitap).", :release_date => "2005-02-07", :title => "Champions: Return to Arms", :developer => "Snowblind Studios", :publisher => "Sony", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5924-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("RPG")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Devil May Cry 2", :original_release_date => '2003-03-28')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "In Devil May Cry 2, the player guides either Dante or Lucia through an urban environment, fighting groups of demons in fast-paced combat. The game itself consists of missions with specific goals in the play area of the game itself. The player's performance in each mission is ranked from D (poor/Don't Worry) to S (excellent/Showtime) based on the time taken to complete the mission, the amount of Red Orbs collected, the overall \"style\" displayed during fights, item usage, and damage taken.", :release_date => "2003-03-28", :title => "Devil May Cry 2", :developer => "Capcom", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3900-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Ace Combat 5: The Unsung War", :original_release_date => '2004-10-25')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Ace Combat 5: The Unsung War is a first person air combat and flight simulator. Like other Ace Combat games, each mission is determined by a level briefing and objectives. There are 32 missions in the main campaign mode, while an additional \"arcade\" mode puts the player in the role of Mobius One (from Ace Combat 04: Shattered Skies) as he faces endless waves of enemy attacks. Regardless of the mode chosen, once in the air the player will have control over speed, direction, altitude, gun cannon, missiles and special weapon of their aircraft. A new feature from previous Ace Combat games, is the concept of Wingmen and being able to issue simple orders to them in the air. This allows the player to better coordinated group attacks as well as giving each wingman a personality of their own. Additionally, the player as squadron leader will be asked to make decisions (\"Yes/No\") while flying in the air. Between missions, the story is progressed through a series of cutscenes.", :release_date => "2004-10-25", :title => "Ace Combat 5: The Unsung War", :developer => "Namco", :publisher => "Namco", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3912-1.jpg')
-	genre = Genre.find_by_title("Simulation")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Yakuza 2", :original_release_date => '2008-09-09')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "One year has passed since Kazuma Kiryu, \"yakuza with the heart of gold\", defeated his biggest adversary in the previous game. Despite this victory, Kazuma has lost more than he had ever imagined. 
-
-But events from the past continue to haunt him. A man he had admired so much, who was like a father to him, has revealed a terrible secret before he died. It's time for Kazuma to solve the mystery once and for all. Caught in the eternal fight between Kantou and Kansai, the Eastern and the Western organized crime groups of Japan, he soon realizes that there are other powers on the stage, including a mysterious Korean organization that seems to be connected somehow to his past.
-
-The sequel to Yakuza continues the story from the previous game, featuring many recurrent characters. The main gameplay idea also remains the same - on-foot exploration of urban environments, hand-to-hand fighting, and role-playing elements, somewhat similar to the kind of gameplay that was introduced in Shenmue games. The sequel features some technical improvements, such as the ability to rotate the camera during the fights. It also contains more side missions and mini-games, ranging from playing pool and mahjong to running a club and dating women.", :release_date => "2008-09-09", :title => "Yakuza 2", :developer => "Amusement Vision, Ltd.", :publisher => "SEGA", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3921-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("RPG")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Bully", :original_release_date => '2006-10-17')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Bully is a subtle sandbox game set in a school environment. The player takes control of teenage rebel James \"Jimmy\" Hopkins, who from the opening cutscene is revealed to be a difficult student with a disruptive background. The game concerns the events that follow Jimmy being dropped off at Bullworth Academy, a fictional New England boarding school. The player is free to explore the school campus in the beginning and, later on in the game, the town, or to complete the main missions. The game makes extensive use of minigames. Some are used to earn money, others to improve Jimmy's abilities or get new items.
-
-School classes themselves are done in the form of minigames, broken into five levels of increasing difficulty. Each completed class brings a benefit to gameplay. English, as an example, is a word scramble minigame, and as Jimmy does well in this minigame, he learns various language-skills, such as the ability to apologize to police for small crimes. Chemistry also an example, is a button pushing minigame, and if Jimmy does well, he gains the ability to create firecrackers, stink bombs, and other items at his chemistry set in his room at the dorm.", :release_date => "2006-10-17", :title => "Bully", :developer => "Rockstar", :publisher => "Rockstar", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3931-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Metal Slug Anthology", :original_release_date => '2007-03-27')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Metal Slug 1-6 and X are included in the release, and the games have not been altered in any way. This is the same with the characters and abilities, which have all been kept the same.
-
-The games themselves are done via emulation of the Neo Geo AES versions, except for Metal Slug 6, which is a port of the arcade version.", :release_date => "2007-03-27", :title => "Metal Slug Anthology", :developer => "Terminal Reality", :publisher => "SNK Playmore", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3932-2.jpg')
-	genre = Genre.find_by_title("Shooter")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Metal Slug 5", :original_release_date => '2006-03-31')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "A special disc that contains deep and intricate secrets about the Metal Slug project is stolen by a mysterious group called the Ptolemaic Army, whose specialty lies from within archaeological excavation and espionage. Marco and Tarma of the Peregrine Falcon Strike Force follow in hot pursuit against the group and in the process are joined by Eri and Fio of SPARROWS. Together once more, the quartet investigate the shrouded objective of the Ptolemaic Army.", :release_date => "2006-03-31", :title => "Metal Slug 5", :developer => "Ignition", :publisher => "SNK", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3933-2.jpg')
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Fight Night Round 3", :original_release_date => '2006-02-20')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "EA Sports' Fight Night Round 3 from EA Chicago lets you make your own fighter, train them up, and literally take on the world. 
-
-Start by creating your own champ and customizing how they look, what equipment they have, their fighting style, their weight class, their signature move, and even their own illegal hit. Get equipment and trainers for your fighter to enhance his look and performance.
-
-Then take your fighter to career mode where you'll play fight your way up from the local gym all the way up to five-star venues. Get trainers to enhance your training and boost your speed and power. Play against randomly generated fighters all the way up through the ranks till you beat them in points or to a pulp. Certain fights may get you a bit of extra money as an incentive, or give you a promotional deal, but pick your fights carefully because strategy inside the ring won't matter if you mismanage your fisher outside.
-
-Fight smart during the fight by using the total punch control system to throw the punches you want to by using the analog stick. The total punch control system maps your fists to the analog stick getting rid of the need for senseless button mashing.
-
-You can also play in historical fights like Taylor vs. Hopkins, Gatti vs. Ward, or Robinson vs. Lamotta in the ESPN Classic mode to play in the fights that made boxing history.
-
-Once you've got the computer down for the count, you can play with any fighter or user created fighters or any of the ESPN Classic fights in local multiplayer with a friend. You can also take the fight online and prove your the real champion of the world against any opponent anytime, anywhere.", :release_date => "2006-02-20", :title => "Fight Night Round 3", :developer => "EA", :publisher => "EA", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3936-2.jpg')
-	genre = Genre.find_by_title("Fighting")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Half-Life", :original_release_date => '2001-11-13')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "In Half-Life, players assume the role of Dr Gordon Freeman, a recently graduated theoretical physicist who must fight his way out of a secret underground research facility, whose research and experiments into teleportation technology have gone disastrously wrong.", :release_date => "2001-11-13", :title => "Half-Life", :developer => "Gearbox/Valve", :publisher => "Sierra", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3937-1.jpg')
-	genre = Genre.find_by_title("Shooter")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Sega Genesis Collection", :original_release_date => '2006-11-16')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "For those that had a SEGA Genesis you can now put it away as 28 games are re-released in this compilation to relive your yester-years. For those that never had a SEGA Genesis and didn't play some of the classics on it, well here's your chance to play and be up-to-speed on your game history.
-
-Games included are:
-•Alex Kidd in the Enchanted Castle
-•Altered Beast
-•Bonanza Bros.
-•Columns
-•Comix Zone
-•Decapattack
-•Ecco the Dolphin
-•Ecco: The Tides of Time
-•Ecco Jr.
-•Flicky
-•Gain Ground
-•Golden Axe
-•Golden Axe II
-•Golden Axe III
-•Kid Chameleon
-•Phantasy Star II
-•Phantasy Star III: Generations of Doom
-•Phantasy Star IV: The End of the Millennium
-•Ristar
-•Shadow Dancer: The Secret of Shinobi
-•Shinobi III : Return of the Ninja Master
-•Sonic the Hedgehog
-•Sonic the Hedgehog 2
-•Super Thunder Blade
-•Sword of Vermilion
-•Vectorman
-•Vectorman 2
-•Virtua Fighter 2", :release_date => "2006-11-16", :title => "Sega Genesis Collection", :developer => "Digital Eclipse Software", :publisher => "SEGA", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3938-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Zone of the Enders: The 2nd Runner", :original_release_date => '2003-02-13')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The game begins with Dingo Egret, the protagonist, working at a mining facility on Callisto. He inadvertently discovers the Orbital Frame, Jehuty, that was hidden there by Leo. When he is attacked by BAHRAM forces who have come to seize it, Dingo climbs into Jehuty and engages the attackers. During the battle, Dingo enters the BAHRAM battleship, seemingly defeating Nephtis, an Orbital Frame controlled by an A.I. program based on Viola's fighting style, but is subdued by Anubis, Jehuty's superior counterpart controlled by Col. Ridley (Nohman) Hardiman, leader of BAHRAM.
-
-As a prisoner, Dingo is assaulted by Ken Marinaris, a female Orbital Frame runner that Dingo defeated in the previous battle. Nohman arrives moments later and asks Dingo to join him. When Dingo refuses, Nohman shoots him, ordering Ken to dispose of the body. Instead, Ken has Dingo revived and placed inside Jehuty. When he comes to, she explains that Jehuty is acting as a life-support system, and if he leaves Jehuty, he will die. She then tells him that she is a UNSF spy. Dingo escapes with Taper and heads for Mars.", :release_date => "2003-02-13", :title => "Zone of the Enders: The 2nd Runner", :developer => "Konami", :publisher => "Konami", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3939-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Ratchet & Clank 3", :original_release_date => '2004-11-17')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "After word spreads of Ratchet and Clank's recent conquest in Ratchet & Clank: Going Commando, Clank finds himself recognized as an interstellar robot of mystery and intrigue after starring in his own television series, Secret Agent Clank. While Ratchet is dismayed by his new sidekick status, the feelings are put aside when the twosome is called together by the Galactic President to bring peace to the universe. They find themselves traveling back to Planet Veldin to battle Dr. Nefarious, a robotic super villain who has devised a diabolical scheme to wipe out all organic life in the galaxy.", :release_date => "2004-11-17", :title => "Ratchet & Clank 3", :developer => "Insomniac Games", :publisher => "Sony", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3940-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Tomb Raider Anniversary", :original_release_date => '2007-06-05')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Lara Croft Tomb Raider: Anniversary is a remake of the original Tomb Raider. The remake has the same basic storyline, locations, and core gameplay; however, it has a technically more advanced graphics engine and adds several new features that were introduced in Lara Croft Tomb Raider: Legend. Lara has many new moves, such as swinging on ropes, bullet time when an animal rushes towards her, and the addition of a grappling hook in her inventory (which resembles the one from the original game). Jumping is also a lot easier, as the heroine automatically grabs the ledges without requiring pixel-precise timing. There are also completely new moves, where Lara balances and jumps on small sticks.
-
-The cutscenes are identical, but rendered in real-time using the new engine. Some are also action-based, like in the previous games, requiring quick reflexes to keep the action going. The environments and puzzles have been somewhat changed to fit the new gameplay, and the voice recording was also redone.", :release_date => "2007-06-05", :title => "Tomb Raider Anniversary", :developer => "Crystal Dynamics", :publisher => "Eidos", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3941-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Adventure")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Black", :original_release_date => '2006-02-28')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Black takes place in Chechnya (Southern Russia). The protagonist is a black ops soldier named Sergeant First Class Jack Kellar (portrayed by Marty Papazian). Kellar tells most of the story in first-person at an interrogation four days after the events in the story begin.
-
-Kellar is an inadequately disciplined member of a CIA black ops group and a veteran of several conflicts including Guatemala, Colombia, Iran and Croatia. The unknown interrogator (portrayed by Paul Pape) questions Kellar about an arms smuggling and terrorist operation called the Seventh Wave. Seventh Wave have been responsible for a number of terrorist attacks. Kellar is told that, unless he co-operates, he and his actions will be declassified, he will be dishonorably discharged and imprisoned for life. Though initially resistant, Kellar at last agrees to tell his story.", :release_date => "2006-02-28", :title => "Black", :developer => "Electronic Arts", :publisher => "Electronic Arts", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3942-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Shooter")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Tom Clancy's Splinter Cell", :original_release_date => '2002-11-17')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Set in the fall of 2004, the player takes on the role of Sam Fisher, a long-dormant secret agent called back to duty by the American National Security Agency, to work with a secret division dubbed \"Third Echelon\". At this point, Fisher hasn't \"been in the field in years\". Fisher must investigate the disappearance of two CIA agents in the country of Georgia, which soon leads to a larger mission: saving the world from war with Georgia.", :release_date => "2002-11-17", :title => "Tom Clancy's Splinter Cell", :developer => "Ubisoft", :publisher => "Ubisoft", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3981-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Commandos 2: Men of Courage", :original_release_date => '2001-09-20')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The game places the player in command of a squad of commandos and various allies as he sneaks behind enemy lines to accomplish his objectives. The action stretches from 1941 to 1945 and takes place on both the Western Front against the Germans and the Pacific theatre against the Japanese.", :release_date => "2001-09-20", :title => "Commandos 2: Men of Courage", :developer => "Pyro Studios", :publisher => "Eidos", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3995-1.jpg')
-	genre = Genre.find_by_title("Strategy")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Altered Beast", :original_release_date => '2005-01-27')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The story follows a man called Luke Custer who is a \"Genome-Cyborg\", which in the game is a human that has had his DNA and other genetic make-up altered so that he can (after acquiring the chip containing the right genes for each creature) transform into a mythical beast. 
-The main creatures he transforms into are a Werewolf, a Merman, a Garuda, a Wendigo, a Fire Minotaur, and a Thunder Dragon. 
-Its storyline differs from the original Altered Beast games where during the game, you gain a serum that allows you to change at will. There are a number of difficult boss challenges and puzzles within the game, plus some extra characters to transform into including a White Tiger Man, a Grizzly Bear, and the alien-cloned U.W.H. (Unidentified Weightless Human) for those who finish the game.", :release_date => "2005-01-27", :title => "Altered Beast", :developer => "Sega", :publisher => "Sega", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/4007-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Batman Begins", :original_release_date => '2005-06-14')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "In this adaptation of the film of the same name, the origins of the Batman legend are explored. Playing as both Bruce Wayne and his alter-ego, Batman, you will need to hunt evil forces in familiar locations such as Arkham asylum, Gotham City, but also in the Himalaya. Using both stealth and brutal skills, you take on enemies in true beat-em-up style. Batman has a vast array of moves, from kicks and punches to more exotic special moves. Multiple enemies can be attacked at once, and there are tricks to break through enemies' defenses. Also, certain attacks can only be used as a finishing move when opponents are weakened.
-
-Next to the melee combat, Batman carries his Bat Utility Belt with a Batgrapple to reach higher areas, the Batarang and gadgets such as smoke and flash grenades, a lockpick, camera hacker and an optical wire to peek from behind corners.", :release_date => "2005-06-14", :title => "Batman Begins", :developer => "Eurocom Developments Ltd", :publisher => "EA", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/4157-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	genre = Genre.find_by_title("Racing")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Burnout 3 Takedown", :original_release_date => '2004-09-07')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Burnout 3: Takedown is a racing game which encourages aggressive driving and lets you use your vehicle to smash your way to the finish line by taking out your rivals and causing massive multi-car pileups. The more cars you take out, damage you inflict, the more events and cars you can unlock. Burnout 3 also has a \"crash\" mode which puts your vehicle at a variety of traffic junctions jam-packed with moving vehicles and pickups to see just how much monetary damage you can inflict.
-
-Burnout 3: Takedown continues the racing series with more cars, more tracks, a more detailed crash engine, and a multitude of new gameplay modes for single players, multiple players on one system, and online play.", :release_date => "2004-09-07", :title => "Burnout 3 Takedown", :developer => "Criterion Studios", :publisher => "Electronic Arts", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/4158-1.jpg')
-	genre = Genre.find_by_title("Racing")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Colin McRae Rally 3", :original_release_date => '2003-04-22')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "You are given 3 seasons to win the world rally championship, racing the Ford Focus RS RWC. In each season there are 8 competitions, staged in Australia, the USA, England, Sweden, Japan, Greece and Finland. Each competition has 6 stages set around different landscapes, and a special head-to-head stage at the end. You are out to beat the clock, and the time set by the opposing teams, on each occasion. Beat the time, win the stage, and you are once step closer to taking the world title.
-
-Along the way you can alter and modify the Focus' setup, from the wheels used, gearboxes, brakes, suspension and so forth. You can also test drive the car before any event to make sure the setup is to your liking.", :release_date => "2003-04-22", :title => "Colin McRae Rally 3", :developer => "Codemasters", :publisher => "Codemasters", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/4159-1.jpg')
-	genre = Genre.find_by_title("Racing")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Dead or Alive 2", :original_release_date => '2000-03-30')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "A great leader was killed at the end of the 20th century. His name was Fame Douglas, and he was renowned as the sponsor of the legendary Dead or Alive World Combat Championship. Since his death, and in the absence of his charisma and leadership, the world has become chaotic. Yet something appears to be transpiring. Amid this chaos, it is announced that the \"Dead or Alive Championship 2\" will be held.", :release_date => "2000-03-30", :title => "Dead or Alive 2", :developer => "Team Ninja", :publisher => "Tecmo", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/4160-1.jpg')
-	genre = Genre.find_by_title("Fighting")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Driv3r", :original_release_date => '2004-06-24')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "In the game you take the role of Tanner, the undercover cop from previous Driver games, as he infiltrates a worldwide high-performance car theft ring.
-
-Nothing is too dangerous or too risky for Tanner, and you'll be able to hop into any car, truck, or motorcycle and cruise the streets of three re-created cities with over 156 miles of roads, from Miami, Nice, and Istanbul in over 25 storyline missions. Meet up with characters from previous driver games, the story line lives on in this installment.", :release_date => "2004-06-24", :title => "Driv3r", :developer => "Reflections Interactive", :publisher => "Atari", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/4161-1.jpg')
-	genre = Genre.find_by_title("Racing")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
-	work = Work.create(:original_title => "Finding Nemo", :original_release_date => '2003-05-09')
-	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "On his first day of school, Nemo disobeys his father and ventures away from the reef to touch the bottom of a boat. This enrages Marlin, and starts an argument in front of Nemo's classmates. To his father's horror, Nemo is captured by a scuba diver. Marlin tries to save Nemo but is blinded by the camera flash of another diver. The boat disappears into the distance.", :release_date => "2003-05-09", :title => "Finding Nemo", :developer => "Traveller's Tales", :publisher => "THQ", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/4162-1.jpg')
-	genre = Genre.find_by_title("Action")
-	if genre.present?
-		edition.genres << genre
-	end
-	work = nil
-	edition = nil
-	genre = nil
+#	work = Work.create(:original_title => "Devil May Cry", :original_release_date => '2001-10-17')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Set in modern times on the fictional Mallet Island, the story centers on the characters Dante and Trish and their quest to confront the demon lord Mundus. The story is told primarily through a mixture of cutscenes, which use the game's engine and several pre-rendered full motion videos.", :release_date => "2001-10-17", :title => "Devil May Cry", :developer => "Capcom", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/15-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Devil May Cry 3: Dante's Awakening", :original_release_date => '2005-02-17')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Set in modern times in an enchanted tower named Temen-ni-gru, the story centers on the dysfunctional relationship between Dante and his brother Vergil. The events of the game take place just as Dante has opened up the Devil May Cry agency, and before Dante's demonic heritage has reached its full potential.", :release_date => "2005-02-17", :title => "Devil May Cry 3: Dante's Awakening", :developer => "Capcom", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/16-2.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Final Fantasy X-2", :original_release_date => '2003-11-18')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The game's story follows the character Yuna from Final Fantasy X as she seeks to resolve political conflicts in the fictional world of Spira before it leads to war.
+#
+#The story begins as Yuna, Rikku and Paine recover Yuna's stolen Garment Grid from the Leblanc Syndicate in the first of several encounters in which they vie for spheres. The game is punctuated by a narration of Yuna addressing Tidus, as though she is recounting the events of the game to him as they occur in a style reminiscent of Tidus' own narration in Final Fantasy X. Although Yuna's quest is to find clues that may lead her to Tidus, much of the storyline of the game follows the clash of the factions that have established themselves in the time since the coming of the Eternal Calm in Final Fantasy X, and the uncovering of hidden legacies from Spira's ancient history. A significant portion of the game's events are unnecessary for the completion of the main storyline, but much of the depth of the story—including characterization and background details—are featured in the optional content, which generally follows how each part of Spira is healing in the time since the passing of Sin.", :release_date => "2003-11-18", :title => "Final Fantasy X-2", :developer => "Square Enix", :publisher => "Square Enix", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/19-1.jpg')
+#	genre = Genre.find_by_title("RPG")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Final Fantasy X", :original_release_date => '2001-12-20')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "There are seven main playable characters in Final Fantasy X. Tidus is a cheerful young teenager and the star blitzball player for the Zanarkand Abes. He has long resented his father, a renowned blitzball player who disappeared during Tidus's youth. Yuna is the daughter of the High Summoner Braska, who defeated Sin to bring about the Calm, a time of peace. Yuna embarks on a pilgrimage to obtain the final aeon and defeat Sin. Kimahri Ronso is a young warrior of the Ronso tribe who watched over Yuna during her childhood. Wakka is a blitzball player and devout follower of the Yevon order. Lulu is a stoic and self-possessed, but well-meaning Black Mage. Auron is a taciturn former warrior monk, and finally Rikku is a perky Al Bhed girl with extensive knowledge of machinery. The primary antagonists of the game are Maester Seymour Guado and the other maesters of the Yevon religion, while the enormous whale-like monster Sin serves as the primary source of conflict.", :release_date => "2001-12-20", :title => "Final Fantasy X", :developer => "Squaresoft", :publisher => "Squaresoft", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/20-1.jpg')
+#	genre = Genre.find_by_title("RPG")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "God Hand", :original_release_date => '2006-10-10')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "God Hand puts players in the role of Gene, a martial artist who is bestowed with one of the legendary \"God Hands\", a pair of divine arms that were once used to save the world from a demon called Angra. Gene and his companion Olivia are eventually caught up in an attempt by a group of demons known as the Four Devas to resurrect Angra for purposes of world domination. The game mixes western and Japanese-themed comedy, containing over-the-top characters and storyline events. The gameplay combines traditional elements of the beat 'em up genre with new features. These include being able to map and string together a large repertoire of fighting techniques to the gamepad's face buttons in order to create unique combo attacks.", :release_date => "2006-10-10", :title => "God Hand", :developer => "Clover Studio", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/25-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Fighting")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "God of War", :original_release_date => '2005-03-22')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "This action/adventure/combat game makes powerful use of the darkly imaginative world of Ancient Greek mythology, where the realms of the mortal and the divine collide in a pervasive atmosphere of brute force and violence. Playing as Kratos, throughout the game players will wield double blades bound to his body by long chains, weapons symbolic of this vicious world to which he is bound and the fate from which he seeks to escape. Featuring an hour of cinematic sequences and a deep combat system incorporating context-sensitive actions and an extensive range of combos, GOD OF WAR takes players through various environments that will have them fighting fierce enemies, swinging on ropes, scaling mountain cliffs, swimming through rivers and sliding down zip lines. The result is a unique and thrilling adventure through Greek mythology.", :release_date => "2005-03-22", :title => "God of War", :developer => "Sony", :publisher => "Sony", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/26-2.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Adventure")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Killzone", :original_release_date => '2004-11-02')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The game is set in an era of space colonization where the Helghast Empire has recovered from its defeat in the First Helghan War and launched a blitzkrieg against the outer Interplanetary Strategic Alliance (I.S.A.) colony planet Vekta. Vekta's orbital Strategic Defense (S.D.) platforms failed during the initial assault, allowing the Helghast to land swarms of soldiers onto the surface and making it all the more difficult for the outnumbered I.S.A. forces.
+#In the game, the Helghast are a faction of human descendants who colonized the planet Helghan many generations ago. The planet's harsh environment forced the Helghast to adapt and mutate so much that they can no longer be considered human. They are stronger, faster and more resilient than their human cousins, and possess a burning hatred for humanity. Except for a small number of half-breed Helghast and trained troopers, they require a gas mask and air processing tank that creates air similar to that found on the planet Helghan.
+#The player takes control of I.S.A. Captain Jan Templar, who is fighting off the Helghast invasion. Templar and his squad are called back to the base for reassignment, and are promptly sent to find the I.S.A. operative Gregor Hakha and the information in his possession. During the course of the game, the player also takes control of several other characters, such as Shadow Marshal Luger (a female special operations assassin), a heavy weapons specialist Staff Sergeant Rico Velasquez (a Helghast-hating soldier with an itchy trigger finger), and Colonel Hakha, a half-Helghast, half-Human spy.
+#
+#As the game progresses the player discovers that General Stuart Adams, a high ranking ISA officer, is a traitor and a servant of Joseph Lente (the commanding General of The Third Helghast Special Forces Army) and was responsible for sabotaging the SD platforms, rendering them unable to defend against the Helghast. The Earth Defense Fleet (EDF) go to assist the Vektan Army, however Adams kills General Voughton and receives his security key, allowing him to reboot the platforms, and prepare an ambush for the EDF relief force.
+#Jan and the others confront Lente, only to find out that Hakha was a commander in chief for him. Lente says that Hakha's family was ashamed to even be related to him, except his brother who talked of his heroism. Because of this, Lente had Hakha's brother shot down. With anger in his eyes, Hakha shoots Lente dead.
+#The team fly to the central SD platform and confront Adams, who is wounded by Templar. The platform begins to break up and Adams is killed by falling debris while trying to escape. Finally, the team restore the SD platform, allowing the EDF fleet to fight off the Helghast.", :release_date => "2004-11-02", :title => "Killzone", :developer => "Guerrilla Games", :publisher => "SCEE", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/35-2.jpg')
+#	genre = Genre.find_by_title("Shooter")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Metal Gear Solid 3: Snake Eater", :original_release_date => '2004-11-17')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Set in the 60s and using the Cold War as its inspiration, Metal Gear Solid 3: Snake Eater forces the player to adopt a number of new skills to survive in Snake's new jungle environment. Danger lurks everywhere as Snake explores the beautifully-realised forests, encampments and rivers, with guards patrolling key routes, dangerous animals to contend with, and the uneven terrain and noisy foliage making the silent approaches the Metal Gear hero is famed for virtually impossible.
+#
+#    Gameplay set in Cold War era 1960's
+#    Camoflage System: Use different combinations of uniform and face paints to blend into your environment
+#    Food: Capture and eat animals & plants to sustain Snake's health and abilities
+#    Close Quarters Combat (CQC): Take on enemies up close and personal with knives and martial arts techniques for silent kills
+#    Exclusive content for the PAL version includes:
+#    Duel Mode - Battle through the game's Boss Fights independently
+#    Demo Theatre - Watch all the cut scenes in sequence
+#    European Extreme difficulty level
+#    2 New Levels in Snake Vs Monkey Mode
+#    New Face Paint and Camoflage Designs not available in US or Japanese versions", :release_date => "2004-11-17", :title => "Metal Gear Solid 3: Snake Eater", :developer => "Konami", :publisher => "Konami", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/44-2.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Adventure")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Stealth")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Okami", :original_release_date => '2006-09-19')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The game is set in Nippon based on Japanese classic history, and begins with a flashback to events 100 years prior to the game's present, and describes how Shiranui, a pure white wolf, and Nagi, a swordsman, together fought the eight-headed demon Orochi to save Kamiki Village and the maiden Nami, Nagi's beloved. Shiranui and Nagi are unable to defeat Orochi but manage to seal the demon away. In the game's present, Susano, a descendant of Nagi and self-proclaimed greatest warrior, breaks Orochi's seal due to the fact that he does not believe in the legend, and Orochi escapes and curses the lands, sapping the life from every living being. Sakuya, the wood sprite and guardian of Kamiki Village, calls forth Amaterasu, the sun goddess, known to the villagers as the reincarnation of the white wolf Shiranui, and pleads her to remove the curse that covers the land. Accompanied by the artist Issun (an inch-high Poncle), Amaterasu is able to restore the land to its former beauty. Throughout the journey, Amaterasu is hounded by Waka, a strange but powerful individual that seems to have the gift of foresight, and further teases Amaterasu and Issun to his own mysterious ends. Additionally, Amaterasu locates several Celestial Gods who have hidden in the constellations that bestow upon the goddess powers of the Celestial Brush to aid in her quest.", :release_date => "2006-09-19", :title => "Okami", :developer => "Clover Studio", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/51-2.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Adventure")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Final Fantasy XII", :original_release_date => '2006-03-16')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The game takes place in the fictional location of Ivalice, where the empires of Archadia and Rozarria are waging an endless war. Dalmasca, a small kingdom, is caught between the warring nations. When Dalmasca becomes annexed by Archadia, its princess, Ashe, creates a resistance movement. During the struggle, she meets Vaan, a young adventurer who dreams of commanding an airship. They are quickly joined by a band of allies; together, they rally against the tyranny of the Archadian Empire.", :release_date => "2006-03-16", :title => "Final Fantasy XII", :developer => "Square Enix", :publisher => "Square Enix", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/87-2.jpg')
+#	genre = Genre.find_by_title("RPG")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "God of War II", :original_release_date => '2007-03-13')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Kratos is now the God of War, having defeated the Olympian god Ares. Shunned by the other gods and still haunted by nightmares from his past, Kratos decides to join an army of Spartans in an attack on the city of Rhodes. Kratos also ignores a warning from the goddess Athena that his lust for revenge is alienating the other gods.", :release_date => "2007-03-13", :title => "God of War II", :developer => "Sony", :publisher => "Sony", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/88-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Adventure")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Monster Hunter 2", :original_release_date => '2006-02-16')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Monster Hunter 2 has an improved weapon tree and upgradeable armors. As in all Monster Hunter games, armor pieces can be worn to obtain skills and abilities. A new feature in Monster Hunter 2 is the use of gems. Gems add skill points to complement those added by armor and weapons. Gems are created by combining ore and/or monster parts. Gems can be attached and detached from armor and weapons that have special gem slots.
+#
+#Along with the various species of monster returning from the first Monster Hunter, Monster Hunter 2 contains many new monsters, such as the metallic wind dragon Kushala Daora, the lion-headed dragon Teo Teskatoru (named Teostra in the North American and PAL versions of Monster Hunter Freedom 2) and his female counterpart Nana Teskatory (named Lunastra in the North American and PAL versions of MHF2), the primates Babakonga and Dodobrango (Congalala and Blangonga in MHF2), the bull or minotaur-like monster Rajang, and the chameleon-like dragon Oonazuchi (Chameleos in MHF2). With new monsters also comes the prospect of new weapons and armor.", :release_date => "2006-02-16", :title => "Monster Hunter 2", :developer => "Capcom", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/93-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("RPG")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Dirge of Cerberus: Final Fantasy VII", :original_release_date => '2006-08-15')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Set after the events of Final Fantasy VII and the Final Fantasy VII: Advent Children movie, Dirge of Cerberus lets players take the role of the mysterious Vincent Valentine.
+#
+#After a new organization arises from the events known as \"Meteorfall\", Vincent is called to the surviving town of Kalm by Reeve Tuesti, an old ally who controlled Cait Sith. Vincent has been invited to the town's celebration, but during the festivities, a group of soldiers attacks the town, killing and capturing the people. It is up to Vincent to protect the innocent once more, and find out why these soldiers are also after him.
+#
+#While set in the world of Final Fantasy VII, Dirge of Cerberus is an action shooter that runs through twelve chapters. The on-screen action can be controlled by the analog controller, or via the Playstation 2's mouse and keyboard accessories, making it more in line with PC-style shooters. Being a character driven shooter, the perspective can be changed from first to third person on the fly to navigate through the multi-level environments.
+#
+#Several items and characters from the series make their return, as well as the Chaos break limits system, which allows Vincent to take the monstrous forms he changed into from Final Fantasy VII to inflict more damage on the enemy. Taking a nod from its RPG-based parent, the game does allow Vincent to find the usual healing items, materia spells and gil from the Final Fantasy universe, in which he can buy and sell for other new items.
+#
+#The game also features a weapon customization system, which allows the player to mix and match weapon parts to form more powerful attack items and abilities.", :release_date => "2006-08-15", :title => "Dirge of Cerberus: Final Fantasy VII", :developer => "Square Enix", :publisher => "Square Enix", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/839-2.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "MotorStorm: Arctic Edge", :original_release_date => '2009-10-20')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Motorstorm: Arctic Edge is an arcade racer pitting you against 8 other racers, human or AI in a competition to win in The Festival. The backdrop for the game is Alaska where you have to race on icy tracks in mountainous regions. Beside the other racers you have to take into account avalanches, broken ice bridges and a lot of other dangers on the route to victory.
+#
+#The game is very fast-paced and it sees you racing around in cars, snowmobiles and trucks. You can select different wheels, exhausts, spoilers and more for your vehicles.", :release_date => "2009-10-20", :title => "MotorStorm: Arctic Edge", :developer => "BigBig Studios", :publisher => "Sony", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/858-1.jpg')
+#	genre = Genre.find_by_title("Racing")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Indiana Jones and the Staff of Kings", :original_release_date => '2009-06-12')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The plot centers around Indy's search for the Staff of Moses. The game is mostly about a quest which takes you around the world on various quests, fighting Nazis, Panamanian hunters, and Tong thugs, and trying to find artifacts which will unlock other possible things for you to get and do. Although the staff of Moses is never mentioned in the beginning of the game, the plot is set about finding the staff, but the actual part of the story where the quest about finding the staff of Moses first start taking place is a lot further on in the game.", :release_date => "2009-06-12", :title => "Indiana Jones and the Staff of Kings", :developer => "A2M", :publisher => "LucasArts", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/904-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Headhunter: Redemption", :original_release_date => '2004-09-21')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "In the 21st century, a dreadful virus wiped out millions. The vaccine was found, but at the time the world was engulfed into chaos. A new world order emerged, splitting the world into two distinct yet dependent worlds: Above and Below.
+#
+#The world Above reflects a chrome city, a high-rise, high-tech metropolis served by elevators and elevated freeways. A place for hardworkers and law-abiding people. On the contrary to Above, the world Below, which is the product of earthquake damages, is a subterranean network of labour colonies. Those who are not wanted Above for one reason or another are sent Below.
+#
+#One day, now veteran Headhunter, Jack Wade, took a call to investigate an intrusion to the upper levels. Facing the trespasser, Jack saw a potential in the girl and instead of turning her in, he gave her a second chance... to become his apprentice. Jack is back, but this time, he's not alone but accompanied by his sidekick Leeza X. Together, they will face whatever threat lurks from the world Below.
+#
+#The gameplay is set in 3rd-person view with ability to rotate camera or set it behind your back at the single click. Headhunter's main accessory is IRIS (Intelligent Realtime Information Scanner). Once you get the IRIS, you'll be able to scan every item just by pointing the gun at it, or use the scanner in 1st-person view which will let you examine the surroundings in more detail. Also, IRIS will provide you with a full 3D map info even displaying the enemies so you can avoid them or use stealth if necessary. Enemies will hear you running and shooting, so if you decide to take an action, be aware that they will surround you and launch a team strike at you from all the sides. You only effective aid against them, beside your weapon, of course, is the ability to perform a roll or lean against the walls and fire from the corners, although aiming itself may not be easy as your hand will not be steady while on the move or panicking.", :release_date => "2004-09-21", :title => "Headhunter: Redemption", :developer => "Amuze", :publisher => "SEGA", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/920-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Tourist Trophy: The Real Riding Simulator", :original_release_date => '2006-04-04')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "A motorcycle-racing simulator with an abundance of options, Tourist Trophy lets players choose from over 100 bikes from makers like Buell, Ducati, and Kawasaki, and race them on one of 35 real and fantasy tracks. Custom rider option let you choose how your character looks and handles a bike, while a quick-play \"Arcade\" mode lets you pick a race and go. Play a one-on-one race, a time trial, or a regular race that allows you to race using modified bikes.
+#
+#\"Tourist Trophy\" mode challenges you to a variety of races, but before you hit the pavement, you'll have to earn a license. There are four license levels that you can earn: Novice, Junior, Expert, and Super. New motorcycles and equipment become available with each new level. Once a license has been secured, move onto \"Challenge\" mode and earn a bike by competing in race events that also open up extra bikes and gear as rewards.", :release_date => "2006-04-04", :title => "Tourist Trophy: The Real Riding Simulator", :developer => "Polyphony Digital", :publisher => "Sony", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/20285-1.jpg')
+#	genre = Genre.find_by_title("Racing")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Mega Man X Collection", :original_release_date => '2006-01-10')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Mega Man X Collection contains the first six games in the Mega Man X series. Mega Man X and Mega Man X2 are based on their appearances on the SNES. Mega Man X3, also originally on the SNES, is based on its 32-bit update for the PlayStation, Sega Saturn, and PC. The remaining three games are based on their PlayStation renditions. All the games now use save files, including the first few titles that originally necessitated a password for continuation, though upon loading save data, the player is still greeted with the old, fully-functional password entry screen, complete with the correct password to access the saved game. Mega Man Battle & Chase is a game that is unlocked after completing the first three games. It is a classic series kart-racing game previously unreleased in North America. Mega Man X Collection also contains unlockable artwork and music. Both the PlayStation 2 and GameCube versions are identica", :release_date => "2006-01-10", :title => "Mega Man X Collection", :developer => "Capcom", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/1003-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Psychonauts", :original_release_date => '2005-04-19')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The story is set in Whispering Rock Psychic Summer Camp, a remote US government training facility under the guise of a children's summer camp. The area was hit centuries ago by a meteor made of psitanium (a fictional element that can grant psychic powers or strengthen existing powers), creating a huge crater. The psitanium affected the local wildlife, giving them limited psychic powers, such as bears with the ability to attack with telekinetic claws and cougars with pyrokinesis. The Native Americans of the area called psitanium \"whispering rock\", which they used to build arrowheads. When settlers began inhabiting the region, the psychoactive properties of the meteor slowly drove them insane. An asylum was built to house the afflicted, but within fifteen years the asylum had more residents than the town did. The government relocated the remaining inhabitants and flooded the crater to prevent further settlement, creating what is now Lake Oblongata. The asylum still stands but has fallen into disrepair.", :release_date => "2005-04-19", :title => "Psychonauts", :developer => "BudCat", :publisher => "Majesco", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/1004-1.jpg')
+#	genre = Genre.find_by_title("Adventure")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "FlatOut 2", :original_release_date => '2006-06-30')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "This game is themed more on the street racing/import tuner scene than its predecessor. Another notable change is the tire grip; players can now take more control of their car, worrying less about skidding in tight turns. The game has three car classes: derby, race and street.", :release_date => "2006-06-30", :title => "FlatOut 2", :developer => "Bugbear", :publisher => "Konami", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/4416-1.jpg')
+#	genre = Genre.find_by_title("Racing")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Kingdom Hearts II", :original_release_date => '2006-03-28')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Sora, Donald, and Goofy are back in the third installment (second for PS2) of the Kingdom Hearts series, continuing where Kingdom Hearts: Chain of Memories left off. The trio awakens from their sleep and goes to Twilight Town. When the game begins, you will first have control over a boy name Roxas who wields a dual-Keyblade. He is trying to enjoy the remainder of his summer vacation with his friends but he keeps having flash-backs of someone else's memories.
+#
+#When he meets up with Sora, the two learns they have a special connection with one another. Afterwards, the group will continue their search for King Mickey and Riku. This time, they will travel to new worlds and work with various characters from the Disney and Final Fantasy universes. This includes worlds from not only Disney's animated movies but other movies as well like Pirates of the Caribbean and TRON.
+#
+#In Kingdom Hearts II, Sora and his friends will battle various enemies including the Heartless from Kingdom Hearts, but also a group of enemies called Nobodies. Nobodies are \"nonexistent beings\" who are under the control of Organization XIII - a group of 13 members in black coats that Sora and his friends have reduced down to just half.
+#
+#Gameplay is very similar to Kingdom Hearts: the player controls Sora with Donald and Goofy helping with their magic and attacks. Sora can use various magic powers as well as use Summon which will call upon the aid of special Disney characters that will temporarily fight alongside him. A new feature of combat are \"Reaction Commands\". Some enemies will leave themselves open during attacks, and if the player presses the Reaction Command button when prompted Sora will take advantage of the situation, either turning an enemy's attack against them, striking from a defenseless side for extra damage, or avoiding an otherwise unavoidable attack. As the trio levels up and progresses in the game they will gain new abilities that they can equip. Also, after Mickey meets the party, if Sora is KO'd the player will have the option of controlling Mickey and defending Sora until he can recover.", :release_date => "2006-03-28", :title => "Kingdom Hearts II", :developer => "Square Enix", :publisher => "Square Enix", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/1903-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("RPG")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "ICO", :original_release_date => '2001-12-06')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The game's main protagonist is Ico, a young boy with a pair of horns on his head—considered a bad omen by his village. As part of the village's tradition, he is taken by a group of warriors to a castle surrounded by water and locked inside one of the sarcophagi in a crypt. Some time after the warriors depart, a tremor runs through the castle, and Ico is able to take advantage of it to escape his confines. As he searches the castle, he comes across Yorda, a captive girl who speaks in an unknown language. Ico helps Yorda escape, but finds that she is hunted by shadow-like creatures (the souls of other horned children sacrificed to the fortress) that attempt to drag her body into the portals from which they emerged. Though Ico cannot be harmed by the shadows and is able to drive them away from Yorda, he finds he cannot defeat the enemies with his simple weapons. The pair make their way through the abandoned castle, eventually arriving at the bridge leading to land. As they cross, the Queen, ruler of the fortress and Yorda's mother, appears and tells Yorda that as her daughter she cannot leave the castle. Ico and Yorda attempt to flee, but the Queen destroys part of the bridge in their path; although Yorda tries to save him, Ico falls off the bridge and loses consciousness.", :release_date => "2001-12-06", :title => "ICO", :developer => "Team ICO", :publisher => "Sony", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/2239-1.jpg')
+#	genre = Genre.find_by_title("Adventure")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Puzzle")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Shadow of the Colossus", :original_release_date => '2005-10-27')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The game focuses on a young man named Wander who must travel across a vast expanse on horseback and defeat sixteen beings, simply known as colossi, to restore the life of a girl. The game is unusual within the action-adventure genre in that there are no towns or dungeons to explore, no characters with which to interact, and no enemies to defeat other than the colossi. Shadow of the Colossus has been described as a puzzle game, as each colossus' weakness must be identified and exploited before it can be defeated.", :release_date => "2005-10-27", :title => "Shadow of the Colossus", :developer => "Sony", :publisher => "Sony", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/2240-2.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Adventure")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Samurai Warriors 2: Empires", :original_release_date => '2007-02-27')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Blur the line between game and art because for the first time in the Samurai Warriors series, characters and worlds are rendered in beautiful 3D. Choose from one of the beloved characters from the Dynasty Warriors series. Using a vast 3D map of China, conduct your domestic affairs and diplomacy, or choose to go to war. Link devastating attacks using the Advanced Tactics System. 26 different scenarios offer the challenge of a lifetime. Over 40 base commands are at your fingertips to manage your kingdom as its ruler. Will you rule over an era of peace or assert your dominance in war?", :release_date => "2007-02-27", :title => "Samurai Warriors 2: Empires", :developer => "Omega Force", :publisher => "KOEI", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/17089-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Strategy")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Samurai Warriors 2", :original_release_date => '2006-09-19')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Experience the epic struggle to unite Japan! This historic action saga pits three powerful factions against each other for control of the Empire of the Sun. Samurai Warriors 2 gets even more epic with ten new battle-hungry warriors, including mysterious ninja, Kotaro Fuma, legendary Musashi Miyamoto, and Ievasu Tokugawa, the man who unified Japan. All in all, there are 26 playable characters, each equipped with powerful new (and previously forbidden) secret techniques! Castle and field combat blend seamlessly in three modes: Story, Free, and Survival, which feature 70 cinematic sequences. Team with friends in co-op play, or take 'em on in Sugoroku, a bonus four-player party game.", :release_date => "2006-09-19", :title => "Samurai Warriors 2", :developer => "Omega Force", :publisher => "KOEI", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/17086-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Dead To Rights", :original_release_date => '2002-11-18')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Meet Jack Slate, a cop framed for murder and facing execution. Slate escapes from Iron Point Maximum-Security Penitentiary to bring down the criminals that framed. In Dead to Rights, you play the role of Slate, as he fights through the hard streets and corrupt enemies of Grant City. There are plenty of ways go about bringing the conspirators to justice--Jack can perform disarm moves, shoot different weapons, pick locks, fight hand-to-hand, and play minigames such as arm wrestling, bench press, and dancing. In this gritty, crime-noir inspired epic, you're always on the run.", :release_date => "2002-11-18", :title => "Dead To Rights", :developer => "Namco", :publisher => "Namco", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/2313-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Shooter")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Kingdom Hearts", :original_release_date => '2002-09-16')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "For the first time ever, Disney films come together in one game, but it's up to you make it their world the happiest place on Earth. Kingdom Hearts follows Sora in his quest to find his friends and Court Wizard Donald and Captain Goofy as they set out to find the missing King Mickey. The three searchers meet and embark on a magnificent, but dangerous, journey across familiar Disney worlds filled with monsters. Over 100 characters appear in the game including Jafar, Tarzan, and Hercules.", :release_date => "2002-09-16", :title => "Kingdom Hearts", :developer => "SquareSoft", :publisher => "Square", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/2559-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("RPG")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "2006 FIFA World Cup", :original_release_date => '2006-04-24')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Celebrating the 2006 FIFA World Cup Germany - the world's largest sporting event - 2006 FIFA World Cup brings you to the games with the world's superstar players, 12 official stadiums that will be used at 2006 FIFA World Cup Germany and stadiums from each qualifying region. Gamers can play as their favorite team from qualification right through to a virtual reproduction of the tournament in Germany.
+#
+#In addition to enabling gamers to participate in the 2006 FIFA World Cup Germany by taking control of one of 127 national teams, the game features new compelling modes of play, including the Global Challenge that recreates classic moments in FIFA World Cup history. Furthermore, the game supports up to eight-way multiplayer matches and boasts a plethora of in-game unlockable content such as legendary players and exclusive apparel.", :release_date => "2006-04-24", :title => "2006 FIFA World Cup", :developer => "Electronic Arts Canada", :publisher => "Electronic Arts", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/10398-1.jpg')
+#	genre = Genre.find_by_title("Sports")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Viewtiful Joe", :original_release_date => '2003-10-07')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Joe is no ordinary man and Viewtiful Joe is no ordinary game. Capcom's new superhero action game mixes funky cartoon-style visuals with classic side-scrolling gameplay and introduces the world's quirkiest million dollar action hero. More than just any ordinary dude, Joe must transform into the ultimate superhero. It's up to you to activate the correct view mode like \"slow\" or \"zoom in\" in order to clobber your enemies with beautiful style. You can also speed up or slow down your visual effects for even more \"viewtiful\" moves. Viewtiful Joe mixes an innovative viewpoint with an amazing stunt-filled action movie universe.", :release_date => "2003-10-07", :title => "Viewtiful Joe", :developer => "Clover Studio", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/2775-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Adventure")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Rayman Raving Rabbids", :original_release_date => '2006-11-14')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "In the fourth Rayman game of the main series, Rabbids invade the earth and lock up Rayman in a prison inside a coliseum. He is forced to take part in more than 75 mini-games, called trials. Rayman will get to throw cows, milk cows, make Rabbids dance - even race warthogs and eagles... all for the amusement of the Rabbids. After winning games, Rayman will earn plungers which can be used to construct a ladder to escape from the jail cell. After completing three trials in the coliseum, a boss game must be completed; such as an on-rails first person shooter, or a racing game.
+#
+#During the Story Mode, the player unlocks special mini-games which can then be played in Score Mode to unlock new content (such as music, wardrobes and challenges) and improve scores. Getting a high score in Score Mode also generates a password to allow players to submit their high score to an online rankings system via Ubisoft's home page. The game can be played in single player mode and multiplayer modes (up to four people in competitative or co-operative gameplay).", :release_date => "2006-11-14", :title => "Rayman Raving Rabbids", :developer => "Ubisoft", :publisher => "Ubisoft", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/2933-1.jpg')
+#	genre = Genre.find_by_title("Puzzle")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Monsters vs. Aliens", :original_release_date => '2009-03-24')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Monsters vs. Aliens is based on the animated movie of the same name. During the course of the game the player takes control over three characters from the movie which all feature different gameplay elements. Missing Link, a mix between fish and human, has to survive levels which are similar to most licensed games from animated movies: a 3rd person platformer. 
+#
+#The sections with B.o.B., a slime monster, are more puzzle oriented. He can swallow enemies or items and use them to spit on other enemies. These are also used to press switches and as safety procedure when crossing bars - if B.o.B. had nothing solid in him he would just slip through them. With B.o.B. the player also has to solve mazes and shooting sequences. The last character is Gigantika, a 15 meters high woman. She uses trucks as inline skates and has to avoid obstacles by jumping or mastering quick time events (pressing a displayed button in a limited time).
+#
+#In co-op mode the second player takes the role of a Dr. Cockroach and supports the main player with appropriate actions, e.g. shooting. The player can unlock a lot of bonus material, e.g. concept art, deleted scenes (in this case: levels) or audio commentaries.", :release_date => "2009-03-24", :title => "Monsters vs. Aliens", :developer => "Beenox Inc.", :publisher => "Activision", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3137-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Puzzle")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "BloodRayne", :original_release_date => '2002-10-15')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "BloodRayne is a 2002 third-person action-adventure video game and the first game in the BloodRayne series.", :release_date => "2002-10-15", :title => "BloodRayne", :developer => "Terminal Reality", :publisher => "Majesco", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/4211-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Horror")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Resident Evil: Dead Aim", :original_release_date => '2003-06-17')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "In a combination of a horror game and light-gun game, Resident Evil: Dead Aim puts you on a cruise ship infested with zombies. You start off as Bruce McGivern, a US government agent sent to stop Morpheus D. Duvall from spreading the zombie T-virus any further. Along the way you'll run into Fongling, a Chinese government agent who is aboard the cruise ship for the same reason, and you'll also end up playing as her. All you really need to know is that there are zombies and you have to kill them.
+#
+#You'll pick up several different guns through the course of the game, including a magnum, a shotgun, and an assault rifle, but like in other Resident Evil games, zombies are difficult to put down permanently, and ammo can be very scarce.", :release_date => "2003-06-17", :title => "Resident Evil: Dead Aim", :developer => "Cavia", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3945-2.jpg')
+#	genre = Genre.find_by_title("Horror")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Shooter")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Resident Evil Outbreak", :original_release_date => '2004-03-31')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Resident Evil Outbreak returns you to the Umbrella Corporations disaster that consumed Racoon city. You play one of eight ordinary citizens of Racoon city attempting to survive the carnage caused by the T-Virus. 
+#
+#There are five different scenarios in this game. Initially only one is open to you, this is concerned with the outbreak in the city, but upon its completion further scenarios with different plots and locations become available. 
+#
+#Gameplay is similar to the previous Resident Evil games. It consists mainly of exploring, solving puzzles, finding items and of course surviving. This is also the first game of the resident evil franchise that can be played on-line, with up to four people playing cooperatively in order to survive.", :release_date => "2004-03-31", :title => "Resident Evil Outbreak", :developer => "Capcom", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3946-1.jpg')
+#	genre = Genre.find_by_title("Horror")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Puzzle")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Shooter")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Resident Evil Outbreak File 2", :original_release_date => '2005-02-15')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Raccoon City has been infected by the Umbrella corporations deadly T-Virus. A mutagenic toxin that turns its human victims into flesh eating zombies. The few survivors must try to escape the city before the government deploys its final solution to the problem of Raccoon City...
+#
+#Once again you find yourself playing the eight characters of the original Resident Evil: Outbreak in more scenarios set in the ruins of what used to be Raccoon City.
+#
+#The new game has several new scenarios and boasts new gameplay developments for the Resident Evil series. Loading times have been reduced and while the previous Outbreak was on-line enabled in the US, this game is the first on-line Resident Evil game in Europe.
+#
+#The locals featured in this game include both the familiar (The Raccoon Police Department) and the exotic (A mutated jungle at mid-day) ones. The game boasts a hefty amount of unlockable material such as artworks, notes, trivia, and character costumes. The game is backwards compatible with your save file from Resident Evil: Outbreak, meaning that you can take your unlocked content to this new setting.", :release_date => "2005-02-15", :title => "Resident Evil Outbreak File 2", :developer => "Capcom", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3947-1.jpg')
+#	genre = Genre.find_by_title("Horror")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Puzzle")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Shooter")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Street Fighter Alpha Anthology", :original_release_date => '2006-06-13')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The original Street Fighter Alpha, as well as Alpha 2, Alpha 3 and Super Gem Fighter Mini Mix are ported from their original arcade releases, while Alpha 2 Gold is a remixed version that combines elements from the previous console version and the Japanese arcade release Street Fighter Zero 2 Alpha. The version of Alpha 2 Gold allows player to select Cammy in all the game modes, including the single-player Arcade Mode (in which she is given her own storyline and ending), not just Versus and Training.", :release_date => "2006-06-13", :title => "Street Fighter Alpha Anthology", :developer => "Capcom", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5361-1.jpg')
+#	genre = Genre.find_by_title("Fighting")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Playboy: The Mansion", :original_release_date => '2005-01-25')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The player can mold the famed Playboy Mansion to their own needs and wants, and has the option of experiencing the infamous Playboy Playmate parties in locations such as the Grotto and the Clubhouse. Hef, as well as all other characters in the game, can build three types of relationships with other characters: casual, business, and romantic. Each month, the player has to print an issue of the magazine. To do that you need a cover shoot, a centerfold, an essay from a celebrity, interview with a celebrity, a pictorial about a subject and an article about a subject. The player must hire photographers and writers to create each issue. All the characters have interests, such as sports and music, and writers on those topics will produce higher-quality articles. In the game, the player is the photographer during photo shoots. The game contains many sexual references, including homosexual relationships.", :release_date => "2005-01-25", :title => "Playboy: The Mansion", :developer => "Ubisoft", :publisher => "Ubisoft", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5362-1.jpg')
+#	genre = Genre.find_by_title("Construction and Management Simulation")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Ar tonelico: Melody of Elemia", :original_release_date => '2007-02-06')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The story of Ar tonelico: Melody of Elemia takes place in the world of Sol Ciel, a world consisting of two floating islands connected by the Tower of Ar tonelico. Long ago people had built up a great civilization under the guidance of the goddesses the Trio of Elemia, but over the years things have changed; there were two disasters that have lead towards the destruction of the world. In the first disaster most of the lands and skies were lost, in the second the super civilization was lost; now in the third era another disaster is beginning. Viruses born in the Altar of Apostles have begun to appear, though normally not in physical form have now taken on the form of monsters and could destroy the world. In the upper levels of the Tower is a city called Platina where the Knights of Elemia reside; their job is to control virus outbreaks to preserve the tower. One such knight is Lyner Barsett; the main character of the story, he will need to go on a quest to find the Hymn Crystal which can save the Tower of Ar tonelico and the whole world.", :release_date => "2007-02-06", :title => "Ar tonelico: Melody of Elemia", :developer => "Gust", :publisher => "NIS", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5889-1.jpg')
+#	genre = Genre.find_by_title("RPG")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Atelier Iris: Eternal Mana", :original_release_date => '2005-06-28')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "In the land of Regallzine, there is a special guild of alchemists - people who possess magic powers they draw creatures called \"mana\". The alchemists are able to manipulate elements and to fuse magical items. One of such alchemists suddenly got the idea of resurrecting an ancient god, claiming it will bring peace and happiness to humanity. To stop the madman, another alchemist, a young man named Klein, enters the scene. Klein is a particularly skillful magic user and has his way with mana, so with the help of his powers he hopes to stop the planned resurrection and to save the world.
+#
+#The gameplay features traditional turn-based battles against randomly encountered enemies and a role-playing system based on the spiritual mana creatures. The characters use mana to create magical items and also equip it to learn special abilities and to gain bonuses when leveling up. Some mana creatures must be given gifts in order to obey you and to become more powerful. Mana-equipping can also grant you physical abilities which you can use to solve puzzles in dungeons.", :release_date => "2005-06-28", :title => "Atelier Iris: Eternal Mana", :developer => "Gust", :publisher => "NIS", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5890-1.jpg')
+#	genre = Genre.find_by_title("RPG")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "A-Train 6", :original_release_date => '2004-03-19')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "In A Train 6 your goal as a the head of a major transport company is to build up an effective railway network.
+#
+#You will gain the main amount of your income by transporting passengers and cargo. It is also possible to earn money by buying and selling land, housing planning and developing the local industry. It is crucial to keep optimizing the schedules, in order to improve the cost-effectiveness of your transport network.
+#
+#The game is completely in 3D and offers 40 trains, each with its individual advantages and disadvantages, such as speed, capacity and costs per mile. The game features a total amount of 80 buildings and allows you to play in 6 different scenarios, all of which include unique tasks and possibilities.", :release_date => "2004-03-19", :title => "A-Train 6", :developer => "Artdink Corporation", :publisher => "Artdink Corporation", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5891-1.jpg')
+#	genre = Genre.find_by_title("Construction and Management Simulation")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "ATV Offroad Fury", :original_release_date => '2001-02-05')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Off-road racing game where you can choose from among 12 ATV models from manufacturers like Honda, Yamaha, and Kawasaki. You can even customize your rider's apparel and your ATV's specs before you enter into 6 event types spanning more than 20 tracks", :release_date => "2001-02-05", :title => "ATV Offroad Fury", :developer => "Rainbow Studios, Inc.", :publisher => "Sony", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5892-1.jpg')
+#	genre = Genre.find_by_title("Racing")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "ATV Offroad Fury 3", :original_release_date => '2004-11-02')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "ATV Offroad Fury 3 features competitive off-road circuit racing gameplay, as well as freestyle-trick based gameplay. Games can be played single player, or local multiplayer with up to four players split-screen. Online play is also fully supported with additional features such as a bulletin board feature and friends lists.
+#
+#The core career mode centers around the player entering racing and freestyle championships. New tracks, vehicles and outfits can be unlocked along the way.", :release_date => "2004-11-02", :title => "ATV Offroad Fury 3", :developer => "Climax Racing", :publisher => "Sony", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5893-1.jpg')
+#	genre = Genre.find_by_title("Racing")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Backyard Baseball", :original_release_date => '2002-05-30')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Build the championship baseball team of your dreams and play with the Pros in your own backyard. Create the lineup, take the field and direct all of the action. Earn new pitching and batting power-ups to light up the scoreboard! The Backyard Baseball’ game includes kid versions of hard-hitting, base-stealing, tough-fielding players including Barry Bonds, Randy Johnson, Mike Piazza and Ichiro.", :release_date => "2002-05-30", :title => "Backyard Baseball", :developer => "Humongous Entertainment, Inc.", :publisher => "Atari", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5895-1.jpg')
+#	genre = Genre.find_by_title("Sports")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Tekken 5", :original_release_date => '2005-06-24')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Loved across the world for its amazing characters, explosive graphics and lightning-fast gameplay, Tekken 5 promises to deliver the next generation of blistered fingers and bleary eyes as it brings players the ultimate, most visually stunning fighting experience ever seen in a Tekken game.
+#Tekken 5 brings back the popular cast of characters from the previous games along with three new characters for a total of 20 default characters to start, with even more to unlock as you progress in the game. The game allows players to use fight money to customize their character with various accessories such as hats, glasses and an assortment of different costumes. Each of the new characters is equipped with a variety of deadly techniques, and the returning characters have been updated with new moves and combos. New to Tekken 5 is a bonus action adventure game that unfolds a side story to the action-packed fighting sequences.
+#After the completion of The King of Iron Fist Tournament 4, a fierce battle between father and son unfolded at Mishima Zaibatsu headquarters. Jin emerges as the victor in this battle and continues to defeat Heihachi, his grandfather - but spares both Kazuya and Heihachi's lives in honour of his mother who loved peace. Soon after Jin's departure, a swarm of Jacks arrive at Honmaru and begin to attack Heihachi and Kazuya - and in order to escape, Kazuya thrusts Heihachi into the swarm of Jacks. A great explosion destroys Honmaru, and a man watching from afar reports, \"Heihachi Mishima is dead.\" While many presume the death of Heihachi Mishima will end the reign of Mishima Zaibatsu, an announcement is made for the fifth King of Iron Fist Tournament, with an unknown replacement to Heihachi leading the organization. The fight begins once again.", :release_date => "2005-06-24", :title => "Tekken 5", :developer => "Namco", :publisher => "Namco", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3753-2.jpg')
+#	genre = Genre.find_by_title("Fighting")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "SSX 3", :original_release_date => '2003-10-31')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Players can discover the open mountain in the newest version of the smash-hit SSX snowboarding franchise.
+#
+#SSX 3 allows gamers to go anywhere gravity will take them. Players will discover a colossal mountain where they can immerse themselves in a free-roaming snow paradise. The ultimate all-mountain experience, SSX 3 features all-new events and courses, awe-inspiring tricks and a cast of cool, customisable characters. Discover the open terrain, explore its hidden crevices, and conquer its peaks.
+#
+#Produced under the EA SPORTS BIG brand, the SSX 3 development team at EA Canada is adding technologies that bring to life rich natural graphics such as snow that sparkles and blows in the wind and realistic character shadowing. A new gameplay experience allows users to seamlessly ride from one awesome area to the next- entering competitions, taking on Big Challenges and discovering hidden collectibles. SSX 3 has blown out the trick component with unlimited combos and new, over-the-top tricks.
+#
+#In addition to the new boarding venues, Big Challenges rewards players for completing any of the more than 100 unique challenges as they explore the mountain's vast world. Grind billboards, board press logs, even hand plant the fence line.
+#
+#The musical soundtrack features a broad range of music from artists including the X-Ecutioners, Felix Da Housecat, Queens of the Stone Age, N.E.R.D., and many more.", :release_date => "2003-10-31", :title => "SSX 3", :developer => "Electronic Arts", :publisher => "EA Canada", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3760-2.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Adventure")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Racing")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Sports")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Tekken Tag Tournament", :original_release_date => '2000-11-24')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Forget the fancy full-motion video intros of the past. The cutting-edge gameplay that is promised in the extended intros of fighting games is finally realised in Tekken Tag Tournament This visually stunning action game contains fully rendered 3-D characters who can execute smoothly animated martial-arts moves. With polygonal characters and texture maps this real, you will end up looking for the coin slot on your PS2.
+#
+#With more than 30 characters to fight against or beside, this game allows you to pull off the ultimate human combo: tag-team fighting. By choosing two fighters who have broadly divergent skills, you can increase your threat to the other fighters greatly. Also, switching out fighters can give an overextended partner enough time to rest up his or her stamina for the next tag. See what happens when one partner throws a foe, tags, and the other partner comes in to keep the foe... uh... airborne. Tekken Tag Tournament contains 20 classic characters from other parts of the acclaimed Tekken series, as well as 12 new characters who can be unlocked during gameplay.", :release_date => "2000-11-24", :title => "Tekken Tag Tournament", :developer => "Namco", :publisher => "Namco", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3770-2.jpg')
+#	genre = Genre.find_by_title("Fighting")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Tom Clancy's Splinter Cell: Pandora Tomorrow", :original_release_date => '2004-03-23')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Pandora Tomorrow takes place in Indonesia during the spring of 2006, in which the United States has established a military presence in the newly independent country of East Timor to train that country's military forces in their fight against anti-separatist Indonesian guerrilla militias. Foremost among these Indonesian militias is the Darah Dan Doa (Blood and Prayer), led by Suhadi Sadono.", :release_date => "2004-03-23", :title => "Tom Clancy's Splinter Cell: Pandora Tomorrow", :developer => "Ubisoft", :publisher => "Ubisoft", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/4196-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Metal Saga", :original_release_date => '2006-04-25')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "A follow-up to the Metal Max games, Metal Saga is set in the same post-apocalyptic world as its predecessors - a world populated by bounty hunters, rangers, bandits, and mutant monsters. You take the role of a bounty hunter who has to travel the world, looking for \"wanted\" people. Accompanied by a soldier, a mechanic, and a cyborg dog, the hero must survive a journey west that will ultimately take him to remote places and lead him to battles against evil.
+#
+#Metal Saga has a less linear story line that one would normally expect from a Japanese RPG - a story line that develops according to the missions you decide to take, which in their turn lead to new events and finally to different endings. The combat system features traditional party management and turn-based battles, with the addition of Metal Max's trademark tank combat. When you acquire tanks for your characters, you can use them in battles. Tanks get damaged and broken, but you will be able to customize them by finding parts scattered across the world and assembling them to build new models. Based on the model of tank many different kinds of weapons, cannons, and accessories can be equipped to it, making for hundreds of different options. Tanks can even be given a custom paint job that is saved to the memory card.", :release_date => "2006-04-25", :title => "Metal Saga", :developer => "Crea-Tech", :publisher => "Atlus", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5375-1.jpg')
+#	genre = Genre.find_by_title("RPG")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Red Dead Revolver", :original_release_date => '2005-05-03')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Learn the ways of the Wild West as a bounty hunter seeking vengeance. Red Dead Revolver tells the story of Red, a man on a mission to kill General Diego--the rogue Mexican general who murdered Red's family for gold. As Red, you'll have a variety of weapons to choose from, including pistols, rifles, shotguns, and dynamite. Dusty towns, windswept prairies, rugged saloons--the game integrates all of the elements of a classic Western movie.", :release_date => "2005-05-03", :title => "Red Dead Revolver", :developer => "Rockstar San Dego", :publisher => "Rockstar Games", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5376-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Shooter")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Resident Evil 4", :original_release_date => '2005-10-25')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Picking up six years after Resident Evil 2, the fourth game in the series follows former cop (now US agent) Leon S. Kennedy to Europe on a top secret mission to investigate the disappearance of the president's daughter Ashley. As Leon encounters unimaginable horrors, he must find out who or what is behind everything. Old friends...and enemies...lurk around every corner as Leon attempts to find out who is truly behind the kidnapping of the president's daughter.
+#
+#Resident Evil 4 is a major change from the previous installments. Instead of a fixed third person perspective, the game features a new \"behind the back\" movement camera angle and an \"over the shoulder\" aiming feature that allows players to control their gun movement for specific body part hits. It features a brand new AI system and more open environments that allow enemies to work together to capture and corner Leon. Enemies are now humans, which allows them to climb up ladders, open doors, and use weapons throughout the game.", :release_date => "2005-10-25", :title => "Resident Evil 4", :developer => "Capcom", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3928-1.jpg')
+#	genre = Genre.find_by_title("Horror")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Shooter")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Gran Turismo 4", :original_release_date => '2005-02-22')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "GT4 continues in its predecessors' footsteps by offering an extremely large list of cars; the PAL version features 721 cars from 80 manufacturers. 
+#
+#Players now accumulate points by winning races in the normal first-person driving mode, called A-Spec mode. Each race event can yield up to a maximum of 200 A-Spec points. Generally, a win using a car with less of an advantage over the AI opponents is worth more points. Points can only be won once, so to win further points from a previously-won event, it must be re-won using a car with less of an advantage over the AI. There are also the 34 Missions which can yield 250 points each. Despite this, A-Spec points are experience points, not money.", :release_date => "2005-02-22", :title => "Gran Turismo 4", :developer => "Polyphony Digital", :publisher => "Sony", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3929-1.jpg')
+#	genre = Genre.find_by_title("Racing")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Grand Theft Auto: San Andreas", :original_release_date => '2004-10-26')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Grand Theft Auto: San Andreas takes place within the state San Andreas, which is based on sections of California and Nevada. It comprises three major fictional cities: Los Santos corresponds to real-life Los Angeles; San Fierro corresponds to real-life San Francisco; and Las Venturas and the surrounding desert correspond to real-life Las Vegas and the Nevada and Arizona desert.", :release_date => "2004-10-26", :title => "Grand Theft Auto: San Andreas", :developer => "Rockstar", :publisher => "Rockstar", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3930-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Sandbox")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Knockout Kings 2001", :original_release_date => '2000-10-20')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Fight as your favorite boxers including Sugar Ray Lewis, Muhammad Ali, Lennox Lewis, Oscar De La Hoya and plenty more past winners and current champions. There's also plenty of things to do, including a straight up arcade game (so you can beat your mates to the punch!) and a career mode, where you can take your chosen player from the rookie list to the world stage, all in one day.", :release_date => "2000-10-20", :title => "Knockout Kings 2001", :developer => "EA", :publisher => "EA", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/8716-1.jpg')
+#	genre = Genre.find_by_title("Fighting")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Sports")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "XIII", :original_release_date => '2003-11-18')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The president of the United States of America has been assassinated and you are the prime suspect. In XIII, you must unravel a conspiracy that left your memory erased, the President dead, and a bullet wound in your head. Evade assailants eager to end your life or use them as human shields. Select from a deadly arsenal of weapons including silent crossbows, furious automatic weapons, and ashtrays. Face off against other players in multiplayer modes such as Barfight or go co-op in Cover Me mode. Uncover both your shadowy past and America's darkest corridors of power.", :release_date => "2003-11-18", :title => "XIII", :developer => "Ubisoft", :publisher => "Ubisoft", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/4214-2.jpg')
+#	genre = Genre.find_by_title("Shooter")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Need for Speed: Carbon", :original_release_date => '2006-10-31')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The gameplay is based upon rival street racing crews. Players run a crew and can hire specific street racers to be in their crew and the active friendly racer is known as a wingman. Each hirable street racer has two skills, one which is a racing skill (scout, blocker, and drafter) and a non-race skill (fixer, mechanic, and fabricator). Each skill has different properties from finding hidden alleys/back streets (shortcuts) to reducing police attention. Cars driven by the wingmen are also different; blockers drive muscles, drafters drive exotics and scouts drive tuners (although the first two unlockable wingmen (Neville and Sal) drive cars according to the player's chosen car class at the start of the game). In career mode, players have to race tracks and win to conquer territories and face off against bosses to conquer districts.", :release_date => "2006-10-31", :title => "Need for Speed: Carbon", :developer => "EA", :publisher => "Electronic Arts", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/4207-1.jpg')
+#	genre = Genre.find_by_title("Racing")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Metal Gear Solid 2: Sons Of Liberty", :original_release_date => '2001-11-13')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "A stealth action video game directed by Hideo Kojima, developed by Konami Computer Entertainment Japan and published by Konami for the PlayStation 2 in 2001. It is the sixth canonical game in the Metal Gear series and the sequel to Metal Gear Solid. The story revolves around a massive offshore clean-up facility that has been seized by terrorists calling themselves the \"Sons of Liberty.\" They demand a massive ransom in exchange for the life of the President of the United States, and threaten to destroy the facility and create a cataclysmic environmental disaster if their demands are not met. The motives and identities of many of the antagonists and allies change rapidly, as the heroes discover a world-shaking conspiracy constructed by a powerful organization known as the Patriots.", :release_date => "2001-11-13", :title => "Metal Gear Solid 2: Sons Of Liberty", :developer => "Konami", :publisher => "Konami", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3854-2.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Adventure")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Stealth")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "TimeSplitters 2", :original_release_date => '2002-10-18')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "In TimeSplitters 2 the evil race of TimeSplitters are travelling back into human history, authoring events that are leading to the enslavement of mankind. Controlling a motley crew of renegade characters, you must hunt them down across environments such as the gangster-filled 1920s, the temples and lush jungles of the Aztecs, Soviet military installations of the Cold War and futuristic robot-factories in space.
+#
+#TimeSplitters 2 delivers involved single-player and cooperative story modes; it has a complex narrative, multiple objective-based episodes and animated cut-scenes. The game engine has been extensively upgraded to accommodate bigger environments and special graphic effects, and the MapMaker has been enhanced, giving more options to the advanced gamer looking for customisable game scenarios.", :release_date => "2002-10-18", :title => "TimeSplitters 2", :developer => "Free Radical", :publisher => "Eidos Interactive", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3878-2.jpg')
+#	genre = Genre.find_by_title("Shooter")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Castlevania: Curse of Darkness", :original_release_date => '2005-11-05')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Curse of Darkness is set in the year 1479, three years after the events of Castlevania III: Dracula's Curse. Though defeated by vampire hunter Trevor Belmont, Dracula's curse continues to ravage the European countryside, spreading disease, mob violence, and heresy in its wake. Amidst all this devastation is Hector, a Devil Forgemaster who had formerly worked under the employ of Dracula but betrayed him sometime during the events of Castlevania III. Eventually growing disgusted with Dracula's brutal methods, Hector leaves Castlevania and relinquishes his powers to live amongst humans, settling down to live a peaceful life. When Hector's fiance Rosaly is accused of witchcraft and burned at the stake, Hector learns that her murder was directed by his fellow Forgemaster, Isaac. Seeking revenge, Hector chases his former colleague back to his old home, and back to the demonic life he believed he had left behind him.", :release_date => "2005-11-05", :title => "Castlevania: Curse of Darkness", :developer => "Konami", :publisher => "Konami", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5922-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Adventure")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Champions of Norrath", :original_release_date => '2004-02-10')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Champions of Norrath is a third-person dungeon crawler based on the EverQuest universe. There are five character classes to choose from (Barbarian Warrior, Wood Elf Ranger, High Elf Cleric, Dark Elf Shadow Knight, Erudite Wizard), each may be male or female. The game spans five acts that cover various randomly-generated locations across the world of Norrath.
+#
+#Up to four people may play on a single console offline using a multitap, and up to four people online - one per console - via a broadband connection using the Sony Network Adapter.", :release_date => "2004-02-10", :title => "Champions of Norrath", :developer => "Snowblind Studios", :publisher => "Sony", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5923-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("RPG")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Champions: Return to Arms", :original_release_date => '2005-02-07')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The sequel to Champions of Norrath, Champions: Return to Arms is an action RPG that puts players in the EverQuest universe. The evil Innoruuk was destroyed and his remains (shards) have been scattered throughout the Planes of Power. The player must find the shards and choose between good or evil: Destroy them to rid of Innoruuk or collect them to restore him.
+#
+#The game has seven playable races (two new ones from the original) and more online features. Players can import characters from the first game. It can be played single-player or with up to four players (online or with multitap).", :release_date => "2005-02-07", :title => "Champions: Return to Arms", :developer => "Snowblind Studios", :publisher => "Sony", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/5924-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("RPG")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Devil May Cry 2", :original_release_date => '2003-03-28')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "In Devil May Cry 2, the player guides either Dante or Lucia through an urban environment, fighting groups of demons in fast-paced combat. The game itself consists of missions with specific goals in the play area of the game itself. The player's performance in each mission is ranked from D (poor/Don't Worry) to S (excellent/Showtime) based on the time taken to complete the mission, the amount of Red Orbs collected, the overall \"style\" displayed during fights, item usage, and damage taken.", :release_date => "2003-03-28", :title => "Devil May Cry 2", :developer => "Capcom", :publisher => "Capcom", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3900-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Ace Combat 5: The Unsung War", :original_release_date => '2004-10-25')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Ace Combat 5: The Unsung War is a first person air combat and flight simulator. Like other Ace Combat games, each mission is determined by a level briefing and objectives. There are 32 missions in the main campaign mode, while an additional \"arcade\" mode puts the player in the role of Mobius One (from Ace Combat 04: Shattered Skies) as he faces endless waves of enemy attacks. Regardless of the mode chosen, once in the air the player will have control over speed, direction, altitude, gun cannon, missiles and special weapon of their aircraft. A new feature from previous Ace Combat games, is the concept of Wingmen and being able to issue simple orders to them in the air. This allows the player to better coordinated group attacks as well as giving each wingman a personality of their own. Additionally, the player as squadron leader will be asked to make decisions (\"Yes/No\") while flying in the air. Between missions, the story is progressed through a series of cutscenes.", :release_date => "2004-10-25", :title => "Ace Combat 5: The Unsung War", :developer => "Namco", :publisher => "Namco", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3912-1.jpg')
+#	genre = Genre.find_by_title("Simulation")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Yakuza 2", :original_release_date => '2008-09-09')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "One year has passed since Kazuma Kiryu, \"yakuza with the heart of gold\", defeated his biggest adversary in the previous game. Despite this victory, Kazuma has lost more than he had ever imagined. 
+#
+#But events from the past continue to haunt him. A man he had admired so much, who was like a father to him, has revealed a terrible secret before he died. It's time for Kazuma to solve the mystery once and for all. Caught in the eternal fight between Kantou and Kansai, the Eastern and the Western organized crime groups of Japan, he soon realizes that there are other powers on the stage, including a mysterious Korean organization that seems to be connected somehow to his past.
+#
+#The sequel to Yakuza continues the story from the previous game, featuring many recurrent characters. The main gameplay idea also remains the same - on-foot exploration of urban environments, hand-to-hand fighting, and role-playing elements, somewhat similar to the kind of gameplay that was introduced in Shenmue games. The sequel features some technical improvements, such as the ability to rotate the camera during the fights. It also contains more side missions and mini-games, ranging from playing pool and mahjong to running a club and dating women.", :release_date => "2008-09-09", :title => "Yakuza 2", :developer => "Amusement Vision, Ltd.", :publisher => "SEGA", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3921-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("RPG")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Bully", :original_release_date => '2006-10-17')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Bully is a subtle sandbox game set in a school environment. The player takes control of teenage rebel James \"Jimmy\" Hopkins, who from the opening cutscene is revealed to be a difficult student with a disruptive background. The game concerns the events that follow Jimmy being dropped off at Bullworth Academy, a fictional New England boarding school. The player is free to explore the school campus in the beginning and, later on in the game, the town, or to complete the main missions. The game makes extensive use of minigames. Some are used to earn money, others to improve Jimmy's abilities or get new items.
+#
+#School classes themselves are done in the form of minigames, broken into five levels of increasing difficulty. Each completed class brings a benefit to gameplay. English, as an example, is a word scramble minigame, and as Jimmy does well in this minigame, he learns various language-skills, such as the ability to apologize to police for small crimes. Chemistry also an example, is a button pushing minigame, and if Jimmy does well, he gains the ability to create firecrackers, stink bombs, and other items at his chemistry set in his room at the dorm.", :release_date => "2006-10-17", :title => "Bully", :developer => "Rockstar", :publisher => "Rockstar", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3931-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Metal Slug Anthology", :original_release_date => '2007-03-27')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Metal Slug 1-6 and X are included in the release, and the games have not been altered in any way. This is the same with the characters and abilities, which have all been kept the same.
+#
+#The games themselves are done via emulation of the Neo Geo AES versions, except for Metal Slug 6, which is a port of the arcade version.", :release_date => "2007-03-27", :title => "Metal Slug Anthology", :developer => "Terminal Reality", :publisher => "SNK Playmore", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3932-2.jpg')
+#	genre = Genre.find_by_title("Shooter")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Metal Slug 5", :original_release_date => '2006-03-31')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "A special disc that contains deep and intricate secrets about the Metal Slug project is stolen by a mysterious group called the Ptolemaic Army, whose specialty lies from within archaeological excavation and espionage. Marco and Tarma of the Peregrine Falcon Strike Force follow in hot pursuit against the group and in the process are joined by Eri and Fio of SPARROWS. Together once more, the quartet investigate the shrouded objective of the Ptolemaic Army.", :release_date => "2006-03-31", :title => "Metal Slug 5", :developer => "Ignition", :publisher => "SNK", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3933-2.jpg')
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Fight Night Round 3", :original_release_date => '2006-02-20')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "EA Sports' Fight Night Round 3 from EA Chicago lets you make your own fighter, train them up, and literally take on the world. 
+#
+#Start by creating your own champ and customizing how they look, what equipment they have, their fighting style, their weight class, their signature move, and even their own illegal hit. Get equipment and trainers for your fighter to enhance his look and performance.
+#
+#Then take your fighter to career mode where you'll play fight your way up from the local gym all the way up to five-star venues. Get trainers to enhance your training and boost your speed and power. Play against randomly generated fighters all the way up through the ranks till you beat them in points or to a pulp. Certain fights may get you a bit of extra money as an incentive, or give you a promotional deal, but pick your fights carefully because strategy inside the ring won't matter if you mismanage your fisher outside.
+#
+#Fight smart during the fight by using the total punch control system to throw the punches you want to by using the analog stick. The total punch control system maps your fists to the analog stick getting rid of the need for senseless button mashing.
+#
+#You can also play in historical fights like Taylor vs. Hopkins, Gatti vs. Ward, or Robinson vs. Lamotta in the ESPN Classic mode to play in the fights that made boxing history.
+#
+#Once you've got the computer down for the count, you can play with any fighter or user created fighters or any of the ESPN Classic fights in local multiplayer with a friend. You can also take the fight online and prove your the real champion of the world against any opponent anytime, anywhere.", :release_date => "2006-02-20", :title => "Fight Night Round 3", :developer => "EA", :publisher => "EA", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3936-2.jpg')
+#	genre = Genre.find_by_title("Fighting")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Half-Life", :original_release_date => '2001-11-13')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "In Half-Life, players assume the role of Dr Gordon Freeman, a recently graduated theoretical physicist who must fight his way out of a secret underground research facility, whose research and experiments into teleportation technology have gone disastrously wrong.", :release_date => "2001-11-13", :title => "Half-Life", :developer => "Gearbox/Valve", :publisher => "Sierra", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3937-1.jpg')
+#	genre = Genre.find_by_title("Shooter")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Sega Genesis Collection", :original_release_date => '2006-11-16')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "For those that had a SEGA Genesis you can now put it away as 28 games are re-released in this compilation to relive your yester-years. For those that never had a SEGA Genesis and didn't play some of the classics on it, well here's your chance to play and be up-to-speed on your game history.
+#
+#Games included are:
+#•Alex Kidd in the Enchanted Castle
+#•Altered Beast
+#•Bonanza Bros.
+#•Columns
+#•Comix Zone
+#•Decapattack
+#•Ecco the Dolphin
+#•Ecco: The Tides of Time
+#•Ecco Jr.
+#•Flicky
+#•Gain Ground
+#•Golden Axe
+#•Golden Axe II
+#•Golden Axe III
+#•Kid Chameleon
+#•Phantasy Star II
+#•Phantasy Star III: Generations of Doom
+#•Phantasy Star IV: The End of the Millennium
+#•Ristar
+#•Shadow Dancer: The Secret of Shinobi
+#•Shinobi III : Return of the Ninja Master
+#•Sonic the Hedgehog
+#•Sonic the Hedgehog 2
+#•Super Thunder Blade
+#•Sword of Vermilion
+#•Vectorman
+#•Vectorman 2
+#•Virtua Fighter 2", :release_date => "2006-11-16", :title => "Sega Genesis Collection", :developer => "Digital Eclipse Software", :publisher => "SEGA", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3938-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Zone of the Enders: The 2nd Runner", :original_release_date => '2003-02-13')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The game begins with Dingo Egret, the protagonist, working at a mining facility on Callisto. He inadvertently discovers the Orbital Frame, Jehuty, that was hidden there by Leo. When he is attacked by BAHRAM forces who have come to seize it, Dingo climbs into Jehuty and engages the attackers. During the battle, Dingo enters the BAHRAM battleship, seemingly defeating Nephtis, an Orbital Frame controlled by an A.I. program based on Viola's fighting style, but is subdued by Anubis, Jehuty's superior counterpart controlled by Col. Ridley (Nohman) Hardiman, leader of BAHRAM.
+#
+#As a prisoner, Dingo is assaulted by Ken Marinaris, a female Orbital Frame runner that Dingo defeated in the previous battle. Nohman arrives moments later and asks Dingo to join him. When Dingo refuses, Nohman shoots him, ordering Ken to dispose of the body. Instead, Ken has Dingo revived and placed inside Jehuty. When he comes to, she explains that Jehuty is acting as a life-support system, and if he leaves Jehuty, he will die. She then tells him that she is a UNSF spy. Dingo escapes with Taper and heads for Mars.", :release_date => "2003-02-13", :title => "Zone of the Enders: The 2nd Runner", :developer => "Konami", :publisher => "Konami", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3939-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Ratchet & Clank 3", :original_release_date => '2004-11-17')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "After word spreads of Ratchet and Clank's recent conquest in Ratchet & Clank: Going Commando, Clank finds himself recognized as an interstellar robot of mystery and intrigue after starring in his own television series, Secret Agent Clank. While Ratchet is dismayed by his new sidekick status, the feelings are put aside when the twosome is called together by the Galactic President to bring peace to the universe. They find themselves traveling back to Planet Veldin to battle Dr. Nefarious, a robotic super villain who has devised a diabolical scheme to wipe out all organic life in the galaxy.", :release_date => "2004-11-17", :title => "Ratchet & Clank 3", :developer => "Insomniac Games", :publisher => "Sony", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3940-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Tomb Raider Anniversary", :original_release_date => '2007-06-05')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Lara Croft Tomb Raider: Anniversary is a remake of the original Tomb Raider. The remake has the same basic storyline, locations, and core gameplay; however, it has a technically more advanced graphics engine and adds several new features that were introduced in Lara Croft Tomb Raider: Legend. Lara has many new moves, such as swinging on ropes, bullet time when an animal rushes towards her, and the addition of a grappling hook in her inventory (which resembles the one from the original game). Jumping is also a lot easier, as the heroine automatically grabs the ledges without requiring pixel-precise timing. There are also completely new moves, where Lara balances and jumps on small sticks.
+#
+#The cutscenes are identical, but rendered in real-time using the new engine. Some are also action-based, like in the previous games, requiring quick reflexes to keep the action going. The environments and puzzles have been somewhat changed to fit the new gameplay, and the voice recording was also redone.", :release_date => "2007-06-05", :title => "Tomb Raider Anniversary", :developer => "Crystal Dynamics", :publisher => "Eidos", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3941-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Adventure")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Black", :original_release_date => '2006-02-28')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Black takes place in Chechnya (Southern Russia). The protagonist is a black ops soldier named Sergeant First Class Jack Kellar (portrayed by Marty Papazian). Kellar tells most of the story in first-person at an interrogation four days after the events in the story begin.
+#
+#Kellar is an inadequately disciplined member of a CIA black ops group and a veteran of several conflicts including Guatemala, Colombia, Iran and Croatia. The unknown interrogator (portrayed by Paul Pape) questions Kellar about an arms smuggling and terrorist operation called the Seventh Wave. Seventh Wave have been responsible for a number of terrorist attacks. Kellar is told that, unless he co-operates, he and his actions will be declassified, he will be dishonorably discharged and imprisoned for life. Though initially resistant, Kellar at last agrees to tell his story.", :release_date => "2006-02-28", :title => "Black", :developer => "Electronic Arts", :publisher => "Electronic Arts", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3942-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Shooter")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Tom Clancy's Splinter Cell", :original_release_date => '2002-11-17')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Set in the fall of 2004, the player takes on the role of Sam Fisher, a long-dormant secret agent called back to duty by the American National Security Agency, to work with a secret division dubbed \"Third Echelon\". At this point, Fisher hasn't \"been in the field in years\". Fisher must investigate the disappearance of two CIA agents in the country of Georgia, which soon leads to a larger mission: saving the world from war with Georgia.", :release_date => "2002-11-17", :title => "Tom Clancy's Splinter Cell", :developer => "Ubisoft", :publisher => "Ubisoft", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3981-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Commandos 2: Men of Courage", :original_release_date => '2001-09-20')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The game places the player in command of a squad of commandos and various allies as he sneaks behind enemy lines to accomplish his objectives. The action stretches from 1941 to 1945 and takes place on both the Western Front against the Germans and the Pacific theatre against the Japanese.", :release_date => "2001-09-20", :title => "Commandos 2: Men of Courage", :developer => "Pyro Studios", :publisher => "Eidos", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/3995-1.jpg')
+#	genre = Genre.find_by_title("Strategy")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Altered Beast", :original_release_date => '2005-01-27')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The story follows a man called Luke Custer who is a \"Genome-Cyborg\", which in the game is a human that has had his DNA and other genetic make-up altered so that he can (after acquiring the chip containing the right genes for each creature) transform into a mythical beast. 
+#The main creatures he transforms into are a Werewolf, a Merman, a Garuda, a Wendigo, a Fire Minotaur, and a Thunder Dragon. 
+#Its storyline differs from the original Altered Beast games where during the game, you gain a serum that allows you to change at will. There are a number of difficult boss challenges and puzzles within the game, plus some extra characters to transform into including a White Tiger Man, a Grizzly Bear, and the alien-cloned U.W.H. (Unidentified Weightless Human) for those who finish the game.", :release_date => "2005-01-27", :title => "Altered Beast", :developer => "Sega", :publisher => "Sega", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/4007-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Batman Begins", :original_release_date => '2005-06-14')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "In this adaptation of the film of the same name, the origins of the Batman legend are explored. Playing as both Bruce Wayne and his alter-ego, Batman, you will need to hunt evil forces in familiar locations such as Arkham asylum, Gotham City, but also in the Himalaya. Using both stealth and brutal skills, you take on enemies in true beat-em-up style. Batman has a vast array of moves, from kicks and punches to more exotic special moves. Multiple enemies can be attacked at once, and there are tricks to break through enemies' defenses. Also, certain attacks can only be used as a finishing move when opponents are weakened.
+#
+#Next to the melee combat, Batman carries his Bat Utility Belt with a Batgrapple to reach higher areas, the Batarang and gadgets such as smoke and flash grenades, a lockpick, camera hacker and an optical wire to peek from behind corners.", :release_date => "2005-06-14", :title => "Batman Begins", :developer => "Eurocom Developments Ltd", :publisher => "EA", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/4157-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	genre = Genre.find_by_title("Racing")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Burnout 3 Takedown", :original_release_date => '2004-09-07')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "Burnout 3: Takedown is a racing game which encourages aggressive driving and lets you use your vehicle to smash your way to the finish line by taking out your rivals and causing massive multi-car pileups. The more cars you take out, damage you inflict, the more events and cars you can unlock. Burnout 3 also has a \"crash\" mode which puts your vehicle at a variety of traffic junctions jam-packed with moving vehicles and pickups to see just how much monetary damage you can inflict.
+#
+#Burnout 3: Takedown continues the racing series with more cars, more tracks, a more detailed crash engine, and a multitude of new gameplay modes for single players, multiple players on one system, and online play.", :release_date => "2004-09-07", :title => "Burnout 3 Takedown", :developer => "Criterion Studios", :publisher => "Electronic Arts", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/4158-1.jpg')
+#	genre = Genre.find_by_title("Racing")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Colin McRae Rally 3", :original_release_date => '2003-04-22')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "You are given 3 seasons to win the world rally championship, racing the Ford Focus RS RWC. In each season there are 8 competitions, staged in Australia, the USA, England, Sweden, Japan, Greece and Finland. Each competition has 6 stages set around different landscapes, and a special head-to-head stage at the end. You are out to beat the clock, and the time set by the opposing teams, on each occasion. Beat the time, win the stage, and you are once step closer to taking the world title.
+#
+#Along the way you can alter and modify the Focus' setup, from the wheels used, gearboxes, brakes, suspension and so forth. You can also test drive the car before any event to make sure the setup is to your liking.", :release_date => "2003-04-22", :title => "Colin McRae Rally 3", :developer => "Codemasters", :publisher => "Codemasters", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/4159-1.jpg')
+#	genre = Genre.find_by_title("Racing")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Dead or Alive 2", :original_release_date => '2000-03-30')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "A great leader was killed at the end of the 20th century. His name was Fame Douglas, and he was renowned as the sponsor of the legendary Dead or Alive World Combat Championship. Since his death, and in the absence of his charisma and leadership, the world has become chaotic. Yet something appears to be transpiring. Amid this chaos, it is announced that the \"Dead or Alive Championship 2\" will be held.", :release_date => "2000-03-30", :title => "Dead or Alive 2", :developer => "Team Ninja", :publisher => "Tecmo", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/4160-1.jpg')
+#	genre = Genre.find_by_title("Fighting")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Driv3r", :original_release_date => '2004-06-24')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "In the game you take the role of Tanner, the undercover cop from previous Driver games, as he infiltrates a worldwide high-performance car theft ring.
+#
+#Nothing is too dangerous or too risky for Tanner, and you'll be able to hop into any car, truck, or motorcycle and cruise the streets of three re-created cities with over 156 miles of roads, from Miami, Nice, and Istanbul in over 25 storyline missions. Meet up with characters from previous driver games, the story line lives on in this installment.", :release_date => "2004-06-24", :title => "Driv3r", :developer => "Reflections Interactive", :publisher => "Atari", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/4161-1.jpg')
+#	genre = Genre.find_by_title("Racing")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
+#	work = Work.create(:original_title => "Finding Nemo", :original_release_date => '2003-05-09')
+#	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "On his first day of school, Nemo disobeys his father and ventures away from the reef to touch the bottom of a boat. This enrages Marlin, and starts an argument in front of Nemo's classmates. To his father's horror, Nemo is captured by a scuba diver. Marlin tries to save Nemo but is blinded by the camera flash of another diver. The boat disappears into the distance.", :release_date => "2003-05-09", :title => "Finding Nemo", :developer => "Traveller's Tales", :publisher => "THQ", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/4162-1.jpg')
+#	genre = Genre.find_by_title("Action")
+#	if genre.present?
+#		edition.genres << genre
+#	end
+#	work = nil
+#	edition = nil
+#	genre = nil
 	work = Work.create(:original_title => "Tom Clancy's Ghost Recon", :original_release_date => '2002-12-01')
 	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "The year is 2008, and Russian rebels have taken over Moscow in an attempt to restore the old communist regime. You are in command of The Ghosts, an elite military team and the United States' first line of defense.
 
