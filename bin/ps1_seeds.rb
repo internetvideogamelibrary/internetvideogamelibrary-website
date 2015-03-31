@@ -1,7 +1,7 @@
 Chewy.strategy(:atomic) do
-#	media = Media.find_by_title("CD")
-#	region = Region.find_by_title("North America")
-#	platform = Platform.find_by_title("Sony PlayStation")
+	media = Media.find_by_title("CD")
+	region = Region.find_by_title("North America")
+	platform = Platform.find_by_title("Sony PlayStation")
 #	work = Work.create(:original_title => "007: Tomorrow Never Dies", :original_release_date => '1999-11-16')
 #	edition = Edition.create(:media_id => media.id, :region_id => region.id, :platform_id => platform.id, :work_id => work.id, :description => "In 007: Tomorrow Never Dies, which is based on the movie of the same name, the player takes the role of the famous James Bond who fights against Elliot Carver. Carver tries to increase his TV ratings by creating a war between the British and the Chinese. To achieve his goal he sunk a British ship with his stealth ship and made it look like the Chinese Air Force was the offender. Now it is Bond's responsibility to set things right...", :release_date => "1999-11-16", :title => "007: Tomorrow Never Dies", :developer => "Black Ops Entertainment", :publisher => "Electronic Arts", :coverart_remote_url => 'http://thegamesdb.net/banners/boxart/original/front/11555-1.jpg')
 #	genre = Genre.find_by_title("Action")
