@@ -9,9 +9,13 @@ class GamesController < ApplicationController
 	end
 
 	def index
-		@search = GamesSearch.new()
+		@search = GamesSearch.new(platform: params[:platform])
 		results = @search.all.only(:id)
 		@games = results.paginate(:page => params[:page]).load(edition: {scope: Edition.includes(:work)})
+		@platforms = []
+		Platform.joins(:edition).group("platforms.id").having("count(editions.id) > ?", 0).order(:priority, :id).each do |p|
+			@platforms << [p.display_title, p.id]
+		end
 	end
 
 	private
