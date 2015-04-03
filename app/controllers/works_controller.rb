@@ -2,10 +2,10 @@ class WorksController < ApplicationController
 	before_filter :work_exists,
 	:only => [:combine, :show, :split, :do_split]
 
-	before_filter :reviewer_only,
+	before_filter :authenticate_user!,
 	:only => [:combine, :do_combine, :split, :do_split]
 
-	before_filter :authenticate_user!,
+	before_filter :reviewer_only,
 	:only => [:combine, :do_combine, :split, :do_split]
 
 	before_filter :has_query,
