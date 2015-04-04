@@ -36,8 +36,12 @@ class WorksController < ApplicationController
 			@combine_works << @work
 			if @older_work.present? == false
 				@older_work = @work
-			elsif @older_work.original_release_date > @work.original_release_date or @older_work.id > @work.id
-				@older_work = @work
+			elsif @work.original_release_date.present?
+				if not @older_work.original_release_date.present? or
+					@older_work.original_release_date > @work.original_release_date or
+					(@older_work.original_release_date == @work.original_release_date and @older_work.id > @work.id)
+					@older_work = @work
+				end
 			end
 		end
 
@@ -52,7 +56,7 @@ class WorksController < ApplicationController
 		@older_work.slug = nil
 		@older_work.save()
 		flash[:success] = "Your editions were combined!"
-		redirect_to combine_work_path(@older_work)
+		redirect_to work_path(@older_work)
 	end
 	def split
 		@work = Work.friendly.find(params[:id])
