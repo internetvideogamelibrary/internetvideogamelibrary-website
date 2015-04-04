@@ -23,6 +23,7 @@ class Work < ActiveRecord::Base
 	def original_title_slug
 		[
 			:original_title,
+			[:original_title, ->{ original_release_date.strftime('%Y') if original_release_date.present? }],
 			[->{ editions.first.platform.display_title if editions.first }, :original_title],
 			[->{ editions.first.platform.display_title if editions.first }, ->{ editions.first.region.title if editions.first }, :original_title],
 			[:original_title, 2],
