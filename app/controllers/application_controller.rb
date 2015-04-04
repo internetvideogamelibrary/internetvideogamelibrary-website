@@ -11,8 +11,10 @@ class ApplicationController < ActionController::Base
 
 	def fill_platforms
 		@platforms = []
+		@platform_hash = { "" => "All" }
 		Platform.joins(:edition).group("platforms.id").having("count(editions.id) > ?", 0).order(:priority, :id).each do |p|
 			@platforms << [p.display_title, p.id]
+			@platform_hash[p.id.to_s] = p.display_title
 		end
 	end
 end

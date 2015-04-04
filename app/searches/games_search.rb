@@ -48,6 +48,30 @@ class GamesSearch
 
 	def query_string
 		if platform.present?
+			index.query(bool: {
+					must: [ {
+						match: {
+							platform_id: platform
+						}
+						},
+						{
+							multi_match: {
+								fields: [:title],# :author, :description],
+								query: query,
+								operator: "AND"
+							}
+						},
+						{
+							multi_match: {
+								fields: [:title],#, :author, :description],
+								query: query,
+								fuzziness: "AUTO",
+								operator: "AND"
+							}
+						}
+					]
+				}
+			) if query.present?
 		else
 			index.query(bool: {
 					should: [
