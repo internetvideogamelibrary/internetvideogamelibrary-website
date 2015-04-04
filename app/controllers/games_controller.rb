@@ -6,6 +6,9 @@ class GamesController < ApplicationController
 		results = @search.search.only(:id)
 		@games = results.paginate(:page => params[:page]).load(edition: {scope: Edition.includes(:work)})
 		@qty = @games.count
+		if @games.count == 1
+			redirect_to @games.to_a[0]
+		end
 	end
 
 	def index
