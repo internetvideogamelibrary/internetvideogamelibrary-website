@@ -17,7 +17,7 @@
 					<div class="radio col-md-1 text-center"><%= radio_button_tag 'editions['+e.id.to_s+']', 'keep', true %></div>
 					<div class="radio col-md-1 text-center"><%= radio_button_tag 'editions['+e.id.to_s+']', 'split' %></div>
 					<div class="col-md-10">
-						<%= e.title %> (<%= e.platform.title %>), released on <%= e.release_date.strftime('%d/%m/%Y') %> at <%= e.region.title %>
+						<%= e.title %> (<%= e.platform.title %>)<%- if e.release_date.present? %>, released on <%= e.release_date.strftime('%d/%m/%Y') %><% else %>, released<% end -%> at <%= e.region.title %>
 					</div>
 				</div>
 			<% end %>
