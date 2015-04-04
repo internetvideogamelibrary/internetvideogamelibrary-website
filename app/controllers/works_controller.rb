@@ -77,7 +77,30 @@ class WorksController < ApplicationController
 		end
 
 		if @split_editions.length > 0 && @keep_editions.length > 0 && (@split_editions.length+@keep_editions.length == @work.editions.length)
-			@split_work = Work.new(:original_title => @work.original_title, :original_release_date => @work.original_release_date)
+			@work.editions.each do |e|
+				if @split_editions.include? e.id
+					if e.release_date.present?
+						if not @older_split.present?
+							@older_split = e.release_date
+						elsif e.release_date < @older_split
+							@older_split = e.release_date
+						end
+					end
+				else
+					if e.release_date.present?
+						if not @older_keep.present?
+							@older_keep = e.release_date
+						elsif e.release_date < @older_keep
+							@older_keep = e.release_date
+						end
+					end
+				end
+			end
+			@work.original_release_date = @older_keep
+			@work.slug = nil
+			@work.save
+
+			@split_work = Work.new(:original_title => @work.original_title, :original_release_date => @older_split)
 			if @split_work.save
 				@work.editions.each do |e|
 					if @split_editions.include? e.id
