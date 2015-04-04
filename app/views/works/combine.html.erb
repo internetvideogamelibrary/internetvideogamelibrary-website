@@ -21,7 +21,7 @@
 		<div class="form-group">
 			<div class="checkbox">
 				<label>
-					<%= check_box_tag "work_ids[]", @work.id, false, :id => "work_id_#{@work.id}" %> <strong><%= @work.original_title %></strong> (<%=@work.original_release_date.strftime('%d/%m/%Y')%>)
+					<%= check_box_tag "work_ids[]", @work.id, false, :id => "work_id_#{@work.id}" %> <strong><%= @work.original_title %></strong><%- if @work.original_release_date.present? %>  (<%=@work.original_release_date.strftime('%d/%m/%Y') %>) <% end -%>
 				</label>
 				<% @work.editions.each do |e| %>
 					<div>
@@ -32,7 +32,7 @@
 			<% @same_work_data.each do |s| %>
 				<div class="checkbox">
 					<label>
-						<%= check_box_tag "work_ids[]", s.id, false, :id => "work_id_#{s.id}" %> <strong><%= s.original_title %></strong> (<%=s.original_release_date.strftime('%d/%m/%Y')%>)
+						<%= check_box_tag "work_ids[]", s.id, false, :id => "work_id_#{s.id}" %> <strong><%= s.original_title %></strong><%- if s.original_release_date.present? %> (<%=s.original_release_date.strftime('%d/%m/%Y')%>) <% end -%>
 					</label>
 					<% s.editions.each do |e| %>
 						<div>
