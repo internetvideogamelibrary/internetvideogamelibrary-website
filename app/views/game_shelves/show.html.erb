@@ -15,6 +15,16 @@
 			<% end %>
 		</div>
 		<div class="col-sm-9">
+			<div class="row bottom-buffer">
+				<div class="col-lg-6">
+					<%= form_tag user_game_shelf_path(@game_shelf.user, @game_shelf), :method => "get", :class => "form-inline" do %>
+						<div class="form-group">
+							<%= select_tag(:platform, options_for_select(@platforms, params[:platform]), :class=>"form-control") %>
+						</div>
+						<%= button_tag("Go", :class=>"btn-default btn") %>
+					<% end %>
+				</div>
+			</div>
 			<table class="table">
 				<thead>
 					<tr>
