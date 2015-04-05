@@ -2,7 +2,7 @@ class GamesController < ApplicationController
 	before_filter :has_query,
 	:only => [:search]
 	def search
-		@search = GamesSearch.new(query: params[:q])
+		@search = GamesSearch.new(query: params[:q], platform: params[:platform])
 		results = @search.search.only(:id)
 		@games = results.paginate(:page => params[:page]).load(edition: {scope: Edition.includes(:work)})
 		@qty = @games.count
@@ -12,7 +12,7 @@ class GamesController < ApplicationController
 	end
 
 	def index
-		@search = GamesSearch.new()
+		@search = GamesSearch.new(platform: params[:platform])
 		results = @search.all.only(:id)
 		@games = results.paginate(:page => params[:page]).load(edition: {scope: Edition.includes(:work)})
 	end

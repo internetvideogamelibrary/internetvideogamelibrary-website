@@ -11,6 +11,7 @@ class GamesSearch
 	#attribute :sort, type: String, enum: %w(title year relevance), default_blank: 'relevance'
 
 	attr_accessor :query
+	attr_accessor :platform
 
 	# This accessor is for interface. It will have only one text field
 	# for comma-separated tags input.
@@ -36,30 +37,59 @@ class GamesSearch
 	#end
 	#
 	def all
-		index.filter{ match_all }
+		if platform.present?
+			index.query(match: {
+				platform_id: platform
+			})
+		else
+			index.filter{ match_all }
+		end
 	end
 
 	def query_string
-		index.query(bool: {
-				should: [
-					{
-						multi_match: {
-							fields: [:title],# :author, :description],
-							query: query,
-							operator: "AND"
+		if platform.present?
+			index.query(bool: {
+					should: [
+						{
+							multi_match: {
+								fields: [:title],# :author, :description],
+								query: query,
+								operator: "AND"
+							}
+						},
+						{
+							multi_match: {
+								fields: [:title],#, :author, :description],
+								query: query,
+								fuzziness: "AUTO",
+								operator: "AND"
+							}
 						}
-					},
-					{
-						multi_match: {
-							fields: [:title],#, :author, :description],
-							query: query,
-							fuzziness: "AUTO",
-							operator: "AND"
+					]
+				}
+			).filter(term: {platform_id: platform}) if query.present?
+		else
+			index.query(bool: {
+					should: [
+						{
+							multi_match: {
+								fields: [:title],# :author, :description],
+								query: query,
+								operator: "AND"
+							}
+						},
+						{
+							multi_match: {
+								fields: [:title],#, :author, :description],
+								query: query,
+								fuzziness: "AUTO",
+								operator: "AND"
+							}
 						}
-					}
-				]
-			}
-		) if query.present?
+					]
+				}
+			) if query.present?
+		end
 	end
 
 	#def author_id_filter
