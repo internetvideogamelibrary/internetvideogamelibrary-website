@@ -80,6 +80,7 @@ class EditionsController < ApplicationController
 		@other_editions_count = Edition.where("work_id = ? and status = ? and id <> ?",@edition.work.id,Edition.statuses[:active],@edition.id).count()
 		@other_editions = Edition.where("work_id = ? and status = ? and id <> ?",@edition.work.id,Edition.statuses[:active],@edition.id).limit(5)
 		@description = GitHub::Markdown.render_gfm(@edition.description.present? ? @edition.description : "").html_safe
+		params[:platform] = @edition.platform_id.to_s
 	end
 	def to_review
 		@editions = Edition.where(status: Edition.statuses[:unreviewed])
