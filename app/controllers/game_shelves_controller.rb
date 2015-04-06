@@ -21,11 +21,11 @@ class GameShelvesController < ApplicationController
 	def show
 		@game_shelf = GameShelf.find_by_id(params[:id])
 		if params[:platform].to_s != ""
-			arel_shelf_items = ShelfItem
+			arel_shelf_items = ShelfItem.where(game_shelf_id: @game_shelf.id)
 			.joins("INNER JOIN editions on shelf_items.item_id = editions.id")
 			.where(:shelf_items => {item_type: "Edition"})
 			.where(:editions => {platform_id: params[:platform]}).union(
-			ShelfItem
+			ShelfItem.where(game_shelf_id: @game_shelf.id)
 			.joins("INNER JOIN expansions on shelf_items.item_id = expansions.id")
 			.where(:shelf_items => {item_type: "Expansion"})
 			.joins("INNER JOIN editions on expansions.edition_id = editions.id")
