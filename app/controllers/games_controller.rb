@@ -7,7 +7,11 @@ class GamesController < ApplicationController
 		@games = results.paginate(:page => params[:page]).load(edition: {scope: Edition.includes(:work)})
 		@qty = @games.count
 		if @games.count == 1
-			redirect_to @games.to_a[0]
+			if @games.to_a[0].class.name == 'Expansion'
+				redirect_to [@games.to_a[0].edition, @games.to_a[0]]
+			else
+				redirect_to @games.to_a[0]
+			end
 		end
 	end
 
