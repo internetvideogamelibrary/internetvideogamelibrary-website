@@ -12,7 +12,7 @@ Results for "<%= strip_tags params[:q] %>" - <% if params[:page] %> page <%= par
 				<% if game.class.name == 'Expansion' %>
 					<div class="media-left media-middle">
 						<%= link_to([game.edition, game], :style => 'width:100px') do %>
-							<%= image_tag game.coverart.url(:thumb), :class => 'media-object' %>
+							<%= image_tag game.coverart.url(:thumb), :class => 'media-object', alt: "Cover art of #{game.title} - #{game.edition.platform.display_title}" %>
 						<% end %>
 					</div>
 					<div class="media-body media-middle">
@@ -22,7 +22,7 @@ Results for "<%= strip_tags params[:q] %>" - <% if params[:page] %> page <%= par
 				<% else %>
 					<div class="media-left media-middle">
 						<%= link_to(game, :style => 'width:100px') do %>
-							<%= image_tag game.coverart.url(:thumb), :class => 'media-object' %>
+							<%= image_tag game.coverart.url(:thumb), :class => 'media-object', alt: "Cover art of #{game.title} - #{game.platform.display_title}" %>
 						<% end %>
 					</div>
 					<div class="media-body media-middle">

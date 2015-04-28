@@ -7,7 +7,7 @@
 	<div class="col-sm-3">
 		<div class="container-fluid">
 			<div class="row">
-				<%= image_tag @expansion.coverart.url(:medium) %>
+				<%= image_tag @expansion.coverart.url(:medium), alt: "Cover art of #{@expansion.title} - #{@expansion.edition.platform.display_title}" %>
 			</div>
 			<% if current_user.present? %>
 				<div class="row">

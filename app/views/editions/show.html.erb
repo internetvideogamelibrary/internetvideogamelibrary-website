@@ -6,7 +6,7 @@
 	<div class="col-sm-3">
 		<div class="container-fluid">
 			<div class="row">
-				<%= image_tag @edition.coverart.url(:medium) %>
+				<%= image_tag @edition.coverart.url(:medium), alt: "Cover art of #{@edition.title} - #{@edition.platform.display_title}" %>
 			</div>
 			<% if current_user.present? %>
 				<div class="row">
@@ -88,7 +88,7 @@
 					<% @other_editions.each do |other| %>
 						<div class="col-sm-2 thumb">
 							<%= link_to other do %>
-								<%= image_tag other.coverart.url(:thumb) %>
+								<%= image_tag other.coverart.url(:thumb), alt: "Cover art of #{other.title} - #{other.platform.display_title}" %>
 							<% end %>
 						</div>
 					<% end %>
@@ -121,7 +121,7 @@
 						<% end -%>
 						<div class="col-sm-2 thumb">
 							<%= link_to [@edition,e] do %>
-								<%= image_tag e.coverart.url(:thumb) %>
+								<%= image_tag e.coverart.url(:thumb), alt: "Cover art of #{e.title} - #{e.edition.platform.display_title}" %>
 							<% end %>
 						</div>
 					<% end %>
