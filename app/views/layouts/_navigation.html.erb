@@ -19,7 +19,7 @@
 							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 								<span id="search_concept"><%=@platform_hash[params[:platform]]%></span> <span class="caret"></span>
 							</button>
-							<ul class="dropdown-menu" role="menu">
+							<ul class="dropdown-menu scrollable-menu" role="menu">
 								<% @platforms.each do |p| %>
 									<li><a href="#<%=p[1]%>"><%=p[0]%></a></li>
 								<% end %>
