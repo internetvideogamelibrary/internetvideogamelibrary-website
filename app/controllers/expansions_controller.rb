@@ -1,12 +1,12 @@
 class ExpansionsController < ApplicationController
 	before_filter :authenticate_user!,
-	:only => [:new, :create, :edit, :update]
+	:only => [:new, :create, :edit, :update, :delete]
 
 	before_filter :reviewer_only,
-	:only => [:new, :create, :edit, :update]
+	:only => [:new, :create, :edit, :update, :delete]
 
 	before_filter :expansion_exists,
-	:only => [:show, :edit]
+	:only => [:show, :edit, :delete]
 
 	before_filter :edition_exists,
 	:only => [:new, :create, :show, :edit]
@@ -48,6 +48,14 @@ class ExpansionsController < ApplicationController
 		else
 			render 'edit'
 		end
+	end
+	def destroy
+		@expansion = Expansion.friendly.find(params[:id])
+		edition = @expansion.edition
+		title = @expansion.title
+		@expansion.destroy
+		flash[:notice] = "Expansion #{title} was deleted."
+		redirect_to edition
 	end
 
 	private
