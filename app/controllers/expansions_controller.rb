@@ -25,7 +25,7 @@ class ExpansionsController < ApplicationController
 
 		if @expansion.save
 			flash[:notice] = "DLC/Expansion was added successfully."
-			redirect_to @edition
+			redirect_to [@edition, @expansion]
 		else
 			render 'new'
 		end
