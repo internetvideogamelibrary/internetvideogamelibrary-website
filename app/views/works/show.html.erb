@@ -22,7 +22,7 @@ All editions for <%=@work.original_title%>, <% if @work.original_release_date.pr
 			<% @editions.each do |e| %>
 				<div class="media">
 					<%= link_to(e, :class => 'media-left media-middle', :style => 'width:100px') do %>
-						<%= image_tag e.coverart.url(:thumb) %>
+						<%= image_tag e.coverart.url(:thumb), alt: "Cover art of #{e.title} - #{e.platform.display_title}"  %>
 					<% end %>
 					<div class="media-body">
 						<h4 class="media-heading"><%= link_to(e) do %><%= e.title %> (<%= e.platform.display_title %>)<% end %></h4>
