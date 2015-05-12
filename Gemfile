@@ -37,6 +37,8 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'babosa'
 gem 'nokogiri'
 gem 'exception_notification'
+gem 'sitemap_generator'
+gem 'fog'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
