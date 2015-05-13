@@ -25,6 +25,6 @@ All games - <% if params[:page] %> page <%= params[:page] %> - <% end %>Internet
 	<% end %>
 </div>
 <%= will_paginate @collection, renderer: BootstrapPagination::Rails %>
-<%- if current_user.present? and current_user.admin? %>
+<%- if current_user.present? and current_user.game_maker_or_more? %>
 	<%= link_to("Add new game", new_edition_path) %>
 <% end -%>

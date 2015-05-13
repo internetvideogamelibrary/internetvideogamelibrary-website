@@ -62,7 +62,7 @@
 					<% end -%>
 				</ul>
 			</div>
-			<%- if current_user.present? and current_user.admin? %>
+			<%- if current_user.present? and current_user.game_maker_or_more? %>
 				<div class="row">
 					<%= link_to "Edit this edition", edit_edition_path(@edition) %>
 				</div>
@@ -101,7 +101,7 @@
 			<div class="row">&nbsp;</div>
 			<div class="row">
 				<%= link_to "All editions", @edition.work %>
-				<%- if current_user.present? and current_user.admin? %>
+				<%- if current_user.present? and current_user.game_maker_or_more? %>
 					|
 					<%= link_to "Add new edition", new_edition_path(:work_id => @edition.work) %>
 					|
@@ -131,7 +131,7 @@
 					</div>
 				<% end -%>
 			</div>
-			<%- if current_user.present? and current_user.admin? %>
+			<%- if current_user.present? and current_user.game_maker_or_more? %>
 				<div class="row">&nbsp;</div>
 				<div class="row">
 					<%= link_to "Add DLC/Expansion", new_edition_expansion_path(@edition) %>

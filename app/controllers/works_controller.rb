@@ -5,7 +5,7 @@ class WorksController < ApplicationController
 	before_filter :authenticate_user!,
 	:only => [:combine, :do_combine, :split, :do_split]
 
-	before_filter :reviewer_only,
+	before_filter :game_maker_only,
 	:only => [:combine, :do_combine, :split, :do_split]
 
 	before_filter :has_query,
@@ -135,6 +135,13 @@ class WorksController < ApplicationController
 		params.require(:work).permit(:original_title, :original_release_date)
 	end
 
+	def game_maker_only
+		unless current_user.game_maker_or_more?
+			redirect_to :back, :alert => "Access denied."
+		end
+		rescue ActionController::RedirectBackError
+			redirect_to '/', :alert => "Access denied."
+	end
 	def reviewer_only
 		unless current_user.admin?
 			redirect_to :back, :alert => "Access denied."

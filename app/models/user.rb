@@ -24,7 +24,7 @@
 #
 
 class User < ActiveRecord::Base
-	enum role: [:user, :reviewer, :admin]
+	enum role: [:user, :reviewer, :admin, :gm]
 	after_initialize :set_default_role, :if => :new_record?
 
 	after_commit :create_game_shelves, :on => :create
@@ -110,6 +110,10 @@ class User < ActiveRecord::Base
 			identity.save!
 		end
 		user
+	end
+
+	def game_maker_or_more?
+		self.gm? or self.reviewer? or self.admin?
 	end
 
 	def email_verified?

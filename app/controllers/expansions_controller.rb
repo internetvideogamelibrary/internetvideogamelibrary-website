@@ -2,8 +2,11 @@ class ExpansionsController < ApplicationController
 	before_filter :authenticate_user!,
 	:only => [:new, :create, :edit, :update, :delete]
 
+	before_filter :game_maker_only,
+	:only => [:new, :create, :edit, :update]
+
 	before_filter :reviewer_only,
-	:only => [:new, :create, :edit, :update, :delete]
+	:only => [:delete]
 
 	before_filter :expansion_exists,
 	:only => [:show, :edit, :delete]
@@ -79,6 +82,13 @@ class ExpansionsController < ApplicationController
 			redirect_to '/', :alert => "Game not found"
 	end
 
+	def game_maker_only
+		unless current_user.game_maker_or_more?
+			redirect_to :back, :alert => "Access denied."
+		end
+		rescue ActionController::RedirectBackError
+			redirect_to '/', :alert => "Access denied."
+	end
 	def reviewer_only
 		unless current_user.admin?
 			redirect_to :back, :alert => "Access denied."

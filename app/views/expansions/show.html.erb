@@ -47,10 +47,12 @@
 					<% end -%>
 				</ul>
 			</div>
-			<%- if current_user.present? and current_user.admin? %>
+			<%- if current_user.present? and current_user.game_maker_or_more? %>
 				<div class="row">
 					<%= link_to "Edit this expansion", edit_edition_expansion_path(@edition, @expansion) %>
 				</div>
+			<% end -%>
+			<%- if current_user.present? and current_user.admin? %>
 				<div class="row">
 					<%= button_to "Delete this expansion", [@edition, @expansion], method: :delete, style: "color:red" %>
 				</div>

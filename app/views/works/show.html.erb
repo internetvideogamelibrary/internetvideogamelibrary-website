@@ -7,7 +7,7 @@ All editions for <%=@work.original_title%>, <% if @work.original_release_date.pr
 	<h1><%= @work.original_title %><% if @work.original_release_date.present? %> <small>originally released in <%= @work.original_release_date.strftime('%d/%m/%Y')%></small><% end %></h1>
 </div>
 <div class="container-fluid">
-	<%- if current_user.present? and current_user.admin? %>
+	<%- if current_user.present? and current_user.game_maker_or_more? %>
 		<div class="row">
 			<%= link_to "Add new edition", new_edition_path(:work_id => @work) %>
 			|
@@ -28,7 +28,7 @@ All editions for <%=@work.original_title%>, <% if @work.original_release_date.pr
 						<h4 class="media-heading"><%= link_to(e) do %><%= e.title %> (<%= e.platform.display_title %>)<% end %></h4>
 						Released on <%= e.release_date.strftime('%d/%m/%Y') if e.release_date.present? %> at <%= e.region.title %><br />
 						<%= link_to 'details', e %>
-						<%- if current_user.present? and current_user.admin? %>
+						<%- if current_user.present? and current_user.game_maker_or_more? %>
 							| <%= link_to 'edit', edit_edition_path(e) %>
 						<% end -%>
 					</div>

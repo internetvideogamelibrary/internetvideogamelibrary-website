@@ -5,7 +5,10 @@ class EditionsController < ApplicationController
 	:only => [:new, :create, :edit, :update, :to_review, :review]
 
 	before_filter :reviewer_only,
-	:only => [:new, :create, :edit, :update, :to_review, :review]
+	:only => [:to_review, :review]
+
+	before_filter :game_maker_only,
+	:only => [:new, :create, :edit, :update]
 
 	before_filter :edition_exists,
 	:only => [:edit, :update, :show]
@@ -112,6 +115,13 @@ class EditionsController < ApplicationController
 	end
 	def work_params
 		params.require(:work).permit(:original_title, :original_release_date)
+	end
+	def game_maker_only
+		unless current_user.game_maker_or_more?
+			redirect_to :back, :alert => "Access denied."
+		end
+		rescue ActionController::RedirectBackError
+			redirect_to '/', :alert => "Access denied."
 	end
 	def reviewer_only
 		unless current_user.admin?
