@@ -1,8 +1,9 @@
 GIT
   remote: git://github.com/toptal/chewy.git
-  revision: 5c4c22ce163b37e0a577acee0614792fc2e60895
+  revision: af2fe6152fd30098603eea8b1ecdb8d9b15dd75b
+  ref: af2fe6152fd30098603eea8b1ecdb8d9b15dd75b
   specs:
-    chewy (0.6.2)
+    chewy (0.7.0)
       activesupport (>= 3.2)
       elasticsearch (>= 1.0.0)
 
@@ -96,12 +97,12 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
-    elasticsearch (1.0.6)
-      elasticsearch-api (= 1.0.6)
-      elasticsearch-transport (= 1.0.6)
-    elasticsearch-api (1.0.6)
+    elasticsearch (1.0.9)
+      elasticsearch-api (= 1.0.9)
+      elasticsearch-transport (= 1.0.9)
+    elasticsearch-api (1.0.9)
       multi_json
-    elasticsearch-transport (1.0.6)
+    elasticsearch-transport (1.0.9)
       faraday
       multi_json
     erubis (2.7.0)

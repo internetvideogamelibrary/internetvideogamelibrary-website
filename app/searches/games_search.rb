@@ -33,10 +33,10 @@ class GamesSearch
 	end
 
 	def expansions_count
-		index.filter({ type: { value: "expansion"}}).count
+		index.filter({ type: { value: "expansion"}}).search_type(:count)
 	end
 	def editions_count
-		index.filter({ type: { value: "edition"}}).count
+		index.filter({ type: { value: "edition"}}).search_type(:count)
 	end
 
 	#def sorting
