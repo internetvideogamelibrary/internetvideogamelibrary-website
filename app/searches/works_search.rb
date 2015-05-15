@@ -11,7 +11,7 @@ class WorksSearch
 	end
 
 	def works_count
-		index.filter({ type: { value: "work"}}).count
+		index.filter({ type: { value: "work"}}).search_type(:count)
 	end
 
 	def all
