@@ -10,6 +10,10 @@ class WorksSearch
 		query_string
 	end
 
+	def works_count
+		index.filter({ type: { value: "work"}}).count
+	end
+
 	def all
 		index.filter{ match_all }
 	end

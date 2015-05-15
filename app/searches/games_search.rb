@@ -32,6 +32,13 @@ class GamesSearch
 		query_string
 	end
 
+	def expansions_count
+		index.filter({ type: { value: "expansion"}}).count
+	end
+	def editions_count
+		index.filter({ type: { value: "edition"}}).count
+	end
+
 	#def sorting
 	#	index.order(SORT[sort.to_sym])
 	#end
