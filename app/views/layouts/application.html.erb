@@ -20,7 +20,9 @@
 		<%= render 'layouts/support' %>
 	</body>
 	<footer class="footer">
-		<p>&copy; Internet Video Game Library 2015 | <%= link_to "FAQ", faq_path %> | <%= link_to "About Us", about_path %></p>
+		<div class="container">
+			<p>&copy; Internet Video Game Library 2015 | <%= link_to "FAQ", faq_path %> | <%= link_to "About Us", about_path %></p>
 		<%= debug(params) if Rails.env.development? %>
+		</div>
 	</footer>
 </html>
