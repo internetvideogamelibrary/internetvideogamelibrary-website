@@ -66,6 +66,11 @@
 				<div class="row">
 					<%= link_to "Edit this edition", edit_edition_path(@edition) %>
 				</div>
+				<%- if @edition.expansions.length == 0 %>
+					<div class="row">
+						<%= link_to "Transform this edition into expansion", transform_edition_path(@edition) %>
+					</div>
+				<% end -%>
 			<% end -%>
 		</div>
 	</div>

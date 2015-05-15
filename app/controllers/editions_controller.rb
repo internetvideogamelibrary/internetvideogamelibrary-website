@@ -8,10 +8,10 @@ class EditionsController < ApplicationController
 	:only => [:to_review, :review]
 
 	before_filter :game_maker_only,
-	:only => [:new, :create, :edit, :update]
+	:only => [:new, :create, :edit, :update, :transform, :do_transform]
 
 	before_filter :edition_exists,
-	:only => [:edit, :update, :show]
+	:only => [:edit, :update, :show, :transform, :do_transform]
 
 	before_filter :edition_visible,
 	:only => [:show]
@@ -107,6 +107,12 @@ class EditionsController < ApplicationController
 		end
 		rescue ActionController::RedirectBackError
 			redirect_to '/', :alert => "Unknown option"
+	end
+	def transform
+		@edition = Edition.friendly.find(params[:id])
+		params[:platform] = @edition.platform_id.to_s
+	end
+	def do_transform
 	end
 
 	private
