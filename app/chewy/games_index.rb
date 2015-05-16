@@ -4,7 +4,7 @@ class GamesIndex < Chewy::Index
 			my_synonym_filter: {
 				type: "synonym",
 				synonyms: [
-					"littlebigplanet,little big planet"
+					"littlebigplanet,little big planet",
 					"megaman,mega man"
 				]
 			}
