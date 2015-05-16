@@ -30,6 +30,14 @@ class Expansion < ActiveRecord::Base
 
 	update_index 'games#expansion', :self
 
+	def copy_from_edition(edition)
+		self.title = edition.title
+		self.description = edition.description
+		self.release_date = edition.release_date
+		self.created_at = edition.created_at
+		self.coverart = edition.coverart
+	end
+
 	def coverart_remote_url=(url_value)
 		self.coverart = URI.parse(url_value)
 		@coverart_remote_url = url_value
