@@ -1,9 +1,18 @@
 class GamesIndex < Chewy::Index
 	settings analysis: {
+		filter: {
+			my_synonym_filter: {
+				type: "synonym",
+				synonyms: [
+					"littlebigplanet,little big planet",
+					"megaman,mega man"
+				]
+			}
+		},
 		analyzer: {
 			title: {
 				tokenizer: 'standard',
-				filter: ['lowercase', 'asciifolding']
+				filter: ['lowercase', 'asciifolding', "my_synonym_filter"]
 			}
 		}
 	}

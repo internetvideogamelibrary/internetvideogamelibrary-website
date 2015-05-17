@@ -14,11 +14,16 @@
 		</div>
 		<div class="col-md-4">
 			<h2>Custom lists</h2>
-			<p>We already preparated five lists for you: Wishlist, Backlog, Playing, Played and Finished. But if you want to keep track of the games you achieved 100%, you can create another list.</p>
+			<p>We already prepared five lists for you: Wishlist, Backlog, Playing, Played and Finished. But if you want to keep track of the games you achieved 100%, you can create another list. (Work in progress, you still cannot create custom lists!)</p>
 		</div>
 		<div class="col-md-4">
 			<h2>Community built</h2>
-			<p>Everyone can sign up to edit and insert new games. This way, the database is always up-to-date.</p>
+			<p>Everyone can sign up to edit and insert new games. This way, the database is always up-to-date. Ask to be a game master and you'll have all this super powers!</p>
+		</div>
+		<div class="clearfix"></div>
+		<div class="col-md-4">
+			<h2>Current status</h2>
+			<p>We currently have <%= @work_count %> unique games, <%= @editions_count %> editions and <%= @expansions_count %> Expansions/DLC in our database!</p>
 		</div>
 	</div>
 
@@ -40,8 +45,4 @@
 	</div>
 
 	<hr>
-
-	<footer>
-		<p>&copy; Internet Video Game Library 2015</p>
-	</footer>
 </div>

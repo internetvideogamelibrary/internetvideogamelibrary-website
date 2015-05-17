@@ -5,6 +5,7 @@ class GamesController < ApplicationController
 		@search = GamesSearch.new(query: params[:q], platform: params[:platform])
 		results = @search.search.only(:id)
 		@games = results.paginate(:page => params[:page]).load(edition: {scope: Edition.includes(:work)})
+		@total = @games.total
 		@qty = @games.count
 		if @games.count == 1
 			if @games.to_a[0].class.name == 'Expansion'

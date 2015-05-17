@@ -3,5 +3,14 @@ class IndexController < ApplicationController
 		@search = GamesSearch.new()
 		results = @search.all.order(created_at: :desc).limit(6).only(:id)
 		@games = results.load
+		@editions_count = @search.editions_count.total
+		@expansions_count = @search.expansions_count.total
+		@work_count = WorksSearch.new().works_count.total
+	end
+
+	def faq
+	end
+
+	def about
 	end
 end
