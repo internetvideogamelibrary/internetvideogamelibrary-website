@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
 		if(request.referrer)
 			@uri = URI(request.referrer)
 			if(REFERRAL_SPAMMERS.include?(@uri.host))
+				logger.info "[ignore_referral_spam] referral spammer detected: #{@uri.host}. 400 handed out."
 				render :nothing => true, :status => 400
 			end
 		end
