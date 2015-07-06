@@ -218,5 +218,6 @@ REFERRAL_SPAMMERS = [
 	"xn----7sbho2agebbhlivy.xn--p1ai",
 	"konkursov.net",
 	"glavprofit.ru",
-	"siteripz.net"
+	"siteripz.net",
+	"ringporno.com"
 ]
