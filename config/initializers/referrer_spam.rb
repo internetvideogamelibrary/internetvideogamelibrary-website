@@ -205,5 +205,18 @@ REFERRAL_SPAMMERS = [
 	"непереводимая.рф",
 	"грузоподъемные-машины.рф",
 	"снятьдомвсевастополе.рф",
-	"success-seo.com"
+	"success-seo.com",
+	"conciergegroup.org",
+	"portnoff.od.ua",
+	"pochemychka.net",
+	"budmavtomatika.com.ua",
+	"xnxx-n.com",
+	"filmetricsasia.com",
+	"extremez.net",
+	"infobabki.ru",
+	"bristolhotel.com.ua",
+	"xn----7sbho2agebbhlivy.xn--p1ai",
+	"konkursov.net",
+	"glavprofit.ru",
+	"siteripz.net"
 ]
