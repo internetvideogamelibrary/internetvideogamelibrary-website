@@ -219,5 +219,8 @@ REFERRAL_SPAMMERS = [
 	"konkursov.net",
 	"glavprofit.ru",
 	"siteripz.net",
-	"ringporno.com"
+	"ringporno.com",
+	"tomck.com",
+	"muscle-factory.com.ua",
+	"bablonow.ru"
 ]
