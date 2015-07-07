@@ -222,5 +222,7 @@ REFERRAL_SPAMMERS = [
 	"ringporno.com",
 	"tomck.com",
 	"muscle-factory.com.ua",
-	"bablonow.ru"
+	"bablonow.ru",
+	"promoforum.ru",
+	"mirtorrent.net"
 ]
