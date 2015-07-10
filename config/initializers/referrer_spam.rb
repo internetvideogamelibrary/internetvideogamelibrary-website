@@ -224,5 +224,14 @@ REFERRAL_SPAMMERS = [
 	"muscle-factory.com.ua",
 	"bablonow.ru",
 	"promoforum.ru",
-	"mirtorrent.net"
+	"mirtorrent.net",
+	"uplift.io",
+	"fitness-video.net",
+	"vodaodessa.com",
+	"doeco.ru",
+	"mir-betting.ru",
+	"online-hit.info",
+	"amilogic.com",
+	"rospromtest.ru",
+	"orion-casino.com"
 ]
