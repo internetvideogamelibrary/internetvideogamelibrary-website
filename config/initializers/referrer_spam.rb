@@ -233,5 +233,11 @@ REFERRAL_SPAMMERS = [
 	"online-hit.info",
 	"amilogic.com",
 	"rospromtest.ru",
-	"orion-casino.com"
+	"orion-casino.com",
+	"sklad-24.ru",
+	"steame.ru",
+	"rentalmaty.kz",
+	"youporn-ru.com",
+	"forsex.info",
+	"anapa-inns.ru"
 ]
