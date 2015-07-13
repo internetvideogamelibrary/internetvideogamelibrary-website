@@ -239,5 +239,15 @@ REFERRAL_SPAMMERS = [
 	"rentalmaty.kz",
 	"youporn-ru.com",
 	"forsex.info",
-	"anapa-inns.ru"
+	"anapa-inns.ru",
+	"pricheski-video.com",
+	"rp9.ru",
+	"viktoria-center.ru",
+	"katushka.net",
+	"fsalas.com",
+	"remont-online.net",
+	"birzha-truda.eu",
+	"1pamm.ru",
+	"canadianmedicaments.com",
+	"video-woman.com"
 ]
