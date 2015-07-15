@@ -249,5 +249,10 @@ REFERRAL_SPAMMERS = [
 	"birzha-truda.eu",
 	"1pamm.ru",
 	"canadianmedicaments.com",
-	"video-woman.com"
+	"video-woman.com",
+	"raskrasok.net",
+	"cardano.ru",
+	"sfd-chess.ru",
+	"brk-rti.ru",
+	"serpuhov-protvino.ru"
 ]
