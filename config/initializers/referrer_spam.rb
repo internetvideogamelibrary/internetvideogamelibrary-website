@@ -254,5 +254,22 @@ REFERRAL_SPAMMERS = [
 	"cardano.ru",
 	"sfd-chess.ru",
 	"brk-rti.ru",
-	"serpuhov-protvino.ru"
+	"serpuhov-protvino.ru",
+	"4webmasters.org",
+	"floating-share-buttons.com",
+	"www1.free-social-buttons.com",
+	"www2.free-social-buttons.com",
+	"www3.free-social-buttons.com",
+	"www4.free-social-buttons.com",
+	"www5.free-social-buttons.com",
+	"www10.free-social-buttons.com",
+	"site1.floating-share-buttons.com",
+	"site2.floating-share-buttons.com",
+	"site3.floating-share-buttons.com",
+	"site4.floating-share-buttons.com",
+	"webmonetizer.net",
+	"trafficmonetizer.org",
+	"event-tracking.com",
+	"Get-Free-Traffic-Now.com",
+	"m1media.net"
 ]
