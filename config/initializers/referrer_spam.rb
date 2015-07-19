@@ -271,5 +271,8 @@ REFERRAL_SPAMMERS = [
 	"trafficmonetizer.org",
 	"event-tracking.com",
 	"Get-Free-Traffic-Now.com",
-	"m1media.net"
+	"m1media.net",
+	"buyantiviralwp.com",
+	"topmira.com",
+	"codysbbq.com"
 ]
