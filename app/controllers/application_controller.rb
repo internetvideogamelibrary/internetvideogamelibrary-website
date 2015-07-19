@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 	# For APIs, you may want to use :null_session instead.
 	protect_from_forgery with: :exception
 
-	before_filter :fill_platforms, :ignore_referral_spam
+	before_filter :ignore_referral_spam, :fill_platforms
 
 	def ignore_referral_spam
 		if(request.referrer)
