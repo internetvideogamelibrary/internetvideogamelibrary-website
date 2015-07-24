@@ -274,5 +274,16 @@ REFERRAL_SPAMMERS = [
 	"m1media.net",
 	"buyantiviralwp.com",
 	"topmira.com",
-	"codysbbq.com"
+	"codysbbq.com",
+	"eshop.md",
+	"drom93.ru",
+	"modabutik.ru",
+	"nevansk.ru",
+	"download-video-vkontakte.ru",
+	"invest-pamm.ru",
+	"dg-s.ru",
+	"razumeykin.ru",
+	"films.utrolive.ru",
+	"spy-sts.com",
+	"petrovka-online.com"
 ]
