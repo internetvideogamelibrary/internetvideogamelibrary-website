@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 	resources :games do
 		collection do
 			get 'search'
+			get 'search_for_transformation'
 		end
 	end
 

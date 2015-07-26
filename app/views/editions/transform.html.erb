@@ -1,10 +1,30 @@
 <% breadcrumb :transform_edition, @edition %>
 
+<script>
+function search_response_success(response) {
+	$("#results").html(response);
+}
+
+$(".editions.transform").ready(function() {
+	$("#search-parent").click(function() {
+		$.ajax({url: "<%= search_for_transformation_games_path %>",
+			type: "get",
+			cache: false,
+			data: { "platform": $("#platform").val(),
+				"q": $("#parent-q").val()
+			},
+			success: search_response_success});
+
+		e.preventDefault();
+		return false;
+	});
+});
+</script>
 <%= form_for @edition, :url => do_transform_edition_path, :html => {:class => "form-horizontal"} do |f| %>
 	<div class="col-md-3">
 		<div class="bs-callout bs-callout-warning">
 			<h4>Guidelines</h4>
-			<p>Search for the edition you want to use as parent for this transformation. If the parent work gets empty after the transformation it will be automatically deleted</p>
+			<p>Search for the edition you want to use as parent for this transformation. If the parent work for the edition you're transforming gets empty after the transformation it will be automatically deleted</p>
 			<p><strong>Do transform:</strong></p>
 			<ul>
 				<li>DLCs that don't work without the edition. Either in digital or physical distribution.</li>
@@ -12,14 +32,35 @@
 			<p><strong>Don't transform:</strong></p>
 			<ul>
 				<li>Editions that already contain the DLCs inside, like some Game of the Year editions.</li>
+				<li>Stand-alone expansions, that do not need the original game to work. i.e. Far Cry 3: Blood Dragon</li>
 			</ul>
 		</div>
 	</div>
 	<div class="col-md-9">
 		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-btn search-panel">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						<span id="search_concept"><%=@platform_hash[params[:platform]]%></span> <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu scrollable-menu" role="menu">
+						<% @platforms.each do |p| %>
+							<li><a href="#<%=p[1]%>"><%=p[0]%></a></li>
+						<% end %>
+					</ul>
+				</div>
+				<%= text_field_tag :q, params[:q], class: "form-control", id: "parent-q", placeholder: "Search term..." %>
+				<span class="input-group-btn">
+					<%= button_tag(type: 'button', class: "btn btn-default", id: "search-parent") do %>
+						<i class="glyphicon glyphicon-search"></i>
+					<% end %>
+				</span>
+			</div>
+		</div>
+		<div class="form-group" id="results">
 		</div>
 		<div class="form-group">
-			<input type="submit" class="btn btn-primary" value="Combine">
+			<input type="submit" class="btn btn-primary" value="Transform">
 			<span></span>
 			<input type="reset" class="btn btn-default" value="Cancel">
 		</div>

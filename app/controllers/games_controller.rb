@@ -23,6 +23,16 @@ class GamesController < ApplicationController
 		end
 	end
 
+	def search_for_transformation
+		@search = GamesSearch.new(query: params[:q], platform: params[:platform], type: 'edition')
+		results = @search.search.only(:id)
+		@games = results.paginate(:page => params[:page]).load(edition: {scope: Edition.includes(:work)})
+		@total = @games.total
+		@qty = @games.count
+		render :partial => 'shared/transformation_editions', :locals =>
+		{:games => @games}
+	end
+
 	def index
 		@search = GamesSearch.new(platform: params[:platform])
 		results = @search.all.only(:id)

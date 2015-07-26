@@ -1,0 +1,12 @@
+<% games.each do |game| %>
+	<div class="checkbox">
+		<label>
+			<%= check_box_tag "parent_edition_id", game.id, false, :id => "parent_edition_id_#{game.id}" %> <strong><%= game.title %></strong> (<%= game.platform.title %>)<%- if game.release_date.present? %>, released on <%= game.release_date.strftime('%d/%m/%Y') %><% else %>, released<% end -%> at <%= game.region.title %> <%= link_to 'details', game %> <%= link_to 'edit', edit_edition_path(game) %>
+		</label>
+		<% game.expansions.each do |e| %>
+			<div>
+				<%= e.title %><%- if e.release_date.present? %>, released on <%= e.release_date.strftime('%d/%m/%Y') %><% end -%> <%= link_to 'details', [e.edition, e] %> <%= link_to 'edit', edit_edition_expansion_path(e.edition, e) %>
+			</div>
+		<% end %>
+	</div>
+<% end %>
