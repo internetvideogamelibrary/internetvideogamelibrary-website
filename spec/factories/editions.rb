@@ -22,14 +22,15 @@
 #
 
 FactoryGirl.define do
-  factory :edition do
-    title "MyString"
-developer "MyString"
-publisher "MyString"
-release_date "2014-12-28 10:33:57"
-description "MyText"
-platform nil
-region nil
-  end
-
+	factory :edition do
+		title "MyString"
+		developer "MyString"
+		publisher "MyString"
+		release_date "2014-12-28 10:33:57"
+		description "MyText"
+		platform
+		region
+		work
+		association :media, factory: :medium
+	end
 end

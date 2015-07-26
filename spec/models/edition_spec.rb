@@ -24,5 +24,7 @@
 require 'rails_helper'
 
 RSpec.describe Edition, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+	it "has a valid factory" do
+		expect(FactoryGirl.create(:edition)).to be_valid
+	end
 end
