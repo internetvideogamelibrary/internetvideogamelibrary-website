@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
 	before_filter :has_query,
-	:only => [:search]
+	:only => [:search, :search_for_transformation]
 	def search
 		@search = GamesSearch.new(query: params[:q], platform: params[:platform], type: params[:type])
 		results = @search.search.only(:id)

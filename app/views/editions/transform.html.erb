@@ -7,13 +7,15 @@ function search_response_success(response) {
 
 $(".editions.transform").ready(function() {
 	$("#search-parent").click(function() {
-		$.ajax({url: "<%= search_for_transformation_games_path %>",
-			type: "get",
-			cache: false,
-			data: { "platform": $("#platform").val(),
-				"q": $("#parent-q").val()
-			},
-			success: search_response_success});
+		if($("#parent-q").val()) {
+			$.ajax({url: "<%= search_for_transformation_games_path %>",
+				type: "get",
+				cache: false,
+				data: { "platform": $("#platform").val(),
+					"q": $("#parent-q").val()
+				},
+				success: search_response_success});
+		}
 
 		e.preventDefault();
 		return false;
