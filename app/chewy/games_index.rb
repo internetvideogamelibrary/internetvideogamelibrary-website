@@ -25,7 +25,11 @@ class GamesIndex < Chewy::Index
 					"xvii,17",
 					"xviii,18",
 					"xix,19",
-					"xx,20"
+					"xx,20",
+					"farcry,far cry",
+					"bioshock,bio shock",
+					"olliolli,olli olli",
+					"actraiser,act raiser"
 				]
 			}
 		},
