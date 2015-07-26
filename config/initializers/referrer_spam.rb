@@ -285,5 +285,8 @@ REFERRAL_SPAMMERS = [
 	"razumeykin.ru",
 	"films.utrolive.ru",
 	"spy-sts.com",
-	"petrovka-online.com"
+	"petrovka-online.com",
+	"investpamm.ru",
+	"nardulan.com",
+	"forex-procto.ru"
 ]
