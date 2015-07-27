@@ -24,7 +24,7 @@ class GamesController < ApplicationController
 	end
 
 	def search_for_transformation
-		@search = GamesSearch.new(query: params[:q], platform: params[:platform], type: 'edition')
+		@search = GamesSearch.new(query: params[:q], platform: params[:platform], type: 'edition', not_id: params[:id])
 		results = @search.search.only(:id)
 		@games = results.paginate(:page => params[:page]).load(edition: {scope: Edition.includes(:work)})
 		@total = @games.total

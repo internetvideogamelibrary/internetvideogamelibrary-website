@@ -10,6 +10,9 @@ class EditionsController < ApplicationController
 	before_filter :game_maker_only,
 	:only => [:new, :create, :edit, :update, :transform, :do_transform]
 
+	before_filter :parent_edition_exists,
+	:only => [:do_transform]
+
 	before_filter :edition_exists,
 	:only => [:edit, :update, :show, :transform, :do_transform]
 
@@ -113,6 +116,21 @@ class EditionsController < ApplicationController
 		params[:platform] = @edition.platform_id.to_s
 	end
 	def do_transform
+		@edition = Edition.friendly.find(params[:id])
+		@parent_edition = Edition.friendly.find(params[:parent_edition_id])
+
+		transformed_expansion = Expansion.new()
+		transformed_expansion.copy_from_edition(@edition)
+		transformed_expansion.edition = @parent_edition
+		transformed_expansion.save!
+
+		old_work = @edition.work
+		@edition.destroy
+		if old_work.editions.length == 0
+			old_work.destroy
+		end
+
+		redirect_to [transformed_expansion.edition, transformed_expansion]
 	end
 
 	private
@@ -137,8 +155,16 @@ class EditionsController < ApplicationController
 			redirect_to '/', :alert => "Access denied."
 	end
 
+	def parent_edition_exists
+		_edition_exists(params[:parent_edition_id])
+	end
+
 	def edition_exists
-		edition = Edition.friendly.find(params[:id])
+		_edition_exists(params[:id])
+	end
+
+	def _edition_exists(id)
+		edition = Edition.friendly.find(id)
 		if edition.present?
 			return true
 		else

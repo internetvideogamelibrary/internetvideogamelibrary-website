@@ -12,7 +12,8 @@ $(".editions.transform").ready(function() {
 				type: "get",
 				cache: false,
 				data: { "platform": $("#platform").val(),
-					"q": $("#parent-q").val()
+					"q": $("#parent-q").val(),
+					"id": "<%= @edition.id %>"
 				},
 				success: search_response_success});
 		}

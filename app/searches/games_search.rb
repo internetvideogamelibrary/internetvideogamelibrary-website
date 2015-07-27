@@ -13,6 +13,7 @@ class GamesSearch
 	attr_accessor :query
 	attr_accessor :platform
 	attr_accessor :type
+	attr_accessor :not_id
 
 	# This accessor is for interface. It will have only one text field
 	# for comma-separated tags input.
@@ -55,6 +56,14 @@ class GamesSearch
 	end
 
 	def query_string
+		if not_id.present?
+			type_query.filter({not: {ids: {values: [not_id]}}})
+		else
+			type_query
+		end
+	end
+
+	def type_query
 		if type.present?
 			platform_query.filter({type: {value: type}})
 		else
