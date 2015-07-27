@@ -10,9 +10,8 @@
 #
 
 FactoryGirl.define do
-  factory :work do
-    original_title "MyString"
-original_release_date "2014-12-28 10:43:48"
-  end
-
+	factory :work do
+		original_title "MyString"
+		original_release_date "2014-12-28 10:43:48"
+	end
 end

@@ -11,10 +11,9 @@
 #
 
 FactoryGirl.define do
-  factory :game_shelf do
-    user nil
-title "MyString"
-type 1
-  end
-
+	factory :game_shelf do
+		user nil
+		title "MyString"
+		shelf_type GameShelf::shelf_types[:wishlist]
+	end
 end

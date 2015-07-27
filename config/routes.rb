@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 	resources :games do
 		collection do
 			get 'search'
+			get 'search_for_transformation'
 		end
 	end
 
@@ -42,6 +43,10 @@ Rails.application.routes.draw do
 			get 'to_review'
 			post 'review'
 			get 'existing_work'
+		end
+		member do
+			get 'transform'
+			patch 'do_transform'
 		end
 		resources :expansions do
 		end

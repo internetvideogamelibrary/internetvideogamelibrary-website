@@ -12,6 +12,8 @@ class GamesSearch
 
 	attr_accessor :query
 	attr_accessor :platform
+	attr_accessor :type
+	attr_accessor :not_id
 
 	# This accessor is for interface. It will have only one text field
 	# for comma-separated tags input.
@@ -54,49 +56,50 @@ class GamesSearch
 	end
 
 	def query_string
-		if platform.present?
-			index.query(bool: {
-					should: [
-						{
-							multi_match: {
-								fields: [:title],# :author, :description],
-								query: query,
-								operator: "AND"
-							}
-						},
-						{
-							multi_match: {
-								fields: [:title],#, :author, :description],
-								query: query,
-								fuzziness: "AUTO",
-								operator: "AND"
-							}
-						}
-					]
-				}
-			).filter(term: {platform_id: platform}) if query.present?
+		if not_id.present?
+			type_query.filter({not: {ids: {values: [not_id]}}})
 		else
-			index.query(bool: {
-					should: [
-						{
-							multi_match: {
-								fields: [:title],# :author, :description],
-								query: query,
-								operator: "AND"
-							}
-						},
-						{
-							multi_match: {
-								fields: [:title],#, :author, :description],
-								query: query,
-								fuzziness: "AUTO",
-								operator: "AND"
-							}
-						}
-					]
-				}
-			) if query.present?
+			type_query
 		end
+	end
+
+	def type_query
+		if type.present?
+			platform_query.filter({type: {value: type}})
+		else
+			platform_query
+		end
+	end
+
+	def platform_query
+		if platform.present?
+			index_query.filter(term: {platform_id: platform})
+		else
+			index_query
+		end
+	end
+
+	def index_query
+		index.query(bool: {
+				should: [
+					{
+						multi_match: {
+							fields: [:title],# :author, :description],
+							query: query,
+							operator: "AND"
+						}
+					},
+					{
+						multi_match: {
+							fields: [:title],#, :author, :description],
+							query: query,
+							fuzziness: "AUTO",
+							operator: "AND"
+						}
+					}
+				]
+			}
+		) if query.present?
 	end
 
 	#def author_id_filter
