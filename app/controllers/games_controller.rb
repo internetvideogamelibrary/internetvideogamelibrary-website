@@ -1,6 +1,9 @@
 class GamesController < ApplicationController
 	before_filter :has_query,
-	:only => [:search, :search_for_transformation]
+	:only => [:search_for_transformation]
+
+	before_filter :go_to_index_on_empty_query_string,
+	:only => [:search]
 	def search
 		@search = GamesSearch.new(query: params[:q], platform: params[:platform], type: params[:type])
 		results = @search.search.only(:id)
@@ -40,6 +43,12 @@ class GamesController < ApplicationController
 	end
 
 	private
+
+	def go_to_index_on_empty_query_string
+		if not params[:q].present?
+			redirect_to games_path(params.except("q"))
+		end
+	end
 
 	def has_query
 		if params[:q].present?
