@@ -1,23 +1,42 @@
 <div class="col-md-2 col-sm-3 col-xs-4 word-break">
-	<%= link_to(edition, :class => 'thumbnail text-center') do %>
+	<div class='thumbnail text-center'>
+	<%= link_to(edition) do %>
 		<%= image_tag edition.coverart.url(:medium), alt: "Cover art of #{edition.title} - #{edition.platform.display_title}" %>
 		<%= edition.title %> - <%= edition.platform.display_title %><br />
 	<% end %>
-	<%- if edition.status == Edition.statuses[:unreviewed] %>
-		<div class="container">
-			<%= form_for edition, :url => {:action => 'review'}, :method => :post do |e| %>
-				<%= e.hidden_field :id %>
-				<div class="control-group">
-					<%= radio_button_tag :review_option, 'delete' %>
-					<%= label_tag :review_option_delete, 'Delete' %>
-					<%= radio_button_tag :review_option, 'accept' %>
-					<%= label_tag :review_option_accept, 'Accept' %>
-				</div>
-				<div class="form-buttons">
-					<%= submit_tag "Review edition", :class => "btn btn-primary" %>
-				</div>
-			<% end %>
+	<% if current_user.present? %>
+		<div class="row" style="
+		    margin-right: 0px;
+			    margin-left: 0px;
+				">
+			<div class="col-sm-10" style="padding-left:0;padding-right:0;">
+				<%= add_link_to_game_shelf current_user, edition, html_role: "button", checked_html_class: "btn btn-default btn-block", unchecked_html_class: "btn btn-primary btn-block", :unchecked_title => "Add to Wishlist" %>
+			</div>
+			<div class="col-sm-2" style="padding-left:0;padding-right:0;">
+				<button type="button" class="btn btn-primary btn-block" value="+" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					+
+					<span class="caret"></span>
+				</button>
+				<ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
+					<li role="presentation">
+						<%= add_link_to_game_shelf current_user, edition, shelf_type: :wishlist, html_role: "menuitem", html_tabindex: "-1" %>
+					</li>
+					<li role="presentation">
+						<%= add_link_to_game_shelf current_user, edition, shelf_type: :backlog, html_role: "menuitem", html_tabindex: "-1" %>
+					</li>
+					<li role="presentation">
+						<%= add_link_to_game_shelf current_user, edition, shelf_type: :playing, html_role: "menuitem", html_tabindex: "-1" %>
+					</li>
+					<li role="presentation">
+						<%= add_link_to_game_shelf current_user, edition, shelf_type: :played, html_role: "menuitem", html_tabindex: "-1" %>
+					</li>
+					<li role="presentation">
+						<%= add_link_to_game_shelf current_user, edition, shelf_type: :finished, html_role: "menuitem", html_tabindex: "-1" %>
+					</li>
+				</ul>
+			</div>
 		</div>
-	<% end -%>
+	<% end %>
+	</div>
 </div>
 
