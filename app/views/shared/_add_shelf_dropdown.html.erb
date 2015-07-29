@@ -1,19 +1,58 @@
-<ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
-	<% shelves.each do |shelf| %>
-		<li role="presentation">
-			<%= link_to shelf.title,
-				href_user_game_shelf_path(shelf.user, shelf, game, is_item_on_shelf?(shelf_item, shelf)),
+<div class="row no-margin-left no-margin-right">
+	<div class="col-sm-9 no-padding-left no-padding-right">
+		<%- if shelf_item.present? && is_item_on_shelf?(shelf_item, wishlist_shelf) %>
+			<%= link_to shelf_item.game_shelf.title,
+				href_user_game_shelf_path(user, shelf_item.game_shelf, game, is_item_on_shelf?(shelf_item, shelf_item.game_shelf)),
 				method: :put,
 				remote: true,
-				class: "game_shelf",
+				class: "game_shelf btn btn-default btn-sm btn-block",
 				role: "menuitem",
 				tabindex: "-1",
 				data: {
-					toggle_href: toggle_href_user_game_shelf_path(shelf.user, shelf, game, is_item_on_shelf?(shelf_item, shelf)),
-					shelf: shelf.id.to_s,
-					checked: is_item_on_shelf?(shelf_item, shelf).to_i
+					toggle_href: toggle_href_user_game_shelf_path(user, shelf_item.game_shelf, game, is_item_on_shelf?(shelf_item, shelf_item.game_shelf)),
+					shelf: shelf_item.game_shelf.id.to_s,
+					checked: is_item_on_shelf?(shelf_item, shelf_item.game_shelf).to_i
 				}
 			%>
-		</li>
-	<% end %>
-</ul>
+		<% else %>
+			<%= link_to "Add to Wishlist",
+				href_user_game_shelf_path(user, wishlist_shelf, game, is_item_on_shelf?(shelf_item, wishlist_shelf)),
+				method: :put,
+				remote: true,
+				class: "game_shelf btn btn-primary btn-sm btn-block",
+				role: "menuitem",
+				tabindex: "-1",
+				data: {
+					toggle_href: toggle_href_user_game_shelf_path(user, wishlist_shelf, game, is_item_on_shelf?(shelf_item, wishlist_shelf)),
+					shelf: wishlist_shelf.id.to_s,
+					checked: is_item_on_shelf?(shelf_item, wishlist_shelf).to_i
+				}
+			%>
+		<% end -%>
+	</div>
+	<div class="col-sm-3 no-padding-left no-padding-right">
+		<button type="button" class="btn btn-primary btn-sm btn-block" value="+" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			+
+			<span class="caret"></span>
+		</button>
+		<ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
+			<% shelves.each do |shelf| %>
+				<li role="presentation">
+					<%= link_to shelf.title,
+						href_user_game_shelf_path(user, shelf, game, is_item_on_shelf?(shelf_item, shelf)),
+						method: :put,
+						remote: true,
+						class: "game_shelf",
+						role: "menuitem",
+						tabindex: "-1",
+						data: {
+							toggle_href: toggle_href_user_game_shelf_path(user, shelf, game, is_item_on_shelf?(shelf_item, shelf)),
+							shelf: shelf.id.to_s,
+							checked: is_item_on_shelf?(shelf_item, shelf).to_i
+						}
+					%>
+			</li>
+		<% end %>
+		</ul>
+	</div>
+</div>

@@ -5,18 +5,7 @@
 		<%= edition.title %> - <%= edition.platform.display_title %><br />
 	<% end %>
 	<% if current_user.present? %>
-		<div class="row no-margin-left no-margin-right">
-			<div class="col-sm-9 no-padding-left no-padding-right">
-				<%= add_link_to_game_shelf current_user, edition, html_role: "button", checked_html_class: "btn btn-default btn-sm btn-block", unchecked_html_class: "btn btn-sm btn-primary btn-block", :unchecked_title => "Add to Wishlist" %>
-			</div>
-			<div class="col-sm-3 no-padding-left no-padding-right">
-				<button type="button" class="btn btn-primary btn-sm btn-block" value="+" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					+
-					<span class="caret"></span>
-				</button>
-				<%= add_shelf_dropdown current_user, edition %>
-			</div>
-		</div>
+		<%= add_shelf_dropdown current_user, edition %>
 	<% end %>
 	</div>
 </div>
