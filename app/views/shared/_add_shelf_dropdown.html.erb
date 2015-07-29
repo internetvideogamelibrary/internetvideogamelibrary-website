@@ -1,4 +1,4 @@
-<div class="row no-margin-left no-margin-right">
+<div class="row<%- if no_margin %> no-margin-left no-margin-right<% end -%>">
 	<div class="col-sm-9 no-padding-left no-padding-right">
 		<%- if shelf_item.present? && is_item_on_shelf?(shelf_item, wishlist_shelf) %>
 			<%= link_to shelf_item.game_shelf.title,

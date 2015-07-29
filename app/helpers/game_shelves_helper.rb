@@ -33,12 +33,12 @@ module GameShelvesHelper
 			:html_class => html_class, :html_role => html_role, :html_tabindex => html_tabindex, :title => title}
 	end
 
-	def add_shelf_dropdown(user, game)
+	def add_shelf_dropdown(user, game, no_margin: true)
 		shelves = GameShelf.where(:user_id => user.id).order(:shelf_type)
 		shelf_item = ShelfItem.joins(:game_shelf).where("shelf_type <> ? and user_id = ? and item_type = ? and item_id = ?", GameShelf.shelf_types[:custom], user.id, game.class.name, game.id).first
 		wishlist_shelf = shelves.first
 
-		render :partial => "shared/add_shelf_dropdown", :locals => {:shelves => shelves, :shelf_item => shelf_item, :game => game, :wishlist_shelf => wishlist_shelf, :user => user}
+		render :partial => "shared/add_shelf_dropdown", :locals => {:shelves => shelves, :shelf_item => shelf_item, :game => game, :wishlist_shelf => wishlist_shelf, :user => user, :no_margin => no_margin}
 	end
 
 	def href_user_game_shelf_path(user, shelf, game, is_item_on_shelf)
