@@ -1,0 +1,19 @@
+<ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
+	<% shelves.each do |shelf| %>
+		<li role="presentation">
+			<%= link_to shelf.title,
+				href_user_game_shelf_path(shelf.user, shelf, game, is_item_on_shelf?(shelf_item, shelf)),
+				method: :put,
+				remote: true,
+				class: "game_shelf",
+				role: "menuitem",
+				tabindex: "-1",
+				data: {
+					toggle_href: toggle_href_user_game_shelf_path(shelf.user, shelf, game, is_item_on_shelf?(shelf_item, shelf)),
+					shelf: shelf.id.to_s,
+					checked: is_item_on_shelf?(shelf_item, shelf).to_i
+				}
+			%>
+		</li>
+	<% end %>
+</ul>
