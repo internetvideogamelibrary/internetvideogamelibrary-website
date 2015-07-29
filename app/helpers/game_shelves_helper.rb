@@ -41,16 +41,16 @@ module GameShelvesHelper
 		render :partial => "shared/add_shelf_dropdown", :locals => {:shelves => shelves, :shelf_item => shelf_item, :game => game, :wishlist_shelf => wishlist_shelf, :user => user, :no_margin => no_margin}
 	end
 
-	def href_user_game_shelf_path(user, shelf, game, is_item_on_shelf)
-		if is_item_on_shelf == 0
+	def href_user_game_shelf_path(user, shelf, game, shelf_item)
+		if is_item_on_shelf?(shelf_item, shelf) == 0 or not shelf_item.present?
 			add_user_game_shelf_path(user, shelf, game)
 		else
-			remove_item_user_game_shelves_path(user, :item_id => game.id)
+			remove_item_user_game_shelves_path(user, :item_id => shelf_item.id)
 		end
 	end
 
-	def toggle_href_user_game_shelf_path(user, shelf, game, is_item_on_shelf)
-		if is_item_on_shelf == 1
+	def toggle_href_user_game_shelf_path(user, shelf, game, shelf_item)
+		if is_item_on_shelf?(shelf_item, shelf) == 1
 			add_user_game_shelf_path(user, shelf, game)
 		else
 			remove_item_user_game_shelves_path(user)
