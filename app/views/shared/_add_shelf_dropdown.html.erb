@@ -11,6 +11,7 @@
 				data: {
 					toggle_href: toggle_href_user_game_shelf_path(user, shelf_item.game_shelf, game, shelf_item),
 					shelf: shelf_item.game_shelf.id.to_s,
+					id: game.class.name + game.id.to_s,
 					checked: is_item_on_shelf?(shelf_item, shelf_item.game_shelf).to_i
 				}
 			%>
@@ -25,6 +26,7 @@
 				data: {
 					toggle_href: toggle_href_user_game_shelf_path(user, wishlist_shelf, game, shelf_item),
 					shelf: wishlist_shelf.id.to_s,
+					id: game.class.name + game.id.to_s,
 					checked: is_item_on_shelf?(shelf_item, wishlist_shelf).to_i
 				}
 			%>
@@ -48,6 +50,7 @@
 						data: {
 							toggle_href: toggle_href_user_game_shelf_path(user, shelf, game, shelf_item),
 							shelf: shelf.id.to_s,
+							id: game.class.name + game.id.to_s,
 							checked: is_item_on_shelf?(shelf_item, shelf).to_i
 						}
 					%>
