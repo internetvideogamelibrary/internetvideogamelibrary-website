@@ -288,5 +288,13 @@ REFERRAL_SPAMMERS = [
 	"petrovka-online.com",
 	"investpamm.ru",
 	"nardulan.com",
-	"forex-procto.ru"
+	"forex-procto.ru",
+	"azartclub.org",
+	"18pluss.ru",
+	"school-diplomat.ru",
+	"ccpfy.net",
+	"cookingmeat.ru",
+	"poisk-zakona.ru",
+	"msk.yurgorod.ru",
+	"sosdepotdebilan.com"
 ]
