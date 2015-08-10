@@ -296,5 +296,16 @@ REFERRAL_SPAMMERS = [
 	"cookingmeat.ru",
 	"poisk-zakona.ru",
 	"msk.yurgorod.ru",
-	"sosdepotdebilan.com"
+	"sosdepotdebilan.com",
+	"live-videochat.ru",
+	"sledstvie-veli.net",
+	"114ie.net",
+	"micasainvest.com",
+	"kinoix.net",
+	"slonechka.ru",
+	"idkredit.com",
+	"vukuhd.com",
+	"purchasepillsnorx.com",
+	"need-for-speed.info",
+	"x360-torrent.net"
 ]
