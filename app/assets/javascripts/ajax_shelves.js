@@ -1,13 +1,14 @@
-$(".editions.show,.expansions.show").ready(function() {
+$(".index.show,.games.index,.editions.show,.expansions.show").ready(function() {
 	$(".btn.game_shelf").data("loading-text", "Loading...");
-	$(".editions.show,.expansions.show").on('ajax:success', 'a.game_shelf', function(status, data, xhr) {
-		var btn = $(".btn.game_shelf");
+	$(".index.show,.games.index,.editions.show,.expansions.show").on('ajax:success', 'a.game_shelf', function(status, data, xhr) {
+		var t = $(status.target);
+		var t_id = t.data("id");
+		var btn = $("[data-id="+t_id+"].btn.game_shelf");
 		if(data.status == 'success') {
-			var t = $(status.target);
 			var resetText;
 
 			if(t[0] == btn[0]) {
-				t = $('[data-shelf='+$(status.target).data('shelf')+']:not(.btn)');
+				t = $('[data-id='+t_id+'][data-shelf='+$(status.target).data('shelf')+']:not(.btn)');
 			}
 			resetText = t.text();
 
@@ -36,14 +37,18 @@ $(".editions.show,.expansions.show").ready(function() {
 			btn.data('resetText', resetText);
 		}
 		btn.button("reset");
-		$('a.game_shelf:not(.btn)').unbind("click");
+		$('a[data-id='+t_id+'].game_shelf:not(.btn)').unbind("click");
 	});
-	$(".editions.show,.expansions.show").on('ajax:beforeSend', 'a.game_shelf', function(status, data, xhr) {
-		$(".btn.game_shelf").button("loading");
-		$('a.game_shelf:not(.btn)').click(function() { return false} );
+	$(".index.show,.games.index,.editions.show,.expansions.show").on('ajax:beforeSend', 'a.game_shelf', function(status, data, xhr) {
+		var t = $(status.target);
+		var t_id = t.data("id");
+		$("[data-id="+t_id+"].btn.game_shelf").button("loading");
+		$('a[data-id='+t_id+'].game_shelf:not(.btn)').click(function() { return false} );
 	});
-	$(".editions.show,.expansions.show").on('ajax:error', 'a.game_shelf', function(status, data, xhr) {
-		$(".btn.game_shelf").button("reset");
-		$('a.game_shelf:not(.btn)').unbind("click");
+	$(".index.show,.games.index,.editions.show,.expansions.show").on('ajax:error', 'a.game_shelf', function(status, data, xhr) {
+		var t = $(status.target);
+		var t_id = t.data("id");
+		$("[data-id="+t_id+"].btn.game_shelf").button("reset");
+		$('a[data-id='+t_id+'].game_shelf:not(.btn)').unbind("click");
 	});
 });

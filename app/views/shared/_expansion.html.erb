@@ -1,0 +1,11 @@
+<div class="col-md-2 col-sm-3 col-xs-6 word-break">
+	<div class='thumbnail text-center'>
+	<%= link_to([expansion.edition, expansion]) do %>
+		<%= image_tag expansion.coverart.url(:medium), alt: "Cover art of #{expansion.title} - #{expansion.edition.platform.display_title}" %>
+		<%= expansion.title %> - <%= expansion.edition.platform.display_title %><br />
+	<% end %>
+	<% if current_user.present? %>
+		<%= add_shelf_dropdown current_user, expansion%>
+	<% end %>
+	</div>
+</div>
