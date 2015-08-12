@@ -4,6 +4,7 @@
 		<%= image_tag expansion.coverart.url(:medium), alt: "Cover art of #{expansion.title} - #{expansion.edition.platform.display_title}" %>
 		<%= expansion.title %> - <%= expansion.edition.platform.display_title %><br />
 	<% end %>
+	<small>Released on <%= expansion.release_date.strftime('%d/%m/%Y') if expansion.release_date.present? %> at <%= expansion.edition.region.title %></small><br />
 	<% if current_user.present? %>
 		<%= add_shelf_dropdown current_user, expansion%>
 	<% end %>
