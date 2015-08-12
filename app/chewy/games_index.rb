@@ -29,7 +29,8 @@ class GamesIndex < Chewy::Index
 					"farcry,far cry",
 					"bioshock,bio shock",
 					"olliolli,olli olli",
-					"actraiser,act raiser"
+					"actraiser,act raiser",
+					"gta,grand theft auto"
 				]
 			}
 		},
