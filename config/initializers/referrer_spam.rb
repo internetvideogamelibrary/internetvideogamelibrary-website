@@ -307,5 +307,11 @@ REFERRAL_SPAMMERS = [
 	"vukuhd.com",
 	"purchasepillsnorx.com",
 	"need-for-speed.info",
-	"x360-torrent.net"
+	"x360-torrent.net",
+	"prohoster.info",
+	"hoporno.com",
+	"hamelius.ru",
+	"highlandmedia.net",
+	"gdcentre.ru",
+	"waplocator.com"
 ]
