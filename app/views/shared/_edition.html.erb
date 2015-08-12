@@ -4,6 +4,7 @@
 		<%= image_tag edition.coverart.url(:medium), alt: "Cover art of #{edition.title} - #{edition.platform.display_title}" %>
 		<%= edition.title %> - <%= edition.platform.display_title %><br />
 	<% end %>
+	<small>Released on <%= edition.release_date.strftime('%d/%m/%Y') if edition.release_date.present? %> at <%= edition.region.title %></small><br />
 	<% if current_user.present? %>
 		<%= add_shelf_dropdown current_user, edition %>
 	<% end %>

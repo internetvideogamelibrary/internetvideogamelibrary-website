@@ -6,32 +6,15 @@ Results for "<%= strip_tags params[:q] %>" - <% if params[:page] %> page <%= par
 </div>
 
 <div class="row">
-	<div class="col-md-9">
-		<% @games.each do |game| %>
-			<div class="media">
-				<% if game.class.name == 'Expansion' %>
-					<div class="media-left media-middle">
-						<%= link_to([game.edition, game], :style => 'width:100px') do %>
-							<%= image_tag game.coverart.url(:thumb), :class => 'media-object', alt: "Cover art of #{game.title} - #{game.edition.platform.display_title}" %>
-						<% end %>
-					</div>
-					<div class="media-body media-middle">
-						<h4 class="media-heading"><%= link_to([game.edition, game]) do %><%= game.title %> (<%= game.edition.platform.display_title %>)<% end %></h4>
-						Released on <%= game.release_date.strftime('%d/%m/%Y') if game.release_date.present? %> at <%= game.edition.region.title %><br />
-					</div>
-				<% else %>
-					<div class="media-left media-middle">
-						<%= link_to(game, :style => 'width:100px') do %>
-							<%= image_tag game.coverart.url(:thumb), :class => 'media-object', alt: "Cover art of #{game.title} - #{game.platform.display_title}" %>
-						<% end %>
-					</div>
-					<div class="media-body media-middle">
-						<h4 class="media-heading"><%= link_to(game) do %><%= game.title %> (<%= game.platform.display_title %>)<% end %></h4>
-						Released on <%= game.release_date.strftime('%d/%m/%Y') if game.release_date.present? %> at <%= game.region.title %><br />
-					</div>
-				<% end %>
-			</div>
-		<% end %>
-	</div>
+	<% @games.each_with_index do |game, i| %>
+		<%- if i > 0 && ( (i % 6 == 0) || (i % 4 == 0) || (i % 2 == 0) )%>
+			<div class="clearfix<%- if (i % 6 == 0) %> visible-md visible-lg<% end -%><%- if (i % 4 == 0) %> visible-sm<% end -%><%- if (i % 2 == 0) %> visible-xs<% end-%>"></div>
+		<% end -%>
+		<%- if game.class.name == Expansion.name %>
+			<%= render partial: "shared/expansion", locals: {expansion: game} %>
+		<% else %>
+			<%= render partial: "shared/edition", locals: {edition: game} %>
+		<% end -%>
+	<% end %>
 </div>
 <%= will_paginate @games, renderer: BootstrapPagination::Rails %>
