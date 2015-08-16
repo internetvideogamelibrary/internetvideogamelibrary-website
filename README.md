@@ -1,4 +1,4 @@
-Internet Video Game library
+Internet Video Game library [![Code Climate](https://codeclimate.com/github/internetvideogamelibrary/internetvideogamelibrary-website/badges/gpa.svg)](https://codeclimate.com/github/internetvideogamelibrary/internetvideogamelibrary-website) [![Test Coverage](https://codeclimate.com/github/internetvideogamelibrary/internetvideogamelibrary-website/badges/coverage.svg)](https://codeclimate.com/github/internetvideogamelibrary/internetvideogamelibrary-website/coverage) [![Build Status](https://travis-ci.org/internetvideogamelibrary/internetvideogamelibrary-website.svg)](https://travis-ci.org/internetvideogamelibrary/internetvideogamelibrary-website)
 ================
 
 Internet Video Game Library is a website designed to help users to mantain a collection and tracking of games. It aims to allow users to input when they started and finished playing a game, and also to keep track how many games they played, challenge themselves to finish a number of games in a year, and play games they have bought but are still on their shelves.
