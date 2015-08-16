@@ -33,19 +33,30 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
-	def _edition_exists(id)
-		edition = Edition.friendly.find(id)
-		if edition.present?
+	def game_exists(gameClass, id)
+		game = gameClass.friendly.find(id)
+		if game.present?
 			return true
 		else
-			redirect_to :back, :alert => "Game not found"
+			redirect_to :back, :alert => "#{gameClass.name} not found"
 			return false
 		end
 
 		rescue ActiveRecord::RecordNotFound
-			redirect_to '/', :alert => "Game not found"
+			redirect_to '/', :alert => "#{gameClass.name} not found"
 		rescue ActionController::RedirectBackError
-			redirect_to '/', :alert => "Game not found"
+			redirect_to '/', :alert => "#{gameClass.name} not found"
+	end
+
+	def expansion_exists
+		game_exists(Expansion, params[:id])
+	end
+
+	def work_exists
+		game_exists(Work, params[:id])
+	end
+	def _edition_exists(id)
+		game_exists(Edition, id)
 	end
 	def game_maker_only
 		unless current_user.game_maker_or_more?

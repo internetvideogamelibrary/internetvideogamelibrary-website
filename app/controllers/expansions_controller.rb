@@ -67,21 +67,6 @@ class ExpansionsController < ApplicationController
 		params.require(:expansion).permit(:title,:description,:release_date, :coverart, :delete_coverart)
 	end
 
-	def expansion_exists
-		expansion = Expansion.friendly.find(params[:id])
-		if expansion.present?
-			return true
-		else
-			redirect_to :back, :alert => "Game not found"
-			return false
-		end
-
-		rescue ActiveRecord::RecordNotFound
-			redirect_to '/', :alert => "Game not found"
-		rescue ActionController::RedirectBackError
-			redirect_to '/', :alert => "Game not found"
-	end
-
 	def edition_exists
 		_edition_exists(params[:edition_id])
 	end

@@ -135,20 +135,6 @@ class WorksController < ApplicationController
 		params.require(:work).permit(:original_title, :original_release_date)
 	end
 
-	def work_exists
-		work = Work.friendly.find(params[:id])
-		if work.present?
-			return true
-		else
-			redirect_to :back, :alert => "Game not found"
-			return false
-		end
-
-		rescue ActiveRecord::RecordNotFound
-			redirect_to '/', :alert => "Game not found"
-		rescue ActionController::RedirectBackError
-			redirect_to '/', :alert => "Game not found"
-	end
 	def has_query
 		if params[:q].present?
 			true
