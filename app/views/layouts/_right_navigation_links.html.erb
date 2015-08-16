@@ -5,6 +5,7 @@
 		<ul class="dropdown-menu">
 			<%= active_link_to user_game_shelves_path(current_user), :wrap_tag => :li do %> <i class="fa fa-book"></i> My games<% end %>
 			<%= active_link_to edit_user_registration_path, :wrap_tag => :li do %> <i class="fa fa-edit"></i> Edit account <% end %>
+			<%= active_link_to identities_users_path, :wrap_tag => :li do%> <i class="fa fa-link"></i> Your social networks<% end %>
 			<%= active_link_to destroy_user_session_path, :method=>'delete', :wrap_tag => :li do %> <i class="fa fa-sign-out"></i> Sign out <% end %>
 		</ul>
 	</li>
