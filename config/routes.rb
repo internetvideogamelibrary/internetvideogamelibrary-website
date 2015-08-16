@@ -25,6 +25,9 @@ Rails.application.routes.draw do
 				put 'add_expansion'
 			end
 		end
+		collection do
+			get 'identities'
+		end
 	end
 	resources :works do
 		collection do

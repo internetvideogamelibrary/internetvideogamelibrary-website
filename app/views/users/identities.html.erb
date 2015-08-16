@@ -1,0 +1,44 @@
+<div class="page-header">
+	<h1>Your social networks</h1>
+</div>
+<div class="row">
+	<div class="col-md-4">
+		<% if @identities['google_oauth2'] %>
+			<%= link_to "#", class: 'btn btn-lg btn-social-icon btn-google-plus disabled', title: "Authorize Google", rel: "nofollow" do %>
+				<i class="fa fa-google-plus"></i>
+			<% end %>
+			Connected
+		<% else %>
+			<%= link_to user_omniauth_authorize_path('google_oauth2'), class: 'btn btn-lg btn-social-icon btn-google-plus', title: "Authorize Google", rel: "nofollow" do %>
+				<i class="fa fa-google-plus"></i>
+			<% end %>
+			Connect
+		<% end -%>
+	</div>
+	<div class="col-md-4">
+		<% if @identities['facebook'] %>
+			<%= link_to "#", class: 'btn btn-lg btn-social-icon btn-facebook disabled', title: "Authorize Facebook", rel: "nofollow" do %>
+				<i class="fa fa-facebook"></i>
+			<% end %>
+			Connected
+		<% else %>
+			<%= link_to user_omniauth_authorize_path('facebook'), class: 'btn btn-lg btn-social-icon btn-facebook', title: "Authorize Facebook", rel: "nofollow" do %>
+				<i class="fa fa-facebook"></i>
+			<% end %>
+			Connect
+		<% end -%>
+	</div>
+	<div class="col-md-4">
+		<% if @identities['twitter'] %>
+			<%= link_to "#", class: 'btn btn-lg btn-social-icon btn-twitter disabled', title: "Authorize Twitter", rel: "nofollow" do %>
+				<i class="fa fa-twitter"></i>
+			<% end %>
+			Connected
+		<% else %>
+			<%= link_to user_omniauth_authorize_path('twitter'), class: 'btn btn-lg btn-social-icon btn-twitter', title: "Authorize Twitter", rel: "nofollow" do %>
+				<i class="fa fa-twitter"></i>
+			<% end %>
+			Connect
+		<% end -%>
+	</div>
+</div>
