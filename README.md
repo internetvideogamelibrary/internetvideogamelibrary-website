@@ -1,50 +1,22 @@
-Internetgameslibrary
+Internetvideogamelibrary
 ================
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
-This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
-provided by the [RailsApps Project](http://railsapps.github.io/).
-
-Rails Composer is open source and supported by subscribers. Please join RailsApps to support development of Rails Composer.
+Internet Video Game Library is a website designed to help users to mantain a collection and tracking of games. It aims to allow users to input when they started and finished playing a game, and also to keep track how many games they played, challenge themselves to finish a number of games in a year, and play games they have bought but are still on their shelves.
 
 Problems? Issues?
 -----------
 
-Need help? Ask on Stack Overflow with the tag 'railsapps.'
-
-Your application contains diagnostics in the README file. Please provide a copy of the README file when reporting any issues.
-
-If the application doesn't work as expected, please [report an issue](https://github.com/RailsApps/rails_apps_composer/issues)
-and include the diagnostics.
+Suggestions and ideas should be put on [Internet Video Game Library Support](http://ivglib.helprace.com/), to be voted by the community. Only code-related issues should be filled in within github.
 
 Ruby on Rails
 -------------
 
 This application requires:
 
-- Ruby 2.1.3
+- Ruby 2.1.5
 - Rails 4.1.0
-
-Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
-
-Getting Started
----------------
-
-Documentation and Support
--------------------------
-
-Issues
--------------
-
-Similar Projects
-----------------
-
-Contributing
-------------
-
-Credits
--------
 
 License
 -------
+This software is licensed in GPL v3.
+![GPL v3](http://www.gnu.org/graphics/gplv3-127x51.png)
