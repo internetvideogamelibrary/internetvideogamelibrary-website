@@ -140,20 +140,6 @@ class EditionsController < ApplicationController
 	def work_params
 		params.require(:work).permit(:original_title, :original_release_date)
 	end
-	def game_maker_only
-		unless current_user.game_maker_or_more?
-			redirect_to :back, :alert => "Access denied."
-		end
-		rescue ActionController::RedirectBackError
-			redirect_to '/', :alert => "Access denied."
-	end
-	def reviewer_only
-		unless current_user.admin?
-			redirect_to :back, :alert => "Access denied."
-		end
-		rescue ActionController::RedirectBackError
-			redirect_to '/', :alert => "Access denied."
-	end
 
 	def parent_edition_exists
 		_edition_exists(params[:parent_edition_id])
@@ -161,21 +147,6 @@ class EditionsController < ApplicationController
 
 	def edition_exists
 		_edition_exists(params[:id])
-	end
-
-	def _edition_exists(id)
-		edition = Edition.friendly.find(id)
-		if edition.present?
-			return true
-		else
-			redirect_to :back, :alert => "Game not found"
-			return false
-		end
-
-		rescue ActiveRecord::RecordNotFound
-			redirect_to '/', :alert => "Game not found"
-		rescue ActionController::RedirectBackError
-			redirect_to '/', :alert => "Game not found"
 	end
 
 	def edition_visible
