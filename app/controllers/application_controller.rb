@@ -59,16 +59,13 @@ class ApplicationController < ActionController::Base
 		game_exists(Edition, id)
 	end
 	def game_maker_only
-		unless current_user.game_maker_or_more?
-			redirect_to :back, :alert => "Access denied."
-		end
-		rescue ActionController::RedirectBackError
-			redirect_to '/', :alert => "Access denied."
+		deny_access unless current_user.game_maker_or_more?
 	end
 	def reviewer_only
-		unless current_user.admin?
-			redirect_to :back, :alert => "Access denied."
-		end
+		deny_access unless current_user.admin?
+	end
+	def deny_access
+		redirect_to :back, :alert => "Access denied."
 		rescue ActionController::RedirectBackError
 			redirect_to '/', :alert => "Access denied."
 	end
