@@ -79,6 +79,8 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.5)
       climate_control (>= 0.0.3, < 1.0)
+    codeclimate-test-reporter (0.4.7)
+      simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -97,6 +99,7 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    docile (1.1.5)
     elasticsearch (1.0.9)
       elasticsearch-api (= 1.0.9)
       elasticsearch-transport (= 1.0.9)
@@ -390,6 +393,11 @@ GEM
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
+    simplecov (0.10.0)
+      docile (~> 1.1.0)
+      json (~> 1.8)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
     sitemap_generator (5.0.5)
       builder
     slop (3.6.0)
@@ -452,6 +460,7 @@ DEPENDENCIES
   bootstrap-validator-rails
   capybara
   chewy!
+  codeclimate-test-reporter
   coffee-rails (~> 4.0.0)
   database_cleaner
   devise
