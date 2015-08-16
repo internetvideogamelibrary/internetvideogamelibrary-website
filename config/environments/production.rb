@@ -109,6 +109,6 @@ Rails.application.configure do
 		:email => {
 		:email_prefix => "[IVGLib-ERROR] ",
 		:sender_address => %{"notifier" <notifier@internetvideogamelibrary.com>},
-		:exception_recipients => %w{renato.lond@gmail.com}
+		:exception_recipients => %W{#{ENV['EXCEPTION_RECIPIENT']}}
 	  }
 end
