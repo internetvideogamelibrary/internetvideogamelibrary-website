@@ -62,6 +62,5 @@ Rails.application.routes.draw do
 #	end
 	root to:'index#show'
 
-	get 'faq', to: 'index#faq'
 	get 'about', to: 'index#about'
 end
