@@ -19,22 +19,49 @@ describe GameShelvesController do
 
 			expect{
 				# when
-				put :add_edition, user_id: @user.id, id: game_shelf, edition_id: edition.id
+				xhr :put, :add_edition, user_id: @user.id, id: game_shelf, edition_id: edition.id
 			}.to change(ShelfItem,:count).by(1)
 
 			shelf_item = game_shelf.shelf_items.first
+
 			# then
+			expect(response.code).to eq("200")
 			expect(shelf_item.item).to eq(edition)
 		end
 		it "should fail to add edition with friendly id" do
 			# given
 			game_shelf = FactoryGirl.create(:game_shelf, user: @user)
 			edition = FactoryGirl.create(:edition)
+			expected_body = {
+				:status => "edition_unknown"
+			}.to_json
 
 			expect{
 				# when
-				put :add_edition, user_id: @user.id, id: game_shelf, edition_id: edition.slug
+				xhr :put, :add_edition, user_id: @user.id, id: game_shelf, edition_id: edition.slug
 			}.to change(ShelfItem,:count).by(0)
+
+			# then
+			expect(response.code).to eq("404")
+			expect(response.body).to eq(expected_body)
+			expect(game_shelf.shelf_items.size).to eq(0)
+		end
+		it "should fail to add edition without edition_id" do
+			# given
+			game_shelf = FactoryGirl.create(:game_shelf, user: @user)
+			edition = FactoryGirl.create(:edition)
+			expected_body = {
+				:status => "edition_missing"
+			}.to_json
+
+			expect{
+				# when
+				xhr :put, :add_edition, user_id: @user.id, id: game_shelf
+			}.to change(ShelfItem,:count).by(0)
+
+			# then
+			expect(response.code).to eq("400")
+			expect(response.body).to eq(expected_body)
 			expect(game_shelf.shelf_items.size).to eq(0)
 		end
 	end
@@ -46,22 +73,49 @@ describe GameShelvesController do
 
 			expect{
 				# when
-				put :add_expansion, user_id: @user.id, id: game_shelf, expansion_id: expansion.id
+				xhr :put, :add_expansion, user_id: @user.id, id: game_shelf, expansion_id: expansion.id
 			}.to change(ShelfItem,:count).by(1)
 
 			shelf_item = game_shelf.shelf_items.first
+
 			# then
+			expect(response.code).to eq("200")
 			expect(shelf_item.item).to eq(expansion)
 		end
 		it "should fail to add expansion with friendly id" do
 			# given
 			game_shelf = FactoryGirl.create(:game_shelf, user: @user)
 			expansion = FactoryGirl.create(:expansion)
+			expected_body = {
+				:status => "expansion_unknown"
+			}.to_json
 
 			expect{
 				# when
-				put :add_expansion, user_id: @user.id, id: game_shelf, expansion_id: expansion.slug
+				xhr :put, :add_expansion, user_id: @user.id, id: game_shelf, expansion_id: expansion.slug
 			}.to change(ShelfItem,:count).by(0)
+
+			# then
+			expect(response.code).to eq("404")
+			expect(response.body).to eq(expected_body)
+			expect(game_shelf.shelf_items.size).to eq(0)
+		end
+		it "should fail to add expansion without expansion_id" do
+			# given
+			game_shelf = FactoryGirl.create(:game_shelf, user: @user)
+			expansion = FactoryGirl.create(:expansion)
+			expected_body = {
+				:status => "expansion_missing"
+			}.to_json
+
+			expect{
+				# when
+				xhr :put, :add_expansion, user_id: @user.id, id: game_shelf
+			}.to change(ShelfItem,:count).by(0)
+
+			# then
+			expect(response.code).to eq("400")
+			expect(response.body).to eq(expected_body)
 			expect(game_shelf.shelf_items.size).to eq(0)
 		end
 	end
@@ -74,11 +128,12 @@ describe GameShelvesController do
 
 			expect{
 				# when
-				put :remove_item, user_id: @user.id, item_id: shelf_item.id
+				xhr :put, :remove_item, user_id: @user.id, item_id: shelf_item.id
 			}.to change(ShelfItem,:count).by(-1)
 			game_shelf.reload
 
 			#then
+			expect(response.code).to eq("200")
 			expect(game_shelf.shelf_items.size).to eq(0)
 		end
 		it "should remove a expansion" do
@@ -89,12 +144,45 @@ describe GameShelvesController do
 
 			expect{
 				# when
-				put :remove_item, user_id: @user.id, item_id: shelf_item.id
+				xhr :put, :remove_item, user_id: @user.id, item_id: shelf_item.id
 			}.to change(ShelfItem,:count).by(-1)
 			game_shelf.reload
 
 			#then
+			expect(response.code).to eq("200")
 			expect(game_shelf.shelf_items.size).to eq(0)
+		end
+		it "should fail to remove a expansion without id" do
+			# given
+			expansion = FactoryGirl.create(:expansion)
+			shelf_item = FactoryGirl.create(:shelf_item, item: expansion)
+			game_shelf = FactoryGirl.create(:game_shelf, user: @user, shelf_items: [shelf_item])
+
+			expect{
+				# when
+				xhr :put, :remove_item, user_id: @user.id
+			}.to change(ShelfItem,:count).by(0)
+			game_shelf.reload
+
+			#then
+			expect(response.code).to eq("400")
+			expect(game_shelf.shelf_items.size).to eq(1)
+		end
+		it "should fail to remove a expansion with unknown id" do
+			# given
+			expansion = FactoryGirl.create(:expansion)
+			shelf_item = FactoryGirl.create(:shelf_item, item: expansion)
+			game_shelf = FactoryGirl.create(:game_shelf, user: @user, shelf_items: [shelf_item])
+
+			expect{
+				# when
+				xhr :put, :remove_item, user_id: @user.id, item_id: shelf_item.id + 1
+			}.to change(ShelfItem,:count).by(0)
+			game_shelf.reload
+
+			#then
+			expect(response.code).to eq("404")
+			expect(game_shelf.shelf_items.size).to eq(1)
 		end
 	end
 end

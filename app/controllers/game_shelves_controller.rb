@@ -133,17 +133,17 @@ class GameShelvesController < ApplicationController
 				return true
 			else
 				if request.xhr?
-					render json: { :status => :edition_unknown }
+					render json: { :status => :edition_unknown }, :status => 404
 				else
-					render 'edition_unknown'
+					render 'edition_unknown', :status => 404
 				end
 				return false
 			end
 		else
 			if request.xhr?
-				render json: { :status => :edition_missing }
+				render json: { :status => :edition_missing }, :status => 400
 			else
-				render 'edition_missing'
+				render 'edition_missing', :status => 400
 			end
 
 			return false
@@ -156,17 +156,17 @@ class GameShelvesController < ApplicationController
 				return true
 			else
 				if request.xhr?
-					render json: { :status => :expansion_unknown }
+					render json: { :status => :expansion_unknown }, :status => 404
 				else
-					render 'expansion_unknown'
+					render 'expansion_unknown', :status => 404
 				end
 				return false
 			end
 		else
 			if request.xhr?
-				render json: { :status => :expansion_missing }
+				render json: { :status => :expansion_missing }, :status => 400
 			else
-				render 'expansion_missing'
+				render 'expansion_missing', :status => 400
 			end
 
 			return false
@@ -180,17 +180,17 @@ class GameShelvesController < ApplicationController
 				return true
 			else
 				if request.xhr?
-					render json: { :status => :item_unknown }
+					render json: { :status => :item_unknown }, :status => 404
 				else
-					render 'item_unknown'
+					render 'item_unknown', :status => 404
 				end
 				return false
 			end
 		else
 			if request.xhr?
-				render json: { :status => :item_missing }
+				render json: { :status => :item_missing }, :status => 400
 			else
-				render 'item_missing'
+				render 'item_missing', :status => 400
 			end
 
 			return false
