@@ -104,12 +104,9 @@ class GameShelvesController < ApplicationController
 		if game_shelf.present? and game_shelf.user.id == current_user.id
 			return true
 		else
-			render json: { :status => :game_shelf_unknown }
+			render json: { :status => :game_shelf_unknown }, :status => 404
 			return false
 		end
-
-		rescue ActionController::RedirectBackError
-			redirect_to user_game_shelves_path, :alert => "Game shelf unknown."
 	end
 
 	def edition_present_and_exists
