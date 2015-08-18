@@ -1,6 +1,8 @@
 class GameShelvesController < ApplicationController
 	before_filter :authenticate_user!
 
+	before_filter :xhr_only
+
 	before_filter :game_shelf_exist,
 	:only => [:add_edition, :add_expansion, :show]
 
@@ -44,11 +46,7 @@ class GameShelvesController < ApplicationController
 
 		@shelf_item = add_game(game_shelf, edition)
 
-		if request.xhr?
-			render json: { :status => :success, :shelf_item => @shelf_item }
-		else
-			render 'add_edition'
-		end
+		render json: { :status => :success, :shelf_item => @shelf_item }
 	end
 
 	def add_expansion
@@ -57,11 +55,7 @@ class GameShelvesController < ApplicationController
 
 		@shelf_item = add_game(game_shelf, expansion)
 
-		if request.xhr?
-			render json: { :status => :success, :shelf_item => @shelf_item }
-		else
-			render 'add_expansion'
-		end
+		render json: { :status => :success, :shelf_item => @shelf_item }
 	end
 
 	def remove_item
@@ -72,11 +66,7 @@ class GameShelvesController < ApplicationController
 
 		shelf_item.destroy
 
-		if request.xhr?
-			render json: { :status => :success, :message => :shelf_item_removed }
-		else
-			render 'remove_item'
-		end
+		render json: { :status => :success, :message => :shelf_item_removed }
 	end
 
   def create
@@ -113,13 +103,7 @@ class GameShelvesController < ApplicationController
 		if game_shelf.present? and game_shelf.user.id == current_user.id
 			return true
 		else
-			if request.xhr?
-				render json: { :status => :game_shelf_unknown }
-			else
-				redirect_to :back, :alert => "Game shelf unknown."
-				return false
-			end
-
+			render json: { :status => :game_shelf_unknown }
 			return false
 		end
 
@@ -132,20 +116,11 @@ class GameShelvesController < ApplicationController
 			if Edition.find_by_id(params[:edition_id]).present?
 				return true
 			else
-				if request.xhr?
-					render json: { :status => :edition_unknown }, :status => 404
-				else
-					render 'edition_unknown', :status => 404
-				end
+				render json: { :status => :edition_unknown }, :status => 404
 				return false
 			end
 		else
-			if request.xhr?
-				render json: { :status => :edition_missing }, :status => 400
-			else
-				render 'edition_missing', :status => 400
-			end
-
+			render json: { :status => :edition_missing }, :status => 400
 			return false
 		end
 	end
@@ -155,20 +130,11 @@ class GameShelvesController < ApplicationController
 			if Expansion.find_by_id(params[:expansion_id]).present?
 				return true
 			else
-				if request.xhr?
-					render json: { :status => :expansion_unknown }, :status => 404
-				else
-					render 'expansion_unknown', :status => 404
-				end
+				render json: { :status => :expansion_unknown }, :status => 404
 				return false
 			end
 		else
-			if request.xhr?
-				render json: { :status => :expansion_missing }, :status => 400
-			else
-				render 'expansion_missing', :status => 400
-			end
-
+			render json: { :status => :expansion_missing }, :status => 400
 			return false
 		end
 	end
@@ -179,21 +145,18 @@ class GameShelvesController < ApplicationController
 			if shelf_item.present? and shelf_item.game_shelf.user_id == current_user.id
 				return true
 			else
-				if request.xhr?
-					render json: { :status => :item_unknown }, :status => 404
-				else
-					render 'item_unknown', :status => 404
-				end
+				render json: { :status => :item_unknown }, :status => 404
 				return false
 			end
 		else
-			if request.xhr?
-				render json: { :status => :item_missing }, :status => 400
-			else
-				render 'item_missing', :status => 400
-			end
-
+			render json: { :status => :item_missing }, :status => 400
 			return false
+		end
+	end
+
+	def xhr_only
+		if not request.xhr?
+			render :nothing => true, :status => 400
 		end
 	end
 end

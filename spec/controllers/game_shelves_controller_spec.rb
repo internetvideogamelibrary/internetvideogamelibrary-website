@@ -11,6 +11,15 @@ describe GameShelvesController do
 		Warden.test_reset!
 	end
 
+	describe 'xhr filter' do
+		it "should return bad request if a non-xhr call is made" do
+			game_shelf = FactoryGirl.create(:game_shelf, user: @user)
+			put :add_edition, user_id: @user.id, id: game_shelf
+			expect(response.code).to eq("400")
+			expect(response.body).to eq(" ")
+		end
+	end
+
 	describe 'PUT#add_edition' do
 		it "should add edition to shelf and return it" do
 			# given
