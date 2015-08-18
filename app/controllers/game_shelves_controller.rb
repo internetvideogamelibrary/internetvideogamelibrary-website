@@ -1,7 +1,8 @@
 class GameShelvesController < ApplicationController
 	before_filter :authenticate_user!
 
-	before_filter :xhr_only
+	before_filter :xhr_only,
+	:except => [:index, :show]
 
 	before_filter :game_shelf_exist,
 	:only => [:add_edition, :add_expansion, :show]
