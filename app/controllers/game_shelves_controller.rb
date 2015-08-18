@@ -47,22 +47,19 @@ class GameShelvesController < ApplicationController
 		@game_shelves = current_user.game_shelves -> {order 'shelf_type asc, id asc'}
 	end
 
-	def add_edition
+	def add_game(game)
 		game_shelf = GameShelf.find_by_id(params[:id])
-		edition = Edition.find_by_id(params[:edition_id])
-
-		@shelf_item = add_game(game_shelf, edition)
+		@shelf_item = add_game_to_shelf(game_shelf, game)
 
 		render json: { :status => :success, :shelf_item => @shelf_item }
 	end
 
+	def add_edition
+		add_game(Edition.find_by_id(params[:edition_id]))
+	end
+
 	def add_expansion
-		game_shelf = GameShelf.find_by_id(params[:id])
-		expansion = Expansion.find_by_id(params[:expansion_id])
-
-		@shelf_item = add_game(game_shelf, expansion)
-
-		render json: { :status => :success, :shelf_item => @shelf_item }
+		add_game(Expansion.find_by_id(params[:expansion_id]))
 	end
 
 	def remove_item
@@ -87,19 +84,28 @@ class GameShelvesController < ApplicationController
 
 	private
 
-	def add_game(game_shelf, game)
+	def add_base_shelf_item(game_shelf, game)
+		shelf_item = ShelfItem.joins(:game_shelf).where("shelf_type != ? and user_id = ? and item_type = ? and item_id = ?", GameShelf.shelf_types[:custom], current_user.id, game.class.name, game.id).first
+		if(shelf_item.present?)
+			shelf_item.game_shelf = game_shelf
+		else
+			shelf_item = add_new_shelf_item(game_shelf, game)
+		end
+		return shelf_item
+	end
+
+	def add_new_shelf_item(game_shelf, game)
+		shelf_item = game_shelf.shelf_items.new
+		shelf_item.item = game
+		return shelf_item
+	end
+
+	def add_game_to_shelf(game_shelf, game)
 		# if game shelf is not custom, we need to change the game shelf instead of creating a new item
 		if game_shelf.shelf_type != GameShelf.shelf_types[:custom]
-			shelf_item = ShelfItem.joins(:game_shelf).where("shelf_type != ? and user_id = ? and item_type = ? and item_id = ?", GameShelf.shelf_types[:custom], current_user.id, game.class.name, game.id).first
-			if(shelf_item.present?)
-				shelf_item.game_shelf = game_shelf
-			else
-				shelf_item = game_shelf.shelf_items.new
-				shelf_item.item = game
-			end
+			shelf_item = add_base_shelf_item(game_shelf, game)
 		else
-			shelf_item = game_shelf.shelf_items.new
-			shelf_item.item = game
+			shelf_item = add_new_shelf_item(game_shelf, game)
 		end
 		shelf_item.save
 		return shelf_item
