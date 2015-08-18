@@ -79,6 +79,13 @@ class Edition < ActiveRecord::Base
 		@delete_coverart  = !value.to_i.zero?
 	end
 
+	def self.unknown
+		return :edition_unknown
+	end
+	def self.missing
+		return :edition_missing
+	end
+
 	private
 	def set_default_status
 		self.status = Edition.statuses[:active] if status == nil

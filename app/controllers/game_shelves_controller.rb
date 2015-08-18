@@ -16,6 +16,9 @@ class GameShelvesController < ApplicationController
 	before_filter :item_present_and_exists,
 	:only => [:remove_item]
 
+	before_filter :item_shelf_belongs_to_current_user,
+	:only => [:remove_item]
+
 	def index
 		game_shelf = GameShelf.find_by(user_id: current_user.id, shelf_type: GameShelf.shelf_types[:backlog])
 		redirect_to [current_user, game_shelf]
@@ -109,45 +112,37 @@ class GameShelvesController < ApplicationController
 		end
 	end
 
-	def edition_present_and_exists
-		if params[:edition_id].present?
-			if Edition.find_by_id(params[:edition_id]).present?
+	def thing_present_and_exists(thingClass, id)
+		if id.present?
+			if thingClass.find_by_id(id).present?
 				return true
 			else
-				render json: { :status => :edition_unknown }, :status => 404
+				render json: { :status => thingClass.unknown }, :status => 404
 				return false
 			end
 		else
-			render json: { :status => :edition_missing }, :status => 400
+			render json: { :status => thingClass.missing }, :status => 400
 			return false
 		end
+	end
+
+	def edition_present_and_exists
+		thing_present_and_exists(Edition, params[:edition_id])
 	end
 
 	def expansion_present_and_exists
-		if params[:expansion_id].present?
-			if Expansion.find_by_id(params[:expansion_id]).present?
-				return true
-			else
-				render json: { :status => :expansion_unknown }, :status => 404
-				return false
-			end
-		else
-			render json: { :status => :expansion_missing }, :status => 400
-			return false
-		end
+		thing_present_and_exists(Expansion, params[:expansion_id])
 	end
 
 	def item_present_and_exists
-		if params[:item_id].present?
-			shelf_item = ShelfItem.find_by_id(params[:item_id])
-			if shelf_item.present? and shelf_item.game_shelf.user_id == current_user.id
-				return true
-			else
-				render json: { :status => :item_unknown }, :status => 404
-				return false
-			end
+		thing_present_and_exists(ShelfItem, params[:item_id])
+	end
+
+	def item_shelf_belongs_to_current_user
+		shelf_item = ShelfItem.find_by_id(params[:item_id])
+		if shelf_item.game_shelf.user_id == current_user.id
+			return true
 		else
-			render json: { :status => :item_missing }, :status => 400
 			return false
 		end
 	end

@@ -50,4 +50,10 @@ class Expansion < ActiveRecord::Base
 	def delete_coverart=(value)
 		@delete_coverart  = !value.to_i.zero?
 	end
+	def self.unknown
+		return :expansion_unknown
+	end
+	def self.missing
+		return :expansion_missing
+	end
 end
