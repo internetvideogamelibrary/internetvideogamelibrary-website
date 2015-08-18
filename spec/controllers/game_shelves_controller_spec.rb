@@ -20,6 +20,43 @@ describe GameShelvesController do
 		end
 	end
 
+	describe 'GET#index' do
+		it 'should redirect to backlog shelf' do
+			# given
+			game_shelf = FactoryGirl.create(:game_shelf, user: @user, shelf_type: GameShelf::shelf_types[:backlog])
+			edition = FactoryGirl.create(:edition)
+
+			# when
+			get :index, user_id: @user.id
+
+			# then
+			expect(response.code).to eq("302")
+			expect(response).to redirect_to(user_game_shelf_path(@user, game_shelf))
+		end
+	end
+
+	describe 'GET#show' do
+		pending "should show the wishlist shelf" do
+			pending("research how to test show")
+			fail
+			# given
+			edition = FactoryGirl.create(:edition)
+			shelf_item = FactoryGirl.create(:shelf_item, item: edition)
+			game_shelf = FactoryGirl.create(:game_shelf, user: @user, shelf_items: [shelf_item])
+			game_shelf_playing = FactoryGirl.create(:game_shelf, user: @user, shelf_type: GameShelf::shelf_types[:playing])
+
+			#when
+			get :show, user_id: @user.id, id: game_shelf
+
+			#then
+			expect(response.code).to eq("200")
+		end
+		pending "should show the wishlist shelf filtering per platform" do
+			pending("research how to test show")
+			fail
+		end
+	end
+
 	describe 'PUT#add_edition' do
 		it "should add edition to shelf and return it" do
 			# given
@@ -107,6 +144,26 @@ describe GameShelvesController do
 			# then
 			expect(response.code).to eq("200")
 			expect(game_shelf.reload.shelf_items.size).to eq(0)
+			expect(game_shelf_playing.reload.shelf_items.size).to eq(1)
+			now_edition = game_shelf_playing.shelf_items.first.item
+			expect(expected_edition).to eq(now_edition)
+		end
+		it "should create other item if custom shelf" do
+			# given
+			edition = FactoryGirl.create(:edition)
+			shelf_item = FactoryGirl.create(:shelf_item, item: edition)
+			game_shelf = FactoryGirl.create(:game_shelf, user: @user, shelf_items: [shelf_item])
+			game_shelf_playing = FactoryGirl.create(:game_shelf, user: @user, shelf_type: GameShelf::shelf_types[:custom])
+			expected_edition = game_shelf.shelf_items.first.item
+
+			expect{
+				# when
+				xhr :put, :add_edition, user_id: @user.id, id: game_shelf_playing.id, edition_id: edition.id
+			}.to change(ShelfItem,:count).by(1)
+
+			# then
+			expect(response.code).to eq("200")
+			expect(game_shelf.reload.shelf_items.size).to eq(1)
 			expect(game_shelf_playing.reload.shelf_items.size).to eq(1)
 			now_edition = game_shelf_playing.shelf_items.first.item
 			expect(expected_edition).to eq(now_edition)
@@ -199,6 +256,26 @@ describe GameShelvesController do
 			# then
 			expect(response.code).to eq("200")
 			expect(game_shelf.reload.shelf_items.size).to eq(0)
+			expect(game_shelf_playing.reload.shelf_items.size).to eq(1)
+			now_expansion = game_shelf_playing.shelf_items.first.item
+			expect(expected_expansion).to eq(now_expansion)
+		end
+		it "should create other item if custom shelf" do
+			# given
+			expansion = FactoryGirl.create(:expansion)
+			shelf_item = FactoryGirl.create(:shelf_item, item: expansion)
+			game_shelf = FactoryGirl.create(:game_shelf, user: @user, shelf_items: [shelf_item])
+			game_shelf_playing = FactoryGirl.create(:game_shelf, user: @user, shelf_type: GameShelf::shelf_types[:custom])
+			expected_expansion = game_shelf.shelf_items.first.item
+
+			expect{
+				# when
+				xhr :put, :add_expansion, user_id: @user.id, id: game_shelf_playing.id, expansion_id: expansion.id
+			}.to change(ShelfItem,:count).by(1)
+
+			# then
+			expect(response.code).to eq("200")
+			expect(game_shelf.reload.shelf_items.size).to eq(1)
 			expect(game_shelf_playing.reload.shelf_items.size).to eq(1)
 			now_expansion = game_shelf_playing.shelf_items.first.item
 			expect(expected_expansion).to eq(now_expansion)
