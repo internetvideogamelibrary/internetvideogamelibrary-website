@@ -7,6 +7,9 @@ class GameShelvesController < ApplicationController
 	before_filter :game_shelf_exist,
 	:only => [:add_edition, :add_expansion, :show]
 
+	before_filter :game_shelf_belongs_to_current_user,
+	:only => [:add_edition, :add_expansion, :show]
+
 	before_filter :edition_present_and_exists,
 	:only => [:add_edition]
 
@@ -103,25 +106,36 @@ class GameShelvesController < ApplicationController
 	end
 
 	def game_shelf_exist
+		thing_exists(GameShelf, params[:id])
+	end
+
+	def game_shelf_belongs_to_current_user
 		game_shelf = GameShelf.find_by_id(params[:id])
-		if game_shelf.present? and game_shelf.user.id == current_user.id
+		thing_belongs_to_current_user(game_shelf)
+	end
+
+	def thing_exists(thingClass, id)
+		if thingClass.find_by_id(id).present?
 			return true
 		else
-			render json: { :status => :game_shelf_unknown }, :status => 404
+			render json: { :status => thingClass.unknown }, :status => 404
 			return false
 		end
 	end
 
 	def thing_present_and_exists(thingClass, id)
 		if id.present?
-			if thingClass.find_by_id(id).present?
-				return true
-			else
-				render json: { :status => thingClass.unknown }, :status => 404
-				return false
-			end
+			thing_exists(thingClass, id)
 		else
 			render json: { :status => thingClass.missing }, :status => 400
+			return false
+		end
+	end
+
+	def thing_belongs_to_current_user(thing)
+		if thing.user_id == current_user.id
+			return true
+		else
 			return false
 		end
 	end
@@ -140,11 +154,7 @@ class GameShelvesController < ApplicationController
 
 	def item_shelf_belongs_to_current_user
 		shelf_item = ShelfItem.find_by_id(params[:item_id])
-		if shelf_item.game_shelf.user_id == current_user.id
-			return true
-		else
-			return false
-		end
+		thing_belongs_to_current_user(shelf_item.game_shelf)
 	end
 
 	def xhr_only
