@@ -65,35 +65,16 @@ class WorksController < ApplicationController
 		@work = Work.friendly.find(params[:id])
 		@editions = params.require(:editions)
 
-		@split_editions = []
-		@keep_editions = []
+		keep_edition_ids, split_edition_ids = divide_keep_and_split_arrays(@editions)
 
-		@editions.each do |e|
-			if e[1] == 'keep'
-				@keep_editions << e[0].to_i
-			elsif e[1] == 'split'
-				@split_editions << e[0].to_i
-			end
-		end
-
-		if @split_editions.length > 0 && @keep_editions.length > 0 && (@split_editions.length+@keep_editions.length == @work.editions.length)
+		if split_edition_ids.length > 0 && keep_edition_ids.length > 0 && (split_edition_ids.length+keep_edition_ids.length == @work.editions.length)
+			split_editions = []
 			@work.editions.each do |e|
-				if @split_editions.include? e.id
-					if e.release_date.present?
-						if not @older_split.present?
-							@older_split = e.release_date
-						elsif e.release_date < @older_split
-							@older_split = e.release_date
-						end
-					end
+				if split_edition_ids.include? e.id
+					@older_split = decide_older_edition(@older_split, e)
+					split_editions << e
 				else
-					if e.release_date.present?
-						if not @older_keep.present?
-							@older_keep = e.release_date
-						elsif e.release_date < @older_keep
-							@older_keep = e.release_date
-						end
-					end
+					@older_keep = decide_older_edition(@older_keep, e)
 				end
 			end
 			@work.original_release_date = @older_keep
@@ -102,11 +83,9 @@ class WorksController < ApplicationController
 
 			@split_work = Work.new(:original_title => @work.original_title, :original_release_date => @older_split)
 			if @split_work.save
-				@work.editions.each do |e|
-					if @split_editions.include? e.id
-						e.work = @split_work
-						e.save
-					end
+				split_editions.each do |e|
+					e.work = @split_work
+					e.save
 				end
 			end
 			flash[:notice] = "New edition created!"
@@ -144,5 +123,28 @@ class WorksController < ApplicationController
 
 		rescue ActionController::RedirectBackError
 			redirect_to games_path, :alert => "You have to type a query string"
+	end
+
+	def divide_keep_and_split_arrays(editions)
+		split_editions = []
+		keep_editions = []
+
+		editions.each do |e|
+			if e[1] == 'keep'
+				keep_editions << e[0].to_i
+			elsif e[1] == 'split'
+				split_editions << e[0].to_i
+			end
+		end
+		return keep_editions, split_editions
+	end
+
+	def decide_older_edition(older_edition, edition)
+		if not older_edition.present?
+			return older_edition = edition.release_date
+		elsif edition.release_date < older_edition
+			return older_edition = edition.release_date
+		end
+		return older_edition
 	end
 end
