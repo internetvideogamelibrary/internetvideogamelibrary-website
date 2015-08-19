@@ -11,7 +11,18 @@
 
 FactoryGirl.define do
 	factory :work do
-		original_title "MyString"
-		original_release_date "2014-12-28 10:43:48"
+		sequence(:original_title) { |n| "Work #{n}" }
+		original_release_date Time.now
+
+		factory :work_with_editions do
+			transient do
+				editions_count 1
+			end
+
+			after(:create) do |work, evaluator|
+				create_list(:edition, evaluator.editions_count, work: work)
+				work.reload
+			end
+		end
 	end
 end

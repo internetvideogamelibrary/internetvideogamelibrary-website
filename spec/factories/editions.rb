@@ -23,10 +23,10 @@
 
 FactoryGirl.define do
 	factory :edition do
-		title "MyString"
+		sequence(:title) { |n| "Edition #{n}" }
 		developer "MyString"
 		publisher "MyString"
-		release_date "2014-12-28 10:33:57"
+		release_date Time.now
 		description "MyText"
 		platform
 		region
