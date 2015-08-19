@@ -12,7 +12,7 @@
 FactoryGirl.define do
 	factory :work do
 		sequence(:original_title) { |n| "Work #{n}" }
-		original_release_date Time.now
+		sequence(:original_release_date) { |n| n.days.from_now }
 
 		factory :work_with_editions do
 			transient do

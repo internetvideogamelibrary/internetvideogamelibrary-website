@@ -81,4 +81,97 @@ describe WorksController do
 			#expect(response.code).to eq("400")
 		end
 	end
+	describe 'PATCH#do_split' do
+		it "should split one work and its editions into two" do
+			# given
+			work1 = FactoryGirl.create(:work_with_editions, editions_count: 6)
+			expected_work_id = work1.id
+			expected_length = work1.editions.length
+			expected_keep = []
+			expected_split = []
+
+			editions = []
+			work1.editions.each_with_index do |ed, i|
+				item = [ed.id]
+				if i % 2 == 1
+					item << "keep"
+					expected_keep << ed
+				else
+					item << "split"
+					expected_split << ed
+				end
+				editions << item
+			end
+			expected_new_work_release_date = expected_split.last.release_date
+			expected_old_work_release_date = expected_keep.last.release_date
+
+			expect {
+				# when
+				patch :do_split, id: work1, editions: editions
+			}.to change(Work,:count).by(1).and change(Edition,:count).by(0)
+
+			new_work = Work.last
+			work1.reload
+
+			# then
+			expect(new_work.editions.length + work1.editions.length).to eq(expected_length)
+			expect(new_work.editions.length).to eq(expected_split.length)
+			expect(work1.editions.length).to eq(expected_keep.length)
+			expect(new_work.original_release_date).to eq(expected_new_work_release_date)
+			expect(work1.original_release_date).to eq(expected_old_work_release_date)
+		end
+		it "should fail to split if all are kept" do
+			# given
+			work1 = FactoryGirl.create(:work_with_editions, editions_count: 6)
+
+			editions = []
+			work1.editions.each_with_index do |ed, i|
+				item = [ed.id]
+				item << "keep"
+				editions << item
+			end
+
+			expect {
+				# when
+				patch :do_split, id: work1, editions: editions
+			}.to change(Work,:count).by(0).and change(Edition,:count).by(0)
+		end
+		it "should fail to split if all are splitted" do
+			# given
+			work1 = FactoryGirl.create(:work_with_editions, editions_count: 6)
+
+			editions = []
+			work1.editions.each_with_index do |ed, i|
+				item = [ed.id]
+				item << "split"
+				editions << item
+			end
+
+			expect {
+				# when
+				patch :do_split, id: work1, editions: editions
+			}.to change(Work,:count).by(0).and change(Edition,:count).by(0)
+		end
+		it "should fail to split if one is missing" do
+			# given
+			work1 = FactoryGirl.create(:work_with_editions, editions_count: 6)
+
+			editions = []
+			work1.editions.each_with_index do |ed, i|
+				item = [ed.id]
+				if i % 2 == 1
+					item << "keep"
+				else
+					item << "split"
+				end
+				editions << item
+			end
+			editions.pop
+
+			expect {
+				# when
+				patch :do_split, id: work1, editions: editions
+			}.to change(Work,:count).by(0).and change(Edition,:count).by(0)
+		end
+	end
 end

@@ -26,7 +26,7 @@ FactoryGirl.define do
 		sequence(:title) { |n| "Edition #{n}" }
 		developer "MyString"
 		publisher "MyString"
-		release_date Time.now
+		sequence(:release_date) { |n| n.days.from_now }
 		description "MyText"
 		platform
 		region
