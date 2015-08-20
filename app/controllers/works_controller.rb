@@ -141,13 +141,17 @@ class WorksController < ApplicationController
 		return older_edition
 	end
 
+	def contain_all_editions?(split_edition_ids, keep_edition_ids, work)
+		split_edition_ids.length+keep_edition_ids.length == work.editions.length
+	end
+
 	def only_split_all_editions
 		@work = Work.friendly.find(params[:id])
 		@editions = params.require(:editions)
 
 		keep_edition_ids, @split_edition_ids = divide_keep_and_split_arrays(@editions)
 
-		if not (@split_edition_ids.length > 0 && keep_edition_ids.length > 0 && (@split_edition_ids.length+keep_edition_ids.length == @work.editions.length))
+		if @split_edition_ids.empty? or keep_edition_ids.empty? or not contain_all_editions?(@split_edition_ids, keep_edition_ids, @work)
 			flash[:error] = "You have to split at least one edition. All editions must be checked."
 			render 'split'
 		end
