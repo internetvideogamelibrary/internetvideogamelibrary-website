@@ -36,24 +36,66 @@ describe GameShelvesController do
 	end
 
 	describe 'GET#show' do
-		pending "should show the wishlist shelf" do
-			pending("research how to test show")
-			fail
-			# given
-			edition = FactoryGirl.create(:edition)
-			shelf_item = FactoryGirl.create(:shelf_item, item: edition)
-			game_shelf = FactoryGirl.create(:game_shelf, user: @user, shelf_items: [shelf_item])
-			game_shelf_playing = FactoryGirl.create(:game_shelf, user: @user, shelf_type: GameShelf::shelf_types[:playing])
+		it "populates requested shelf to @game_shelf" do
+			#given
+			game_shelf = FactoryGirl.create(:game_shelf, user: @user, shelf_type: GameShelf::shelf_types[:backlog])
 
-			#when
+			# when
 			get :show, user_id: @user.id, id: game_shelf
 
-			#then
-			expect(response.code).to eq("200")
+			# then
+			expect(assigns(:game_shelf)).to eq(game_shelf)
 		end
-		pending "should show the wishlist shelf filtering per platform" do
-			pending("research how to test show")
-			fail
+		it "populates requested shelf items to @shelf_items" do
+			#given
+			game_shelf = FactoryGirl.create(:game_shelf_with_shelf_items, user: @user, shelf_items_count: 5, shelf_type: GameShelf::shelf_types[:backlog])
+
+			# when
+			get :show, user_id: @user.id, id: game_shelf
+
+			# then
+			expect(assigns(:shelf_items)).to eq(game_shelf.shelf_items.reverse)
+		end
+		it "populates requested shelf items to @shelf_items when receiving platform_id" do
+			#given
+			game_shelf = FactoryGirl.create(:game_shelf_with_shelf_items, user: @user, shelf_items_count: 5, shelf_type: GameShelf::shelf_types[:backlog])
+			platform = FactoryGirl.create(:platform)
+			expected_shelf_items = [game_shelf.shelf_items.first]
+			expected_shelf_items.each do |si|
+				si.item.platform = platform
+				si.item.save
+			end
+
+			# when
+			get :show, user_id: @user.id, id: game_shelf, platform: platform.id
+
+			# then
+			expect(assigns(:shelf_items)).to eq(expected_shelf_items)
+		end
+		it "populates user shelves to @game_shelves" do
+			#given
+			game_shelves = []
+			game_shelves << FactoryGirl.create(:game_shelf, user: @user, title: "Wishlist",shelf_type: GameShelf::shelf_types[:wishlist])
+			game_shelves << FactoryGirl.create(:game_shelf, user: @user, title: "Backlog", shelf_type: GameShelf::shelf_types[:backlog])
+			game_shelves << FactoryGirl.create(:game_shelf, user: @user, title: "Playing", shelf_type: GameShelf::shelf_types[:playing])
+			game_shelves << FactoryGirl.create(:game_shelf, user: @user, title: "Finished",shelf_type: GameShelf::shelf_types[:finished])
+			game_shelves << FactoryGirl.create(:game_shelf, user: @user, title: "Played",  shelf_type: GameShelf::shelf_types[:played])
+
+			# when
+			get :show, user_id: @user.id, id: game_shelves[0]
+
+			# then
+			expect(assigns(:game_shelves)).to eq(game_shelves)
+		end
+		it "should render the show template" do
+			#given
+			game_shelf = FactoryGirl.create(:game_shelf, user: @user, shelf_type: GameShelf::shelf_types[:backlog])
+
+			# when
+			get :show, user_id: @user.id, id: game_shelf
+
+			# then
+			expect(response).to render_template :show
 		end
 	end
 
