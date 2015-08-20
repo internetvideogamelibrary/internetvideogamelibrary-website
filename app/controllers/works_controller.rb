@@ -107,17 +107,6 @@ class WorksController < ApplicationController
 		params.require(:work).permit(:original_title, :original_release_date)
 	end
 
-	def has_query
-		if params[:q].present?
-			true
-		else
-			redirect_to :back, :alert => "You have to type a query string"
-		end
-
-		rescue ActionController::RedirectBackError
-			redirect_to games_path, :alert => "You have to type a query string"
-	end
-
 	def divide_keep_and_split_arrays(editions)
 		split_editions = []
 		keep_editions = []

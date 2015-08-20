@@ -69,4 +69,16 @@ class ApplicationController < ActionController::Base
 		rescue ActionController::RedirectBackError
 			redirect_to '/', :alert => "Access denied."
 	end
+
+	def has_query
+		if params[:q].present?
+			true
+		else
+			redirect_to :back, :alert => "You have to type a query string"
+		end
+
+		rescue ActionController::RedirectBackError
+			redirect_to games_path, :alert => "You have to type a query string"
+	end
+
 end
