@@ -10,6 +10,9 @@ class WorksController < ApplicationController
 
 	before_filter :has_query,
 	:only => [:search_index]
+
+	before_filter :only_split_all_editions,
+	:only => [:do_split]
 	def search
 		params = work_params
 		@work = Work.find_by(original_title: params[:original_title], original_release_date: params[:original_release_date])
@@ -62,38 +65,28 @@ class WorksController < ApplicationController
 		@work = Work.friendly.find(params[:id])
 	end
 	def do_split
-		@work = Work.friendly.find(params[:id])
-		@editions = params.require(:editions)
-
-		keep_edition_ids, split_edition_ids = divide_keep_and_split_arrays(@editions)
-
-		if split_edition_ids.length > 0 && keep_edition_ids.length > 0 && (split_edition_ids.length+keep_edition_ids.length == @work.editions.length)
-			split_editions = []
-			@work.editions.each do |e|
-				if split_edition_ids.include? e.id
-					@older_split = decide_older_edition(@older_split, e)
-					split_editions << e
-				else
-					@older_keep = decide_older_edition(@older_keep, e)
-				end
+		split_editions = []
+		@work.editions.each do |e|
+			if @split_edition_ids.include? e.id
+				@older_split = decide_older_edition(@older_split, e)
+				split_editions << e
+			else
+				@older_keep = decide_older_edition(@older_keep, e)
 			end
-			@work.original_release_date = @older_keep
-			@work.slug = nil
-			@work.save
-
-			@split_work = Work.new(:original_title => @work.original_title, :original_release_date => @older_split)
-			if @split_work.save
-				split_editions.each do |e|
-					e.work = @split_work
-					e.save
-				end
-			end
-			flash[:notice] = "New edition created!"
-			redirect_to work_path(@split_work)
-		else
-			flash[:error] = "You have to split at least one edition. All editions must be checked."
-			render 'split'
 		end
+		@work.original_release_date = @older_keep
+		@work.slug = nil
+		@work.save
+
+		@split_work = Work.new(:original_title => @work.original_title, :original_release_date => @older_split)
+		if @split_work.save
+			split_editions.each do |e|
+				e.work = @split_work
+				e.save
+			end
+		end
+		flash[:notice] = "New edition created!"
+		redirect_to work_path(@split_work)
 	end
 	def combine
 		@work = Work.friendly.find(params[:id])
@@ -146,5 +139,17 @@ class WorksController < ApplicationController
 			return older_edition = edition.release_date
 		end
 		return older_edition
+	end
+
+	def only_split_all_editions
+		@work = Work.friendly.find(params[:id])
+		@editions = params.require(:editions)
+
+		keep_edition_ids, @split_edition_ids = divide_keep_and_split_arrays(@editions)
+
+		if not (@split_edition_ids.length > 0 && keep_edition_ids.length > 0 && (@split_edition_ids.length+keep_edition_ids.length == @work.editions.length))
+			flash[:error] = "You have to split at least one edition. All editions must be checked."
+			render 'split'
+		end
 	end
 end
