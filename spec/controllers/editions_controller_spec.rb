@@ -85,6 +85,17 @@ describe EditionsController do
 			# then
 			expect(response).to render_template :edit
 		end
+		it "should 404 with non-existing edition" do
+			pending("we are still using a redirect, should 404 instead")
+			#given
+			edition = FactoryGirl.create(:edition)
+
+			# when
+			get :edit, id: edition.id+1
+
+			# then
+			expect(response.code).to eq("404")
+		end
 	end
 	describe "GET#transform" do
 		it "populates the @edition variable with the requested edition" do
@@ -107,7 +118,7 @@ describe EditionsController do
 			# then
 			expect(controller.params[:platform]).to eq(edition.platform.id.to_s)
 		end
-		it "should render the edit template" do
+		it "should render the transform template" do
 			#given
 			edition = FactoryGirl.create(:edition)
 
@@ -116,6 +127,17 @@ describe EditionsController do
 
 			# then
 			expect(response).to render_template :transform
+		end
+		it "should 404 with non-existing edition" do
+			pending("we are still using a redirect, should 404 instead")
+			#given
+			edition = FactoryGirl.create(:edition)
+
+			# when
+			get :transform, id: edition.id+1
+
+			# then
+			expect(response.code).to eq("404")
 		end
 	end
 	describe "PATCH #do_transform" do
