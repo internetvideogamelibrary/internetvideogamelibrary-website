@@ -3,15 +3,59 @@ include Warden::Test::Helpers
 Warden.test_mode!
 
 describe EditionsController do
-	describe "PATCH #do_transform" do
-		before(:example) do
-			user = FactoryGirl.create(:user, :admin)
-			sign_in :user, user
-		end
-		after(:example) do
-			Warden.test_reset!
-		end
+	before(:example) do
+		@user = FactoryGirl.create(:user, :admin)
+		sign_in :user, @user
+	end
+	after(:example) do
+		Warden.test_reset!
+	end
 
+	describe "GET#new" do
+		it "populates the @edition variable with a new edition" do
+			# when
+			get :new
+
+			# then
+			expect(assigns(:edition).attributes).to eq(Edition.new.attributes)
+		end
+		it "populates the @work variable with a new work" do
+			# when
+			get :new
+
+			# then
+			expect(assigns(:work).attributes).to eq(Work.new.attributes)
+		end
+		it "populates the @work variable with a existing work" do
+			#given
+			work = FactoryGirl.create(:work)
+
+			# when
+			get :new, work_id: work
+
+			# then
+			expect(assigns(:work)).to eq(work)
+		end
+		it "should render the new template" do
+			# when
+			get :new
+
+			# then
+			expect(response).to render_template :new
+		end
+		it "should render the new template with existing work" do
+			#given
+			work = FactoryGirl.create(:work)
+
+			# when
+			get :new, work_id: work
+
+			# then
+			expect(response).to render_template :new
+		end
+	end
+
+	describe "PATCH #do_transform" do
 		it "should create expansion, delete edition and work" do
 			#given
 			edition = FactoryGirl.create(:edition, description: "MY-OLD-EDITION-NOW-EXPANSION")
