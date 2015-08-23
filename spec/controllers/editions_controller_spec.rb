@@ -54,6 +54,38 @@ describe EditionsController do
 			expect(response).to render_template :new
 		end
 	end
+	describe "GET#edit" do
+		it "populates the @edition variable with the requested edition" do
+			#given
+			edition = FactoryGirl.create(:edition)
+
+			# when
+			get :edit, id: edition
+
+			# then
+			expect(assigns(:edition)).to eq(edition)
+		end
+		it "populates the @work variable with the requested edition's work" do
+			#given
+			edition = FactoryGirl.create(:edition)
+
+			# when
+			get :edit, id: edition
+
+			# then
+			expect(assigns(:work)).to eq(edition.work)
+		end
+		it "should render the edit template" do
+			#given
+			edition = FactoryGirl.create(:edition)
+
+			# when
+			get :edit, id: edition
+
+			# then
+			expect(response).to render_template :edit
+		end
+	end
 
 	describe "PATCH #do_transform" do
 		it "should create expansion, delete edition and work" do
