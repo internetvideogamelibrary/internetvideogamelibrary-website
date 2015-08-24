@@ -153,9 +153,4 @@ class GameShelvesController < ApplicationController
 		thing_belongs_to_current_user(shelf_item.game_shelf)
 	end
 
-	def xhr_only
-		if not request.xhr?
-			render :nothing => true, :status => 400
-		end
-	end
 end

@@ -140,6 +140,52 @@ describe EditionsController do
 			expect(response.code).to eq("404")
 		end
 	end
+	describe "GET#existing_work" do
+		it "should populate @work with work params" do
+			# given
+			existing_work = FactoryGirl.create(:work)
+			work_params = {:original_title => "new_work", :original_release_date => "2015-08-23"}
+			expected_work = Work.new(work_params)
+
+			# when
+			xhr :get, :existing_work, work: work_params, existing_work: {:id => existing_work.slug}
+
+			# then
+			expect(assigns(:work).attributes).to eq(expected_work.attributes)
+		end
+		it "should populate @existing_work with provided work" do
+			# given
+			existing_work = FactoryGirl.create(:work)
+			work_params = {:original_title => "new_work", :original_release_date => "2015-08-23"}
+			expected_work = Work.new(work_params)
+
+			# when
+			xhr :get, :existing_work, work: work_params, existing_work: {:id => existing_work.slug}
+
+			# then
+			expect(assigns(:existing_work)).to eq(existing_work)
+		end
+		it "should render the existing work template" do
+			#given
+			existing_work = FactoryGirl.create(:work)
+			work_params = {:original_title => "new_work", :original_release_date => "2015-08-23"}
+			expected_work = Work.new(work_params)
+
+			# when
+			xhr :get, :existing_work, work: work_params, existing_work: {:id => existing_work.slug}
+
+			# then
+			expect(response).to render_template :existing_work
+		end
+		it "should fail if non-xhr request" do
+			#when
+			get :existing_work
+
+			#then
+			expect(response.code).to eq("400")
+			expect(response.body).to eq(" ")
+		end
+	end
 	describe "PATCH #do_transform" do
 		it "should create expansion, delete edition and work" do
 			#given

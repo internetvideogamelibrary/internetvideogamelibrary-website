@@ -80,5 +80,9 @@ class ApplicationController < ActionController::Base
 		rescue ActionController::RedirectBackError
 			redirect_to games_path, :alert => "You have to type a query string"
 	end
-
+	def xhr_only
+		if not request.xhr?
+			render :nothing => true, :status => 400
+		end
+	end
 end

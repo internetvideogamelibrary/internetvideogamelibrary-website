@@ -19,6 +19,9 @@ class EditionsController < ApplicationController
 	before_filter :edition_visible,
 	:only => [:show]
 
+	before_filter :xhr_only,
+	:only => [:existing_work]
+
 	def new
 		@edition = Edition.new
 		@work = Work.friendly.find(params[:work_id])
