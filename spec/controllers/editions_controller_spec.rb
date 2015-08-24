@@ -140,6 +140,71 @@ describe EditionsController do
 			expect(response.code).to eq("404")
 		end
 	end
+	describe "GET#show" do
+		it "populates the @other_editions_count variable with the count of other editions of the same work" do
+			#given
+			work1 = FactoryGirl.create(:work_with_editions, editions_count: 6)
+
+			# when
+			get :show, id: work1.editions.first
+
+			# then
+			expect(assigns[:other_editions_count]).to eq(work1.editions.length-1)
+		end
+		it "populates the @other_editions variable with the other editions of the same work" do
+			#given
+			work1 = FactoryGirl.create(:work_with_editions, editions_count: 6)
+			edition = work1.editions.first
+			expected_editions = work1.editions.take(5)
+
+			# when
+			get :show, id: edition
+
+			# then
+			expect(assigns[:other_editions]).to eq(expected_editions)
+		end
+		it "populates the @description variable with the requested edition's description (formatted)" do
+			pending("need to think of how to test github formatting")
+			#given
+			edition = FactoryGirl.create(:edition)
+
+			# when
+			get :show, id: edition
+
+			# then
+			expect(assigns[:description]).to eq(edition.description)
+		end
+		it "populates the @edition variable with the requested edition" do
+			#given
+			edition = FactoryGirl.create(:edition)
+
+			# when
+			get :show, id: edition
+
+			# then
+			expect(assigns[:edition]).to eq(edition)
+		end
+		it "populates the params[:platform] variable with the requested edition's platform" do
+			#given
+			edition = FactoryGirl.create(:edition)
+
+			# when
+			get :show, id: edition
+
+			# then
+			expect(controller.params[:platform]).to eq(edition.platform.id.to_s)
+		end
+		it "should render the transform template" do
+			#given
+			edition = FactoryGirl.create(:edition)
+
+			# when
+			get :show, id: edition
+
+			# then
+			expect(response).to render_template :show
+		end
+	end
 	describe "GET#existing_work" do
 		it "should populate @work with work params" do
 			# given
