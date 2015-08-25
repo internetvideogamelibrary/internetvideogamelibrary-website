@@ -24,6 +24,13 @@ describe ReferralSpamControl do
 			#then
 			expect(response).to eq(true)
 		end
+		it "Should return 400 if the referrer is upcase and is blocked" do
+			#when
+			response = ReferralSpamControl.evaluate_referrer("http://sItErIpZ.net")
+
+			#then
+			expect(response).to eq(true)
+		end
 		it "Should return 400 if the referrer is utf-8 and is blocked" do
 			#when
 			response = ReferralSpamControl.evaluate_referrer("http://грузоподъемные-машины.рф")

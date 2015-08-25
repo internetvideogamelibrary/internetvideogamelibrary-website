@@ -5,7 +5,7 @@ class ReferralSpamControl
 	def self.evaluate_referrer(referrer)
 		@uri = Addressable::URI.parse(referrer)
 		if(@uri.host)
-			host = @uri.host.gsub(/^(www\.)?(.*)$/i, '\2')
+			host = @uri.host.gsub(/^(www\.)?(.*)$/i, '\2').downcase
 			if(REFERRAL_SPAMMERS.include?(host))
 				Rails.logger.info "[ReferralSpamControl] referral spammer detected: #{@uri.host}."
 				return true
@@ -15,7 +15,7 @@ class ReferralSpamControl
 	end
 
 	def self.referral_spammers
-		[
+		spammers = [
 			"100dollars-seo.com",
 			"12masterov.com",
 			"4webmasters.org",
@@ -232,7 +232,7 @@ class ReferralSpamControl
 			"xn----7sbho2agebbhlivy.xn--p1ai",
 			"konkursov.net",
 			"glavprofit.ru",
-			"siteripz.net",
+			"SITERIPZ.net",
 			"ringporno.com",
 			"tomck.com",
 			"muscle-factory.com.ua",
@@ -355,5 +355,8 @@ class ReferralSpamControl
 			"avtointeres.ru",
 			"pornogig.com"
 		]
+		spammers.each do |s|
+			s.downcase!
+		end
 	end
 end
