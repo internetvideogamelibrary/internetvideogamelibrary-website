@@ -40,6 +40,7 @@ gem 'exception_notification'
 gem 'sitemap_generator'
 gem 'fog'
 gem 'figaro'
+gem "addressable"
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

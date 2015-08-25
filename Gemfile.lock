@@ -451,6 +451,7 @@ PLATFORMS
 DEPENDENCIES
   active_link_to
   acts_as_follower
+  addressable
   annotate
   aws-sdk
   babosa
