@@ -353,7 +353,12 @@ class ReferralSpamControl
 			"saiding-plus.ru",
 			"sky-mine.ru",
 			"avtointeres.ru",
-			"pornogig.com"
+			"pornogig.com",
+			"canadianpharcharmyonline.org",
+			"mebel-alait.ru",
+			"domik-derevne.ru",
+			"worldhistory.biz",
+			"pozdrawleniya.su"
 		]
 		spammers.each do |s|
 			s.downcase!
