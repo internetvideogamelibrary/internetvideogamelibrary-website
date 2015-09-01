@@ -358,7 +358,14 @@ class ReferralSpamControl
 			"mebel-alait.ru",
 			"domik-derevne.ru",
 			"worldhistory.biz",
-			"pozdrawleniya.su"
+			"pozdrawleniya.su",
+			"pornotwit.com",
+			"cineworks.ru",
+			"prahaprint.cz",
+			"brianjeanmp.net",
+			"darkoman.com",
+			"pozvonim.com",
+			"womantouch.ru"
 		]
 		spammers.each do |s|
 			s.downcase!
