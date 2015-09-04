@@ -4,6 +4,3 @@
 <%- if user_signed_in? and current_user.admin? %>
 	<%= active_link_to users_path, :wrap_tag => :li, :active => :exclusive do %> <i class='fa fa-users'></i> Users <% end %>
 <% end -%>
-<%- if user_signed_in? and (current_user.admin? or current_user.reviewer?) %>
-	<%= active_link_to to_review_editions_path, :wrap_tag => :li, :active => :exclusive do %> <i class='fa fa-thumbs-o-up'></i> Review Games <% end %>
-<% end -%>

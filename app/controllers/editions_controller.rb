@@ -2,10 +2,7 @@ require "github/markdown"
 
 class EditionsController < ApplicationController
 	before_filter :authenticate_user!,
-	:only => [:new, :create, :edit, :update, :to_review, :review]
-
-	before_filter :reviewer_only,
-	:only => [:to_review, :review]
+	:only => [:new, :create, :edit, :update]
 
 	before_filter :game_maker_only,
 	:only => [:new, :create, :edit, :update, :transform, :do_transform]
@@ -73,29 +70,6 @@ class EditionsController < ApplicationController
 		@other_editions = Edition.get_other_active_editions_from_the_same_work(@edition).limit(5)
 		@description = GitHub::Markdown.render_gfm(@edition.description.present? ? @edition.description : "").html_safe
 		params[:platform] = @edition.platform_id.to_s
-	end
-	def to_review
-		@editions = Edition.where(status: Edition.statuses[:unreviewed])
-	end
-	def review
-		review_option = params.permit(:review_option)[:review_option]
-		unless (review_option == "delete" or review_option == "accept")
-			redirect_to :back, :alert => "Unknown option"
-		else
-			edition_id = params.require(:edition).permit(:id)[:id]
-			edition = Edition.friendly.find(edition_id)
-			if review_option == "delete"
-				edition.status = Edition.statuses[:deleted]
-			end
-			if review_option == "accept"
-				edition.status = Edition.statuses[:active]
-			end
-			edition.save!
-
-			redirect_to to_review_editions_path
-		end
-		rescue ActionController::RedirectBackError
-			redirect_to '/', :alert => "Unknown option"
 	end
 	def transform
 		@edition = Edition.friendly.find(params[:id])

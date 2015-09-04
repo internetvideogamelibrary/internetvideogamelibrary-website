@@ -43,8 +43,6 @@ Rails.application.routes.draw do
 	end
 	resources :editions do
 		collection do
-			get 'to_review'
-			post 'review'
 			get 'existing_work'
 		end
 		member do
