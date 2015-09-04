@@ -39,28 +39,13 @@ class EditionsController < ApplicationController
 	def create
 		@edition = Edition.new(edition_params)
 		work_option = params.permit(:work_option)[:work_option]
-		unless work_option == "existing"
-			@work = Work.new(work_params)
-			@work.transaction do
-				@work.save!
-				@edition.work_id = @work.id
-				@edition.save!
-				flash[:notice] = "Your edition was added!"
-				redirect_to @edition
-			end
+		if work_option == "existing"
+			create_with_existing_work
 		else
-			@work = Work.friendly.find(params.require(:existing_work).permit(:id)[:id])
-			@edition.work_id = @work.id
-			@edition.save!
-			flash[:notice] = "Your edition was added!"
-			redirect_to @edition
+			create_with_new_work
 		end
-
-		rescue ActiveRecord::RecordNotFound
-			render 'new'
-		rescue ActiveRecord::RecordInvalid
-			render 'new'
 	end
+
 	def index
 		@editions = Edition.where(status: Edition.statuses[:active]).paginate(:page => params[:page]).order('title')
 	end
@@ -84,8 +69,8 @@ class EditionsController < ApplicationController
 	end
 	def show
 		@edition = Edition.friendly.find(params[:id])
-		@other_editions_count = Edition.where("work_id = ? and status = ? and id <> ?",@edition.work.id,Edition.statuses[:active],@edition.id).count()
-		@other_editions = Edition.where("work_id = ? and status = ? and id <> ?",@edition.work.id,Edition.statuses[:active],@edition.id).limit(5)
+		@other_editions_count = Edition.get_other_active_editions_from_the_same_work(@edition).count()
+		@other_editions = Edition.get_other_active_editions_from_the_same_work(@edition).limit(5)
 		@description = GitHub::Markdown.render_gfm(@edition.description.present? ? @edition.description : "").html_safe
 		params[:platform] = @edition.platform_id.to_s
 	end
@@ -140,6 +125,33 @@ class EditionsController < ApplicationController
 	end
 	def work_params
 		params.require(:work).permit(:original_title, :original_release_date)
+	end
+
+	def create_with_new_work
+		@work = Work.new(work_params)
+		@work.transaction do
+			@work.save!
+			@edition.work_id = @work.id
+			@edition.save!
+			flash[:notice] = "Your edition was added!"
+			redirect_to @edition
+		end
+
+		rescue ActiveRecord::RecordInvalid
+			render 'new'
+	end
+
+	def create_with_existing_work
+		@work = Work.friendly.find(params.require(:existing_work).permit(:id)[:id])
+		@edition.work_id = @work.id
+		@edition.save!
+		flash[:notice] = "Your edition was added!"
+		redirect_to @edition
+
+		rescue ActiveRecord::RecordNotFound
+			render 'new'
+		rescue ActiveRecord::RecordInvalid
+			render 'new'
 	end
 
 	def parent_edition_exists

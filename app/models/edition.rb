@@ -86,6 +86,10 @@ class Edition < ActiveRecord::Base
 		return :edition_missing
 	end
 
+	def self.get_other_active_editions_from_the_same_work(edition)
+		return Edition.where("work_id = ? and status = ? and id <> ?",edition.work.id,Edition.statuses[:active],edition.id)
+	end
+
 	private
 	def set_default_status
 		self.status = Edition.statuses[:active] if status == nil
