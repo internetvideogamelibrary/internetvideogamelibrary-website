@@ -53,16 +53,13 @@ class EditionsController < ApplicationController
 	def update
 		@edition = Edition.friendly.find(params[:id])
 		@work = @edition.work
-		if @work.update_attributes(work_params)
-			if @edition.update_attributes(edition_params)
-				flash[:notice] = "Your changes were saved!"
-				redirect_to @edition
-			else
-				render 'edit'
-			end
-		else
+		@work.update_attributes!(work_params)
+		@edition.update_attributes!(edition_params)
+		flash[:notice] = "Your changes were saved!"
+		redirect_to @edition
+
+		rescue ActiveRecord::RecordInvalid
 			render 'edit'
-		end
 	end
 	def show
 		@edition = Edition.friendly.find(params[:id])

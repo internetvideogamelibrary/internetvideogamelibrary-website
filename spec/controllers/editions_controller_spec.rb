@@ -382,4 +382,54 @@ describe EditionsController do
 			expect(response).to redirect_to(new_edition)
 		end
 	end
+	describe "PUT#update" do
+		it "should not save on invalid work" do
+			# given
+			work = FactoryGirl.create(:work)
+			edition = FactoryGirl.create(:edition, work: work)
+			work.original_title = nil
+
+			expect {
+				# when
+				put :update, id: edition, edition: edition.attributes, work: work.attributes
+			}.to change(Edition, :count).by(0).and change(Work, :count).by(0)
+
+			# then
+			expect(response).to render_template(:edit)
+		end
+		it "should not save on invalid edition" do
+			# given
+			work = FactoryGirl.create(:work)
+			edition = FactoryGirl.create(:edition, work: work)
+			edition.title = nil
+
+			expect {
+				# when
+				put :update, id: edition, edition: edition.attributes, work: work.attributes
+			}.to change(Edition, :count).by(0).and change(Work, :count).by(0)
+
+			# then
+			expect(response).to render_template(:edit)
+		end
+		it "should update and redirect to the edition" do
+			# given
+			work = FactoryGirl.create(:work)
+			edition = FactoryGirl.create(:edition, work: work)
+			edition_attributes = edition.attributes
+			edition_attributes[:title] = "No pain, no gain"
+
+			expect {
+				# when
+				put :update, id: edition, edition: edition_attributes, work: work.attributes
+			}.to change(Edition, :count).by(0).and change(Work, :count).by(0)
+
+			updated_edition = Edition.find(edition.id)
+			edition_ignore = ["id", "created_at", "updated_at", "title"]
+
+			# then
+			expect(response).to redirect_to(edition)
+			expect(updated_edition.attributes.except(*edition_ignore)).to eq(edition.attributes.except(*edition_ignore))
+			expect(updated_edition.title).to eq(edition_attributes[:title])
+		end
+	end
 end
