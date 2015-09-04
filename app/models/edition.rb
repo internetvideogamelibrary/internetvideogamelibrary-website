@@ -34,8 +34,8 @@ class Edition < ActiveRecord::Base
 
 	def plataform_and_name
 		[
-			[->{ platform.display_title }, :title],
-			[->{ platform.display_title }, ->{ region.title }, :title],
+			[->{ platform.display_title if platform }, :title],
+			[->{ platform.display_title if platform }, ->{ region.title if region }, :title],
 		]
 	end
 

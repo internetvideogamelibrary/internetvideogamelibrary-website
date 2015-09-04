@@ -40,6 +40,12 @@ RSpec.configure do |config|
     # `true` in RSpec 4.
     mocks.verify_partial_doubles = true
   end
+  RSpec::Matchers.define :have_same_attributes_as do |expected|
+	  match do |actual|
+		  ignored = [:id, :updated_at, :created_at]
+		  actual.attributes.except(*ignored) == expected.attributes.except(*ignored)
+	  end
+  end
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.

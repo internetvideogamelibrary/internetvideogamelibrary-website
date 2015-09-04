@@ -41,27 +41,25 @@ class EditionsController < ApplicationController
 		work_option = params.permit(:work_option)[:work_option]
 		unless work_option == "existing"
 			@work = Work.new(work_params)
-			if @work.save!
+			@work.transaction do
+				@work.save!
 				@edition.work_id = @work.id
-				if @edition.save
-					flash[:notice] = "Your edition was added!"
-					redirect_to @edition
-				else
-					render 'new'
-				end
-			else
-				render 'new'
-			end
-		else
-			@work = Work.find_by_id(params.require(:existing_work).permit(:id)[:id])
-			@edition.work_id = @work.id
-			if @edition.save
+				@edition.save!
 				flash[:notice] = "Your edition was added!"
 				redirect_to @edition
-			else
-				render 'new'
 			end
+		else
+			@work = Work.friendly.find(params.require(:existing_work).permit(:id)[:id])
+			@edition.work_id = @work.id
+			@edition.save!
+			flash[:notice] = "Your edition was added!"
+			redirect_to @edition
 		end
+
+		rescue ActiveRecord::RecordNotFound
+			render 'new'
+		rescue ActiveRecord::RecordInvalid
+			render 'new'
 	end
 	def index
 		@editions = Edition.where(status: Edition.statuses[:active]).paginate(:page => params[:page]).order('title')

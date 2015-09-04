@@ -6,9 +6,12 @@ describe EditionsController do
 	before(:example) do
 		@user = FactoryGirl.create(:user, :admin)
 		sign_in :user, @user
+		new_time = Time.local(2014, 12, 26, 18, 59, 0)
+		Timecop.freeze(new_time)
 	end
 	after(:example) do
 		Warden.test_reset!
+		Timecop.return
 	end
 
 	describe "GET#new" do
@@ -285,6 +288,98 @@ describe EditionsController do
 			expect{ Edition.friendly.find(edition.id) }.to raise_exception(ActiveRecord::RecordNotFound)
 			expect(Work.friendly.find(work.id)).to eq(work)
 			expect(parent_edition.expansions.last.description).to eq(edition.description)
+		end
+	end
+	describe "POST#create" do
+		it "should not save on non-existing work" do
+			# given
+			edition = FactoryGirl.build(:edition)
+			expected_work = FactoryGirl.create(:work)
+			expect {
+				# when
+				post :create, edition: edition.attributes, existing_work: {id: expected_work.id+1}, work_option: "existing"
+			}.to change(Edition, :count).by(0).and change(Work, :count).by(0)
+
+			# then
+			expect(response).to render_template(:new)
+		end
+		it "should not save on empty work" do
+			# given
+			edition = FactoryGirl.build(:edition)
+			work = Work.new
+			expect {
+				# when
+				post :create, edition: edition.attributes, work: work.attributes
+			}.to change(Edition, :count).by(0).and change(Work, :count).by(0)
+
+			# then
+			expect(response).to render_template(:new)
+		end
+		it "should not save on empty edition with valid new work" do
+			# given
+			edition = Edition.new
+			work = FactoryGirl.build(:work)
+			expect {
+				# when
+				post :create, edition: edition.attributes, work: work.attributes
+			}.to change(Edition, :count).by(0).and change(Work, :count).by(0)
+
+			# then
+			expect(response).to render_template(:new)
+		end
+		it "should not save on empty edition with valid existing work" do
+			# given
+			edition = Edition.new
+			expected_work = FactoryGirl.create(:work)
+			expect {
+				# when
+				post :create, edition: edition.attributes, existing_work: {id: expected_work.id}, work_option: "existing"
+			}.to change(Edition, :count).by(0).and change(Work, :count).by(0)
+
+			# then
+			expect(response).to render_template(:new)
+		end
+		it "with valid new work and edition should save and redirect to new edition" do
+			# given
+			expected_edition = FactoryGirl.build(:edition, work: nil)
+			expected_work = FactoryGirl.build(:work)
+
+			expect {
+				# when
+				post :create, edition: expected_edition.attributes, work: expected_work.attributes
+			}.to change(Edition, :count).by(1).and change(Work, :count).by(1)
+
+			new_edition = Edition.last
+			new_work = Work.last
+
+			# then
+			edition_ignore = ["id", "created_at", "updated_at", "slug", "status", "work_id"]
+			expect(new_edition.attributes.except(*edition_ignore)).to eq(expected_edition.attributes.except(*edition_ignore))
+			expect(new_edition.work_id).to eq(new_work.id)
+
+			work_ignore = ["id", "created_at", "updated_at", "slug"]
+			expect(new_work.attributes.except(*work_ignore)).to eq(expected_work.attributes.except(*work_ignore))
+
+			expect(response).to redirect_to(new_edition)
+		end
+		it "with valid new edition and existing work should save and redirect to new edition" do
+			# given
+			expected_edition = FactoryGirl.build(:edition, work: nil)
+			expected_work = FactoryGirl.create(:work)
+
+			expect {
+				# when
+				post :create, edition: expected_edition.attributes, existing_work: {id: expected_work.id}, work_option: "existing"
+			}.to change(Edition, :count).by(1).and change(Work, :count).by(0)
+
+			new_edition = Edition.last
+
+			# then
+			edition_ignore = ["id", "created_at", "updated_at", "slug", "status", "work_id"]
+			expect(new_edition.attributes.except(*edition_ignore)).to eq(expected_edition.attributes.except(*edition_ignore))
+			expect(new_edition.work_id).to eq(expected_work.id)
+
+			expect(response).to redirect_to(new_edition)
 		end
 	end
 end

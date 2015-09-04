@@ -63,4 +63,5 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
   gem 'codeclimate-test-reporter', require: nil
+  gem 'timecop'
 end
