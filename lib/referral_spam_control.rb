@@ -365,7 +365,15 @@ class ReferralSpamControl
 			"brianjeanmp.net",
 			"darkoman.com",
 			"pozvonim.com",
-			"womantouch.ru"
+			"womantouch.ru",
+			"bankcrediti.ru",
+			"na-telefon.biz",
+			"aff.optitrade24.com",
+			"xn-----6kcatjtblopdnrifmgebre3s.xn--p1ai",
+			"atlasvkusov.ru",
+			"sharok.biz",
+			"ak-consult.ru",
+			"life-host.ru"
 		]
 		spammers.each do |s|
 			s.downcase!
