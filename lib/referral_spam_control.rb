@@ -373,7 +373,12 @@ class ReferralSpamControl
 			"atlasvkusov.ru",
 			"sharok.biz",
 			"ak-consult.ru",
-			"life-host.ru"
+			"life-host.ru",
+			"sexytrend.ru",
+			"avtomatoff.com",
+			"iqoption.com",
+			"carswithmuscles.com",
+			"v-chelyabinske.com"
 		]
 		spammers.each do |s|
 			s.downcase!
