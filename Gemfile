@@ -32,7 +32,7 @@ gem "paperclip", "~> 4.2"
 gem 'aws-sdk'
 gem "github-markdown"
 gem 'will_paginate-bootstrap'
-gem 'chewy', github: 'toptal/chewy', ref: 'af2fe6152fd30098603eea8b1ecdb8d9b15dd75b'
+gem 'chewy'
 gem 'friendly_id', '~> 5.1.0'
 gem 'babosa'
 gem 'nokogiri'
