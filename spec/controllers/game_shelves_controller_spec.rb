@@ -56,7 +56,7 @@ describe GameShelvesController do
 			get :show, user_id: @user.id, id: game_shelf
 
 			# then
-			expect(assigns(:shelf_items)).to eq(game_shelf.shelf_items.reverse)
+			expect(assigns(:shelf_items)).to eq(expected_shelf_items)
 		end
 		it "populates requested shelf items to @shelf_items when receiving platform_id" do
 			#given
