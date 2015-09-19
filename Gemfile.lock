@@ -23,6 +23,8 @@ GEM
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
     active_link_to (1.0.3)
       actionpack
+    active_record_union (1.1.0)
+      activerecord (>= 4.0)
     activejob (4.2.4)
       activesupport (= 4.2.4)
       globalid (>= 0.3.0)
@@ -463,6 +465,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_link_to
+  active_record_union
   acts_as_follower
   addressable
   annotate

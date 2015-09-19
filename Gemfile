@@ -42,6 +42,7 @@ gem 'fog'
 gem 'figaro'
 gem "addressable"
 gem 'responders', '~> 2.0'
+gem 'active_record_union'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

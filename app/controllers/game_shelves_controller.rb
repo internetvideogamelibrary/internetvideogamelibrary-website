@@ -30,7 +30,7 @@ class GameShelvesController < ApplicationController
 	def show
 		@game_shelf = GameShelf.find_by_id(params[:id])
 		if params[:platform].to_s != ""
-			@shelf_items = ShelfItem.from(ShelfItem.shelf_items_from_shelf_with_platform(@game_shelf.id, params[:platform])).paginate(:page => params[:page]).order('created_at asc')
+			@shelf_items = ShelfItem.shelf_items_from_shelf_with_platform(@game_shelf.id, params[:platform]).paginate(:page => params[:page]).order('created_at asc')
 		else
 			@shelf_items = ShelfItem.where(game_shelf_id: @game_shelf.id).paginate(:page => params[:page]).order('created_at asc')
 		end
