@@ -49,6 +49,8 @@ describe GameShelvesController do
 		it "populates requested shelf items to @shelf_items" do
 			#given
 			game_shelf = FactoryGirl.create(:game_shelf_with_shelf_items, user: @user, shelf_items_count: 5, shelf_type: GameShelf::shelf_types[:backlog])
+			expected_shelf_items = game_shelf.shelf_items.reload.to_a
+			expected_shelf_items.sort! {|a, b| a.created_at <=> b.created_at }
 
 			# when
 			get :show, user_id: @user.id, id: game_shelf
