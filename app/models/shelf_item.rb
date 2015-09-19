@@ -24,9 +24,7 @@ class ShelfItem < ActiveRecord::Base
 	end
 
 	def self.shelf_items_from_shelf_with_platform(game_shelf_id, platform_id)
-		arel_shelf_items = self.shelf_items_editions_from_shelf_with_platform(game_shelf_id, platform_id).union(
+		self.shelf_items_editions_from_shelf_with_platform(game_shelf_id, platform_id).union(
 			self.shelf_items_expansions_from_shelf_with_platform(game_shelf_id, platform_id))
-		arel_shelf_items_table = ShelfItem.arel_table
-		arel_shelf_items_table.create_table_alias(arel_shelf_items, :shelf_items)
 	end
 end

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
-ruby '2.1.5'
-gem 'rails', '4.1.0'
+ruby '2.2.3'
+gem 'rails', '4.2.4'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -41,12 +41,15 @@ gem 'sitemap_generator'
 gem 'fog'
 gem 'figaro'
 gem "addressable"
+gem 'responders', '~> 2.0'
+gem 'active_record_union'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
   gem 'quiet_assets'
   gem 'rails_layout'
   gem 'spring-commands-rspec'
+  gem 'web-console', '~> 2.0'
 end
 group :development, :test do
   gem 'factory_girl_rails'
