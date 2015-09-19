@@ -16,7 +16,7 @@ describe GameShelvesController do
 			game_shelf = FactoryGirl.create(:game_shelf, user: @user)
 			put :add_edition, user_id: @user.id, id: game_shelf
 			expect(response.code).to eq("400")
-			expect(response.body).to eq(" ")
+			expect(response.body).to eq("")
 		end
 	end
 
