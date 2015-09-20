@@ -34,7 +34,7 @@ gem 'active_link_to'
 gem 'gretel'
 gem 'bootstrap-validator-rails'
 gem "font-awesome-rails"
-gem "paperclip", "~> 4.2"
+gem "paperclip"
 gem 'aws-sdk'
 gem "github-markdown"
 gem 'will_paginate-bootstrap'
