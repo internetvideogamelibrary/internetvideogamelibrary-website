@@ -378,7 +378,21 @@ class ReferralSpamControl
 			"avtomatoff.com",
 			"iqoption.com",
 			"carswithmuscles.com",
-			"v-chelyabinske.com"
+			"v-chelyabinske.com",
+			"djvureader-free.ru",
+			"mccpharmacy.com",
+			"mazda-roadsters.com",
+			"cobaltpro.ru",
+			"life-is-beautiful.ru",
+			"rwes.info",
+			"portal-eu.ru",
+			"russintv.fr",
+			"krasivoe-hd.com",
+			"guz.su",
+			"chcu.net",
+			"klinikanikonova.ru",
+			"gamesintrend.com",
+			"xjrul.com"
 		]
 		spammers.each do |s|
 			s.downcase!
