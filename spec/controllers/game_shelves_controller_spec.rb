@@ -16,7 +16,7 @@ describe GameShelvesController do
 			game_shelf = FactoryGirl.create(:game_shelf, user: @user)
 			put :add_edition, user_id: @user.id, id: game_shelf
 			expect(response.code).to eq("400")
-			expect(response.body).to eq(" ")
+			expect(response.body).to eq("")
 		end
 	end
 
@@ -49,12 +49,14 @@ describe GameShelvesController do
 		it "populates requested shelf items to @shelf_items" do
 			#given
 			game_shelf = FactoryGirl.create(:game_shelf_with_shelf_items, user: @user, shelf_items_count: 5, shelf_type: GameShelf::shelf_types[:backlog])
+			expected_shelf_items = game_shelf.shelf_items.reload.to_a
+			expected_shelf_items.sort! {|a, b| a.created_at <=> b.created_at }
 
 			# when
 			get :show, user_id: @user.id, id: game_shelf
 
 			# then
-			expect(assigns(:shelf_items)).to eq(game_shelf.shelf_items.reverse)
+			expect(assigns(:shelf_items)).to eq(expected_shelf_items)
 		end
 		it "populates requested shelf items to @shelf_items when receiving platform_id" do
 			#given

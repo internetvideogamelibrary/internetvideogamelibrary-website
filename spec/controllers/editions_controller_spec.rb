@@ -251,7 +251,7 @@ describe EditionsController do
 
 			#then
 			expect(response.code).to eq("400")
-			expect(response.body).to eq(" ")
+			expect(response.body).to eq("")
 		end
 	end
 	describe "PATCH #do_transform" do
