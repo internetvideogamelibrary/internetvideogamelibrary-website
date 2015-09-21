@@ -347,7 +347,7 @@ GEM
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
-    rails_layout (1.0.24)
+    rails_layout (1.0.26)
     rails_serve_static_assets (0.0.4)
     rails_stdout_logging (0.0.4)
     railties (4.2.4)
@@ -409,7 +409,7 @@ GEM
     simplecov-html (0.10.0)
     sitemap_generator (5.0.5)
       builder
-    spring (1.2.0)
+    spring (1.4.0)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
     sprockets (3.3.4)
