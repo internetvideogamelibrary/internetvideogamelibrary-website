@@ -27,7 +27,6 @@ gem 'omniauth-google-oauth2'
 gem "acts_as_follower"
 gem 'pg'
 gem 'pundit'
-gem 'upmin-admin'
 gem 'annotate'
 gem 'active_link_to'
 gem 'gretel'
