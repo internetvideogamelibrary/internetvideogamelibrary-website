@@ -67,47 +67,7 @@ class ExpansionsController < ApplicationController
 		params.require(:expansion).permit(:title,:description,:release_date, :coverart, :delete_coverart)
 	end
 
-	def expansion_exists
-		expansion = Expansion.friendly.find(params[:id])
-		if expansion.present?
-			return true
-		else
-			redirect_to :back, :alert => "Game not found"
-			return false
-		end
-
-		rescue ActiveRecord::RecordNotFound
-			redirect_to '/', :alert => "Game not found"
-		rescue ActionController::RedirectBackError
-			redirect_to '/', :alert => "Game not found"
-	end
-
-	def game_maker_only
-		unless current_user.game_maker_or_more?
-			redirect_to :back, :alert => "Access denied."
-		end
-		rescue ActionController::RedirectBackError
-			redirect_to '/', :alert => "Access denied."
-	end
-	def reviewer_only
-		unless current_user.admin?
-			redirect_to :back, :alert => "Access denied."
-		end
-		rescue ActionController::RedirectBackError
-			redirect_to '/', :alert => "Access denied."
-	end
 	def edition_exists
-		edition = Edition.friendly.find(params[:edition_id])
-		if edition.present?
-			return true
-		else
-			redirect_to :back, :alert => "Game not found"
-			return false
-		end
-
-		rescue ActiveRecord::RecordNotFound
-			redirect_to '/', :alert => "Game not found"
-		rescue ActionController::RedirectBackError
-			redirect_to '/', :alert => "Game not found"
+		_edition_exists(params[:edition_id])
 	end
 end

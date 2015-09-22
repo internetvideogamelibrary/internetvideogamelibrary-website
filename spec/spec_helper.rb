@@ -14,6 +14,9 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
@@ -36,6 +39,12 @@ RSpec.configure do |config|
     # a real object. This is generally recommended, and will default to
     # `true` in RSpec 4.
     mocks.verify_partial_doubles = true
+  end
+  RSpec::Matchers.define :have_same_attributes_as do |expected|
+	  match do |actual|
+		  ignored = [:id, :updated_at, :created_at]
+		  actual.attributes.except(*ignored) == expected.attributes.except(*ignored)
+	  end
   end
 
 # The settings below are suggested to provide a good initial experience

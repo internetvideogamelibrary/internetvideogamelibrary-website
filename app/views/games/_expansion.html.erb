@@ -1,6 +1,0 @@
-<div class="col-md-2 col-sm-3 col-xs-4 word-break">
-	<%= link_to([expansion.edition, expansion], :class => 'thumbnail text-center') do %>
-		<%= image_tag expansion.coverart.url(:medium), alt: "Cover art of #{expansion.title} - #{expansion.edition.platform.display_title}" %>
-		<%= expansion.title %> - <%= expansion.edition.platform.display_title %><br />
-	<% end %>
-</div>

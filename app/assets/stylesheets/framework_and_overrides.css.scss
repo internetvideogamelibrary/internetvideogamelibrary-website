@@ -94,3 +94,20 @@ height: auto;
 max-height: 200px;
 overflow-x: hidden;
 }
+
+.no-margin-right {
+	margin-right: 0px;
+}
+.no-margin-left {
+	margin-left: 0px;
+}
+.no-padding-right {
+	padding-right: 0px;
+}
+.no-padding-left {
+	padding-left: 0px;
+}
+
+.media .media-body {
+	width: auto;
+}

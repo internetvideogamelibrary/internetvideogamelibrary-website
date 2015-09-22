@@ -12,7 +12,6 @@ Rails.application.routes.draw do
 		end
 	end
 
-	mount Upmin::Engine => '/admin'
 	devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
 	match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 	resources :users do
@@ -24,6 +23,9 @@ Rails.application.routes.draw do
 				put 'add_edition'
 				put 'add_expansion'
 			end
+		end
+		collection do
+			get 'identities'
 		end
 	end
 	resources :works do
@@ -40,8 +42,6 @@ Rails.application.routes.draw do
 	end
 	resources :editions do
 		collection do
-			get 'to_review'
-			post 'review'
 			get 'existing_work'
 		end
 		member do
@@ -59,6 +59,5 @@ Rails.application.routes.draw do
 #	end
 	root to:'index#show'
 
-	get 'faq', to: 'index#faq'
 	get 'about', to: 'index#about'
 end

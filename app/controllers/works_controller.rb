@@ -10,6 +10,9 @@ class WorksController < ApplicationController
 
 	before_filter :has_query,
 	:only => [:search_index]
+
+	before_filter :only_split_all_editions,
+	:only => [:do_split]
 	def search
 		params = work_params
 		@work = Work.find_by(original_title: params[:original_title], original_release_date: params[:original_release_date])
@@ -62,59 +65,28 @@ class WorksController < ApplicationController
 		@work = Work.friendly.find(params[:id])
 	end
 	def do_split
-		@work = Work.friendly.find(params[:id])
-		@editions = params.require(:editions)
-
-		@split_editions = []
-		@keep_editions = []
-
-		@editions.each do |e|
-			if e[1] == 'keep'
-				@keep_editions << e[0].to_i
-			elsif e[1] == 'split'
-				@split_editions << e[0].to_i
+		split_editions = []
+		@work.editions.each do |e|
+			if @split_edition_ids.include? e.id
+				@older_split = decide_older_edition(@older_split, e)
+				split_editions << e
+			else
+				@older_keep = decide_older_edition(@older_keep, e)
 			end
 		end
+		@work.original_release_date = @older_keep
+		@work.slug = nil
+		@work.save
 
-		if @split_editions.length > 0 && @keep_editions.length > 0 && (@split_editions.length+@keep_editions.length == @work.editions.length)
-			@work.editions.each do |e|
-				if @split_editions.include? e.id
-					if e.release_date.present?
-						if not @older_split.present?
-							@older_split = e.release_date
-						elsif e.release_date < @older_split
-							@older_split = e.release_date
-						end
-					end
-				else
-					if e.release_date.present?
-						if not @older_keep.present?
-							@older_keep = e.release_date
-						elsif e.release_date < @older_keep
-							@older_keep = e.release_date
-						end
-					end
-				end
+		@split_work = Work.new(:original_title => @work.original_title, :original_release_date => @older_split)
+		if @split_work.save
+			split_editions.each do |e|
+				e.work = @split_work
+				e.save
 			end
-			@work.original_release_date = @older_keep
-			@work.slug = nil
-			@work.save
-
-			@split_work = Work.new(:original_title => @work.original_title, :original_release_date => @older_split)
-			if @split_work.save
-				@work.editions.each do |e|
-					if @split_editions.include? e.id
-						e.work = @split_work
-						e.save
-					end
-				end
-			end
-			flash[:notice] = "New edition created!"
-			redirect_to work_path(@split_work)
-		else
-			flash[:error] = "You have to split at least one edition. All editions must be checked."
-			render 'split'
 		end
+		flash[:notice] = "New edition created!"
+		redirect_to work_path(@split_work)
 	end
 	def combine
 		@work = Work.friendly.find(params[:id])
@@ -135,42 +107,42 @@ class WorksController < ApplicationController
 		params.require(:work).permit(:original_title, :original_release_date)
 	end
 
-	def game_maker_only
-		unless current_user.game_maker_or_more?
-			redirect_to :back, :alert => "Access denied."
-		end
-		rescue ActionController::RedirectBackError
-			redirect_to '/', :alert => "Access denied."
-	end
-	def reviewer_only
-		unless current_user.admin?
-			redirect_to :back, :alert => "Access denied."
-		end
-		rescue ActionController::RedirectBackError
-			redirect_to '/', :alert => "Access denied."
-	end
-	def work_exists
-		work = Work.friendly.find(params[:id])
-		if work.present?
-			return true
-		else
-			redirect_to :back, :alert => "Game not found"
-			return false
-		end
+	def divide_keep_and_split_arrays(editions)
+		split_editions = []
+		keep_editions = []
 
-		rescue ActiveRecord::RecordNotFound
-			redirect_to '/', :alert => "Game not found"
-		rescue ActionController::RedirectBackError
-			redirect_to '/', :alert => "Game not found"
-	end
-	def has_query
-		if params[:q].present?
-			true
-		else
-			redirect_to :back, :alert => "You have to type a query string"
+		editions.each do |e|
+			if e[1] == 'keep'
+				keep_editions << e[0].to_i
+			elsif e[1] == 'split'
+				split_editions << e[0].to_i
+			end
 		end
+		return keep_editions, split_editions
+	end
 
-		rescue ActionController::RedirectBackError
-			redirect_to games_path, :alert => "You have to type a query string"
+	def decide_older_edition(older_edition, edition)
+		if not older_edition.present?
+			return older_edition = edition.release_date
+		elsif edition.release_date < older_edition
+			return older_edition = edition.release_date
+		end
+		return older_edition
+	end
+
+	def contain_all_editions?(split_edition_ids, keep_edition_ids, work)
+		split_edition_ids.length+keep_edition_ids.length == work.editions.length
+	end
+
+	def only_split_all_editions
+		@work = Work.friendly.find(params[:id])
+		@editions = params.require(:editions)
+
+		keep_edition_ids, @split_edition_ids = divide_keep_and_split_arrays(@editions)
+
+		if @split_edition_ids.empty? or keep_edition_ids.empty? or not contain_all_editions?(@split_edition_ids, keep_edition_ids, @work)
+			flash[:error] = "You have to split at least one edition. All editions must be checked."
+			render 'split'
+		end
 	end
 end

@@ -1,0 +1,13 @@
+language: ruby
+rvm:
+    - 2.2.3
+bundler_args: --without production
+addons:
+      postgresql: "9.3"
+services:
+      - elasticsearch
+before_script:
+    - sleep 10
+before_script:
+    - psql -c 'create database travis_ci_test;' -U postgres
+    - cp config/database.yml.travis config/database.yml

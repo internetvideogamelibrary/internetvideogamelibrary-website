@@ -29,11 +29,6 @@ crumb :games do
 	link "Games", games_path
 end
 
-crumb :editions_to_review do
-	link "Reviewing editions", to_review_editions_url
-	parent :games
-end
-
 crumb :edit_edition do |edition|
 	link "Editing game edition: #{edition.title}", edit_edition_path(edition)
 	parent :games

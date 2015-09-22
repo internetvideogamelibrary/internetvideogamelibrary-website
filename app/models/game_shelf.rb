@@ -15,4 +15,8 @@ class GameShelf < ActiveRecord::Base
 
 	belongs_to :user
 	has_many :shelf_items
+
+	def self.unknown
+		return :game_shelf_unknown
+	end
 end

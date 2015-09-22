@@ -34,8 +34,8 @@ class Edition < ActiveRecord::Base
 
 	def plataform_and_name
 		[
-			[->{ platform.display_title }, :title],
-			[->{ platform.display_title }, ->{ region.title }, :title],
+			[->{ platform.display_title if platform }, :title],
+			[->{ platform.display_title if platform }, ->{ region.title if region }, :title],
 		]
 	end
 
@@ -77,6 +77,17 @@ class Edition < ActiveRecord::Base
 
 	def delete_coverart=(value)
 		@delete_coverart  = !value.to_i.zero?
+	end
+
+	def self.unknown
+		return :edition_unknown
+	end
+	def self.missing
+		return :edition_missing
+	end
+
+	def self.get_other_active_editions_from_the_same_work(edition)
+		return Edition.where("work_id = ? and status = ? and id <> ?",edition.work.id,Edition.statuses[:active],edition.id)
 	end
 
 	private

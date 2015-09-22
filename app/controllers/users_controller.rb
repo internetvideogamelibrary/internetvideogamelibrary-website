@@ -12,6 +12,16 @@ class UsersController < ApplicationController
 		authorize @user
 	end
 
+	def identities
+		@user = current_user
+		authorize @user
+		ret_identities = Identity.where(user_id: @user.id)
+		@identities = {}
+		ret_identities.each do |i|
+			@identities[i.provider] = i
+		end
+	end
+
 	def update
 		@user = User.find(params[:id])
 		authorize @user

@@ -9,8 +9,7 @@
 #
 
 FactoryGirl.define do
-  factory :region do
-    title "MyString"
-  end
-
+	factory :region do
+		sequence(:title) { |n| "Region #{n}" }
+	end
 end

@@ -14,13 +14,13 @@ All games - <% if params[:page] %> page <%= params[:page] %> - <% end %>Internet
 </div>
 <div class="row">
 	<% @games.each_with_index do |game, i| %>
-		<%- if i > 0 && ( (i % 6 == 0) || (i % 4 == 0) || (i % 3 == 0) )%>
-			<div class="clearfix<%- if (i % 6 == 0) %> visible-md visible-lg<% end -%><%- if (i % 4 == 0) %> visible-sm<% end -%><%- if (i % 3 == 0) %> visible-xs<% end-%>"></div>
+		<%- if i > 0 && ( (i % 6 == 0) || (i % 4 == 0) || (i % 2 == 0) )%>
+			<div class="clearfix<%- if (i % 6 == 0) %> visible-md visible-lg<% end -%><%- if (i % 4 == 0) %> visible-sm<% end -%><%- if (i % 2 == 0) %> visible-xs<% end-%>"></div>
 		<% end -%>
 		<%- if game.class.name == "Expansion" %>
-			<%= render partial: "expansion", locals: {expansion: game} %>
+			<%= render partial: "shared/expansion", locals: {expansion: game} %>
 		<% else %>
-			<%= render partial: "edition", locals: {edition: game} %>
+			<%= render partial: "shared/edition", locals: {edition: game} %>
 		<% end -%>
 	<% end %>
 </div>

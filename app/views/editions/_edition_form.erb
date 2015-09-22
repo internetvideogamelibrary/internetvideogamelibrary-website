@@ -95,7 +95,7 @@
 					<%= hidden_field_tag "existing_work[id]", @work.id %>
 				<% end -%>
 				<div class="form-group">
-					<%= w.label :title, "Original title:", :class => "col-lg-3 control-label" %>
+					<%= w.label :original_title, "Original title:", :class => "col-lg-3 control-label" %>
 					<div class="col-lg-8">
 						<%= w.text_field :original_title, :required => true, :class => "form-control" %>
 					</div>

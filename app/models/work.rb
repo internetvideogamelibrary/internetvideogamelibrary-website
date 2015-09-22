@@ -33,6 +33,8 @@ class Work < ActiveRecord::Base
 		]
 	end
 
+	validates :original_title, presence: true
+
 	update_index 'works#work', :self
 	update_index 'games#edition', :editions
 	#update_index ( 'games#expansion' ) { editions.expansions }
