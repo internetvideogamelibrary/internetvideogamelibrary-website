@@ -2,7 +2,7 @@ class GameShelvesController < ApplicationController
 	before_filter :authenticate_user!
 
 	before_filter :xhr_only,
-	:except => [:index, :show]
+	:except => [:index, :show, :new]
 
 	before_filter :game_shelf_exist,
 	:only => [:add_edition, :add_expansion, :show]
@@ -63,8 +63,8 @@ class GameShelvesController < ApplicationController
 		render json: { :status => :success, :message => :shelf_item_removed }
 	end
 
-  def create
-  end
+	def new
+	end
 
   def destroy
   end
