@@ -392,7 +392,13 @@ class ReferralSpamControl
 			"chcu.net",
 			"klinikanikonova.ru",
 			"gamesintrend.com",
-			"xjrul.com"
+			"xjrul.com",
+			"valkiria-tk.ru",
+			"dlskype.com",
+			"downloadsphotoshop.com",
+			"tecspb.ru",
+			"bookmaker-bet.com",
+			"mazal-shop.ru"
 		]
 		spammers.each do |s|
 			s.downcase!
