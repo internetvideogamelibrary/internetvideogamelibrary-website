@@ -33,7 +33,7 @@ gem 'gretel'
 gem 'bootstrap-validator-rails'
 gem "font-awesome-rails"
 gem "paperclip"
-gem 'aws-sdk'
+gem 'aws-sdk', '~> 1.6'
 gem "github-markdown"
 gem 'will_paginate-bootstrap'
 gem 'chewy'
