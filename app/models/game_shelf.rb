@@ -16,6 +16,8 @@ class GameShelf < ActiveRecord::Base
 	belongs_to :user
 	has_many :shelf_items
 
+	validates :user, presence: true
+
 	def self.unknown
 		return :game_shelf_unknown
 	end

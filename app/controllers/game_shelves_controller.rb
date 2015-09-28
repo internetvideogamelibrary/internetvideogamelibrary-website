@@ -2,7 +2,7 @@ class GameShelvesController < ApplicationController
 	before_filter :authenticate_user!
 
 	before_filter :xhr_only,
-	:except => [:index, :show, :new]
+	:except => [:index, :show, :new, :create]
 
 	before_filter :game_shelf_exist,
 	:only => [:add_edition, :add_expansion, :show]
@@ -64,6 +64,18 @@ class GameShelvesController < ApplicationController
 	end
 
 	def new
+		@game_shelf = GameShelf.new(user: current_user)
+	end
+
+	def create
+		@game_shelf = GameShelf.new(game_shelf_params.merge(user: current_user))
+
+		@game_shelf.save!
+		flash[:notice] = "Your new shelf was created!"
+		redirect_to [@game_shelf.user, @game_shelf]
+
+		rescue ActiveRecord::RecordInvalid
+			render 'new'
 	end
 
   def destroy
@@ -73,6 +85,9 @@ class GameShelvesController < ApplicationController
   end
 
 	private
+	def game_shelf_params
+		params.require(:game_shelf).permit(:title)
+	end
 
 	def add_base_shelf_item(game_shelf, game)
 		shelf_item = ShelfItem.joins(:game_shelf).where("shelf_type != ? and user_id = ? and item_type = ? and item_id = ?", GameShelf.shelf_types[:custom], current_user.id, game.class.name, game.id).first
