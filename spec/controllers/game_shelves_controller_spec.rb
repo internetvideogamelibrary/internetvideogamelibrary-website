@@ -19,6 +19,22 @@ describe GameShelvesController do
 			expect(response.body).to eq("")
 		end
 	end
+	describe "GET#new" do
+		it "populates the @game_shelf variable with a new shelf" do
+			# when
+			get :new, user_id: @user.id
+
+			# then
+			expect(assigns(:game_shelf).attributes).to eq(GameShelf.new(user: @user).attributes)
+		end
+		it "should render the new template" do
+			# when
+			get :new, user_id: @user.id
+
+			# then
+			expect(response).to render_template :new
+		end
+	end
 
 	describe 'POST#create' do
 		it "should create a custom shelf" do
@@ -212,7 +228,7 @@ describe GameShelvesController do
 			edition = FactoryGirl.create(:edition)
 			shelf_item = FactoryGirl.create(:shelf_item, item: edition)
 			game_shelf = FactoryGirl.create(:game_shelf, user: @user, shelf_items: [shelf_item])
-			game_shelf_playing = FactoryGirl.create(:game_shelf, user: @user, shelf_type: GameShelf::shelf_types[:custom])
+			game_shelf_playing = FactoryGirl.create(:game_shelf, :custom, user: @user)
 			expected_edition = game_shelf.shelf_items.first.item
 
 			expect{
@@ -232,7 +248,7 @@ describe GameShelvesController do
 			edition = FactoryGirl.create(:edition)
 			shelf_item = FactoryGirl.create(:shelf_item, item: edition)
 			game_shelf = FactoryGirl.create(:game_shelf, user: @user, shelf_items: [shelf_item])
-			game_shelf_playing = FactoryGirl.create(:game_shelf, user: @user, shelf_type: GameShelf::shelf_types[:custom])
+			game_shelf_playing = FactoryGirl.create(:game_shelf, :custom, user: @user)
 			expected_edition = game_shelf.shelf_items.first.item
 
 			expect{
@@ -349,7 +365,7 @@ describe GameShelvesController do
 			expansion = FactoryGirl.create(:expansion)
 			shelf_item = FactoryGirl.create(:shelf_item, item: expansion)
 			game_shelf = FactoryGirl.create(:game_shelf, user: @user, shelf_items: [shelf_item])
-			game_shelf_playing = FactoryGirl.create(:game_shelf, user: @user, shelf_type: GameShelf::shelf_types[:custom])
+			game_shelf_playing = FactoryGirl.create(:game_shelf, :custom, user: @user)
 			expected_expansion = game_shelf.shelf_items.first.item
 
 			expect{
