@@ -40,7 +40,7 @@
 		<ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
 			<% shelves.each do |shelf| %>
 				<li role="presentation">
-					<%= link_to shelf.title,
+					<%= link_to(
 						href_user_game_shelf_path(user, shelf, game, shelf_item),
 						method: :put,
 						remote: true,
@@ -52,8 +52,10 @@
 							shelf: shelf.id.to_s,
 							id: game.class.name + game.id.to_s,
 							checked: is_item_on_shelf?(shelf_item, shelf).to_i
-						}
-					%>
+						}) do %>
+						<%- if shelf.is_custom_shelf? and shelf.contains(game) %><i class="fa fa-check-square-o"></i><% end -%>
+						<%= shelf.title %>
+						<% end %>
 			</li>
 		<% end %>
 		</ul>

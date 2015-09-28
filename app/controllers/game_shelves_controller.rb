@@ -68,7 +68,7 @@ class GameShelvesController < ApplicationController
 	end
 
 	def create
-		@game_shelf = GameShelf.new(game_shelf_params.merge(user: current_user))
+		@game_shelf = GameShelf.new(game_shelf_params.merge(user: current_user, shelf_type: GameShelf.shelf_types[:custom]))
 
 		@game_shelf.save!
 		flash[:notice] = "Your new shelf was created!"
@@ -107,10 +107,14 @@ class GameShelvesController < ApplicationController
 
 	def add_game_to_shelf(game_shelf, game)
 		# if game shelf is not custom, we need to change the game shelf instead of creating a new item
-		if game_shelf.shelf_type != GameShelf.shelf_types[:custom]
+		if not game_shelf.is_custom_shelf?
 			shelf_item = add_base_shelf_item(game_shelf, game)
 		else
-			shelf_item = add_new_shelf_item(game_shelf, game)
+			if not game_shelf.contains(game)
+				shelf_item = add_new_shelf_item(game_shelf, game)
+			else
+				shelf_item = game_shelf.find_item(game)
+			end
 		end
 		shelf_item.save
 		return shelf_item

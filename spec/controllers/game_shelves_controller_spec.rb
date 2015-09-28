@@ -20,6 +20,21 @@ describe GameShelvesController do
 		end
 	end
 
+	describe 'POST#create' do
+		it "should create a custom shelf" do
+			expected_title = "new shelf"
+			expect{
+				post :create, user_id: @user.id, game_shelf: {title: expected_title}
+			}.to change(GameShelf,:count).by(1)
+
+			new_shelf = GameShelf.last
+
+			expect(new_shelf.title).to eq(expected_title)
+			expect(new_shelf.is_custom_shelf?).to be_truthy
+			expect(new_shelf.user).to eq(@user)
+		end
+	end
+
 	describe 'GET#index' do
 		it 'should redirect to backlog shelf' do
 			# given
@@ -204,6 +219,31 @@ describe GameShelvesController do
 				# when
 				xhr :put, :add_edition, user_id: @user.id, id: game_shelf_playing.id, edition_id: edition.id
 			}.to change(ShelfItem,:count).by(1)
+
+			# then
+			expect(response.code).to eq("200")
+			expect(game_shelf.reload.shelf_items.size).to eq(1)
+			expect(game_shelf_playing.reload.shelf_items.size).to eq(1)
+			now_edition = game_shelf_playing.shelf_items.first.item
+			expect(expected_edition).to eq(now_edition)
+		end
+		it "should not add item twice if custom shelf" do
+			# given
+			edition = FactoryGirl.create(:edition)
+			shelf_item = FactoryGirl.create(:shelf_item, item: edition)
+			game_shelf = FactoryGirl.create(:game_shelf, user: @user, shelf_items: [shelf_item])
+			game_shelf_playing = FactoryGirl.create(:game_shelf, user: @user, shelf_type: GameShelf::shelf_types[:custom])
+			expected_edition = game_shelf.shelf_items.first.item
+
+			expect{
+				# when
+				xhr :put, :add_edition, user_id: @user.id, id: game_shelf_playing.id, edition_id: edition.id
+			}.to change(ShelfItem,:count).by(1)
+
+			expect{
+				# when
+				xhr :put, :add_edition, user_id: @user.id, id: game_shelf_playing.id, edition_id: edition.id
+			}.to change(ShelfItem,:count).by(0)
 
 			# then
 			expect(response.code).to eq("200")
