@@ -1,6 +1,6 @@
-$(".index.show,.games.index,.editions.show,.expansions.show").ready(function() {
+$(".index.show,.games.index,.games.search,.editions.show,.expansions.show").ready(function() {
 	$(".btn.game_shelf").data("loading-text", "Loading...");
-	$(".index.show,.games.index,.editions.show,.expansions.show").on('ajax:success', 'a.game_shelf', function(status, data, xhr) {
+	$(".index.show,.games.index,.games.search,.editions.show,.expansions.show").on('ajax:success', 'a.game_shelf', function(status, data, xhr) {
 		var t = $(status.target);
 		var t_id = t.data("id");
 		var t_custom = t.data("custom")
@@ -50,13 +50,13 @@ $(".index.show,.games.index,.editions.show,.expansions.show").ready(function() {
 		btn.button("reset");
 		$('a[data-id='+t_id+'].game_shelf:not(.btn)').unbind("click");
 	});
-	$(".index.show,.games.index,.editions.show,.expansions.show").on('ajax:beforeSend', 'a.game_shelf', function(status, data, xhr) {
+	$(".index.show,.games.index,.games.search,.editions.show,.expansions.show").on('ajax:beforeSend', 'a.game_shelf', function(status, data, xhr) {
 		var t = $(status.target);
 		var t_id = t.data("id");
 		$("[data-id="+t_id+"].btn.game_shelf").button("loading");
 		$('a[data-id='+t_id+'].game_shelf:not(.btn)').click(function() { return false} );
 	});
-	$(".index.show,.games.index,.editions.show,.expansions.show").on('ajax:error', 'a.game_shelf', function(status, data, xhr) {
+	$(".index.show,.games.index,.games.search,.editions.show,.expansions.show").on('ajax:error', 'a.game_shelf', function(status, data, xhr) {
 		var t = $(status.target);
 		var t_id = t.data("id");
 		$("[data-id="+t_id+"].btn.game_shelf").button("reset");
