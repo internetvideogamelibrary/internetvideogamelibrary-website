@@ -16,6 +16,10 @@ FactoryGirl.define do
 		title "MyString"
 		shelf_type GameShelf::shelf_types[:wishlist]
 
+		trait :custom do
+			shelf_type GameShelf::shelf_types[:custom]
+		end
+
 		factory :game_shelf_with_shelf_items do
 			transient do
 				shelf_items_count 1
