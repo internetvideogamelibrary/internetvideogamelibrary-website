@@ -12,9 +12,13 @@
 
 FactoryGirl.define do
 	factory :game_shelf do
-		user nil
+		user
 		title "MyString"
 		shelf_type GameShelf::shelf_types[:wishlist]
+
+		trait :custom do
+			shelf_type GameShelf::shelf_types[:custom]
+		end
 
 		factory :game_shelf_with_shelf_items do
 			transient do

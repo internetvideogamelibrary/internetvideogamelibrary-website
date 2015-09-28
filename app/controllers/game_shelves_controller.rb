@@ -2,7 +2,7 @@ class GameShelvesController < ApplicationController
 	before_filter :authenticate_user!
 
 	before_filter :xhr_only,
-	:except => [:index, :show]
+	:except => [:index, :show, :new, :create]
 
 	before_filter :game_shelf_exist,
 	:only => [:add_edition, :add_expansion, :show]
@@ -63,8 +63,20 @@ class GameShelvesController < ApplicationController
 		render json: { :status => :success, :message => :shelf_item_removed }
 	end
 
-  def create
-  end
+	def new
+		@game_shelf = GameShelf.new(user: current_user)
+	end
+
+	def create
+		@game_shelf = GameShelf.new(game_shelf_params.merge(user: current_user, shelf_type: GameShelf.shelf_types[:custom]))
+
+		@game_shelf.save!
+		flash[:notice] = "Your new shelf was created!"
+		redirect_to [@game_shelf.user, @game_shelf]
+
+		rescue ActiveRecord::RecordInvalid
+			render 'new'
+	end
 
   def destroy
   end
@@ -73,6 +85,9 @@ class GameShelvesController < ApplicationController
   end
 
 	private
+	def game_shelf_params
+		params.require(:game_shelf).permit(:title)
+	end
 
 	def add_base_shelf_item(game_shelf, game)
 		shelf_item = ShelfItem.joins(:game_shelf).where("shelf_type != ? and user_id = ? and item_type = ? and item_id = ?", GameShelf.shelf_types[:custom], current_user.id, game.class.name, game.id).first
@@ -92,10 +107,14 @@ class GameShelvesController < ApplicationController
 
 	def add_game_to_shelf(game_shelf, game)
 		# if game shelf is not custom, we need to change the game shelf instead of creating a new item
-		if game_shelf.shelf_type != GameShelf.shelf_types[:custom]
+		if not game_shelf.is_custom_shelf?
 			shelf_item = add_base_shelf_item(game_shelf, game)
 		else
-			shelf_item = add_new_shelf_item(game_shelf, game)
+			if not game_shelf.contains(game)
+				shelf_item = add_new_shelf_item(game_shelf, game)
+			else
+				shelf_item = game_shelf.find_item(game)
+			end
 		end
 		shelf_item.save
 		return shelf_item
