@@ -40,8 +40,8 @@ describe GameShelvesHelper do
 	describe "add_user_game_shelf_path" do
 		it "should return edition path when the game is an edition" do
 			# given
-			user = FactoryGirl.create(:user)
 			shelf = FactoryGirl.create(:game_shelf)
+			user = shelf.user
 			game = FactoryGirl.create(:edition)
 
 			# when
@@ -52,8 +52,8 @@ describe GameShelvesHelper do
 		end
 		it "should return expansion path when the game is an expansion" do
 			# given
-			user = FactoryGirl.create(:user)
 			shelf = FactoryGirl.create(:game_shelf)
+			user = shelf.user
 			game = FactoryGirl.create(:expansion)
 
 			# when
@@ -64,8 +64,8 @@ describe GameShelvesHelper do
 		end
 		it "should return nil when the game is any other stuff" do
 			# given
-			user = FactoryGirl.create(:user)
 			shelf = FactoryGirl.create(:game_shelf)
+			user = shelf.user
 			game = FactoryGirl.create(:shelf_item)
 
 			# when
@@ -78,8 +78,8 @@ describe GameShelvesHelper do
 	describe "href_user_game_shelf_path" do
 		it "should return add link when the game is not in any shelf" do
 			# given
-			user = FactoryGirl.create(:user)
 			shelf = FactoryGirl.create(:game_shelf)
+			user = shelf.user
 			shelf_item = nil
 			game = FactoryGirl.create(:edition)
 
@@ -91,8 +91,8 @@ describe GameShelvesHelper do
 		end
 		it "should return add link when the game is not in given shelf" do
 			# given
-			user = FactoryGirl.create(:user)
 			shelf = FactoryGirl.create(:game_shelf)
+			user = shelf.user
 			shelf_with_items = FactoryGirl.create(:game_shelf_with_shelf_items)
 			shelf_item = shelf_with_items.shelf_items.first
 			game = shelf_item.item
@@ -105,8 +105,8 @@ describe GameShelvesHelper do
 		end
 		it "should return remove link when the game is in given shelf" do
 			# given
-			user = FactoryGirl.create(:user)
 			shelf = FactoryGirl.create(:game_shelf_with_shelf_items)
+			user = shelf.user
 			shelf_item = shelf.shelf_items.first
 			game = shelf_item.item
 
@@ -120,8 +120,8 @@ describe GameShelvesHelper do
 	describe "toggle_href_user_game_shelf_path" do
 		it "should return incomplete remove link when the game is not in any shelf" do
 			# given
-			user = FactoryGirl.create(:user)
 			shelf = FactoryGirl.create(:game_shelf)
+			user = shelf.user
 			shelf_item = nil
 			game = FactoryGirl.create(:edition)
 
@@ -133,8 +133,8 @@ describe GameShelvesHelper do
 		end
 		it "should return incomplete remove link when the game is not in given shelf" do
 			# given
-			user = FactoryGirl.create(:user)
 			shelf = FactoryGirl.create(:game_shelf)
+			user = shelf.user
 			shelf_with_items = FactoryGirl.create(:game_shelf_with_shelf_items)
 			shelf_item = shelf_with_items.shelf_items.first
 			game = shelf_item.item
@@ -147,8 +147,8 @@ describe GameShelvesHelper do
 		end
 		it "should return add link when the game is in given shelf" do
 			# given
-			user = FactoryGirl.create(:user)
 			shelf = FactoryGirl.create(:game_shelf_with_shelf_items)
+			user = shelf.user
 			shelf_item = shelf.shelf_items.first
 			game = shelf_item.item
 
