@@ -12,6 +12,9 @@ class GamesIndex < DefaultIndex
 		field :region_id, value: ->{ edition.region_id }, type: 'integer'
 		field :description
 		field :genres, index: 'not_analyzed', value: ->{ edition.genres.map(&:title) }
+		field :expansion_id, value: -> { id }
+		field :edition_id
+		field :coverart_url, value: -> { coverart.url(:medium) }
 		field :created_at, value: ->{ created_at.to_i }, type: 'integer'
 	end
 
@@ -27,6 +30,8 @@ class GamesIndex < DefaultIndex
 		field :region_id, type: 'integer'
 		field :description
 		field :genres, index: 'not_analyzed', value: ->{ genres.map(&:title) }
+		field :edition_id, value: -> { id }
+		field :coverart_url, value: -> { coverart.url(:medium) }
 		field :created_at, value: ->{ created_at.to_i }, type: 'integer'
 	end
 end
