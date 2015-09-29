@@ -1,3 +1,6 @@
+require 'games_index_view_object'
+require 'paging_object'
+
 class GamesController < ApplicationController
 	before_filter :has_query,
 	:only => [:search_for_transformation]
@@ -38,8 +41,10 @@ class GamesController < ApplicationController
 
 	def index
 		@search = GamesSearch.new(platform: params[:platform])
-		results = @search.all.only(:id)
-		@games = results.paginate(:page => params[:page]).load(edition: {scope: Edition.includes(:work)})
+		results = @search.all
+		results_paginated = results.paginate(:page => params[:page])
+		@page_object = PagingObject.new(results_paginated.total_pages, params[:page], results_paginated.per_page, results_paginated.total)
+		@games = GamesIndexViewObject.construct_array_from_chewy_map(results_paginated.map)
 	end
 
 	private
