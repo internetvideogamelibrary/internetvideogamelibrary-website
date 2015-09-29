@@ -9,51 +9,8 @@ class GamesIndexViewObject
 		return constructed_array
 	end
 
-	def title
-		@title
-	end
-	def release_date
-		@release_date
-	end
-	def original_title
-		@original_title
-	end
-	def original_release_date
-		@original_release_date
-	end
-	def work_id
-		@work_id
-	end
-	def platform_title
-		@platform_title
-	end
-	def platform_id
-		@platform_id
-	end
-	def region_title
-		@region_title
-	end
-	def region_id
-		@region_id
-	end
-	def description
-		@description
-	end
-	def genres_array
-		@genres_array
-	end
-	def created_at
-		@created_at
-	end
-	def coverart_url
-		@coverart_url
-	end
-	def edition_id
-		@edition_id
-	end
-	def expansion_id
-		@expansion_id
-	end
+	attr_reader :title, :release_date, :original_title, :original_release_date, :work_id, :platform_title, :platform_id, :region_title, :region_id, :description, :genres_array, :created_at, :coverart_url, :edition_id, :expansion_id
+
 	def link
 		if @expansion_id.present?
 			Rails.application.routes.url_helpers.edition_expansion_path(@edition_id, @expansion_id)
