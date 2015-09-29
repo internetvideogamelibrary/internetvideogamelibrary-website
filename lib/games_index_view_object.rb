@@ -61,6 +61,13 @@ class GamesIndexViewObject
 			Rails.application.routes.url_helpers.edition_path(@edition_id)
 		end
 	end
+	def obj
+		if @expansion_id.present?
+			Expansion.new(edition_id: @edition_id, id: @expansion_id)
+		else
+			Edition.new(id: @edition_id)
+		end
+	end
 
 	def initialize(title, release_date, original_title, original_release_date, work_id, platform_title, platform_id, region_title, region_id, description, genres_array, created_at, coverart_url, edition_id, expansion_id)
 		@title = title
