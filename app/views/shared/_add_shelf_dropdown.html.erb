@@ -1,33 +1,33 @@
 <div class="row<%- if no_margin %> no-margin-left no-margin-right<% end -%>">
 	<div class="col-sm-9 no-padding-left no-padding-right">
-		<%- if shelf_item.present? && is_item_on_shelf?(shelf_item, wishlist_shelf) %>
-			<%= link_to shelf_item.game_shelf.title,
-				href_user_game_shelf_path(user, shelf_item.game_shelf, game, shelf_item),
+		<%- if main_shelf_item.present? && is_item_on_shelf?(main_shelf_item, wishlist_shelf) %>
+			<%= link_to main_shelf_item.game_shelf.title,
+				href_user_game_shelf_path(user, main_shelf_item.game_shelf, game, main_shelf_item),
 				method: :put,
 				remote: true,
 				class: "game_shelf btn btn-default btn-sm btn-block",
 				role: "menuitem",
 				tabindex: "-1",
 				data: {
-					toggle_href: toggle_href_user_game_shelf_path(user, shelf_item.game_shelf, game, shelf_item),
-					shelf: shelf_item.game_shelf.id.to_s,
+					toggle_href: toggle_href_user_game_shelf_path(user, main_shelf_item.game_shelf, game, main_shelf_item),
+					shelf: main_shelf_item.game_shelf.id.to_s,
 					id: game.class.name + game.id.to_s,
-					checked: is_item_on_shelf?(shelf_item, shelf_item.game_shelf).to_i
+					checked: is_item_on_shelf?(main_shelf_item, main_shelf_item.game_shelf).to_i
 				}
 			%>
 		<% else %>
 			<%= link_to "Add to Wishlist",
-				href_user_game_shelf_path(user, wishlist_shelf, game, shelf_item),
+				href_user_game_shelf_path(user, wishlist_shelf, game, main_shelf_item),
 				method: :put,
 				remote: true,
 				class: "game_shelf btn btn-primary btn-sm btn-block",
 				role: "menuitem",
 				tabindex: "-1",
 				data: {
-					toggle_href: toggle_href_user_game_shelf_path(user, wishlist_shelf, game, shelf_item),
+					toggle_href: toggle_href_user_game_shelf_path(user, wishlist_shelf, game, main_shelf_item),
 					shelf: wishlist_shelf.id.to_s,
 					id: game.class.name + game.id.to_s,
-					checked: is_item_on_shelf?(shelf_item, wishlist_shelf).to_i
+					checked: is_item_on_shelf?(main_shelf_item, wishlist_shelf).to_i
 				}
 			%>
 		<% end -%>
@@ -42,35 +42,35 @@
 				<li role="presentation">
 					<%- if shelf.is_custom_shelf? %>
 						<%= link_to(
-							href_user_game_shelf_path(user, shelf, game, shelf.find_item(game)),
+							href_user_game_shelf_path(user, shelf, game, other_shelf_items[shelf.id]),
 							method: :put,
 							remote: true,
 							class: "game_shelf",
 							role: "menuitem",
 							tabindex: "-1",
 							data: {
-								toggle_href: toggle_href_user_game_shelf_path(user, shelf, game, shelf.find_item(game)),
+								toggle_href: toggle_href_user_game_shelf_path(user, shelf, game, other_shelf_items[shelf.id]),
 								shelf: shelf.id.to_s,
 								id: game.class.name + game.id.to_s,
-								checked: shelf.contains(game)?1:0,
+								checked: (other_shelf_items[shelf.id].present?)?1:0,
 								custom: true
 							}) do %>
-							<%- if shelf.is_custom_shelf? and shelf.contains(game) %><i class="fa fa-check-square-o"></i><% end -%>
+							<%- if shelf.is_custom_shelf? and other_shelf_items[shelf.id].present? %><i class="fa fa-check-square-o"></i><% end -%>
 							<%= shelf.title %>
 							<% end %>
 					<% else %>
 						<%= link_to(
-							href_user_game_shelf_path(user, shelf, game, shelf_item),
+							href_user_game_shelf_path(user, shelf, game, main_shelf_item),
 							method: :put,
 							remote: true,
 							class: "game_shelf",
 							role: "menuitem",
 							tabindex: "-1",
 							data: {
-								toggle_href: toggle_href_user_game_shelf_path(user, shelf, game, shelf_item),
+								toggle_href: toggle_href_user_game_shelf_path(user, shelf, game, main_shelf_item),
 								shelf: shelf.id.to_s,
 								id: game.class.name + game.id.to_s,
-								checked: is_item_on_shelf?(shelf_item, shelf).to_i,
+								checked: is_item_on_shelf?(main_shelf_item, shelf).to_i,
 								custom: false
 							}) do %>
 							<%= shelf.title %>
