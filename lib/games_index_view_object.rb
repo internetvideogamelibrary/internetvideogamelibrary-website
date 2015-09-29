@@ -71,9 +71,9 @@ class GamesIndexViewObject
 
 	def initialize(title, release_date, original_title, original_release_date, work_id, platform_title, platform_id, region_title, region_id, description, genres_array, created_at, coverart_url, edition_id, expansion_id)
 		@title = title
-		@release_date = Time.iso8601(release_date)
+		@release_date = Time.iso8601(release_date) if release_date
 		@original_title = original_title
-		@original_release_date = Time.iso8601(original_release_date)
+		@original_release_date = Time.iso8601(original_release_date) if original_release_date
 		@work_id = work_id
 		@platform_title = platform_title
 		@platform_id = platform_id
