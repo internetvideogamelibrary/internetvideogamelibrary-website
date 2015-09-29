@@ -1,10 +1,9 @@
 module GameShelvesHelper
-	def add_shelf_dropdown(user, game, no_margin: true)
-		shelves = GameShelf.where(:user_id => user.id).order(:shelf_type)
+	def add_shelf_dropdown(user, user_shelves, game, no_margin: true)
 		main_shelf_item, other_shelf_items = ShelfItem.shelf_items_per_user_and_game(user.id, game.class.name, game.id)
-		wishlist_shelf = shelves.first
+		wishlist_shelf = user_shelves.first
 
-		render :partial => "shared/add_shelf_dropdown", :locals => {:shelves => shelves, :main_shelf_item => main_shelf_item, :other_shelf_items => other_shelf_items, :game => game, :wishlist_shelf => wishlist_shelf, :user => user, :no_margin => no_margin}
+		render :partial => "shared/add_shelf_dropdown", :locals => {:shelves => user_shelves, :main_shelf_item => main_shelf_item, :other_shelf_items => other_shelf_items, :game => game, :wishlist_shelf => wishlist_shelf, :user => user, :no_margin => no_margin}
 	end
 
 	def href_user_game_shelf_path(user, shelf, game, shelf_item)

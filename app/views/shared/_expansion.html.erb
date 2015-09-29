@@ -6,7 +6,7 @@
 	<% end %>
 	<small>Released on <%= expansion.release_date.strftime('%d/%m/%Y') if expansion.release_date.present? %> at <%= expansion.edition.region.title %></small><br />
 	<% if current_user.present? %>
-		<%= add_shelf_dropdown current_user, expansion%>
+		<%= add_shelf_dropdown current_user, user_shelves, expansion%>
 	<% end %>
 	</div>
 </div>

@@ -6,7 +6,7 @@
 	<% end %>
 	<small>Released on <%= game.release_date.strftime('%d/%m/%Y') if game.release_date.present? %> at <%= game.region_title %></small><br />
 	<% if current_user.present? %>
-		<%= add_shelf_dropdown current_user, game.obj %>
+		<%= add_shelf_dropdown current_user, user_shelves, game.obj %>
 	<% end %>
 	</div>
 </div>

@@ -6,6 +6,7 @@ class IndexController < ApplicationController
 		@editions_count = @search.editions_count.total
 		@expansions_count = @search.expansions_count.total
 		@work_count = WorksSearch.new().works_count.total
+		@user_shelves = GameShelf.user_shelves(current_user.id) if current_user
 	end
 
 	def faq

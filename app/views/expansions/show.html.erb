@@ -10,7 +10,7 @@
 				<%= image_tag @expansion.coverart.url(:medium), alt: "Cover art of #{@expansion.title} - #{@expansion.edition.platform.display_title}" %>
 			</div>
 			<% if current_user.present? %>
-				<%= add_shelf_dropdown current_user, @expansion, :no_margin => false %>
+				<%= add_shelf_dropdown current_user, @user_shelves, @expansion, :no_margin => false %>
 			<% end %>
 			<div class="row">
 				<ul class="list-group">
