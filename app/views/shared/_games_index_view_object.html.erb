@@ -1,0 +1,12 @@
+<div class="col-md-2 col-sm-3 col-xs-6 word-break">
+	<div class='thumbnail text-center'>
+	<%= link_to(game.link) do %>
+		<%= image_tag game.coverart_url, alt: "Cover art of #{game.title} - #{game.platform_title}" %>
+		<%= game.title %> - <%= game.platform_title %><br />
+	<% end %>
+	<small>Released on <%= game.release_date.strftime('%d/%m/%Y') if game.release_date.present? %> at <%= game.region_title %></small><br />
+	<% if current_user.present? %>
+		<%= add_shelf_dropdown current_user, user_shelves, game.obj %>
+	<% end %>
+	</div>
+</div>

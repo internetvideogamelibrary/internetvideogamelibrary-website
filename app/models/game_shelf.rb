@@ -33,4 +33,8 @@ class GameShelf < ActiveRecord::Base
 	def self.unknown
 		return :game_shelf_unknown
 	end
+
+	def self.user_shelves(user_id)
+		GameShelf.where(:user_id => user_id).order(:shelf_type)
+	end
 end

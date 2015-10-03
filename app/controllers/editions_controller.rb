@@ -66,6 +66,7 @@ class EditionsController < ApplicationController
 		@other_editions_count = Edition.get_other_active_editions_from_the_same_work(@edition).count()
 		@other_editions = Edition.get_other_active_editions_from_the_same_work(@edition).limit(5)
 		@description = GitHub::Markdown.render_gfm(@edition.description.present? ? @edition.description : "").html_safe
+		@user_shelves = GameShelf.user_shelves(current_user.id) if current_user
 		params[:platform] = @edition.platform_id.to_s
 	end
 	def transform

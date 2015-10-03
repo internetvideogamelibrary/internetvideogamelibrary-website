@@ -10,11 +10,7 @@ Results for "<%= strip_tags params[:q] %>" - <% if params[:page] %> page <%= par
 		<%- if i > 0 && ( (i % 6 == 0) || (i % 4 == 0) || (i % 2 == 0) )%>
 			<div class="clearfix<%- if (i % 6 == 0) %> visible-md visible-lg<% end -%><%- if (i % 4 == 0) %> visible-sm<% end -%><%- if (i % 2 == 0) %> visible-xs<% end-%>"></div>
 		<% end -%>
-		<%- if game.class.name == Expansion.name %>
-			<%= render partial: "shared/expansion", locals: {expansion: game} %>
-		<% else %>
-			<%= render partial: "shared/edition", locals: {edition: game} %>
-		<% end -%>
+		<%= render partial: "shared/games_index_view_object", locals: {game: game, user_shelves: @user_shelves} %>
 	<% end %>
 </div>
-<%= will_paginate @games, renderer: BootstrapPagination::Rails %>
+<%= will_paginate @page_object, renderer: BootstrapPagination::Rails %>
