@@ -398,7 +398,13 @@ class ReferralSpamControl
 			"downloadsphotoshop.com",
 			"tecspb.ru",
 			"bookmaker-bet.com",
-			"mazal-shop.ru"
+			"mazal-shop.ru",
+			"dlya-android.org",
+			"brendbutik.ru",
+			"zaimhelp.ru",
+			"prof-edinstvo.ru",
+			"lombardfinder.ru",
+			"wmzcreditor.ru"
 		]
 		spammers.each do |s|
 			s.downcase!
