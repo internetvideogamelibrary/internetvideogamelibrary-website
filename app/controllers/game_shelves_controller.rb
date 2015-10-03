@@ -2,7 +2,7 @@ class GameShelvesController < ApplicationController
 	before_filter :authenticate_user!
 
 	before_filter :xhr_only,
-	:except => [:index, :show, :new, :create]
+	:except => [:index, :show, :new, :create, :manage_custom]
 
 	before_filter :game_shelf_exist,
 	:only => [:add_edition, :add_expansion, :show]
@@ -76,6 +76,9 @@ class GameShelvesController < ApplicationController
 
 		rescue ActiveRecord::RecordInvalid
 			render 'new'
+	end
+
+	def manage_custom
 	end
 
   def destroy

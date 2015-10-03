@@ -14,7 +14,8 @@
 				</div>
 			<% end %>
 			<hr />
-			<%= link_to "Add custom shelf", new_user_game_shelf_path(@game_shelf.user) %>
+			<%= link_to "Add custom shelf", new_user_game_shelf_path(@game_shelf.user) %> <br />
+			<%= link_to "Manage custom shelves", manage_custom_user_game_shelves_path(@game_shelf.user) %>
 		</div>
 		<div class="col-sm-9">
 			<div class="row bottom-buffer">
