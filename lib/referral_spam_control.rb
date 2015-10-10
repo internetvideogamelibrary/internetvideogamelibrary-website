@@ -404,7 +404,16 @@ class ReferralSpamControl
 			"zaimhelp.ru",
 			"prof-edinstvo.ru",
 			"lombardfinder.ru",
-			"wmzcreditor.ru"
+			"wmzcreditor.ru",
+			"gk-atlant.info",
+			"link.ac",
+			"ugdom.pro",
+			"softtor.com",
+			"design-parket.spb.ru",
+			"cinemaenergy-hd.ru",
+			"allcredits.su",
+			"ledstudio.org",
+			"magda-gadalka.ru"
 		]
 		spammers.each do |s|
 			s.downcase!
