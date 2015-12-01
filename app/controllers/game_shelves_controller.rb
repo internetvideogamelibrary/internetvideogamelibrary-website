@@ -2,7 +2,7 @@ class GameShelvesController < ApplicationController
 	before_filter :authenticate_user!
 
 	before_filter :xhr_only,
-	:except => [:index, :show, :new, :create, :manage_custom]
+	:only => [:add_edition, :add_expansion, :add_game, :remove_item]
 
 	before_filter :game_shelf_exist,
 	:only => [:add_edition, :add_expansion, :show]
@@ -79,10 +79,12 @@ class GameShelvesController < ApplicationController
 	end
 
 	def manage_custom
+		@custom_shelves = GameShelf.user_custom_shelves(current_user.id)
 	end
 
-  def destroy
-  end
+	def destroy
+		redirect_to user_game_shelves_path(current_user)
+	end
 
   def rename
   end
