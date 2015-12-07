@@ -4,13 +4,13 @@
 <div class="row">
 	<div class="col-md-4">
 		<% if @identities['google_oauth2'] %>
-			<%= link_to "#", class: 'btn btn-lg btn-social-icon btn-google-plus disabled', title: "Authorize Google", rel: "nofollow" do %>
-				<i class="fa fa-google-plus"></i>
+			<%= link_to "#", class: 'btn btn-lg btn-social-icon btn-google disabled', title: "Authorize Google", rel: "nofollow" do %>
+				<i class="fa fa-google"></i>
 			<% end %>
 			Connected
 		<% else %>
-			<%= link_to user_omniauth_authorize_path('google_oauth2'), class: 'btn btn-lg btn-social-icon btn-google-plus', title: "Authorize Google", rel: "nofollow" do %>
-				<i class="fa fa-google-plus"></i>
+			<%= link_to user_omniauth_authorize_path('google_oauth2'), class: 'btn btn-lg btn-social-icon btn-google', title: "Authorize Google", rel: "nofollow" do %>
+				<i class="fa fa-google"></i>
 			<% end %>
 			Connect
 		<% end -%>
