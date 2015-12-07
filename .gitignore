@@ -80,3 +80,6 @@ pickle-email-*.html
 
 # Ignore application configuration
 /config/application.yml
+
+# bower
+/vendor/assets/bower_components

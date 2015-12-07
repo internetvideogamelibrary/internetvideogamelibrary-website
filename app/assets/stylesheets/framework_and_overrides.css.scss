@@ -1,7 +1,10 @@
 // import the CSS framework
-@import "bootstrap-sprockets";
-@import "bootstrap";
+/*
+ *
+ */
 
+@import "bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
+@import "bootstrap-sass/assets/stylesheets/bootstrap";
 // make all images responsive by default
 img {
   @extend .img-responsive;
