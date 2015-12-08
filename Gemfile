@@ -41,6 +41,7 @@ gem 'figaro'
 gem "addressable"
 gem 'responders', '~> 2.0'
 gem 'active_record_union'
+gem 'puma'
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
