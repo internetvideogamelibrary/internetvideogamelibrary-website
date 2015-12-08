@@ -1,7 +1,12 @@
 // import the CSS framework
-@import "bootstrap-sprockets";
-@import "bootstrap";
+/*
+ *
+ */
 
+$icon-font-path: "bootstrap-sass/assets/fonts/bootstrap/";
+@import "bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
+@import "bootstrap-sass/assets/stylesheets/bootstrap";
+@import "bootstrap-social/bootstrap-social.scss";
 // make all images responsive by default
 img {
   @extend .img-responsive;

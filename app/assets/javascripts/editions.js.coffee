@@ -1,1 +1,1 @@
-//= require bootstrapValidator.min
+//= require bootstrap-validator/dist/validator.min
