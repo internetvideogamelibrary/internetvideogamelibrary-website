@@ -1,26 +1,26 @@
 class GameShelvesController < ApplicationController
-	before_filter :authenticate_user!
+	before_action :authenticate_user!
 
-	before_filter :xhr_only,
-	:except => [:index, :show, :new, :create]
+	before_action :xhr_only,
+		except: [:index, :show, :new, :create]
 
-	before_filter :game_shelf_exist,
-	:only => [:add_edition, :add_expansion, :show]
+	before_action :game_shelf_exist,
+		only: [:add_edition, :add_expansion, :show]
 
-	before_filter :game_shelf_belongs_to_current_user,
-	:only => [:add_edition, :add_expansion, :show]
+	before_action :game_shelf_belongs_to_current_user,
+		only: [:add_edition, :add_expansion, :show]
 
-	before_filter :edition_present_and_exists,
-	:only => [:add_edition]
+	before_action :edition_present_and_exists,
+		only: [:add_edition]
 
-	before_filter :expansion_present_and_exists,
-	:only => [:add_expansion]
+	before_action :expansion_present_and_exists,
+		only: [:add_expansion]
 
-	before_filter :item_present_and_exists,
-	:only => [:remove_item]
+	before_action :item_present_and_exists,
+		only: [:remove_item]
 
-	before_filter :item_shelf_belongs_to_current_user,
-	:only => [:remove_item]
+	before_action :item_shelf_belongs_to_current_user,
+		only: [:remove_item]
 
 	def index
 		game_shelf = GameShelf.find_by(user_id: current_user.id, shelf_type: GameShelf.shelf_types[:backlog])
@@ -29,19 +29,19 @@ class GameShelvesController < ApplicationController
 
 	def show
 		@game_shelf = GameShelf.find_by_id(params[:id])
-		if params[:platform].to_s != ""
-			@shelf_items = ShelfItem.shelf_items_from_shelf_with_platform(@game_shelf.id, params[:platform]).paginate(:page => params[:page]).order('created_at asc')
+		if params[:platform].to_s != ''
+			@shelf_items = ShelfItem.shelf_items_from_shelf_with_platform(@game_shelf.id, params[:platform]).paginate(page: params[:page]).order('created_at asc')
 		else
-			@shelf_items = ShelfItem.where(game_shelf_id: @game_shelf.id).paginate(:page => params[:page]).order('created_at asc')
+			@shelf_items = ShelfItem.where(game_shelf_id: @game_shelf.id).paginate(page: params[:page]).order('created_at asc')
 		end
-		@game_shelves = current_user.game_shelves -> {order 'shelf_type asc, id asc'}
+		@game_shelves = current_user.game_shelves -> { order 'shelf_type asc, id asc' }
 	end
 
 	def add_game(game)
 		game_shelf = GameShelf.find_by_id(params[:id])
 		@shelf_item = add_game_to_shelf(game_shelf, game)
 
-		render json: { :status => :success, :shelf_item => @shelf_item }
+		render json: { status: :success, shelf_item: @shelf_item }
 	end
 
 	def add_edition
@@ -60,7 +60,7 @@ class GameShelvesController < ApplicationController
 
 		shelf_item.destroy
 
-		render json: { :status => :success, :message => :shelf_item_removed }
+		render json: { status: :success, message: :shelf_item_removed }
 	end
 
 	def new
@@ -71,53 +71,54 @@ class GameShelvesController < ApplicationController
 		@game_shelf = GameShelf.new(game_shelf_params.merge(user: current_user, shelf_type: GameShelf.shelf_types[:custom]))
 
 		@game_shelf.save!
-		flash[:notice] = "Your new shelf was created!"
+		flash[:notice] = 'Your new shelf was created!'
 		redirect_to [@game_shelf.user, @game_shelf]
 
-		rescue ActiveRecord::RecordInvalid
-			render 'new'
+	rescue ActiveRecord::RecordInvalid
+		render 'new'
 	end
 
-  def destroy
-  end
+	def destroy
+	end
 
-  def rename
-  end
+	def rename
+	end
 
 	private
+
 	def game_shelf_params
 		params.require(:game_shelf).permit(:title)
 	end
 
 	def add_base_shelf_item(game_shelf, game)
-		shelf_item = ShelfItem.joins(:game_shelf).where("shelf_type != ? and user_id = ? and item_type = ? and item_id = ?", GameShelf.shelf_types[:custom], current_user.id, game.class.name, game.id).first
-		if(shelf_item.present?)
+		shelf_item = ShelfItem.joins(:game_shelf).where('shelf_type != ? and user_id = ? and item_type = ? and item_id = ?', GameShelf.shelf_types[:custom], current_user.id, game.class.name, game.id).first
+		if shelf_item.present?
 			shelf_item.game_shelf = game_shelf
 		else
 			shelf_item = add_new_shelf_item(game_shelf, game)
 		end
-		return shelf_item
+		shelf_item
 	end
 
 	def add_new_shelf_item(game_shelf, game)
 		shelf_item = game_shelf.shelf_items.new
 		shelf_item.item = game
-		return shelf_item
+		shelf_item
 	end
 
 	def add_game_to_shelf(game_shelf, game)
 		# if game shelf is not custom, we need to change the game shelf instead of creating a new item
-		if not game_shelf.is_custom_shelf?
+		if !game_shelf.custom_shelf?
 			shelf_item = add_base_shelf_item(game_shelf, game)
 		else
-			if not game_shelf.contains(game)
+			if !game_shelf.contains(game)
 				shelf_item = add_new_shelf_item(game_shelf, game)
 			else
 				shelf_item = game_shelf.find_item(game)
 			end
 		end
 		shelf_item.save
-		return shelf_item
+		shelf_item
 	end
 
 	def game_shelf_exist
@@ -129,20 +130,20 @@ class GameShelvesController < ApplicationController
 		thing_belongs_to_current_user(game_shelf)
 	end
 
-	def thing_exists(thingClass, id)
-		if thingClass.find_by_id(id).present?
+	def thing_exists(thing_class, id)
+		if thing_class.find_by_id(id).present?
 			return true
 		else
-			render json: { :status => thingClass.unknown }, :status => 404
+			render json: { status: thing_class.unknown }, status: 404
 			return false
 		end
 	end
 
-	def thing_present_and_exists(thingClass, id)
+	def thing_present_and_exists(thing_class, id)
 		if id.present?
-			thing_exists(thingClass, id)
+			thing_exists(thing_class, id)
 		else
-			render json: { :status => thingClass.missing }, :status => 400
+			render json: { status: thing_class.missing }, status: 400
 			return false
 		end
 	end
@@ -171,5 +172,4 @@ class GameShelvesController < ApplicationController
 		shelf_item = ShelfItem.find_by_id(params[:item_id])
 		thing_belongs_to_current_user(shelf_item.game_shelf)
 	end
-
 end

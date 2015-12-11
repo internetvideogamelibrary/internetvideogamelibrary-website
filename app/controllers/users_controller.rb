@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_filter :authenticate_user!
+	before_action :authenticate_user!
 	after_action :verify_authorized
 
 	def index
@@ -26,24 +26,24 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		authorize @user
 		if @user.update_attributes(secure_params)
-			redirect_to users_path, :notice => "User updated."
+			redirect_to users_path, notice: 'User updated.'
 		else
-			redirect_to users_path, :alert => "Unable to update user."
+			redirect_to users_path, alert: 'Unable to update user.'
 		end
 	end
 
 	def finish_signup
 		@user = User.find(params[:id])
 		authorize @user
-		if request.patch? && params[:user]
-			@user.attributes = user_params
-			@user.skip_reconfirmation!
-			if @user.save
-				sign_in(@user, :bypass => true)
-				redirect_to @user, notice: 'Your profile was successfully updated.'
-			else
-				@show_errors = true
-			end
+		return false unless request.patch? && params[:user]
+
+		@user.attributes = user_params
+		@user.skip_reconfirmation!
+		if @user.save
+			sign_in(@user, bypass: true)
+			redirect_to @user, notice: 'Your profile was successfully updated.'
+		else
+			@show_errors = true
 		end
 	end
 
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
 		user = User.find(params[:id])
 		authorize user
 		user.destroy
-		redirect_to users_path, :notice => "User deleted."
+		redirect_to users_path, notice: 'User deleted.'
 	end
 
 	private
@@ -63,5 +63,4 @@ class UsersController < ApplicationController
 	def user_params
 		params.require(:user).permit(:email)
 	end
-
 end

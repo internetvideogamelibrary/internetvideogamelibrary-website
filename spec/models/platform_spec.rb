@@ -12,8 +12,8 @@
 
 require 'rails_helper'
 
-RSpec.describe Platform, :type => :model do
-	it "has a valid factory" do
+RSpec.describe Platform, type: :model do
+	it 'has a valid factory' do
 		expect(FactoryGirl.create(:platform)).to be_valid
 	end
 end

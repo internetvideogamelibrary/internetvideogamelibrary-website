@@ -16,6 +16,7 @@ class Platform < ActiveRecord::Base
 	before_save :fix_display_title
 
 	private
+
 	def fix_display_title
 		self.display_title = title unless display_title.present?
 	end

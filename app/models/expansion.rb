@@ -1,4 +1,4 @@
-require "babosa"
+require 'babosa'
 
 class Expansion < ActiveRecord::Base
 	include FriendlyId
@@ -12,8 +12,8 @@ class Expansion < ActiveRecord::Base
 	def title_and_platform
 		[
 			:title,
-			[->{ edition.platform.display_title if edition }, :title],
-			[->{ edition.platform.display_title if edition }, ->{ edition.region.title if edition }, :title],
+			[-> { edition.platform.display_title if edition }, :title],
+			[-> { edition.platform.display_title if edition }, -> { edition.region.title if edition }, :title],
 			[:title, 2],
 			[:title, 3],
 			[:title, 4],
@@ -21,10 +21,10 @@ class Expansion < ActiveRecord::Base
 		]
 	end
 
-	has_attached_file :coverart, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
-	validates_attachment_content_type :coverart, :content_type => /\Aimage\/.*\Z/
+	has_attached_file :coverart, styles: { medium: '300x300>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
+	validates_attachment_content_type :coverart, content_type: %r{\Aimage\/.*\Z}
 
-	has_many :shelf_items, :as => :item
+	has_many :shelf_items, as: :item
 	belongs_to :edition
 	before_validation { coverart.clear if @delete_coverart }
 
@@ -48,12 +48,14 @@ class Expansion < ActiveRecord::Base
 	end
 
 	def delete_coverart=(value)
-		@delete_coverart  = !value.to_i.zero?
+		@delete_coverart = !value.to_i.zero?
 	end
+
 	def self.unknown
-		return :expansion_unknown
+		:expansion_unknown
 	end
+
 	def self.missing
-		return :expansion_missing
+		:expansion_missing
 	end
 end

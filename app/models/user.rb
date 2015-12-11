@@ -25,11 +25,11 @@
 
 class User < ActiveRecord::Base
 	enum role: [:user, :reviewer, :admin, :gm]
-	after_initialize :set_default_role, :if => :new_record?
+	after_initialize :set_default_role, if: :new_record?
 
-	after_commit :create_game_shelves, :on => :create
+	after_commit :create_game_shelves, on: :create
 
-	has_many :game_shelves, -> {order 'shelf_type asc, id asc'}
+	has_many :game_shelves, -> { order 'shelf_type asc, id asc' }
 	acts_as_followable
 	acts_as_follower
 
@@ -38,11 +38,11 @@ class User < ActiveRecord::Base
 	end
 
 	def create_game_shelves
-		GameShelf.create(:title => "Wishlist", :shelf_type => GameShelf::shelf_types[:wishlist], :user_id => id)
-		GameShelf.create(:title => "Backlog", :shelf_type => GameShelf::shelf_types[:backlog], :user_id => id)
-		GameShelf.create(:title => "Playing", :shelf_type => GameShelf::shelf_types[:playing], :user_id => id)
-		GameShelf.create(:title => "Finished", :shelf_type => GameShelf::shelf_types[:finished], :user_id => id)
-		GameShelf.create(:title => "Played", :shelf_type => GameShelf::shelf_types[:played], :user_id => id)
+		GameShelf.create(title: 'Wishlist', shelf_type: GameShelf.shelf_types[:wishlist], user_id: id)
+		GameShelf.create(title: 'Backlog', shelf_type: GameShelf.shelf_types[:backlog], user_id: id)
+		GameShelf.create(title: 'Playing', shelf_type: GameShelf.shelf_types[:playing], user_id: id)
+		GameShelf.create(title: 'Finished', shelf_type: GameShelf.shelf_types[:finished], user_id: id)
+		GameShelf.create(title: 'Played', shelf_type: GameShelf.shelf_types[:played], user_id: id)
 	end
 
 	# Include default devise modules. Others available are:
@@ -55,10 +55,9 @@ class User < ActiveRecord::Base
 	TEMP_EMAIL_PREFIX = 'change@me'
 	TEMP_EMAIL_REGEX = /\Achange@me/
 
-	validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
+	validates_format_of :email, without: TEMP_EMAIL_REGEX, on: :update
 
 	def self.find_for_oauth(auth, signed_in_resource = nil)
-
 		# Get the identity and user if they exist
 		identity = Identity.find_for_oauth(auth)
 
@@ -75,26 +74,25 @@ class User < ActiveRecord::Base
 			# If no verified email was provided we assign a temporary email and ask the
 			# user to verify it on the next step via UsersController.finish_signup
 			email = auth.info.email
-			user = User.where(:email => email).first if email
+			user = User.find_by(email: email) if email
 
 			# Create the user if it's a new registration
 			if user.nil?
 				user = User.new(
 					name: auth.extra.raw_info.name,
-					#username: auth.info.nickname || auth.uid,
 					email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
-					password: Devise.friendly_token[0,20]
+					password: Devise.friendly_token[0, 20]
 				)
 				user.skip_confirmation!
 				user.save!
-				if auth.provider == "facebook"
+				if auth.provider == 'facebook'
 					# we should link every friend
-					Koala.config.api_version = "v2.2"
+					Koala.config.api_version = 'v2.2'
 					@graph = Koala::Facebook::API.new(auth.credentials.token)
-					friends = @graph.get_connections("me", "friends")
+					friends = @graph.get_connections('me', 'friends')
 					friends.each do |f|
-						user_identity = Identity.find_by(provider: "facebook", uid: f["id"])
-						if(user_identity.present?)
+						user_identity = Identity.find_by(provider: 'facebook', uid: f['id'])
+						if user_identity.present?
 							user_friend = user_identity.user
 							user_friend.follow(user)
 							user.follow(user_friend)
@@ -113,10 +111,10 @@ class User < ActiveRecord::Base
 	end
 
 	def game_maker_or_more?
-		self.gm? or self.reviewer? or self.admin?
+		self.gm? || self.reviewer? || self.admin?
 	end
 
 	def email_verified?
-		self.email && self.email !~ TEMP_EMAIL_REGEX
+		email && email !~ TEMP_EMAIL_REGEX
 	end
 end

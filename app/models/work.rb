@@ -8,7 +8,7 @@
 #  created_at            :datetime
 #  updated_at            :datetime
 #
-require "babosa"
+require 'babosa'
 
 class Work < ActiveRecord::Base
 	include FriendlyId
@@ -23,9 +23,9 @@ class Work < ActiveRecord::Base
 	def original_title_slug
 		[
 			:original_title,
-			[:original_title, ->{ original_release_date.strftime('%Y') if original_release_date.present? }],
-			[->{ editions.first.platform.display_title if editions.first }, :original_title],
-			[->{ editions.first.platform.display_title if editions.first }, ->{ editions.first.region.title if editions.first }, :original_title],
+			[:original_title, -> { original_release_date.strftime('%Y') if original_release_date.present? }],
+			[-> { editions.first.platform.display_title if editions.first }, :original_title],
+			[-> { editions.first.platform.display_title if editions.first }, -> { editions.first.region.title if editions.first }, :original_title],
 			[:original_title, 2],
 			[:original_title, 3],
 			[:original_title, 4],
@@ -37,5 +37,4 @@ class Work < ActiveRecord::Base
 
 	update_index 'works#work', :self
 	update_index 'games#edition', :editions
-	#update_index ( 'games#expansion' ) { editions.expansions }
 end

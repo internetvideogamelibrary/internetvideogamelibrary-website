@@ -1,5 +1,5 @@
 class WorksIndex < DefaultIndex
-	settings self.default_settings
+	settings default_settings
 
 	define_type Work do
 		field :original_title, analyzer: 'title'

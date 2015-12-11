@@ -25,10 +25,10 @@
 
 FactoryGirl.define do
 	factory :user do
-		confirmed_at Time.now
+		confirmed_at Time.zone.now
 		sequence(:name) { |n| "Test User #{n}" }
 		sequence(:email) { |n| "test#{n}@example.com" }
-		password "please123"
+		password 'please123'
 
 		trait :admin do
 			role 'admin'

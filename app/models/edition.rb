@@ -20,7 +20,7 @@
 #  status                :integer
 #  media_id              :integer          not null
 #
-require "babosa"
+require 'babosa'
 
 class Edition < ActiveRecord::Base
 	include HashableParams
@@ -34,15 +34,15 @@ class Edition < ActiveRecord::Base
 
 	def plataform_and_name
 		[
-			[->{ platform.display_title if platform }, :title],
-			[->{ platform.display_title if platform }, ->{ region.title if region }, :title],
+			[-> { platform.display_title if platform }, :title],
+			[-> { platform.display_title if platform }, -> { region.title if region }, :title]
 		]
 	end
 
 	enum statuses: [:unreviewed, :active, :deleted]
 
-	has_attached_file :coverart, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
-	validates_attachment_content_type :coverart, :content_type => /\Aimage\/.*\Z/
+	has_attached_file :coverart, styles: { medium: '300x300>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
+	validates_attachment_content_type :coverart, content_type: %r{\Aimage\/.*\Z}
 
 	validates :title, presence: true
 	validates :platform_id, presence: true
@@ -56,7 +56,7 @@ class Edition < ActiveRecord::Base
 	belongs_to :media
 
 	has_many :expansions
-	has_many :shelf_items, :as => :item
+	has_many :shelf_items, as: :item
 
 	has_and_belongs_to_many :genres
 
@@ -76,22 +76,24 @@ class Edition < ActiveRecord::Base
 	end
 
 	def delete_coverart=(value)
-		@delete_coverart  = !value.to_i.zero?
+		@delete_coverart = !value.to_i.zero?
 	end
 
 	def self.unknown
-		return :edition_unknown
+		:edition_unknown
 	end
+
 	def self.missing
-		return :edition_missing
+		:edition_missing
 	end
 
 	def self.get_other_active_editions_from_the_same_work(edition)
-		return Edition.where("work_id = ? and status = ? and id <> ?",edition.work.id,Edition.statuses[:active],edition.id)
+		Edition.where('work_id = ? and status = ? and id <> ?', edition.work.id, Edition.statuses[:active], edition.id)
 	end
 
 	private
+
 	def set_default_status
-		self.status = Edition.statuses[:active] if status == nil
+		self.status = Edition.statuses[:active] if status.nil?
 	end
 end

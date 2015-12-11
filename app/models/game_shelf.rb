@@ -19,22 +19,22 @@ class GameShelf < ActiveRecord::Base
 	validates :user, presence: true
 
 	def contains(game)
-		return self.shelf_items.where(item_id: game.id).count > 0
+		shelf_items.where(item_id: game.id).count > 0
 	end
 
 	def find_item(game)
-		return self.shelf_items.where(item_id: game.id).first
+		shelf_items.find_by(item_id: game.id)
 	end
 
-	def is_custom_shelf?
-		return self.shelf_type == GameShelf.shelf_types[:custom]
+	def custom_shelf?
+		shelf_type == GameShelf.shelf_types[:custom]
 	end
 
 	def self.unknown
-		return :game_shelf_unknown
+		:game_shelf_unknown
 	end
 
 	def self.user_shelves(user_id)
-		GameShelf.where(:user_id => user_id).order(:shelf_type)
+		GameShelf.where(user_id: user_id).order(:shelf_type)
 	end
 end

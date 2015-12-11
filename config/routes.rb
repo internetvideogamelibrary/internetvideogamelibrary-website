@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 	if ENV['CANONICAL_HOST']
-		constraints(:host => Regexp.new("^(?!#{Regexp.escape(ENV['CANONICAL_HOST'])})")) do
-			match "/(*path)" => redirect { |params, req| "http://#{ENV['CANONICAL_HOST']}/#{params[:path]}#{'?' + req.query_string unless req.query_string.nil? || req.query_string.empty? }" },  via: [:get, :post]
+		constraints(host: Regexp.new("^(?!#{Regexp.escape(ENV['CANONICAL_HOST'])})")) do
+			match '/(*path)' => redirect { |params, req| "http://#{ENV['CANONICAL_HOST']}/#{params[:path]}#{'?' + req.query_string unless req.query_string.nil? || req.query_string.empty?}" }, via: [:get, :post]
 		end
 	end
 
@@ -12,8 +12,8 @@ Rails.application.routes.draw do
 		end
 	end
 
-	devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
-	match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
+	devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+	match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], as: :finish_signup
 	resources :users do
 		resources :game_shelves do
 			collection do
@@ -51,13 +51,7 @@ Rails.application.routes.draw do
 		resources :expansions do
 		end
 	end
-#	authenticated :user do
-#		root to: 'game_shelves#index', as: :authenticated_root
-#	end
-#	unauthenticated do
-#		root to: 'games#index'
-#	end
-	root to:'index#show'
+	root to: 'index#show'
 
 	get 'about', to: 'index#about'
 end
