@@ -402,7 +402,7 @@ GEM
     simplecov-html (0.10.0)
     sitemap_generator (5.0.5)
       builder
-    spring (1.4.0)
+    spring (1.5.0)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
     sprockets (3.5.2)
