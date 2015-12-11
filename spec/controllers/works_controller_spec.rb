@@ -6,9 +6,11 @@ describe WorksController do
 	before(:example) do
 		@user = FactoryGirl.create(:user, :admin)
 		sign_in :user, @user
+		Timecop.freeze
 	end
 	after(:example) do
 		Warden.test_reset!
+		Timecop.return
 	end
 
 	describe 'PATCH#do_combine' do
