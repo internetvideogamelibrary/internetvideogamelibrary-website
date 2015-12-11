@@ -171,7 +171,7 @@ describe GameShelvesHelper do
 			game = FactoryGirl.create(:edition)
 
 			# when
-			add_shelf_dropdown(user, game)
+			add_shelf_dropdown(user, shelves, game)
 
 			# then
 			expect(helper).to render_template(:partial => "shared/add_shelf_dropdown", :locals => {:shelves => shelves, :shelf_item => shelf_item, :game => game, :wishlist_shelf => wishlist_shelf, :user => user, :no_margin => true})
