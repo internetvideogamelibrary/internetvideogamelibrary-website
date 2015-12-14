@@ -40,6 +40,8 @@ group :development, :test do
   gem 'faker'
   gem 'rspec-rails'
   gem 'rubocop', require: false
+  gem 'pry'
+  gem 'pry-byebug'
 end
 group :development do
   gem 'better_errors'

@@ -64,6 +64,7 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
+    byebug (8.2.1)
     capybara (2.5.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -263,6 +264,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    method_source (0.8.2)
     mime-types (2.99)
     mimemagic (0.3.0)
     mini_portile2 (2.0.0)
@@ -310,6 +312,13 @@ GEM
       ast (>= 1.1, < 3.0)
     pg (0.18.4)
     powerpack (0.1.1)
+    pry (0.10.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-byebug (3.3.0)
+      byebug (~> 8.0)
+      pry (~> 0.10)
     puma (2.15.3)
     pundit (1.0.1)
       activesupport (>= 3.0.0)
@@ -403,6 +412,7 @@ GEM
     simplecov-html (0.10.0)
     sitemap_generator (5.1.0)
       builder
+    slop (3.6.0)
     spring (1.5.0)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
@@ -479,6 +489,8 @@ DEPENDENCIES
   omniauth-twitter
   paperclip
   pg
+  pry
+  pry-byebug
   puma
   pundit
   quiet_assets
