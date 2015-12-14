@@ -9,13 +9,13 @@ SitemapGenerator::Sitemap.sitemaps_host = "http://#{ENV['FOG_DIRECTORY']}.s3.ama
 # pick a namespace within your bucket to organize your maps
 SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'
 SitemapGenerator::Sitemap.create do
-	Work.all.each do |w|
-		add work_path(w)
-	end
-	Edition.all.each do |e|
-		add edition_path(e)
-	end
-	Expansion.all.includes(:edition).each do |exp|
-		add edition_expansion_path(exp.edition, exp)
-	end
+  Work.all.each do |w|
+    add work_path(w)
+  end
+  Edition.all.each do |e|
+    add edition_path(e)
+  end
+  Expansion.all.includes(:edition).each do |exp|
+    add edition_expansion_path(exp.edition, exp)
+  end
 end

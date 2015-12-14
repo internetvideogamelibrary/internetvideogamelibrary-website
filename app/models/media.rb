@@ -9,5 +9,5 @@
 #
 
 class Media < ActiveRecord::Base
-	has_many :edition
+  has_many :edition
 end

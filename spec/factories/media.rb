@@ -9,7 +9,7 @@
 #
 
 FactoryGirl.define do
-	factory :medium, class: 'Media' do
-		sequence(:title) { |n| "Media #{n}" }
-	end
+  factory :medium, class: 'Media' do
+    sequence(:title) { |n| "Media #{n}" }
+  end
 end

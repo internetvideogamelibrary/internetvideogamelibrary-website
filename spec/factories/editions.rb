@@ -22,15 +22,15 @@
 #
 
 FactoryGirl.define do
-	factory :edition do
-		sequence(:title) { |n| "Edition #{n}" }
-		developer 'MyString'
-		publisher 'MyString'
-		sequence(:release_date) { |n| n.days.from_now }
-		description 'MyText'
-		platform
-		region
-		work
-		association :media, factory: :medium
-	end
+  factory :edition do
+    sequence(:title) { |n| "Edition #{n}" }
+    developer 'MyString'
+    publisher 'MyString'
+    sequence(:release_date) { |n| n.days.from_now }
+    description 'MyText'
+    platform
+    region
+    work
+    association :media, factory: :medium
+  end
 end

@@ -11,13 +11,13 @@
 #
 
 class Platform < ActiveRecord::Base
-	has_many :edition
+  has_many :edition
 
-	before_save :fix_display_title
+  before_save :fix_display_title
 
-	private
+  private
 
-	def fix_display_title
-		self.display_title = title unless display_title.present?
-	end
+  def fix_display_title
+    self.display_title = title unless display_title.present?
+  end
 end

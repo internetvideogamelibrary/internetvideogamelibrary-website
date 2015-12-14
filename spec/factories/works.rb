@@ -10,19 +10,19 @@
 #
 
 FactoryGirl.define do
-	factory :work do
-		sequence(:original_title) { |n| "Work #{n}" }
-		sequence(:original_release_date) { |n| n.days.from_now }
+  factory :work do
+    sequence(:original_title) { |n| "Work #{n}" }
+    sequence(:original_release_date) { |n| n.days.from_now }
 
-		factory :work_with_editions do
-			transient do
-				editions_count 1
-			end
+    factory :work_with_editions do
+      transient do
+        editions_count 1
+      end
 
-			after(:create) do |work, evaluator|
-				create_list(:edition, evaluator.editions_count, work: work)
-				work.reload
-			end
-		end
-	end
+      after(:create) do |work, evaluator|
+        create_list(:edition, evaluator.editions_count, work: work)
+        work.reload
+      end
+    end
+  end
 end

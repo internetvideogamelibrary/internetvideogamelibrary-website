@@ -36,28 +36,28 @@ gem 'responders', '~> 2.0'
 gem 'active_record_union'
 gem 'puma'
 group :development, :test do
-	gem 'factory_girl_rails'
-	gem 'faker'
-	gem 'rspec-rails'
-	gem 'rubocop', require: false
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'rspec-rails'
+  gem 'rubocop', require: false
 end
 group :development do
-	gem 'better_errors'
-	gem 'binding_of_caller'
-	gem 'quiet_assets'
-	gem 'rails_layout'
-	gem 'spring-commands-rspec'
-	gem 'web-console', '~> 3.0'
-	gem 'spring'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'quiet_assets'
+  gem 'rails_layout'
+  gem 'spring-commands-rspec'
+  gem 'web-console', '~> 3.0'
+  gem 'spring'
 end
 group :production do
-	gem 'rails_12factor'
+  gem 'rails_12factor'
 end
 group :test do
-	gem 'capybara'
-	gem 'database_cleaner'
-	gem 'launchy'
-	gem 'selenium-webdriver'
-	gem 'codeclimate-test-reporter', require: nil
-	gem 'timecop'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'selenium-webdriver'
+  gem 'codeclimate-test-reporter', require: nil
+  gem 'timecop'
 end

@@ -11,7 +11,7 @@
 #
 
 FactoryGirl.define do
-	factory :platform do
-		sequence(:title) { |n| "Platform #{n}" }
-	end
+  factory :platform do
+    sequence(:title) { |n| "Platform #{n}" }
+  end
 end
