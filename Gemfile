@@ -47,7 +47,7 @@ group :development do
 	gem 'quiet_assets'
 	gem 'rails_layout'
 	gem 'spring-commands-rspec'
-	gem 'web-console', '~> 2.0'
+	gem 'web-console', '~> 3.0'
 	gem 'spring'
 end
 group :production do
