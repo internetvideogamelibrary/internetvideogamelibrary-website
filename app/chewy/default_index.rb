@@ -39,7 +39,7 @@ class DefaultIndex < Chewy::Index
 				analyzer: {
 					title: {
 						tokenizer: 'standard',
-						filter: %w(lowercase, asciifolding, my_synonym_filter)
+						filter: %w(lowercase asciifolding my_synonym_filter)
 					}
 				}
 			}
