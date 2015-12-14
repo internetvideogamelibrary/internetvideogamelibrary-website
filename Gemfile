@@ -43,7 +43,7 @@ group :development, :test do
 end
 group :development do
 	gem 'better_errors'
-	gem 'binding_of_caller', platforms: [:mri_21]
+	gem 'binding_of_caller'
 	gem 'quiet_assets'
 	gem 'rails_layout'
 	gem 'spring-commands-rspec'
