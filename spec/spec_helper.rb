@@ -16,6 +16,8 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'codeclimate-test-reporter'
 require 'chewy/rspec'
+require 'capybara/rspec'
+require 'capybara/webkit'
 CodeClimate::TestReporter.start
 
 RSpec.configure do |config|
@@ -69,4 +71,20 @@ RSpec.configure do |config|
   # end of the spec run, to help surface which specs are running
   # particularly slow.
   config.profile_examples = 10
+
+  # It is a good idea to set up the :bypass strategy inside your test
+  # suite and import objects manually only when needed, and use
+  # Chewy.massacre when needed to flush test ES indices before every
+  # example. This will allow you to minimize unnecessary ES requests
+  # and reduce overhead.
+  config.before(:suite) do
+    Chewy.use_after_commit_callbacks = false
+    Chewy.strategy(:bypass)
+  end
+
+  Capybara.javascript_driver = :webkit
+end
+
+Capybara::Webkit.configure do |config|
+  config.block_unknown_urls
 end
