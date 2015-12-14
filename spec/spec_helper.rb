@@ -81,6 +81,11 @@ RSpec.configure do |config|
     Chewy.use_after_commit_callbacks = false
     Chewy.strategy(:bypass)
   end
+  config.before(:all) do
+    Chewy.massacre
+    GamesIndex.create
+    WorksIndex.create
+  end
 
   Capybara.javascript_driver = :webkit
 end
