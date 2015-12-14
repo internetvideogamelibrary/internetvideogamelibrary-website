@@ -14,6 +14,9 @@ class WorksController < ApplicationController
   before_action :only_split_all_editions,
                 only: [:do_split]
 
+  before_action :require_work_ids,
+                only: [:do_combine]
+
   def search
     params = work_params
     @work = Work.find_by(original_title: params[:original_title], original_release_date: params[:original_release_date])
@@ -34,7 +37,6 @@ class WorksController < ApplicationController
   end
 
   def do_combine
-    @combine_work_ids = params.require(:work_ids)
     @older_work = nil
     @combine_works = []
     @combine_work_ids.each do |w|
@@ -152,5 +154,11 @@ class WorksController < ApplicationController
 
     flash[:error] = 'You have to split at least one edition. All editions must be checked.'
     render 'split'
+  end
+
+  def require_work_ids
+    @combine_work_ids = params.require(:work_ids)
+  rescue ActionController::ParameterMissing
+    redirect_to combine_work_path(params[:id])
   end
 end

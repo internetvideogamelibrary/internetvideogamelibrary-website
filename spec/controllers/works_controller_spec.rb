@@ -75,12 +75,11 @@ describe WorksController do
       work1 = FactoryGirl.create(:work_with_editions, original_release_date: nil)
 
       # when
-      expect {
-        patch :do_combine, id: work1
-      }.to raise_error(ActionController::ParameterMissing)
+      patch :do_combine, id: work1
 
       # then
-      # expect(response.code).to eq('400')
+      expect(response).to redirect_to(combine_work_path(work1))
+      expect(response.code).to eq('302')
     end
   end
   describe 'PATCH#do_split' do
