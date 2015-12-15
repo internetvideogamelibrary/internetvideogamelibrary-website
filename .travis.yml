@@ -16,4 +16,3 @@ before_script:
     - "sh -e /etc/init.d/xvfb start"
     - sleep 3
 install: "bin/wad"
-script: "bundle exec rake test:all"
