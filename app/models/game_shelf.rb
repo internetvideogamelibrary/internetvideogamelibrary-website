@@ -14,7 +14,7 @@ class GameShelf < ActiveRecord::Base
   enum shelf_types: [:wishlist, :backlog, :playing, :finished, :played, :custom]
 
   belongs_to :user
-  has_many :shelf_items
+  has_many :shelf_items, :dependent => :delete_all
 
   validates :user, presence: true
 

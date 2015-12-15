@@ -518,6 +518,19 @@ describe GameShelvesController do
 
       expect { GameShelf.find(game_shelf.id) }.to raise_exception(ActiveRecord::RecordNotFound)
     end
+    it 'should remove given custom game shelf with games in it' do
+      # given
+      edition = FactoryGirl.create(:edition)
+      shelf_item = FactoryGirl.create(:shelf_item, item: edition)
+      game_shelf = FactoryGirl.create(:game_shelf, :custom, user: @user, shelf_items: [shelf_item])
+
+      expect {
+        # when
+        delete :destroy, id: game_shelf, user_id: @user
+      }.to change(GameShelf, :count).by(-1).and change(ShelfItem, :count).by(-1).and change(Edition, :count).by(0)
+
+      expect { GameShelf.find(game_shelf.id) }.to raise_exception(ActiveRecord::RecordNotFound)
+    end
 
     it 'should fail to remove a non-custom game shelf' do
       # given
