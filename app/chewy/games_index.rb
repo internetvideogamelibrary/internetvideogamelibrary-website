@@ -16,6 +16,8 @@ class GamesIndex < DefaultIndex
     field :edition_id
     field :coverart_url, value: -> { coverart.url(:medium) }
     field :created_at, value: -> { created_at.to_i }, type: 'integer'
+    field :expansion_slug, value: -> { slug }
+    field :edition_slug, value: -> { edition.slug }
   end
 
   define_type Edition.includes(:genres, :platform, :region, :work) do
@@ -33,5 +35,6 @@ class GamesIndex < DefaultIndex
     field :edition_id, value: -> { id }
     field :coverart_url, value: -> { coverart.url(:medium) }
     field :created_at, value: -> { created_at.to_i }, type: 'integer'
+    field :edition_slug, value: -> { slug }
   end
 end
