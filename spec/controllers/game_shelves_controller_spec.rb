@@ -6,9 +6,11 @@ describe GameShelvesController do
   before(:example) do
     @user = FactoryGirl.create(:user, :admin)
     sign_in :user, @user
+    Timecop.freeze
   end
   after(:example) do
     Warden.test_reset!
+    Timecop.return
   end
 
   describe 'xhr filter' do
@@ -447,4 +449,28 @@ describe GameShelvesController do
       expect(game_shelf.shelf_items.size).to eq(1)
     end
   end
+  describe 'GET#edit' do
+    it 'populates the @game_shelf variable with the custom shelf' do
+      # given
+      game_shelf_playing = FactoryGirl.create(:game_shelf, :custom, user: @user)
+
+      # when
+      get :edit, user_id: @user.id, id: game_shelf_playing.id
+
+      game_shelf_playing.reload
+      # then
+      expect(assigns(:game_shelf).attributes).to eq(game_shelf_playing.attributes)
+    end
+    it 'should render the edit template' do
+      # given
+      game_shelf_playing = FactoryGirl.create(:game_shelf, :custom, user: @user)
+
+      # when
+      get :edit, user_id: @user.id, id: game_shelf_playing.id
+
+      # then
+      expect(response).to render_template :edit
+    end
+  end
+
 end

@@ -5,10 +5,10 @@ class GameShelvesController < ApplicationController
                 only: [:add_edition, :add_expansion, :add_game, :remove_item]
 
   before_action :game_shelf_exist,
-                only: [:add_edition, :add_expansion, :show]
+                only: [:add_edition, :add_expansion, :show, :edit]
 
   before_action :game_shelf_belongs_to_current_user,
-                only: [:add_edition, :add_expansion, :show]
+                only: [:add_edition, :add_expansion, :show, :edit]
 
   before_action :edition_present_and_exists,
                 only: [:add_edition]
@@ -84,6 +84,10 @@ class GameShelvesController < ApplicationController
 
   def destroy
     redirect_to user_game_shelves_path(current_user)
+  end
+
+  def edit
+    @game_shelf = GameShelf.find_by_id(params[:id])
   end
 
   def rename

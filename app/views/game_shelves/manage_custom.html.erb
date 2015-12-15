@@ -6,12 +6,12 @@
 		<div class="col-sm-6">
 			<h4>Game Shelves</h4>
 			<% @custom_shelves.each do |gs| %>
-				<div class="row">
+				<div class="row" id="gs_<%=gs.id%>">
 					<div class="col-md-6">
 						<%= link_to([gs.user, gs]) do %><%= gs.title %> <% end %>
 					</div>
 					<div class="col-md-3">
-						 <%= link_to() do%><i class="fa fa-edit"></i> Edit<%end%>
+						 <%= link_to(edit_user_game_shelf_path(gs.user, gs)) do%><i class="fa fa-edit"></i> Edit<%end%>
 					</div>
 					<div class="col-md-3">
 						<%= link_to([gs.user, gs], method: :delete, data: {confirm: "Are you sure?" }) do%><i class="fa fa-remove"></i> Remove<% end %>

@@ -9,9 +9,9 @@ feature 'Manage custom shelf' do
   before(:each) do
     @user = FactoryGirl.create(:user)
     @user.create_game_shelves
-    FactoryGirl.create(:game_shelf, :custom, user: @user, title: "Good custom shelf")
-    FactoryGirl.create(:game_shelf, :custom, user: @user, title: "Bad custom shelf")
-    FactoryGirl.create(:game_shelf, :custom, user: @user, title: "Ugly custom shelf")
+    @good_shelf = FactoryGirl.create(:game_shelf, :custom, user: @user, title: "Good custom shelf")
+    @bad_shelf = FactoryGirl.create(:game_shelf, :custom, user: @user, title: "Bad custom shelf")
+    @ugly_shelf = FactoryGirl.create(:game_shelf, :custom, user: @user, title: "Ugly custom shelf")
     login_as(@user, :scope => :user)
   end
 
@@ -24,10 +24,9 @@ feature 'Manage custom shelf' do
   scenario 'User can rename a custom shelf' do
     visit manage_custom_user_game_shelves_path(@user)
 
-    click_link "Edit"
+    find("#gs_#{@ugly_shelf.id}").click_link "Edit"
 
-    expect(page).to have_content("Your new shelf was created!")
-    expect(page).to have_content("New Shelf (0)")
+    expect(page).to have_content("Editing custom shelf: #{@ugly_shelf.title}")
   end
 
 end
