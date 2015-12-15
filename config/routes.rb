@@ -2,7 +2,7 @@ require 'addressable/uri'
 Rails.application.routes.draw do
   if ENV['CANONICAL_HOST']
     constraints(host: Regexp.new("^(?!#{Regexp.escape(ENV['CANONICAL_HOST'])})")) do
-      match '/(*path)' => redirect { |params, req| Addressable::URI.parse("http://#{ENV['CANONICAL_HOST']}:3000/#{params[:path]}#{'?' + req.query_string unless req.query_string.nil? || req.query_string.empty?}").normalize }, via: [:get, :post]
+      match '/(*path)' => redirect { |params, req| Addressable::URI.parse("http://#{ENV['CANONICAL_HOST']}/#{params[:path]}#{'?' + req.query_string unless req.query_string.nil? || req.query_string.empty?}").normalize }, via: [:get, :post]
     end
   end
 
