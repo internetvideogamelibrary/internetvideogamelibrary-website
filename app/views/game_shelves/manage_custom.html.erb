@@ -14,7 +14,7 @@
 						 <%= link_to(edit_user_game_shelf_path(gs.user, gs)) do%><i class="fa fa-edit"></i> Edit<%end%>
 					</div>
 					<div class="col-md-3">
-						<%= link_to([gs.user, gs], method: :delete, data: {confirm: "Are you sure?" }) do%><i class="fa fa-remove"></i> Remove<% end %>
+						<%= link_to([gs.user, gs], method: :delete, data: {confirm: "Are you sure? This cannot be undone." }) do%><i class="fa fa-remove"></i> Remove<% end %>
 					</div>
 				</div>
 			<% end %>
