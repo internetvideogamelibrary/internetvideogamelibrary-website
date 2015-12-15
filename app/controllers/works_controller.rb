@@ -92,7 +92,7 @@ class WorksController < ApplicationController
         e.save
       end
     end
-    flash[:notice] = 'New edition created!'
+    flash[:success] = 'New edition created!'
     redirect_to work_path(@split_work)
   end
 

@@ -74,7 +74,7 @@ class GameShelvesController < ApplicationController
     @game_shelf = GameShelf.new(game_shelf_params.merge(user: current_user, shelf_type: GameShelf.shelf_types[:custom]))
 
     @game_shelf.save!
-    flash[:notice] = 'Your new shelf was created!'
+    flash[:success] = 'Your new shelf was created!'
     redirect_to [@game_shelf.user, @game_shelf]
 
   rescue ActiveRecord::RecordInvalid
@@ -102,6 +102,7 @@ class GameShelvesController < ApplicationController
     redirect_to [@game_shelf.user, @game_shelf]
 
   rescue ActionController::ParameterMissing
+    flash[:error] = 'Please fill all required fields'
     render 'edit'
   end
 
