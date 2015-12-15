@@ -506,4 +506,31 @@ describe GameShelvesController do
       expect(updated_game_shelf.title).to eq(game_shelf_attributes['title'])
     end
   end
+  describe 'DELETE#destroy' do
+    it 'should remove given custom game shelf' do
+      # given
+      game_shelf = FactoryGirl.create(:game_shelf, :custom, user: @user)
+
+      expect {
+        # when
+        delete :destroy, id: game_shelf, user_id: @user
+      }.to change(GameShelf, :count).by(-1)
+
+      expect { GameShelf.find(game_shelf.id) }.to raise_exception(ActiveRecord::RecordNotFound)
+    end
+
+    it 'should fail to remove a non-custom game shelf' do
+      # given
+      game_shelf = FactoryGirl.create(:game_shelf, user: @user, shelf_type: GameShelf.shelf_types[:backlog])
+      game_shelf.reload
+
+      expect {
+        # when
+        delete :destroy, id: game_shelf, user_id: @user
+      }.to change(GameShelf, :count).by(0)
+
+      expect(GameShelf.find(game_shelf.id)).to eq(game_shelf)
+      expect(flash[:error]).to eq('You can only erase custom shelves')
+    end
+  end
 end

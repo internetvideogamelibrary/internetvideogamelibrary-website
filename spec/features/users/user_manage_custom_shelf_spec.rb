@@ -38,4 +38,11 @@ feature 'Manage custom shelf' do
     expect(page).to have_content("#{expected_new_title} (0)")
   end
 
+  scenario 'User can delete a custom shelf', js: true do
+    visit manage_custom_user_game_shelves_path(@user)
+
+    page.accept_confirm { find("#gs_#{@bad_shelf.id}").click_link 'Remove' }
+
+    expect(page).to have_no_content("#{@bad_shelf.title} (0)")
+  end
 end

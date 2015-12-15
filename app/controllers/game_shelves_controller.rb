@@ -5,10 +5,10 @@ class GameShelvesController < ApplicationController
                 only: [:add_edition, :add_expansion, :add_game, :remove_item]
 
   before_action :game_shelf_exist,
-                only: [:add_edition, :add_expansion, :show, :edit, :update]
+                only: [:add_edition, :add_expansion, :show, :edit, :update, :destroy]
 
   before_action :game_shelf_belongs_to_current_user,
-                only: [:add_edition, :add_expansion, :show, :edit, :update]
+                only: [:add_edition, :add_expansion, :show, :edit, :update, :destroy]
 
   before_action :edition_present_and_exists,
                 only: [:add_edition]
@@ -21,6 +21,9 @@ class GameShelvesController < ApplicationController
 
   before_action :item_shelf_belongs_to_current_user,
                 only: [:remove_item]
+
+  before_action :custom_shelf_only,
+                only: [:destroy]
 
   def index
     game_shelf = GameShelf.find_by(user_id: current_user.id, shelf_type: GameShelf.shelf_types[:backlog])
@@ -83,7 +86,9 @@ class GameShelvesController < ApplicationController
   end
 
   def destroy
-    redirect_to user_game_shelves_path(current_user)
+    user = @game_shelf.user
+    @game_shelf.destroy!
+    redirect_to user_game_shelves_path(user)
   end
 
   def edit
@@ -188,5 +193,13 @@ class GameShelvesController < ApplicationController
   def item_shelf_belongs_to_current_user
     shelf_item = ShelfItem.find_by_id(params[:item_id])
     thing_belongs_to_current_user(shelf_item.game_shelf)
+  end
+
+  def custom_shelf_only
+    @game_shelf = GameShelf.find_by_id(params[:id])
+    return true if @game_shelf.shelf_type == GameShelf.shelf_types[:custom]
+
+    flash[:error] = 'You can only erase custom shelves'
+    redirect_to user_game_shelves_path(@game_shelf.user)
   end
 end
