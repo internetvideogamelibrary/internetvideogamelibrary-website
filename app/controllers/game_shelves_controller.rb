@@ -78,13 +78,13 @@ class GameShelvesController < ApplicationController
     render 'new'
   end
 
-	def manage_custom
-		@custom_shelves = GameShelf.user_custom_shelves(current_user.id)
-	end
+  def manage_custom
+    @custom_shelves = GameShelf.user_custom_shelves(current_user.id)
+  end
 
-	def destroy
-		redirect_to user_game_shelves_path(current_user)
-	end
+  def destroy
+    redirect_to user_game_shelves_path(current_user)
+  end
 
   def rename
   end
