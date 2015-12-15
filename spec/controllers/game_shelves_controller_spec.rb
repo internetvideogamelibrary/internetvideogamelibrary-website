@@ -472,5 +472,38 @@ describe GameShelvesController do
       expect(response).to render_template :edit
     end
   end
+  describe 'PUT#update' do
+    it 'should not save on invalid title' do
+      # given
+      game_shelf = FactoryGirl.create(:game_shelf, :custom, user: @user)
+      game_shelf.title = nil
 
+      expect {
+        # when
+        put :update, id: game_shelf, user_id: @user, game_shelf: game_shelf.attributes
+      }.to change(GameShelf, :count).by(0)
+
+      # then
+      expect(response).to render_template(:edit)
+    end
+    it 'should update and redirect to the game shelf' do
+      # given
+      game_shelf = FactoryGirl.create(:game_shelf, :custom, user: @user)
+      game_shelf_attributes = game_shelf.attributes
+      game_shelf_attributes['title'] = 'new shelf title'
+
+      expect {
+        # when
+        put :update, id: game_shelf, user_id: @user, game_shelf: game_shelf_attributes
+      }.to change(GameShelf, :count).by(0)
+
+      updated_game_shelf = GameShelf.find(game_shelf.id)
+      game_shelf_ignore = %w(id created_at updated_at title)
+
+      # then
+      expect(response).to redirect_to([game_shelf.user, game_shelf])
+      expect(updated_game_shelf.attributes.except(*game_shelf_ignore)).to eq(game_shelf_attributes.except(*game_shelf_ignore))
+      expect(updated_game_shelf.title).to eq(game_shelf_attributes['title'])
+    end
+  end
 end

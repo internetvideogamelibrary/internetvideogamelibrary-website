@@ -5,10 +5,10 @@ class GameShelvesController < ApplicationController
                 only: [:add_edition, :add_expansion, :add_game, :remove_item]
 
   before_action :game_shelf_exist,
-                only: [:add_edition, :add_expansion, :show, :edit]
+                only: [:add_edition, :add_expansion, :show, :edit, :update]
 
   before_action :game_shelf_belongs_to_current_user,
-                only: [:add_edition, :add_expansion, :show, :edit]
+                only: [:add_edition, :add_expansion, :show, :edit, :update]
 
   before_action :edition_present_and_exists,
                 only: [:add_edition]
@@ -90,12 +90,20 @@ class GameShelvesController < ApplicationController
     @game_shelf = GameShelf.find_by_id(params[:id])
   end
 
-  def rename
+  def update
+    @game_shelf = GameShelf.find_by_id(params[:id])
+    @game_shelf.update_attributes!(game_shelf_params)
+    flash[:success] = 'Custom Shelf Updated!'
+    redirect_to [@game_shelf.user, @game_shelf]
+
+  rescue ActionController::ParameterMissing
+    render 'edit'
   end
 
   private
 
   def game_shelf_params
+    params.require(:game_shelf).require(:title)
     params.require(:game_shelf).permit(:title)
   end
 
