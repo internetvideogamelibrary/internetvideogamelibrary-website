@@ -82,9 +82,8 @@ RSpec.configure do |config|
     Chewy.strategy(:bypass)
   end
   config.before(:all) do
-    Chewy.massacre
-    GamesIndex.create
-    WorksIndex.create
+    GamesIndex.reset!
+    WorksIndex.reset!
   end
 
   Capybara.javascript_driver = :webkit
