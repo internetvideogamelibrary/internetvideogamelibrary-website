@@ -24,18 +24,18 @@
 #
 
 FactoryGirl.define do
-	factory :user do
-		confirmed_at Time.now
-		sequence(:name) { |n| "Test User #{n}" }
-		sequence(:email) { |n| "test#{n}@example.com" }
-		password "please123"
+  factory :user do
+    confirmed_at Time.zone.now
+    sequence(:name) { |n| "Test User #{n}" }
+    sequence(:email) { |n| "test#{n}@example.com" }
+    password 'please123'
 
-		trait :admin do
-			role 'admin'
-		end
+    trait :admin do
+      role 'admin'
+    end
 
-		trait :game_maker do
-			role :gm
-		end
-	end
+    trait :game_maker do
+      role :gm
+    end
+  end
 end

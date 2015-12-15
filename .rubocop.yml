@@ -8,3 +8,4 @@ AllCops:
    - 'db/seeds.rb'
    - 'db/schema.rb'
    - 'vendor/bundle/**/*'
+   - 'vendor/assets/bower_components/**/*'

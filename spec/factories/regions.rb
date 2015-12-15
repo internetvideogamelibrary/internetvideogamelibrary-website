@@ -9,7 +9,7 @@
 #
 
 FactoryGirl.define do
-	factory :region do
-		sequence(:title) { |n| "Region #{n}" }
-	end
+  factory :region do
+    sequence(:title) { |n| "Region #{n}" }
+  end
 end

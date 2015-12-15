@@ -1,148 +1,164 @@
 class WorksController < ApplicationController
-	before_filter :work_exists,
-	:only => [:combine, :show, :split, :do_split]
+  before_action :work_exists,
+                only: [:combine, :show, :split, :do_split]
 
-	before_filter :authenticate_user!,
-	:only => [:combine, :do_combine, :split, :do_split]
+  before_action :authenticate_user!,
+                only: [:combine, :do_combine, :split, :do_split]
 
-	before_filter :game_maker_only,
-	:only => [:combine, :do_combine, :split, :do_split]
+  before_action :game_maker_only,
+                only: [:combine, :do_combine, :split, :do_split]
 
-	before_filter :has_query,
-	:only => [:search_index]
+  before_action :query?,
+                only: [:search_index]
 
-	before_filter :only_split_all_editions,
-	:only => [:do_split]
-	def search
-		params = work_params
-		@work = Work.find_by(original_title: params[:original_title], original_release_date: params[:original_release_date])
-		respond_to do |format|
-			if @work.present?
-				format.json { render :json => { :existing_work => @work, :status => :exists } }
-			else
-				format.json { render :json => { :status => :none_exists }  }
-			end
-		end
-	end
-	def search_index
-		@search = WorksSearch.new(query: params[:q])
-		results = @search.search.only(:id)
-		@games = results.paginate(:page => params[:page]).load()
-		@qty = @games.count
-	end
-	def do_combine
-		@combine_work_ids = params.require(:work_ids)
-		@older_work = nil
-		@combine_works = []
-		@combine_work_ids.each do |w|
-			@work = Work.friendly.find(w)
-			@combine_works << @work
-			if @older_work.present? == false
-				@older_work = @work
-			elsif @work.original_release_date.present?
-				if not @older_work.original_release_date.present? or
-					@older_work.original_release_date > @work.original_release_date or
-					(@older_work.original_release_date == @work.original_release_date and @older_work.id > @work.id)
-					@older_work = @work
-				end
-			end
-		end
+  before_action :only_split_all_editions,
+                only: [:do_split]
 
-		@combine_works.delete(@older_work)
-		@combine_works.each do |work|
-			work.editions.each do |edition|
-				edition.work_id = @older_work.id
-				edition.save
-			end
-			work.destroy
-		end
-		@older_work.slug = nil
-		@older_work.save()
-		flash[:success] = "Your editions were combined!"
-		redirect_to work_path(@older_work)
-	end
-	def split
-		@work = Work.friendly.find(params[:id])
-	end
-	def do_split
-		split_editions = []
-		@work.editions.each do |e|
-			if @split_edition_ids.include? e.id
-				@older_split = decide_older_edition(@older_split, e)
-				split_editions << e
-			else
-				@older_keep = decide_older_edition(@older_keep, e)
-			end
-		end
-		@work.original_release_date = @older_keep
-		@work.slug = nil
-		@work.save
+  before_action :require_work_ids,
+                only: [:do_combine]
 
-		@split_work = Work.new(:original_title => @work.original_title, :original_release_date => @older_split)
-		if @split_work.save
-			split_editions.each do |e|
-				e.work = @split_work
-				e.save
-			end
-		end
-		flash[:notice] = "New edition created!"
-		redirect_to work_path(@split_work)
-	end
-	def combine
-		@work = Work.friendly.find(params[:id])
-		@search = WorksSearch.new(query: @work.original_title)
-		results = @search.search.only(:id)
-		@same_work_data = []
-		results.load().each do |w|
-			@same_work_data << w unless w.id == @work.id
-		end
-	end
-	def show
-		@work = Work.friendly.find(params[:id])
-		@editions = Edition.where(work_id: @work.id).paginate(:page => params[:page]).order('release_date desc')
-	end
+  def search
+    params = work_params
+    @work = Work.find_by(original_title: params[:original_title], original_release_date: params[:original_release_date])
+    respond_to do |format|
+      if @work.present?
+        format.json { render json: { existing_work: @work, status: :exists } }
+      else
+        format.json { render json: { status: :none_exists } }
+      end
+    end
+  end
 
-	private
-	def work_params
-		params.require(:work).permit(:original_title, :original_release_date)
-	end
+  def search_index
+    @search = WorksSearch.new(query: params[:q])
+    results = @search.search.only(:id)
+    @games = results.paginate(page: params[:page]).load
+    @qty = @games.count
+  end
 
-	def divide_keep_and_split_arrays(editions)
-		split_editions = []
-		keep_editions = []
+  def do_combine
+    @older_work = nil
+    @combine_works = []
+    @combine_work_ids.each do |w|
+      @work = Work.friendly.find(w)
+      @combine_works << @work
+      if @older_work.present? == false
+        @older_work = @work
+      elsif @work.original_release_date.present?
+        if !@older_work.original_release_date.present? ||
+           @older_work.original_release_date > @work.original_release_date ||
+           (@older_work.original_release_date == @work.original_release_date && @older_work.id > @work.id)
+          @older_work = @work
+        end
+      end
+    end
 
-		editions.each do |e|
-			if e[1] == 'keep'
-				keep_editions << e[0].to_i
-			elsif e[1] == 'split'
-				split_editions << e[0].to_i
-			end
-		end
-		return keep_editions, split_editions
-	end
+    @combine_works.delete(@older_work)
+    @combine_works.each do |work|
+      work.editions.each do |edition|
+        edition.work_id = @older_work.id
+        edition.save
+      end
+      work.destroy
+    end
+    @older_work.slug = nil
+    @older_work.save
+    flash[:success] = 'Your editions were combined!'
+    redirect_to work_path(@older_work)
+  end
 
-	def decide_older_edition(older_edition, edition)
-		if not older_edition.present?
-			return older_edition = edition.release_date
-		elsif edition.release_date < older_edition
-			return older_edition = edition.release_date
-		end
-		return older_edition
-	end
+  def split
+    @work = Work.friendly.find(params[:id])
+  end
 
-	def contain_all_editions?(split_edition_ids, keep_edition_ids, work)
-		split_edition_ids.length+keep_edition_ids.length == work.editions.length
-	end
+  def do_split
+    split_editions = []
+    @work.editions.each do |e|
+      if @split_edition_ids.include? e.id
+        @older_split = decide_older_edition(@older_split, e)
+        split_editions << e
+      else
+        @older_keep = decide_older_edition(@older_keep, e)
+      end
+    end
+    @work.original_release_date = @older_keep
+    @work.slug = nil
+    @work.save
 
-	def only_split_all_editions
-		@work = Work.friendly.find(params[:id])
-		@editions = params.require(:editions)
+    @split_work = Work.new(original_title: @work.original_title, original_release_date: @older_split)
+    if @split_work.save
+      split_editions.each do |e|
+        e.work = @split_work
+        e.save
+      end
+    end
+    flash[:notice] = 'New edition created!'
+    redirect_to work_path(@split_work)
+  end
 
-		keep_edition_ids, @split_edition_ids = divide_keep_and_split_arrays(@editions)
+  def combine
+    @work = Work.friendly.find(params[:id])
+    @search = WorksSearch.new(query: @work.original_title)
+    results = @search.search.only(:id)
+    @same_work_data = []
+    results.load.each do |w|
+      @same_work_data << w unless w.id == @work.id
+    end
+  end
 
-		if @split_edition_ids.empty? or keep_edition_ids.empty? or not contain_all_editions?(@split_edition_ids, keep_edition_ids, @work)
-			flash[:error] = "You have to split at least one edition. All editions must be checked."
-			render 'split'
-		end
-	end
+  def show
+    @work = Work.friendly.find(params[:id])
+    @editions = Edition.where(work_id: @work.id).paginate(page: params[:page]).order('release_date desc')
+  end
+
+  private
+
+  def work_params
+    params.require(:work).permit(:original_title, :original_release_date)
+  end
+
+  def divide_keep_and_split_arrays(editions)
+    split_editions = []
+    keep_editions = []
+
+    editions.each do |e|
+      if e[1] == 'keep'
+        keep_editions << e[0].to_i
+      elsif e[1] == 'split'
+        split_editions << e[0].to_i
+      end
+    end
+    [keep_editions, split_editions]
+  end
+
+  def decide_older_edition(older_edition, edition)
+    if !older_edition.present?
+      return older_edition = edition.release_date
+    elsif edition.release_date < older_edition
+      return older_edition = edition.release_date
+    end
+    older_edition
+  end
+
+  def contain_all_editions?(split_edition_ids, keep_edition_ids, work)
+    split_edition_ids.length + keep_edition_ids.length == work.editions.length
+  end
+
+  def only_split_all_editions
+    @work = Work.friendly.find(params[:id])
+    @editions = params.require(:editions)
+
+    keep_edition_ids, @split_edition_ids = divide_keep_and_split_arrays(@editions)
+
+    return false unless @split_edition_ids.empty? || keep_edition_ids.empty? || !contain_all_editions?(@split_edition_ids, keep_edition_ids, @work)
+
+    flash[:error] = 'You have to split at least one edition. All editions must be checked.'
+    render 'split'
+  end
+
+  def require_work_ids
+    @combine_work_ids = params.require(:work_ids)
+  rescue ActionController::ParameterMissing
+    redirect_to combine_work_path(params[:id])
+  end
 end

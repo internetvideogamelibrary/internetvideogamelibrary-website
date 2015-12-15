@@ -1,4 +1,4 @@
-<%= form_for @edition, :html => {:class => "form-horizontal"} do |f| %>
+<%= form_for @edition, :html => {:class => "form-horizontal"}, :data => {:toggle => "validator"} do |f| %>
 	<div class="col-md-3">
 		<div class="form-group">
 			<h6>Add a cover image for this game edition</h6>
@@ -30,55 +30,65 @@
 	<div class="col-md-9">
 		<h3>Game edition info</h3>
 		<h6>Information related to this edition: medium, developer, publisher</h6>
-		<div class="form-group">
-			<%= f.label :title, "Title:", :class => "col-lg-3 control-label" %>
-			<div class="col-lg-8">
-				<%= f.text_field :title, :required => true, :class => "form-control" %>
+		<div class="form-group has-feedback">
+			<%= f.label :title, "Title:", :class => "col-sm-3 control-label" %>
+			<div class="col-sm-8">
+				<%= f.text_field :title, :required => true, :class => "form-control", :placeholder => "Pokémon: Red Version" %>
+				<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+				<div class="help-block with-errors"></div>
 			</div>
 		</div>
-		<div class="form-group">
-			<%= f.label :developer, "Developer:", :class => "col-lg-3 control-label" %>
-			<div class="col-lg-8">
-				<%= f.text_field :developer, :required => true, :class => "form-control" %>
+		<div class="form-group has-feedback">
+			<%= f.label :developer, "Developer:", :class => "col-sm-3 control-label" %>
+			<div class="col-sm-8">
+				<%= f.text_field :developer, :required => true, :class => "form-control", :placeholder => "Game Freak" %>
+				<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+				<div class="help-block with-errors"></div>
 			</div>
 		</div>
-		<div class="form-group">
-			<%= f.label :publisher, "Publisher:", :class => "col-lg-3 control-label" %>
-			<div class="col-lg-8">
-				<%= f.text_field :publisher, :required => true, :class => "form-control" %>
+		<div class="form-group has-feedback">
+			<%= f.label :publisher, "Publisher:", :class => "col-sm-3 control-label" %>
+			<div class="col-sm-8">
+				<%= f.text_field :publisher, :required => true, :class => "form-control", :placeholder => "Nintendo" %>
+				<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+				<div class="help-block with-errors"></div>
 			</div>
 		</div>
-		<div class="form-group">
-			<%= f.label :description, "Description:", :class => "col-lg-3 control-label" %>
-			<div class="col-lg-8">
+		<div class="form-group has-feedback">
+			<%= f.label :description, "Description:", :class => "col-sm-3 control-label" %>
+			<div class="col-sm-8">
 				<%= f.text_area :description, :cols => 40, :rows => 20, :required => true, :class => "form-control" %>
+				<div class="help-block with-errors"></div>
+				<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 			</div>
 		</div>
-		<div class="form-group">
-			<%= f.label :release_date, "Release date:", :class => "col-lg-3 control-label" %>
-			<div class="col-lg-8">
+		<div class="form-group has-feedback">
+			<%= f.label :release_date, "Release date:", :class => "col-sm-3 control-label" %>
+			<div class="col-sm-8">
 				<%= f.date_field :release_date, :required => true, :class => "form-control" %>
+				<div class="help-block with-errors"></div>
+				<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 			</div>
 		</div>
 		<div class="form-group">
-			<%= f.label :platform_id, "Platform:", :class => "col-lg-3 control-label" %>
-			<div class="col-lg-8">
+			<%= f.label :platform_id, "Platform:", :class => "col-sm-3 control-label" %>
+			<div class="col-sm-8">
 				<div class="ui-select">
 					<%= f.collection_select :platform_id, Platform.order(:priority,:display_title),:id,:display_title, {}, :class => "form-control" %>
 				</div>
 			</div>
 		</div>
 		<div class="form-group">
-			<%= f.label :region_id, "Region:", :class => "col-lg-3 control-label" %>
-			<div class="col-lg-8">
+			<%= f.label :region_id, "Region:", :class => "col-sm-3 control-label" %>
+			<div class="col-sm-8">
 				<div class="ui-select">
 					<%= f.collection_select :region_id, Region.order(:title),:id,:title, {}, :class => "form-control" %>
 				</div>
 			</div>
 		</div>
 		<div class="form-group">
-			<%= f.label :media_id, "Media:", :class => "col-lg-3 control-label" %>
-			<div class="col-lg-8">
+			<%= f.label :media_id, "Media:", :class => "col-sm-3 control-label" %>
+			<div class="col-sm-8">
 				<div class="ui-select">
 					<%= f.collection_select :media_id, Media.order(:title),:id,:title, {}, :class => "form-control" %>
 				</div>
@@ -94,16 +104,20 @@
 					<%= hidden_field_tag "work_option", "existing" %>
 					<%= hidden_field_tag "existing_work[id]", @work.id %>
 				<% end -%>
-				<div class="form-group">
-					<%= w.label :original_title, "Original title:", :class => "col-lg-3 control-label" %>
-					<div class="col-lg-8">
+				<div class="form-group has-feedback">
+					<%= w.label :original_title, "Original title:", :class => "col-sm-3 control-label" %>
+					<div class="col-sm-8">
 						<%= w.text_field :original_title, :required => true, :class => "form-control" %>
+						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+						<div class="help-block with-errors"></div>
 					</div>
 				</div>
-				<div class="form-group">
-					<%= w.label :original_release_date, "Original release date:", :class => "col-lg-3 control-label" %>
-					<div class="col-lg-8">
+				<div class="form-group has-feedback">
+					<%= w.label :original_release_date, "Original release date:", :class => "col-sm-3 control-label" %>
+					<div class="col-sm-8">
 						<%= w.date_field :original_release_date, :required => true, :class => "form-control" %>
+						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+						<div class="help-block with-errors"></div>
 					</div>
 				</div>
 			<% end %>

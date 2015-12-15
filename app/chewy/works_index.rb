@@ -1,8 +1,8 @@
 class WorksIndex < DefaultIndex
-	settings self.default_settings
+  settings default_settings
 
-	define_type Work do
-		field :original_title, analyzer: 'title'
-		field :original_release_date, type: 'date'
-	end
+  define_type Work do
+    field :original_title, analyzer: 'title'
+    field :original_release_date, type: 'date'
+  end
 end

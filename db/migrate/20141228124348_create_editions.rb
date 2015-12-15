@@ -11,7 +11,7 @@ class CreateEditions < ActiveRecord::Migration
 
       t.timestamps
     end
-	add_foreign_key :editions, :platforms
-	add_foreign_key :editions, :regions
+    add_foreign_key :editions, :platforms
+    add_foreign_key :editions, :regions
   end
 end
