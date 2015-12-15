@@ -3,7 +3,8 @@ class GamesIndexViewObject
     constructed_array = []
 
     map.each do |item|
-      constructed_array << GamesIndexViewObject.new(item.title, item.release_date, item.original_title, item.original_release_date, item.work_id, item.platform, item.platform_id, item.region, item.region_id, item.description, item.genres, item.created_at, item.coverart_url, item.edition_id, item.expansion_id)
+      p item
+      constructed_array << GamesIndexViewObject.new(item.title, item.release_date, item.original_title, item.original_release_date, item.work_id, item.platform, item.platform_id, item.region, item.region_id, item.description, item.genres, item.created_at, item.coverart_url, item.edition_id, item.expansion_id, item.edition_slug, item.expansion_slug)
     end
 
     constructed_array
@@ -13,9 +14,9 @@ class GamesIndexViewObject
 
   def link
     if @expansion_id.present?
-      Rails.application.routes.url_helpers.edition_expansion_path(@edition_id, @expansion_id)
+      Rails.application.routes.url_helpers.edition_expansion_path(@edition_slug, @expansion_slug)
     else
-      Rails.application.routes.url_helpers.edition_path(@edition_id)
+      Rails.application.routes.url_helpers.edition_path(@edition_slug)
     end
   end
 
@@ -27,7 +28,7 @@ class GamesIndexViewObject
     end
   end
 
-  def initialize(title, release_date, original_title, original_release_date, work_id, platform_title, platform_id, region_title, region_id, description, genres_array, created_at, coverart_url, edition_id, expansion_id)
+  def initialize(title, release_date, original_title, original_release_date, work_id, platform_title, platform_id, region_title, region_id, description, genres_array, created_at, coverart_url, edition_id, expansion_id, edition_slug, expansion_slug)
     @title = title
     @release_date = Time.iso8601(release_date) if release_date
     @original_title = original_title
@@ -43,5 +44,7 @@ class GamesIndexViewObject
     @coverart_url = coverart_url
     @edition_id = edition_id
     @expansion_id = expansion_id
+    @edition_slug = edition_slug
+    @expansion_slug = expansion_slug
   end
 end
