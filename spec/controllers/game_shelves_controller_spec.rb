@@ -6,9 +6,11 @@ describe GameShelvesController do
   before(:example) do
     @user = FactoryGirl.create(:user, :admin)
     sign_in :user, @user
+    Timecop.freeze
   end
   after(:example) do
     Warden.test_reset!
+    Timecop.return
   end
 
   describe 'xhr filter' do
@@ -445,6 +447,103 @@ describe GameShelvesController do
       # then
       expect(response.code).to eq('404')
       expect(game_shelf.shelf_items.size).to eq(1)
+    end
+  end
+  describe 'GET#edit' do
+    it 'populates the @game_shelf variable with the custom shelf' do
+      # given
+      game_shelf_playing = FactoryGirl.create(:game_shelf, :custom, user: @user)
+
+      # when
+      get :edit, user_id: @user.id, id: game_shelf_playing.id
+
+      game_shelf_playing.reload
+      # then
+      expect(assigns(:game_shelf).attributes).to eq(game_shelf_playing.attributes)
+    end
+    it 'should render the edit template' do
+      # given
+      game_shelf_playing = FactoryGirl.create(:game_shelf, :custom, user: @user)
+
+      # when
+      get :edit, user_id: @user.id, id: game_shelf_playing.id
+
+      # then
+      expect(response).to render_template :edit
+    end
+  end
+  describe 'PUT#update' do
+    it 'should not save on invalid title' do
+      # given
+      game_shelf = FactoryGirl.create(:game_shelf, :custom, user: @user)
+      game_shelf.title = nil
+
+      expect {
+        # when
+        put :update, id: game_shelf, user_id: @user, game_shelf: game_shelf.attributes
+      }.to change(GameShelf, :count).by(0)
+
+      # then
+      expect(response).to render_template(:edit)
+    end
+    it 'should update and redirect to the game shelf' do
+      # given
+      game_shelf = FactoryGirl.create(:game_shelf, :custom, user: @user)
+      game_shelf_attributes = game_shelf.attributes
+      game_shelf_attributes['title'] = 'new shelf title'
+
+      expect {
+        # when
+        put :update, id: game_shelf, user_id: @user, game_shelf: game_shelf_attributes
+      }.to change(GameShelf, :count).by(0)
+
+      updated_game_shelf = GameShelf.find(game_shelf.id)
+      game_shelf_ignore = %w(id created_at updated_at title)
+
+      # then
+      expect(response).to redirect_to([game_shelf.user, game_shelf])
+      expect(updated_game_shelf.attributes.except(*game_shelf_ignore)).to eq(game_shelf_attributes.except(*game_shelf_ignore))
+      expect(updated_game_shelf.title).to eq(game_shelf_attributes['title'])
+    end
+  end
+  describe 'DELETE#destroy' do
+    it 'should remove given custom game shelf' do
+      # given
+      game_shelf = FactoryGirl.create(:game_shelf, :custom, user: @user)
+
+      expect {
+        # when
+        delete :destroy, id: game_shelf, user_id: @user
+      }.to change(GameShelf, :count).by(-1)
+
+      expect { GameShelf.find(game_shelf.id) }.to raise_exception(ActiveRecord::RecordNotFound)
+    end
+    it 'should remove given custom game shelf with games in it' do
+      # given
+      edition = FactoryGirl.create(:edition)
+      shelf_item = FactoryGirl.create(:shelf_item, item: edition)
+      game_shelf = FactoryGirl.create(:game_shelf, :custom, user: @user, shelf_items: [shelf_item])
+
+      expect {
+        # when
+        delete :destroy, id: game_shelf, user_id: @user
+      }.to change(GameShelf, :count).by(-1).and change(ShelfItem, :count).by(-1).and change(Edition, :count).by(0)
+
+      expect { GameShelf.find(game_shelf.id) }.to raise_exception(ActiveRecord::RecordNotFound)
+    end
+
+    it 'should fail to remove a non-custom game shelf' do
+      # given
+      game_shelf = FactoryGirl.create(:game_shelf, user: @user, shelf_type: GameShelf.shelf_types[:backlog])
+      game_shelf.reload
+
+      expect {
+        # when
+        delete :destroy, id: game_shelf, user_id: @user
+      }.to change(GameShelf, :count).by(0)
+
+      expect(GameShelf.find(game_shelf.id)).to eq(game_shelf)
+      expect(flash[:error]).to eq('You can only erase custom shelves')
     end
   end
 end

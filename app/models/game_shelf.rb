@@ -14,7 +14,7 @@ class GameShelf < ActiveRecord::Base
   enum shelf_types: [:wishlist, :backlog, :playing, :finished, :played, :custom]
 
   belongs_to :user
-  has_many :shelf_items
+  has_many :shelf_items, :dependent => :delete_all
 
   validates :user, presence: true
 
@@ -32,6 +32,10 @@ class GameShelf < ActiveRecord::Base
 
   def self.unknown
     :game_shelf_unknown
+  end
+
+  def self.user_custom_shelves(user_id)
+    GameShelf.user_shelves(user_id).where(shelf_type: GameShelf.shelf_types[:custom])
   end
 
   def self.user_shelves(user_id)

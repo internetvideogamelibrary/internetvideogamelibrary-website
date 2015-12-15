@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :game_shelves do
       collection do
         put 'remove_item'
+        get 'manage_custom'
       end
       member do
         put 'add_edition'

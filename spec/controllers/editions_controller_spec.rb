@@ -414,7 +414,7 @@ describe EditionsController do
       work = FactoryGirl.create(:work)
       edition = FactoryGirl.create(:edition, work: work)
       edition_attributes = edition.attributes
-      edition_attributes[:title] = 'No pain, no gain'
+      edition_attributes['title'] = 'No pain, no gain'
 
       expect {
         # when
@@ -427,7 +427,7 @@ describe EditionsController do
       # then
       expect(response).to redirect_to(edition)
       expect(updated_edition.attributes.except(*edition_ignore)).to eq(edition.attributes.except(*edition_ignore))
-      expect(updated_edition.title).to eq(edition_attributes[:title])
+      expect(updated_edition.title).to eq(edition_attributes['title'])
     end
   end
 end
