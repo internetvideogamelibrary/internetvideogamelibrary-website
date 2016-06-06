@@ -55,7 +55,7 @@
 			</div>
 
 			<div class="row">
-				<%= @description %>
+				<%== GitHub::Markdown.render_gfm(@description) %>
 			</div>
 			<div class="row vertical-align">
 				<div class="col-sm-2">
