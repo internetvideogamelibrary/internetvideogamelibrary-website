@@ -119,3 +119,21 @@ body {
 	background-color: #f5f5f5;
 }
 
+#special_formatting_text {
+	color: #9e9ea6;
+	display: block;
+	font-size: .85em;
+	text-align: right;
+	line-height: 2rem;
+	right: 40px;
+	bottom: 0;
+	opacity: 0;
+	white-space: nowrap;
+	-webkit-transition: opacity .2s ease-in-out;
+	-moz-transition: opacity .2s ease-in-out;
+	transition: opacity .2s ease-in-out;
+}
+
+#special_formatting_text.showing {
+	opacity: .7;
+}

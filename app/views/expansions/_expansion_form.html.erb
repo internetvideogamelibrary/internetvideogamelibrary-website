@@ -42,6 +42,7 @@
 			<%= f.label :description, "Description:", :class => "col-sm-3 control-label" %>
 			<div class="col-sm-8">
 				<%= f.text_area :description, :cols => 40, :rows => 20, :required => true, :class => "form-control" %>
+				<div id="special_formatting_text" class="special_formatting_tips showing" aria-hidden="true"><b>**bold**</b> <i>*italics*</i> ~~strike~~ <code>`code`</code> <code class="preformatted">```preformatted```</code> <span class="quote">&gt;quote</span></div>
 				<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 				<div class="help-block with-errors"></div>
 			</div>
