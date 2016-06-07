@@ -11,17 +11,18 @@ feature 'Home page' do
     WorksIndex.purge!
     GamesIndex.purge!
     games = []
-    Timecop.scale(60)
-    games << @game1 = FactoryGirl.create(:edition, release_date: Date.new(2016, 5, 12))
-    games << @game2 = FactoryGirl.create(:edition, release_date: Date.new(2015, 5, 12))
-    games << @game3 = FactoryGirl.create(:edition, release_date: Date.new(2014, 5, 12))
-    games << @game4 = FactoryGirl.create(:edition, release_date: Date.new(2013, 5, 12))
-    games << @game5 = FactoryGirl.create(:edition, release_date: Date.new(2012, 5, 12))
-    games << @game6 = FactoryGirl.create(:edition, release_date: Date.new(2011, 5, 12))
-    games << @game7 = FactoryGirl.create(:edition, release_date: Date.new(2010, 5, 12))
-    games << @game8 = FactoryGirl.create(:edition, release_date: Date.new(2009, 5, 12))
-    games << @game9 = FactoryGirl.create(:edition, work: @game8.work, release_date: Date.new(2008, 5, 12))
-    @expansion1 = FactoryGirl.create(:expansion, edition: @game9, release_date: Date.new(2008, 8, 12))
+    Timecop.scale(60) do
+      games << @game1 = FactoryGirl.create(:edition, release_date: Date.new(2016, 5, 12))
+      games << @game2 = FactoryGirl.create(:edition, release_date: Date.new(2015, 5, 12))
+      games << @game3 = FactoryGirl.create(:edition, release_date: Date.new(2014, 5, 12))
+      games << @game4 = FactoryGirl.create(:edition, release_date: Date.new(2013, 5, 12))
+      games << @game5 = FactoryGirl.create(:edition, release_date: Date.new(2012, 5, 12))
+      games << @game6 = FactoryGirl.create(:edition, release_date: Date.new(2011, 5, 12))
+      games << @game7 = FactoryGirl.create(:edition, release_date: Date.new(2010, 5, 12))
+      games << @game8 = FactoryGirl.create(:edition, release_date: Date.new(2009, 5, 12))
+      games << @game9 = FactoryGirl.create(:edition, work: @game8.work, release_date: Date.new(2008, 5, 12))
+      @expansion1 = FactoryGirl.create(:expansion, edition: @game9, release_date: Date.new(2008, 8, 12))
+    end
     Timecop.return
     work_ids = games.map &->(game) {game.work.id}
     game_ids = games.map &->(game) {game.id}
