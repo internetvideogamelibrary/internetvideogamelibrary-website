@@ -21,7 +21,7 @@ feature 'Home page' do
     games << @game7 = FactoryGirl.create(:edition, release_date: Date.new(2010, 5, 12))
     games << @game8 = FactoryGirl.create(:edition, release_date: Date.new(2009, 5, 12))
     games << @game9 = FactoryGirl.create(:edition, work: @game8.work, release_date: Date.new(2008, 5, 12))
-    @expansion1 = FactoryGirl.create(:expansion, edition: @game9)
+    @expansion1 = FactoryGirl.create(:expansion, edition: @game9, release_date: Date.new(2008, 8, 12))
     work_ids = games.map &->(game) {game.work.id}
     game_ids = games.map &->(game) {game.id}
     WorksIndex::Work.import work_ids
@@ -48,5 +48,16 @@ feature 'Home page' do
     expect(games).to have_css 'div.col-md-2:nth-of-type(4) div/a', text: @game7.title
     expect(games).to have_css 'div.col-md-2:nth-of-type(5) div/a', text: @game6.title
     expect(games).to have_css 'div.col-md-2:nth-of-type(6) div/a', text: @game5.title
+  end
+
+  scenario 'check new releases' do
+    visit root_path
+    games = page.find('#new_releases')
+    expect(games).to have_css 'div.col-md-2:nth-of-type(1) div/a', text: @game1.title
+    expect(games).to have_css 'div.col-md-2:nth-of-type(2) div/a', text: @game2.title
+    expect(games).to have_css 'div.col-md-2:nth-of-type(3) div/a', text: @game3.title
+    expect(games).to have_css 'div.col-md-2:nth-of-type(4) div/a', text: @game4.title
+    expect(games).to have_css 'div.col-md-2:nth-of-type(5) div/a', text: @game5.title
+    expect(games).to have_css 'div.col-md-2:nth-of-type(6) div/a', text: @game6.title
   end
 end

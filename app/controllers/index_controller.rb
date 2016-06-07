@@ -3,6 +3,7 @@ require 'games_index_view_object'
 class IndexController < ApplicationController
   def show
     @search = GamesSearch.new
+    @new_releases = GamesIndexViewObject.construct_array_from_chewy_map(@search.all.order(release_date: :desc).limit(6).map)
     results = @search.all.order(created_at: :desc).limit(6)
     @games = GamesIndexViewObject.construct_array_from_chewy_map(results.map)
     @editions_count = @search.editions_count.total
