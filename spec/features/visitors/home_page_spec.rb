@@ -12,6 +12,8 @@ feature 'Home page' do
     GamesIndex.purge!
     games = []
     Timecop.scale(60) do
+      games << @game0 = FactoryGirl.create(:edition, release_date: nil)
+      games << @gameFuture = FactoryGirl.create(:edition, release_date: 5.days.from_now)
       games << @game1 = FactoryGirl.create(:edition, release_date: Date.new(2016, 5, 12))
       games << @game2 = FactoryGirl.create(:edition, release_date: Date.new(2015, 5, 12))
       games << @game3 = FactoryGirl.create(:edition, release_date: Date.new(2014, 5, 12))
@@ -38,7 +40,7 @@ feature 'Home page' do
 
   scenario 'check games counter' do
     visit root_path
-    expect(page).to have_content 'We currently have 8 unique games, 9 editions and 1 Expansions/DLC in our database!'
+    expect(page).to have_content 'We currently have 10 unique games, 11 editions and 1 Expansions/DLC in our database!'
   end
 
   scenario 'check recently added games' do
