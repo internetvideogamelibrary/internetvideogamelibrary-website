@@ -28,10 +28,23 @@
 	</div>
 
 	<div class="row">
-		<h2>Recently added games</h2>
+		<h2>New releases</h2>
+	</div>
+
+	<div class="row" id='new_releases'>
+		<% @new_releases.each_with_index do |game, i| %>
+			<%- if i > 0 && ( (i % 6 == 0) || (i % 4 == 0) || (i % 2 == 0) )%>
+				<div class="clearfix<%- if (i % 6 == 0) %> visible-md visible-lg<% end -%><%- if (i % 4 == 0) %> visible-sm<% end -%><%- if (i % 2 == 0) %> visible-xs<% end-%>"></div>
+			<% end -%>
+			<%= render partial: "shared/games_index_view_object", locals: {game: game, user_shelves: @user_shelves} %>
+		<% end %>
 	</div>
 
 	<div class="row">
+		<h2>Recently added games</h2>
+	</div>
+
+	<div class="row" id='recently_added_games'>
 		<% @games.each_with_index do |game, i| %>
 			<%- if i > 0 && ( (i % 6 == 0) || (i % 4 == 0) || (i % 2 == 0) )%>
 				<div class="clearfix<%- if (i % 6 == 0) %> visible-md visible-lg<% end -%><%- if (i % 4 == 0) %> visible-sm<% end -%><%- if (i % 2 == 0) %> visible-xs<% end-%>"></div>
