@@ -17,7 +17,7 @@ class ExpansionsController < ApplicationController
   def show
     @expansion = Expansion.friendly.find(params[:id])
     @edition = @expansion.edition
-    @description = GitHub::Markdown.render_gfm(@expansion.description.present? ? @expansion.description : '').html_safe
+    @description = @expansion.description.present? ? @expansion.description : ''
     @user_shelves = GameShelf.user_shelves(current_user.id) if current_user
     params[:platform] = @edition.platform_id.to_s
   end

@@ -40,7 +40,7 @@
 			</div>
 
 			<div class="row">
-				<%= @description %>
+				<%== GitHub::Markdown.render_gfm(@description) %>
 			</div>
 		</div>
 	</div>
