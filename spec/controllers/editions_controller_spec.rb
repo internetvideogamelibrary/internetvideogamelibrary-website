@@ -166,8 +166,7 @@ describe EditionsController do
       # then
       expect(assigns[:other_editions]).to eq(expected_editions)
     end
-    it "populates the @description variable with the requested edition's description (formatted)" do
-      pending('need to think of how to test github formatting')
+    it "populates the @description variable with the requested edition's description" do
       # given
       edition = FactoryGirl.create(:edition)
 
