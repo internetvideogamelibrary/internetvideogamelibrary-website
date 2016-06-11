@@ -33,6 +33,12 @@ class GamesSearch
     end
   end
 
+  def all_except(edition_ids, expansion_ids)
+    all
+    .filter(not: {terms: {edition_id: edition_ids}})
+    .filter(not: {terms: {expansion_id: expansion_ids}})
+  end
+
   def query_string
     if not_id.present?
       type_query.filter(not: { ids: { values: [not_id] } })

@@ -49,8 +49,8 @@ feature 'Home page' do
     expect(games).to have_css 'div.col-md-2:nth-of-type(2) div/a', text: @game9.title
     expect(games).to have_css 'div.col-md-2:nth-of-type(3) div/a', text: @game8.title
     expect(games).to have_css 'div.col-md-2:nth-of-type(4) div/a', text: @game7.title
-    expect(games).to have_css 'div.col-md-2:nth-of-type(5) div/a', text: @game6.title
-    expect(games).to have_css 'div.col-md-2:nth-of-type(6) div/a', text: @game5.title
+    expect(games).to have_css 'div.col-md-2:nth-of-type(5) div/a', text: @gameFuture.title
+    expect(games).to have_css 'div.col-md-2:nth-of-type(6) div/a', text: @game0.title
   end
 
   scenario 'check new releases' do
