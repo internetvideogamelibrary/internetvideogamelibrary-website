@@ -35,7 +35,7 @@ class DefaultIndex < Chewy::Index
               'gta,grand theft auto',
               'firered,fire red',
               'leafgreen,leaf green',
-              'pokemon,pocket monsters,ポケットモンスタ'
+              'pokemon,pocket monsters,ポケットモンスター'
             ]
           }
         },
