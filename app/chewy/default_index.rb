@@ -32,7 +32,10 @@ class DefaultIndex < Chewy::Index
               'bioshock,bio shock',
               'olliolli,olli olli',
               'actraiser,act raiser',
-              'gta,grand theft auto'
+              'gta,grand theft auto',
+              'firered,fire red',
+              'leafgreen,leaf green',
+              'pokemon,pocket monsters'
             ]
           }
         },
