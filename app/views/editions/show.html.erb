@@ -3,6 +3,8 @@
 <% end %>
 <% breadcrumb :edition, @edition %>
 <div class="row" class="center-block" itemscope itemtype="http://schema.org/VideoGame">
+	<meta itemprop="applicationCategory" content="Game">
+	<meta itemprop="url" content="<%= request.original_url%>" />
 	<div class="col-sm-3">
 		<div class="container-fluid">
 			<div class="row">
@@ -20,14 +22,14 @@
 					<% end -%>
 					<li class="list-group-item text-center"><strong>Game edition information</strong></li>
 					<%- if @edition.developer.present? %>
-						<li class="list-group-item text-right"><span class="pull-left"><strong>Developer:</strong></span> <%= @edition.developer %></li>
+						<li class="list-group-item text-right" itemprop="author" itemscope itemtype="http://schema.org/Organization"><span class="pull-left"><strong>Developer:</strong></span> <span itemprop="name"><%= @edition.developer %></span></li>
 					<% end -%>
 					<%- if @edition.publisher.present? %>
-					<li class="list-group-item text-right"><span class="pull-left"><strong>Publisher:</strong></span> <%= @edition.publisher %></li>
+						<li class="list-group-item text-right" itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><span class="pull-left"><strong>Publisher:</strong></span> <span itemprop="name"><%= @edition.publisher %></span></li>
 					<% end -%>
 					<li class="list-group-item text-right"><span class="pull-left"><strong>Region:</strong></span> <%= @edition.region.title %></li>
 					<%- if @edition.release_date.present? %>
-						<li class="list-group-item text-right"><span class="pull-left"><strong>Release date:</strong></span> <%= @edition.release_date.strftime('%d/%m/%Y') %></li>
+						<li class="list-group-item text-right"><span class="pull-left"><strong>Release date:</strong></span> <span itemprop="datePublished"><%= @edition.release_date.strftime('%d/%m/%Y') %></span></li>
 					<% end -%>
 					<li class="list-group-item text-right"><span class="pull-left"><strong>Media:</strong></span> <%= @edition.media.title %></li>
 					<%- if @edition.genres.length > 0 %>
@@ -78,7 +80,7 @@
 			</div>
 			<div class="row">&nbsp;</div>
 			<div class="row">
-				<%= link_to "All editions", @edition.work %>
+				<span itemprop="isPartOf" itemscope itemtype="http://schema.org/VideoGame"><%= link_to "All editions", @edition.work, itemprop: 'url' %><meta itemprop='name' content="<%=@edition.work.original_title%>"><meta itemprop="applicationCategory" content="Game"></span>
 				<%- if current_user.present? and current_user.game_maker_or_more? %>
 					|
 					<%= link_to "Add new edition", new_edition_path(:work_id => @edition.work) %>
@@ -97,10 +99,11 @@
 						<%- if (i+1) > 0 && ((i+1) % 6 == 0) %>
 							<div class="clearfix"></div>
 						<% end -%>
-						<div class="col-sm-2 thumb">
-							<%= link_to [@edition,e] do %>
+						<div class="col-sm-2 thumb" itemprop="softwareAddOn" itemscope itemtype="http://schema.org/VideoGame">
+							<%= link_to [@edition,e], itemprop: 'url' do %>
 								<%= image_tag e.coverart.url(:thumb), alt: "Cover art of #{e.title} - #{e.edition.platform.display_title}" %>
 							<% end %>
+							<meta itemprop="applicationCategory" content="Game">
 						</div>
 					<% end %>
 				<% else %>
