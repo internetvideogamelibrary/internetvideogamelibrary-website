@@ -3,7 +3,14 @@
 <% end %>
 
 <% breadcrumb :expansion, @expansion %>
-<div class="row" class="center-block">
+<div class="row" class="center-block" itemscope itemtype="http://schema.org/VideoGame">
+	<meta itemprop="applicationCategory" content="Game">
+	<meta itemprop="url" content="<%= request.original_url%>" />
+	<%- if @expansion.edition.genres.length > 0 %>
+		<% @edition.genres.each do |g| %>
+			<meta itemprop='genre' content="<%= g.title %>"/>
+		<% end %>
+	<% end -%>
 	<div class="col-sm-3">
 		<div class="container-fluid">
 			<div class="row">
@@ -35,11 +42,18 @@
 	<div class="col-sm-9">
 		<div class="container-fluid">
 			<div class="row">
-				<h1><%= @expansion.title %>
-				<small><%= @edition.platform.display_title %></small></h1>
+				<h1><span itemprop='name'><%= @expansion.title %></span>
+				<small itemprop="gamePlatform"><%= @edition.platform.display_title %></small></h1>
 			</div>
 
 			<div class="row">
+				<h4>Expansion/DLC of
+				<span itemprop="isPartOf" itemscope itemtype="http://schema.org/VideoGame"><%= link_to @expansion.edition, itemprop: 'url' do %>
+					<meta itemprop="applicationCategory" content="Game">
+					<span itemprop="name"><%=@expansion.edition.title%></span>
+				<% end %></h4>
+			</div>
+			<div class="row" itemprop="description">
 				<%== GitHub::Markdown.render_gfm(@description) %>
 			</div>
 		</div>

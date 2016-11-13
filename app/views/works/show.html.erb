@@ -3,8 +3,11 @@ All editions for <%=@work.original_title%>, <% if @work.original_release_date.pr
 <% end %>
 <% breadcrumb :work, @work %>
 
+<span  itemscope itemtype="http://schema.org/VideoGame">
+<meta itemprop="applicationCategory" content="Game">
+<meta itemprop="url" content="<%= request.original_url%>" />
 <div class="page-header">
-	<h1><%= @work.original_title %><% if @work.original_release_date.present? %> <small>originally released in <%= @work.original_release_date.strftime('%d/%m/%Y')%></small><% end %></h1>
+	<h1><span itemprop='name'><%= @work.original_title %></span><% if @work.original_release_date.present? %> <small>originally released in <span itemprop="datePublished"><%= @work.original_release_date.strftime('%d/%m/%Y')%></span></small><% end %></h1>
 </div>
 <div class="container-fluid">
 	<%- if current_user.present? and current_user.game_maker_or_more? %>
@@ -20,13 +23,18 @@ All editions for <%=@work.original_title%>, <% if @work.original_release_date.pr
 	<div class="row">
 		<div class="col-md-9">
 			<% @editions.each do |e| %>
-				<div class="media">
+				<div class="media" itemprop="hasPart" itemscope itemtype="http://schema.org/VideoGame">
 					<%= link_to(e, :class => 'media-left media-middle', :style => 'width:100px') do %>
 						<%= image_tag e.coverart.url(:thumb), alt: "Cover art of #{e.title} - #{e.platform.display_title}"  %>
 					<% end %>
 					<div class="media-body">
-						<h4 class="media-heading"><%= link_to(e) do %><%= e.title %> (<%= e.platform.display_title %>)<% end %></h4>
-						Released on <%= e.release_date.strftime('%d/%m/%Y') if e.release_date.present? %> at <%= e.region.title %><br />
+						<h4 class="media-heading"><%= link_to(e, itemprop: 'url') do %><span itemprop"name"><%= e.title %></span> (<span itemprop="gamePlatform"><%= e.platform.display_title %></span>)<% end %></h4>
+						<%- if e.genres.length > 0 %>
+							<% e.genres.each do |g| %>
+								<meta itemprop='genre' content="<%= g.title %>"/>
+							<% end %>
+						<% end -%>
+						Released on <span itemprop="datePublished"><%= e.release_date.strftime('%d/%m/%Y') if e.release_date.present? %><span> at <%= e.region.title %><br />
 						<%= link_to 'details', e %>
 						<%- if current_user.present? and current_user.game_maker_or_more? %>
 							| <%= link_to 'edit', edit_edition_path(e) %>
@@ -37,5 +45,6 @@ All editions for <%=@work.original_title%>, <% if @work.original_release_date.pr
 		</div>
 	</div>
 </div>
+</span>
 
 <%= will_paginate @editions, renderer: BootstrapPagination::Rails %>
