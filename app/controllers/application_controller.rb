@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :ignore_referral_spam, :fill_platforms
+  before_action :ignore_referral_spam, :fill_platforms, :clean_page_param, :clean_platform_param
+
 
   def ignore_referral_spam
     return true unless request.referrer
@@ -83,5 +84,12 @@ class ApplicationController < ActionController::Base
     return true if request.xhr?
 
     render nothing: true, status: 400
+  end
+
+  def clean_page_param
+    params.delete(:page) unless (Integer(params[:page]) rescue false)
+  end
+  def clean_platform_param
+    params.delete(:platform) unless (Integer(params[:platform]) rescue false)
   end
 end
