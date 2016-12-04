@@ -42,10 +42,6 @@ class EditionsController < ApplicationController
     end
   end
 
-  def index
-    @editions = Edition.where(status: Edition.statuses[:active]).paginate(page: params[:page]).order('title')
-  end
-
   def edit
     @edition = Edition.friendly.find(params[:id])
     @work = @edition.work

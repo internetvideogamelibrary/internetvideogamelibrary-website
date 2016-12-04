@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/editions' => redirect('/games')
+
   resources :games do
     collection do
       get 'search'
