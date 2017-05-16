@@ -27,6 +27,17 @@ class GamesIndexViewObject
     end
   end
 
+  def self.from_edition(edition:)
+    work = edition.work
+    GamesIndexViewObject.new(edition.title, edition.release_date.iso8601(3), work.original_title, work.original_release_date.iso8601(3), work.id, edition.platform.title, edition.platform.id, edition.region.title, edition.region.id, edition.description, edition.genres.to_a, edition.created_at.to_i, edition.coverart.url(:medium), edition.id, nil, edition.slug, nil)
+  end
+
+  def self.from_expansion(expansion:)
+    edition = expansion.edition
+    work = edition.work
+    GamesIndexViewObject.new(expansion.title, expansion.release_date.iso8601(3), work.original_title, work.original_release_date.iso8601(3), work.id, edition.platform.title, edition.platform.id, edition.region.title, edition.region.id, expansion.description, edition.genres.to_a, expansion.created_at.to_i, expansion.coverart.url(:medium), edition.id, expansion.id, edition.slug, expansion.slug)
+  end
+
   def initialize(title, release_date, original_title, original_release_date, work_id, platform_title, platform_id, region_title, region_id, description, genres_array, created_at, coverart_url, edition_id, expansion_id, edition_slug, expansion_slug)
     @title = title
     @release_date = Time.iso8601(release_date) if release_date
@@ -45,5 +56,16 @@ class GamesIndexViewObject
     @expansion_id = expansion_id
     @edition_slug = edition_slug
     @expansion_slug = expansion_slug
+  end
+  def ==(other)
+    other.class == self.class && other.state == self.state
+  end
+
+  def state
+    self.instance_variables.map { |variable| self.instance_variable_get variable }
+  end
+
+  def hash
+    state.hash
   end
 end
