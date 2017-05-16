@@ -6,6 +6,7 @@ class GamesIndex < DefaultIndex
     field :release_date, type: 'date'
     field :original_title, value: -> { edition.work.original_title }
     field :original_release_date, value: -> { edition.work.original_release_date }
+    field :work_id, value: -> { edition.work.id }, type: 'integer'
     field :platform, value: -> { edition.platform.title }
     field :platform_id, value: -> { edition.platform_id }, type: 'integer'
     field :region, value: -> { edition.region.title }
