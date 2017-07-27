@@ -3,7 +3,7 @@ class GamesIndexViewObject
     constructed_array = []
 
     map.each do |item|
-      constructed_array << GamesIndexViewObject.new(item.title, item.release_date, item.original_title, item.original_release_date, item.work_id, item.platform, item.platform_id, item.region, item.region_id, item.description, item.genres, item.created_at, item.coverart_url, item.edition_id, item.expansion_id, item.edition_slug, item.expansion_slug)
+      constructed_array << GamesIndexViewObject.new(item.title, item.release_date, item.original_title, item.original_release_date, item.work_id, item.platform, item.platform_id, item.region, item.region_id, item.description, item.genres, item.created_at, item.coverart_url, item.edition_id, if item.respond_to?(:expansion_id) then item.expansion_id else nil end, item.edition_slug, if item.respond_to?(:expansion_slug) then item.expansion_slug else nil end)
     end
 
     constructed_array
