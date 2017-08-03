@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
-ruby '2.3.1'
-gem 'rails', '4.2.7.1'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
+ruby '2.3.3'
+gem 'rails', '5.0.4'
+gem 'sass-rails'#, '~> 5.0'
+gem 'uglifier'#, '>= 1.3.0'
+gem 'coffee-rails'#, '~> 4.1.0'
 gem 'therubyracer', platforms: :ruby
 gem 'turbolinks'
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc', group: :doc#, '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-twitter'
@@ -23,8 +23,8 @@ gem 'paperclip'
 gem 'aws-sdk', '~> 1.6'
 gem 'github-markdown'
 gem 'will_paginate-bootstrap'
-gem 'chewy'
-gem 'friendly_id', '~> 5.1.0'
+gem 'chewy', '~> 0.8'
+gem 'friendly_id'#, '~> 5.1.0'
 gem 'babosa'
 gem 'nokogiri'
 gem 'exception_notification'
@@ -32,7 +32,7 @@ gem 'sitemap_generator'
 gem 'fog'
 gem 'figaro'
 gem 'addressable'
-gem 'responders', '~> 2.0'
+gem 'responders'#, '~> 2.0'
 gem 'active_record_union'
 gem 'puma'
 group :development, :test do
@@ -46,10 +46,9 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'quiet_assets'
   gem 'rails_layout'
   gem 'spring-commands-rspec'
-  gem 'web-console', '~> 3.0'
+  gem 'web-console'#, '~> 3.0'
   gem 'spring'
 end
 group :production do
@@ -63,4 +62,5 @@ group :test do
   gem 'selenium-webdriver'
   gem 'codeclimate-test-reporter', require: nil
   gem 'timecop'
+  gem 'rails-controller-testing'
 end
