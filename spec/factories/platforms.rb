@@ -10,7 +10,7 @@
 #  priority      :integer
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :platform do
     sequence(:title) { |n| "Platform #{n}" }
   end

@@ -8,7 +8,7 @@
 #  updated_at :datetime
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :medium, class: 'Media' do
     sequence(:title) { |n| "Media #{n}" }
   end

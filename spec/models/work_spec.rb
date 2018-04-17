@@ -13,6 +13,6 @@ require 'rails_helper'
 
 RSpec.describe Work, type: :model do
   it 'has a valid factory' do
-    expect(FactoryGirl.create(:work)).to be_valid
+    expect(FactoryBot.create(:work)).to be_valid
   end
 end

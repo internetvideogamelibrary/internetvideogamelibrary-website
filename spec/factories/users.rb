@@ -23,7 +23,7 @@
 #  role                   :integer
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
     confirmed_at Time.zone.now
     sequence(:name) { |n| "Test User #{n}" }

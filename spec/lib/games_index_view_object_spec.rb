@@ -6,8 +6,8 @@ describe GamesIndexViewObject do
     before(:all) do
       GamesIndex.purge!
       works = []
-      works << FactoryGirl.create(:work_with_editions).reload
-      works << FactoryGirl.create(:work_with_editions_and_expansions).reload
+      works << FactoryBot.create(:work_with_editions).reload
+      works << FactoryBot.create(:work_with_editions_and_expansions).reload
       editions = []
       @expected_array = []
       works.each do |w|
@@ -30,7 +30,7 @@ describe GamesIndexViewObject do
   end
   describe 'Check expansion objects' do
     before(:all) do
-      @expansion = FactoryGirl.create(:expansion)
+      @expansion = FactoryBot.create(:expansion)
     end
     it 'Check that the link is the expected one for an expansion' do
       expansion_view_object = GamesIndexViewObject.from_expansion(expansion: @expansion)
@@ -46,7 +46,7 @@ describe GamesIndexViewObject do
   end
   describe 'Check edition objects' do
     before(:all) do
-      @edition = FactoryGirl.create(:edition)
+      @edition = FactoryBot.create(:edition)
     end
     it 'Check that the link is the expected one for an edition' do
       edition_view_object = GamesIndexViewObject.from_edition(edition: @edition)

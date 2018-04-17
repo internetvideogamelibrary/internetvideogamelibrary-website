@@ -9,7 +9,7 @@
 #  updated_at            :datetime
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :work do
     sequence(:original_title) { |n| "Work #{n}" }
     sequence(:original_release_date) { |n| n.days.from_now }

@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Expansion, type: :model do
   it 'has a valid factory' do
-    expect(FactoryGirl.create(:expansion)).to be_valid
+    expect(FactoryBot.create(:expansion)).to be_valid
   end
 
   it 'can be created from an edition' do
     # given
-    edition = FactoryGirl.create(:edition)
+    edition = FactoryBot.create(:edition)
 
     # when
     expansion = Expansion.new

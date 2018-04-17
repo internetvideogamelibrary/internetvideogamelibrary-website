@@ -7,7 +7,7 @@ feature 'Create custom shelf' do
   end
 
   before(:each) do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
     @user.create_game_shelves
     login_as(@user, scope: :user)
   end

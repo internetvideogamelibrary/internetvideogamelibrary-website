@@ -8,7 +8,7 @@
 #  updated_at :datetime
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :region do
     sequence(:title) { |n| "Region #{n}" }
   end

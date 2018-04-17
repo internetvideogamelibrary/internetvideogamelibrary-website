@@ -9,13 +9,13 @@ feature 'Combine works', js: true do
   context 'Having two works with the same name and two different release dates' do
     before(:each) do
       WorksIndex.purge!
-      @work1 = FactoryGirl.create(:work_with_editions, original_title: 'Fine Game')
-      @work2 = FactoryGirl.create(:work_with_editions, original_title: 'Fine Game', original_release_date: '1995-10-04')
+      @work1 = FactoryBot.create(:work_with_editions, original_title: 'Fine Game')
+      @work2 = FactoryBot.create(:work_with_editions, original_title: 'Fine Game', original_release_date: '1995-10-04')
 
       # XXX definitely should not be done like this, but is not working automatically.
       WorksIndex::Work.import [@work1.id, @work2.id]
 
-      @user = FactoryGirl.create(:user, :game_maker)
+      @user = FactoryBot.create(:user, :game_maker)
       @user.create_game_shelves
 
       login_as(@user, scope: :user)

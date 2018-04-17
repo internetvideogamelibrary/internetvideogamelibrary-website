@@ -7,11 +7,11 @@ feature 'Manage custom shelf' do
   end
 
   before(:each) do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
     @user.create_game_shelves
-    @good_shelf = FactoryGirl.create(:game_shelf, :custom, user: @user, title: 'Good custom shelf')
-    @bad_shelf = FactoryGirl.create(:game_shelf, :custom, user: @user, title: 'Bad custom shelf')
-    @ugly_shelf = FactoryGirl.create(:game_shelf, :custom, user: @user, title: 'Ugly custom shelf')
+    @good_shelf = FactoryBot.create(:game_shelf, :custom, user: @user, title: 'Good custom shelf')
+    @bad_shelf = FactoryBot.create(:game_shelf, :custom, user: @user, title: 'Bad custom shelf')
+    @ugly_shelf = FactoryBot.create(:game_shelf, :custom, user: @user, title: 'Ugly custom shelf')
     login_as(@user, :scope => :user)
   end
 
