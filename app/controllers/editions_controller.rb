@@ -63,7 +63,6 @@ class EditionsController < ApplicationController
     @edition = Edition.friendly.find(params[:id])
     @other_editions_count = Edition.get_other_active_editions_from_the_same_work(@edition).count
     @other_editions = Edition.get_other_active_editions_from_the_same_work(@edition).limit(5)
-    @description = @edition.description.present? ? @edition.description : ''
     @user_shelves = GameShelf.user_shelves(current_user.id) if current_user
     params[:platform] = @edition.platform_id.to_s
   end
