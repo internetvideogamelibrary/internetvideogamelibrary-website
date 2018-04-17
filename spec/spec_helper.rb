@@ -14,13 +14,14 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-require 'simplecov'
-SimpleCov.start
-require 'codeclimate-test-reporter'
+if ENV['COVERAGE']
+  require 'simplecov'
+  SimpleCov.start
+end
+
 require 'chewy/rspec'
 require 'capybara/rspec'
 require 'capybara/webkit'
-CodeClimate::TestReporter.start
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
@@ -86,6 +87,7 @@ RSpec.configure do |config|
   config.before(:all) do
     GamesIndex.reset!
     WorksIndex.reset!
+    sleep 1 # XXX look into why sometimes reindex is not fast enough
   end
 
   Capybara.javascript_driver = :webkit

@@ -14,6 +14,6 @@ require 'rails_helper'
 
 RSpec.describe GameShelf, type: :model do
   it 'has a valid factory' do
-    expect(FactoryGirl.create(:game_shelf)).to be_valid
+    expect(FactoryBot.create(:game_shelf)).to be_valid
   end
 end

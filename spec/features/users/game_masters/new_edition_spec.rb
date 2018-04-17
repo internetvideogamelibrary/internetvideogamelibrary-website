@@ -8,7 +8,7 @@ feature 'Add edition' do
 
   scenario 'User without game maker role cannot create new edition' do
     # Given
-    user = FactoryGirl.create(:user)
+    user = FactoryBot.create(:user)
     login_as(user, scope: :user)
 
     # When
@@ -20,11 +20,11 @@ feature 'Add edition' do
 
   scenario 'User with game maker role should be able to create new edition' do
     # Given
-    user = FactoryGirl.create(:user, :game_maker)
+    user = FactoryBot.create(:user, :game_maker)
     user.create_game_shelves
-    platform = FactoryGirl.create(:platform)
-    media = FactoryGirl.create(:medium)
-    region = FactoryGirl.create(:region)
+    platform = FactoryBot.create(:platform)
+    media = FactoryBot.create(:medium)
+    region = FactoryBot.create(:region)
     login_as(user, scope: :user)
     expected_original_title = 'New awesome game'
     expected_title = expected_original_title

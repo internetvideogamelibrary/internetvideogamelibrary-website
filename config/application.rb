@@ -16,7 +16,7 @@ module Internetgameslibrary
                        routing_specs: false,
                        controller_specs: false,
                        request_specs: false
-      g.fixture_replacement :factory_girl, dir: 'spec/factories'
+      g.fixture_replacement :factory_bot, dir: 'spec/factories'
     end
 
     # Settings in config/environments/* take precedence over those specified here.
@@ -29,8 +29,6 @@ module Internetgameslibrary
     end
     # Precompile Bootstrap fonts
     config.assets.precompile << %r{bootstrap-sass/assets/fonts/bootstrap/[\w-]+\.(?:eot|svg|ttf|woff2?)$}
-    # Precompile Font-Awesome fonts
-    config.assets.precompile << %r{font-awesome/fonts/[\w-]+\.(?:otf|eot|svg|ttf|woff2?)$}
     # Minimum Sass number precision required by bootstrap-sass
     ::Sass::Script::Value::Number.precision = [8, ::Sass::Script::Value::Number.precision].max
 

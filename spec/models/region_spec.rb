@@ -12,6 +12,6 @@ require 'rails_helper'
 
 RSpec.describe Region, type: :model do
   it 'has a valid factory' do
-    expect(FactoryGirl.create(:region)).to be_valid
+    expect(FactoryBot.create(:region)).to be_valid
   end
 end

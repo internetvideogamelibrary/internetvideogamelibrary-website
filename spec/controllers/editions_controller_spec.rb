@@ -4,8 +4,8 @@ Warden.test_mode!
 
 describe EditionsController do
   before(:example) do
-    @user = FactoryGirl.create(:user, :admin)
-    sign_in :user, @user
+    @user = FactoryBot.create(:user, :admin)
+    sign_in(@user, scope: :user)
     new_time = Time.zone.local(2014, 12, 26, 18, 59, 0)
     Timecop.freeze(new_time)
   end
@@ -31,7 +31,7 @@ describe EditionsController do
     end
     it 'populates the @work variable with a existing work' do
       # given
-      work = FactoryGirl.create(:work)
+      work = FactoryBot.create(:work)
 
       # when
       get :new, work_id: work
@@ -48,7 +48,7 @@ describe EditionsController do
     end
     it 'should render the new template with existing work' do
       # given
-      work = FactoryGirl.create(:work)
+      work = FactoryBot.create(:work)
 
       # when
       get :new, work_id: work
@@ -60,7 +60,7 @@ describe EditionsController do
   describe 'GET#edit' do
     it 'populates the @edition variable with the requested edition' do
       # given
-      edition = FactoryGirl.create(:edition)
+      edition = FactoryBot.create(:edition)
 
       # when
       get :edit, id: edition
@@ -70,7 +70,7 @@ describe EditionsController do
     end
     it "populates the @work variable with the requested edition's work" do
       # given
-      edition = FactoryGirl.create(:edition)
+      edition = FactoryBot.create(:edition)
 
       # when
       get :edit, id: edition
@@ -80,7 +80,7 @@ describe EditionsController do
     end
     it 'should render the edit template' do
       # given
-      edition = FactoryGirl.create(:edition)
+      edition = FactoryBot.create(:edition)
 
       # when
       get :edit, id: edition
@@ -91,7 +91,7 @@ describe EditionsController do
     it 'should 404 with non-existing edition' do
       pending('we are still using a redirect, should 404 instead')
       # given
-      edition = FactoryGirl.create(:edition)
+      edition = FactoryBot.create(:edition)
 
       # when
       get :edit, id: edition.id + 1
@@ -103,7 +103,7 @@ describe EditionsController do
   describe 'GET#transform' do
     it 'populates the @edition variable with the requested edition' do
       # given
-      edition = FactoryGirl.create(:edition)
+      edition = FactoryBot.create(:edition)
 
       # when
       get :transform, id: edition
@@ -113,7 +113,7 @@ describe EditionsController do
     end
     it "populates the params[:platform] variable with the requested edition's platform" do
       # given
-      edition = FactoryGirl.create(:edition)
+      edition = FactoryBot.create(:edition)
 
       # when
       get :transform, id: edition
@@ -123,7 +123,7 @@ describe EditionsController do
     end
     it 'should render the transform template' do
       # given
-      edition = FactoryGirl.create(:edition)
+      edition = FactoryBot.create(:edition)
 
       # when
       get :transform, id: edition
@@ -134,7 +134,7 @@ describe EditionsController do
     it 'should 404 with non-existing edition' do
       pending('we are still using a redirect, should 404 instead')
       # given
-      edition = FactoryGirl.create(:edition)
+      edition = FactoryBot.create(:edition)
 
       # when
       get :transform, id: edition.id + 1
@@ -146,7 +146,7 @@ describe EditionsController do
   describe 'GET#show' do
     it 'populates the @other_editions_count variable with the count of other editions of the same work' do
       # given
-      work1 = FactoryGirl.create(:work_with_editions, editions_count: 6)
+      work1 = FactoryBot.create(:work_with_editions, editions_count: 6)
 
       # when
       get :show, id: work1.editions.first
@@ -156,7 +156,7 @@ describe EditionsController do
     end
     it 'populates the @other_editions variable with the other editions of the same work' do
       # given
-      work1 = FactoryGirl.create(:work_with_editions, editions_count: 6)
+      work1 = FactoryBot.create(:work_with_editions, editions_count: 6)
       edition = work1.editions.first
       expected_editions = work1.editions.take(5)
 
@@ -168,7 +168,7 @@ describe EditionsController do
     end
     it "populates the @description variable with the requested edition's description" do
       # given
-      edition = FactoryGirl.create(:edition)
+      edition = FactoryBot.create(:edition)
 
       # when
       get :show, id: edition
@@ -178,7 +178,7 @@ describe EditionsController do
     end
     it 'populates the @edition variable with the requested edition' do
       # given
-      edition = FactoryGirl.create(:edition)
+      edition = FactoryBot.create(:edition)
 
       # when
       get :show, id: edition
@@ -188,7 +188,7 @@ describe EditionsController do
     end
     it "populates the params[:platform] variable with the requested edition's platform" do
       # given
-      edition = FactoryGirl.create(:edition)
+      edition = FactoryBot.create(:edition)
 
       # when
       get :show, id: edition
@@ -198,7 +198,7 @@ describe EditionsController do
     end
     it 'should render the transform template' do
       # given
-      edition = FactoryGirl.create(:edition)
+      edition = FactoryBot.create(:edition)
 
       # when
       get :show, id: edition
@@ -210,7 +210,7 @@ describe EditionsController do
   describe 'GET#existing_work' do
     it 'should populate @work with work params' do
       # given
-      existing_work = FactoryGirl.create(:work)
+      existing_work = FactoryBot.create(:work)
       work_params = { original_title: 'new_work', original_release_date: '2015-08-23' }
       expected_work = Work.new(work_params)
 
@@ -222,7 +222,7 @@ describe EditionsController do
     end
     it 'should populate @existing_work with provided work' do
       # given
-      existing_work = FactoryGirl.create(:work)
+      existing_work = FactoryBot.create(:work)
       work_params = { original_title: 'new_work', original_release_date: '2015-08-23' }
 
       # when
@@ -233,7 +233,7 @@ describe EditionsController do
     end
     it 'should render the existing work template' do
       # given
-      existing_work = FactoryGirl.create(:work)
+      existing_work = FactoryBot.create(:work)
       work_params = { original_title: 'new_work', original_release_date: '2015-08-23' }
 
       # when
@@ -254,8 +254,8 @@ describe EditionsController do
   describe 'PATCH #do_transform' do
     it 'should create expansion, delete edition and work' do
       # given
-      edition = FactoryGirl.create(:edition, description: 'MY-OLD-EDITION-NOW-EXPANSION')
-      parent_edition = FactoryGirl.create(:edition)
+      edition = FactoryBot.create(:edition, description: 'MY-OLD-EDITION-NOW-EXPANSION')
+      parent_edition = FactoryBot.create(:edition)
       work = edition.work
 
       expect {
@@ -271,9 +271,9 @@ describe EditionsController do
 
     it 'should create expansion, delete edition but not work' do
       # given
-      edition = FactoryGirl.create(:edition, description: 'MY-OLD-EDITION-NOW-EXPANSION')
-      FactoryGirl.create(:edition, work: edition.work)
-      parent_edition = FactoryGirl.create(:edition)
+      edition = FactoryBot.create(:edition, description: 'MY-OLD-EDITION-NOW-EXPANSION')
+      FactoryBot.create(:edition, work: edition.work)
+      parent_edition = FactoryBot.create(:edition)
       work = edition.work
 
       expect {
@@ -290,8 +290,8 @@ describe EditionsController do
   describe 'POST#create' do
     it 'should not save on non-existing work' do
       # given
-      edition = FactoryGirl.build(:edition)
-      expected_work = FactoryGirl.create(:work)
+      edition = FactoryBot.build(:edition)
+      expected_work = FactoryBot.create(:work)
       expect {
         # when
         post :create, edition: edition.attributes, existing_work: { id: expected_work.id + 1 }, work_option: 'existing'
@@ -302,7 +302,7 @@ describe EditionsController do
     end
     it 'should not save on empty work' do
       # given
-      edition = FactoryGirl.build(:edition)
+      edition = FactoryBot.build(:edition)
       work = Work.new
       expect {
         # when
@@ -315,7 +315,7 @@ describe EditionsController do
     it 'should not save on empty edition with valid new work' do
       # given
       edition = Edition.new
-      work = FactoryGirl.build(:work)
+      work = FactoryBot.build(:work)
       expect {
         # when
         post :create, edition: edition.attributes, work: work.attributes
@@ -327,7 +327,7 @@ describe EditionsController do
     it 'should not save on empty edition with valid existing work' do
       # given
       edition = Edition.new
-      expected_work = FactoryGirl.create(:work)
+      expected_work = FactoryBot.create(:work)
       expect {
         # when
         post :create, edition: edition.attributes, existing_work: { id: expected_work.id }, work_option: 'existing'
@@ -338,8 +338,8 @@ describe EditionsController do
     end
     it 'with valid new work and edition should save and redirect to new edition' do
       # given
-      expected_edition = FactoryGirl.build(:edition, work: nil)
-      expected_work = FactoryGirl.build(:work)
+      expected_edition = FactoryBot.build(:edition, work: nil)
+      expected_work = FactoryBot.build(:work)
 
       expect {
         # when
@@ -361,8 +361,8 @@ describe EditionsController do
     end
     it 'with valid new edition and existing work should save and redirect to new edition' do
       # given
-      expected_edition = FactoryGirl.build(:edition, work: nil)
-      expected_work = FactoryGirl.create(:work)
+      expected_edition = FactoryBot.build(:edition, work: nil)
+      expected_work = FactoryBot.create(:work)
 
       expect {
         # when
@@ -382,8 +382,8 @@ describe EditionsController do
   describe 'PUT#update' do
     it 'should not save on invalid work' do
       # given
-      work = FactoryGirl.create(:work)
-      edition = FactoryGirl.create(:edition, work: work)
+      work = FactoryBot.create(:work)
+      edition = FactoryBot.create(:edition, work: work)
       work.original_title = nil
 
       expect {
@@ -396,8 +396,8 @@ describe EditionsController do
     end
     it 'should not save on invalid edition' do
       # given
-      work = FactoryGirl.create(:work)
-      edition = FactoryGirl.create(:edition, work: work)
+      work = FactoryBot.create(:work)
+      edition = FactoryBot.create(:edition, work: work)
       edition.title = nil
 
       expect {
@@ -410,8 +410,8 @@ describe EditionsController do
     end
     it 'should update and redirect to the edition' do
       # given
-      work = FactoryGirl.create(:work)
-      edition = FactoryGirl.create(:edition, work: work)
+      work = FactoryBot.create(:work)
+      edition = FactoryBot.create(:edition, work: work)
       edition_attributes = edition.attributes
       edition_attributes['title'] = 'No pain, no gain'
 

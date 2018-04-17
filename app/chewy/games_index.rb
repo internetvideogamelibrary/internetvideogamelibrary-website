@@ -33,9 +33,11 @@ class GamesIndex < DefaultIndex
     field :region_id, type: 'integer'
     field :description
     field :genres, index: 'not_analyzed', value: -> { genres.map(&:title) }
+    field :expansion_id, value: -> { nil }
     field :edition_id, value: -> { id }
     field :coverart_url, value: -> { coverart.url(:medium) }
     field :created_at, value: -> { created_at.to_i }, type: 'integer'
+    field :expansion_slug, value: -> { nil }
     field :edition_slug, value: -> { slug }
   end
 end

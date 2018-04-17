@@ -4,8 +4,8 @@ Warden.test_mode!
 
 describe WorksController do
   before(:example) do
-    @user = FactoryGirl.create(:user, :admin)
-    sign_in :user, @user
+    @user = FactoryBot.create(:user, :admin)
+    sign_in(@user, scope: :user)
     Timecop.freeze
   end
   after(:example) do
@@ -16,9 +16,9 @@ describe WorksController do
   describe 'PATCH#do_combine' do
     it 'should combine three works and its editions into one, keeping the older one' do
       # given
-      work1 = FactoryGirl.create(:work_with_editions)
-      work2 = FactoryGirl.create(:work_with_editions)
-      work3 = FactoryGirl.create(:work_with_editions)
+      work1 = FactoryBot.create(:work_with_editions)
+      work2 = FactoryBot.create(:work_with_editions)
+      work3 = FactoryBot.create(:work_with_editions)
       expected_work_id = work1.id
       expected_length = work1.editions.length + work2.editions.length + work3.editions.length
 
@@ -35,8 +35,8 @@ describe WorksController do
     end
     it "should change the slug of the older work if it's already taken" do
       # given
-      work1 = FactoryGirl.create(:work_with_editions, original_release_date: '1998-01-01', original_title: 'Work')
-      work2 = FactoryGirl.create(:work_with_editions, original_release_date: '1995-01-01', original_title: 'Work')
+      work1 = FactoryBot.create(:work_with_editions, original_release_date: '1998-01-01', original_title: 'Work')
+      work2 = FactoryBot.create(:work_with_editions, original_release_date: '1995-01-01', original_title: 'Work')
       expected_work_id = work2.id
       expected_length = work1.editions.length + work2.editions.length
 
@@ -54,8 +54,8 @@ describe WorksController do
     end
     it 'when combining two works without release date, should keep the one with the smaller id' do
       # given
-      work1 = FactoryGirl.create(:work_with_editions, original_release_date: nil)
-      work2 = FactoryGirl.create(:work_with_editions, original_release_date: nil)
+      work1 = FactoryBot.create(:work_with_editions, original_release_date: nil)
+      work2 = FactoryBot.create(:work_with_editions, original_release_date: nil)
       expected_work_id = work1.id
       expected_length = work1.editions.length + work2.editions.length
 
@@ -72,7 +72,7 @@ describe WorksController do
     end
     it 'should fail if called without work_ids' do
       # given
-      work1 = FactoryGirl.create(:work_with_editions, original_release_date: nil)
+      work1 = FactoryBot.create(:work_with_editions, original_release_date: nil)
 
       # when
       patch :do_combine, id: work1
@@ -85,7 +85,7 @@ describe WorksController do
   describe 'PATCH#do_split' do
     it 'should split one work and its editions into two' do
       # given
-      work1 = FactoryGirl.create(:work_with_editions, editions_count: 6)
+      work1 = FactoryBot.create(:work_with_editions, editions_count: 6)
       expected_length = work1.editions.length
       expected_keep = []
       expected_split = []
@@ -122,7 +122,7 @@ describe WorksController do
     end
     it 'should fail to split if all are kept' do
       # given
-      work1 = FactoryGirl.create(:work_with_editions, editions_count: 6)
+      work1 = FactoryBot.create(:work_with_editions, editions_count: 6)
 
       editions = []
       work1.editions.each do |ed|
@@ -138,7 +138,7 @@ describe WorksController do
     end
     it 'should fail to split if all are splitted' do
       # given
-      work1 = FactoryGirl.create(:work_with_editions, editions_count: 6)
+      work1 = FactoryBot.create(:work_with_editions, editions_count: 6)
 
       editions = []
       work1.editions.each do |ed|
@@ -154,7 +154,7 @@ describe WorksController do
     end
     it 'should fail to split if one is missing' do
       # given
-      work1 = FactoryGirl.create(:work_with_editions, editions_count: 6)
+      work1 = FactoryBot.create(:work_with_editions, editions_count: 6)
 
       editions = []
       work1.editions.each_with_index do |ed, i|

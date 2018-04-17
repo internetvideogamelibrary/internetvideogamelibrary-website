@@ -1,3 +1,7 @@
+env:
+  global:
+    - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
+    - COVERAGE=1
 language: ruby
 cache:
     bundler: true
@@ -5,12 +9,15 @@ cache:
         - vendor/assets/bower_components
         - node_modules
 rvm:
-    - 2.3.1
+    - 2.4.4
 bundler_args: --without production
 addons:
       postgresql: "9.3"
 services:
       - elasticsearch
+before_install:
+    - gem update --system
+    - curl -O https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.7.6.deb && sudo dpkg -i --force-confnew elasticsearch-1.7.6.deb && sudo service elasticsearch restart
 before_script:
     - sleep 10
     - psql -c 'create database travis_ci_test;' -U postgres
@@ -19,5 +26,8 @@ before_script:
     - bower install
     - "export DISPLAY=:99.0"
     - "sh -e /etc/init.d/xvfb start"
-    - sleep 3
-install: "bin/wad"
+    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+    - chmod +x ./cc-test-reporter
+    - ./cc-test-reporter before-build
+after_script:
+    - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi

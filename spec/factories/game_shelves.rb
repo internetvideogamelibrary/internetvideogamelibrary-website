@@ -10,7 +10,7 @@
 #  updated_at :datetime
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :game_shelf do
     user
     title 'MyString'
