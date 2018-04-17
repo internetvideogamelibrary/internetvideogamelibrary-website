@@ -11,6 +11,8 @@ addons:
       postgresql: "9.3"
 services:
       - elasticsearch
+before_install:
+    - gem update --system
 before_script:
     - sleep 10
     - psql -c 'create database travis_ci_test;' -U postgres
