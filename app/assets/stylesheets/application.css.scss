@@ -12,19 +12,7 @@
  *
  *= require_tree .
  *= require_self
- *= require font-awesome/css/font-awesome
  */
-@font-face {
-  font-family: 'FontAwesome';
-  src: asset-url('font-awesome/fonts/fontawesome-webfont.eot?v=4.5.0');
-  src: asset-url('font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.5.0') format('embedded-opentype'),
-  asset-url('font-awesome/fonts/fontawesome-webfont.woff2?v=4.5.0') format('woff2'),
-  asset-url('font-awesome/fonts/fontawesome-webfont.woff?v=4.5.0') format('woff'),
-  asset-url('font-awesome/fonts/fontawesome-webfont.ttf?v=4.5.0') format('truetype'),
-  asset-url('font-awesome/fonts/fontawesome-webfont.svg?v=4.5.0#fontawesomeregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
 
 .bs-callout {
     padding: 20px;
