@@ -13,6 +13,7 @@ services:
       - elasticsearch
 before_install:
     - gem update --system
+    - curl -O https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.7.6.deb && sudo dpkg -i --force-confnew elasticsearch-1.7.6.deb && sudo service elasticsearch restart
 before_script:
     - sleep 10
     - psql -c 'create database travis_ci_test;' -U postgres
