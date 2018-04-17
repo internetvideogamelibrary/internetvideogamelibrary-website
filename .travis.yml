@@ -1,3 +1,7 @@
+env:
+  global:
+    - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
+    - COVERAGE=1
 language: ruby
 cache:
     bundler: true
@@ -22,4 +26,8 @@ before_script:
     - bower install
     - "export DISPLAY=:99.0"
     - "sh -e /etc/init.d/xvfb start"
-    - sleep 3
+    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+    - chmod +x ./cc-test-reporter
+    - ./cc-test-reporter before-build
+after_script:
+    - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi
