@@ -58,4 +58,40 @@ class Expansion < ActiveRecord::Base
   def self.missing
     :expansion_missing
   end
+
+  # XXX extract this
+  def sanitized_description
+    Sanitize.fragment(description, self.class.sanitizer_config)
+  end
+
+  def description_markdown
+    self.class.markdown.render(sanitized_description || '').html_safe
+  end
+  private
+
+  def self.sanitizer_config
+    {
+      elements: %w(p br span a),
+
+      attributes: {
+        'a'    => %w(href rel),
+        'span' => %w(),
+      },
+
+      add_attributes: {
+        'a' => {
+          'rel' => 'nofollow noopener',
+          'target' => '_blank',
+        },
+      },
+
+      protocols: {
+        'a' => { 'href' => ['http', 'https', :relative] },
+      }
+    }.freeze
+  end
+  def self.markdown
+    Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+  end
+
 end
