@@ -16,4 +16,25 @@ RSpec.describe Expansion, type: :model do
     # then
     expect(expansion).to be_valid
   end
+
+  it 'has a sanitized markdown description' do
+    # given
+    expansion = FactoryBot.create(:expansion, description: %q(# Title
+
+*Now*
+
+<script>var bogus = 1;</script>
+  ))
+
+    # XXX move markdown and result to fixture file
+    markdown_description = %q(<h1>Title</h1>
+
+<p><em>Now</em></p>
+
+<p>var bogus = 1;</p>
+)
+
+    # then
+    expect(expansion.description_markdown).to eq(markdown_description)
+  end
 end

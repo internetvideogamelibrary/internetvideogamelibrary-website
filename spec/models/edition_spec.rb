@@ -27,4 +27,24 @@ RSpec.describe Edition, type: :model do
   it 'has a valid factory' do
     expect(FactoryBot.create(:edition)).to be_valid
   end
+  it 'has a sanitized markdown description' do
+    # given
+    edition = FactoryBot.create(:edition, description: %q(# Title
+
+*Now*
+
+<script>var bogus = 1;</script>
+  ))
+
+    # XXX move markdown and result to fixture file
+    markdown_description = %q(<h1>Title</h1>
+
+<p><em>Now</em></p>
+
+<p>var bogus = 1;</p>
+)
+
+    # then
+    expect(edition.description_markdown).to eq(markdown_description)
+  end
 end

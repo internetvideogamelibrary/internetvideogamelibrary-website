@@ -166,16 +166,6 @@ describe EditionsController do
       # then
       expect(assigns[:other_editions]).to eq(expected_editions)
     end
-    it "populates the @description variable with the requested edition's description" do
-      # given
-      edition = FactoryBot.create(:edition)
-
-      # when
-      get :show, id: edition
-
-      # then
-      expect(assigns[:description]).to eq(edition.description)
-    end
     it 'populates the @edition variable with the requested edition' do
       # given
       edition = FactoryBot.create(:edition)
