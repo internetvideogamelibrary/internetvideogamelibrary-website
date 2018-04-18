@@ -21,10 +21,12 @@
 #  media_id              :integer          not null
 #
 require 'babosa'
+require 'sanitize'
 
 class Edition < ActiveRecord::Base
   include HashableParams
   include FriendlyId
+  include MarkdownDescription
 
   friendly_id :plataform_and_name, use: :slugged
 

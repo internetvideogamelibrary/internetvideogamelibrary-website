@@ -54,7 +54,7 @@
 				<% end %></h4>
 			</div>
 			<div class="row" itemprop="description">
-				<%== GitHub::Markdown.render_gfm(@description) %>
+				<%= @expansion.markdown_description %>
 			</div>
 		</div>
 	</div>

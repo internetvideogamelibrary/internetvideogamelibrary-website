@@ -2,6 +2,7 @@ require 'babosa'
 
 class Expansion < ActiveRecord::Base
   include FriendlyId
+  include MarkdownDescription
 
   friendly_id :title_and_platform, use: :slugged
 
