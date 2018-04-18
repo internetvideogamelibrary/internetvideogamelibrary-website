@@ -35,6 +35,6 @@ RSpec.describe Expansion, type: :model do
 )
 
     # then
-    expect(expansion.description_markdown).to eq(markdown_description)
+    expect(expansion.markdown_description).to eq(markdown_description)
   end
 end

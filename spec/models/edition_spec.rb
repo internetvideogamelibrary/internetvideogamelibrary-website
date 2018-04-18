@@ -45,6 +45,6 @@ RSpec.describe Edition, type: :model do
 )
 
     # then
-    expect(edition.description_markdown).to eq(markdown_description)
+    expect(edition.markdown_description).to eq(markdown_description)
   end
 end

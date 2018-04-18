@@ -26,6 +26,7 @@ require 'sanitize'
 class Edition < ActiveRecord::Base
   include HashableParams
   include FriendlyId
+  include MarkdownDescription
 
   friendly_id :plataform_and_name, use: :slugged
 
@@ -92,39 +93,7 @@ class Edition < ActiveRecord::Base
     Edition.where('work_id = ? and status = ? and id <> ?', edition.work.id, Edition.statuses[:active], edition.id)
   end
 
-  def sanitized_description
-    Sanitize.fragment(description, self.class.sanitizer_config)
-  end
-
-  def description_markdown
-    self.class.markdown.render(sanitized_description || '').html_safe
-  end
   private
-
-  def self.sanitizer_config
-    {
-      elements: %w(p br span a),
-
-      attributes: {
-        'a'    => %w(href rel),
-        'span' => %w(),
-      },
-
-      add_attributes: {
-        'a' => {
-          'rel' => 'nofollow noopener',
-          'target' => '_blank',
-        },
-      },
-
-      protocols: {
-        'a' => { 'href' => ['http', 'https', :relative] },
-      }
-    }.freeze
-  end
-  def self.markdown
-    Redcarpet::Markdown.new(Redcarpet::Render::HTML)
-  end
 
   def set_default_status
     self.status = Edition.statuses[:active] if status.nil?
