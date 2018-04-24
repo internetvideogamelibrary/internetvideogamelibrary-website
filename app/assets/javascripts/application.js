@@ -17,12 +17,14 @@
 //= require jquery-readyselector
 //= require_tree .
 //= require turbolinks
-$(document).ready(function(e){
-	$('.search-panel .dropdown-menu').find('a').click(function(e) {
-		e.preventDefault();
-		var param = $(this).attr("href").replace("#","");
-		var concept = $(this).text();
-		$('.search-panel span#search_concept').text(concept);
-		$('.input-group #platform').val(param);
-	});
+$(document).on('turbolinks:load', function() {
+  $(document).ready(function(e){
+    $('.search-panel .dropdown-menu').find('a').click(function(e) {
+      e.preventDefault();
+      var param = $(this).attr("href").replace("#","");
+      var concept = $(this).text();
+      $('.search-panel span#search_concept').text(concept);
+      $('.input-group #platform').val(param);
+    });
+  });
 });
