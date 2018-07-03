@@ -24,7 +24,7 @@ describe WorksController do
 
       expect {
         # when
-        patch :do_combine, id: work1, work_ids: [work1.id, work2.id, work3.id]
+        patch :do_combine, params: { id: work1, work_ids: [work1.id, work2.id, work3.id] }
       }.to change(Work, :count).by(-2).and change(Edition, :count).by(0)
 
       result_work = Work.first
@@ -42,7 +42,7 @@ describe WorksController do
 
       expect {
         # when
-        patch :do_combine, id: work1, work_ids: [work1.id, work2.id]
+        patch :do_combine, params: { id: work1, work_ids: [work1.id, work2.id] }
       }.to change(Work, :count).by(-1).and change(Edition, :count).by(0)
 
       result_work = Work.first
@@ -61,7 +61,7 @@ describe WorksController do
 
       expect {
         # when
-        patch :do_combine, id: work1, work_ids: [work1.id, work2.id]
+        patch :do_combine, params: { id: work1, work_ids: [work1.id, work2.id] }
       }.to change(Work, :count).by(-1).and change(Edition, :count).by(0)
 
       result_work = Work.first
@@ -75,7 +75,7 @@ describe WorksController do
       work1 = FactoryBot.create(:work_with_editions, original_release_date: nil)
 
       # when
-      patch :do_combine, id: work1
+      patch :do_combine, params: { id: work1 }
 
       # then
       expect(response).to redirect_to(combine_work_path(work1))
@@ -90,24 +90,23 @@ describe WorksController do
       expected_keep = []
       expected_split = []
 
-      editions = []
+      editions = {}
       work1.editions.each_with_index do |ed, i|
         item = [ed.id]
         if i.odd?
-          item << 'keep'
+          editions[ed.id.to_s] = 'keep'
           expected_keep << ed
         else
-          item << 'split'
+          editions[ed.id.to_s] = 'split'
           expected_split << ed
         end
-        editions << item
       end
       expected_new_work_release_date = expected_split.last.release_date
       expected_old_work_release_date = expected_keep.last.release_date
 
       expect {
         # when
-        patch :do_split, id: work1, editions: editions
+        patch :do_split, params: { id: work1, editions: editions }
       }.to change(Work, :count).by(1).and change(Edition, :count).by(0)
 
       new_work = Work.last
@@ -124,53 +123,47 @@ describe WorksController do
       # given
       work1 = FactoryBot.create(:work_with_editions, editions_count: 6)
 
-      editions = []
+      editions = {}
       work1.editions.each do |ed|
-        item = [ed.id]
-        item << 'keep'
-        editions << item
+        editions[ed.id.to_s] = 'keep'
       end
 
       expect {
         # when
-        patch :do_split, id: work1, editions: editions
+        patch :do_split, params: { id: work1, editions: editions }
       }.to change(Work, :count).by(0).and change(Edition, :count).by(0)
     end
     it 'should fail to split if all are splitted' do
       # given
       work1 = FactoryBot.create(:work_with_editions, editions_count: 6)
 
-      editions = []
+      editions = {}
       work1.editions.each do |ed|
-        item = [ed.id]
-        item << 'split'
-        editions << item
+        editions[ed.id.to_s] = 'split'
       end
 
       expect {
         # when
-        patch :do_split, id: work1, editions: editions
+        patch :do_split, params: { id: work1, editions: editions }
       }.to change(Work, :count).by(0).and change(Edition, :count).by(0)
     end
     it 'should fail to split if one is missing' do
       # given
       work1 = FactoryBot.create(:work_with_editions, editions_count: 6)
 
-      editions = []
+      editions = {}
       work1.editions.each_with_index do |ed, i|
-        item = [ed.id]
+        next if i == 0
         if i.odd?
-          item << 'keep'
+          editions[ed.id.to_s] = 'keep'
         else
-          item << 'split'
+        editions[ed.id.to_s] = 'split'
         end
-        editions << item
       end
-      editions.pop
 
       expect {
         # when
-        patch :do_split, id: work1, editions: editions
+        patch :do_split, params: { id: work1, editions: editions }
       }.to change(Work, :count).by(0).and change(Edition, :count).by(0)
     end
   end

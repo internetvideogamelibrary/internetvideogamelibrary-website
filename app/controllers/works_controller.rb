@@ -121,7 +121,7 @@ class WorksController < ApplicationController
     split_editions = []
     keep_editions = []
 
-    editions.each do |e|
+    editions.permit!.to_h.each do |e|
       if e[1] == 'keep'
         keep_editions << e[0].to_i
       elsif e[1] == 'split'
