@@ -34,7 +34,7 @@ describe EditionsController do
       work = FactoryBot.create(:work)
 
       # when
-      get :new, work_id: work
+      get :new, params: { work_id: work }
 
       # then
       expect(assigns(:work)).to eq(work)
@@ -51,7 +51,7 @@ describe EditionsController do
       work = FactoryBot.create(:work)
 
       # when
-      get :new, work_id: work
+      get :new, params: { work_id: work }
 
       # then
       expect(response).to render_template :new
@@ -63,7 +63,7 @@ describe EditionsController do
       edition = FactoryBot.create(:edition)
 
       # when
-      get :edit, id: edition
+      get :edit, params: { id: edition }
 
       # then
       expect(assigns(:edition)).to eq(edition)
@@ -73,7 +73,7 @@ describe EditionsController do
       edition = FactoryBot.create(:edition)
 
       # when
-      get :edit, id: edition
+      get :edit, params: { id: edition }
 
       # then
       expect(assigns(:work)).to eq(edition.work)
@@ -83,7 +83,7 @@ describe EditionsController do
       edition = FactoryBot.create(:edition)
 
       # when
-      get :edit, id: edition
+      get :edit, params: { id: edition }
 
       # then
       expect(response).to render_template :edit
@@ -94,7 +94,7 @@ describe EditionsController do
       edition = FactoryBot.create(:edition)
 
       # when
-      get :edit, id: edition.id + 1
+      get :edit, params: { id: edition.id + 1 }
 
       # then
       expect(response.code).to eq('404')
@@ -106,7 +106,7 @@ describe EditionsController do
       edition = FactoryBot.create(:edition)
 
       # when
-      get :transform, id: edition
+      get :transform, params: { id: edition }
 
       # then
       expect(assigns(:edition)).to eq(edition)
@@ -116,7 +116,7 @@ describe EditionsController do
       edition = FactoryBot.create(:edition)
 
       # when
-      get :transform, id: edition
+      get :transform, params: { id: edition }
 
       # then
       expect(controller.params[:platform]).to eq(edition.platform.id.to_s)
@@ -126,7 +126,7 @@ describe EditionsController do
       edition = FactoryBot.create(:edition)
 
       # when
-      get :transform, id: edition
+      get :transform, params: { id: edition }
 
       # then
       expect(response).to render_template :transform
@@ -137,7 +137,7 @@ describe EditionsController do
       edition = FactoryBot.create(:edition)
 
       # when
-      get :transform, id: edition.id + 1
+      get :transform, params: { id: edition.id + 1 }
 
       # then
       expect(response.code).to eq('404')
@@ -149,7 +149,7 @@ describe EditionsController do
       work1 = FactoryBot.create(:work_with_editions, editions_count: 6)
 
       # when
-      get :show, id: work1.editions.first
+      get :show, params: { id: work1.editions.first }
 
       # then
       expect(assigns[:other_editions_count]).to eq(work1.editions.length - 1)
@@ -161,7 +161,7 @@ describe EditionsController do
       expected_editions = work1.editions.take(5)
 
       # when
-      get :show, id: edition
+      get :show, params: { id: edition }
 
       # then
       expect(assigns[:other_editions]).to eq(expected_editions)
@@ -171,7 +171,7 @@ describe EditionsController do
       edition = FactoryBot.create(:edition)
 
       # when
-      get :show, id: edition
+      get :show, params: { id: edition }
 
       # then
       expect(assigns[:edition]).to eq(edition)
@@ -181,7 +181,7 @@ describe EditionsController do
       edition = FactoryBot.create(:edition)
 
       # when
-      get :show, id: edition
+      get :show, params: { id: edition }
 
       # then
       expect(controller.params[:platform]).to eq(edition.platform.id.to_s)
@@ -191,7 +191,7 @@ describe EditionsController do
       edition = FactoryBot.create(:edition)
 
       # when
-      get :show, id: edition
+      get :show, params: { id: edition }
 
       # then
       expect(response).to render_template :show
@@ -205,7 +205,7 @@ describe EditionsController do
       expected_work = Work.new(work_params)
 
       # when
-      xhr :get, :existing_work, work: work_params, existing_work: { id: existing_work.slug }
+      get :existing_work, params: { work: work_params, existing_work: { id: existing_work.slug } }, xhr: true
 
       # then
       expect(assigns(:work).attributes).to eq(expected_work.attributes)
@@ -216,7 +216,7 @@ describe EditionsController do
       work_params = { original_title: 'new_work', original_release_date: '2015-08-23' }
 
       # when
-      xhr :get, :existing_work, work: work_params, existing_work: { id: existing_work.slug }
+      get :existing_work, params: { work: work_params, existing_work: { id: existing_work.slug } }, xhr: true
 
       # then
       expect(assigns(:existing_work)).to eq(existing_work)
@@ -227,7 +227,7 @@ describe EditionsController do
       work_params = { original_title: 'new_work', original_release_date: '2015-08-23' }
 
       # when
-      xhr :get, :existing_work, work: work_params, existing_work: { id: existing_work.slug }
+      get :existing_work, params: { work: work_params, existing_work: { id: existing_work.slug } }, xhr: true
 
       # then
       expect(response).to render_template :existing_work
@@ -250,7 +250,7 @@ describe EditionsController do
 
       expect {
         # when
-        patch :do_transform, id: edition, parent_edition_id: parent_edition.id
+        patch :do_transform, params: { id: edition, parent_edition_id: parent_edition.id }
       }.to change(Expansion, :count).by(1).and change(Work, :count).by(-1).and change(Edition, :count).by(-1)
 
       # then
@@ -268,7 +268,7 @@ describe EditionsController do
 
       expect {
         # when
-        patch :do_transform, id: edition, parent_edition_id: parent_edition.id
+        patch :do_transform, params: { id: edition, parent_edition_id: parent_edition.id }
       }.to change(Expansion, :count).by(1).and change(Work, :count).by(0).and change(Edition, :count).by(-1)
 
       # then
@@ -284,7 +284,7 @@ describe EditionsController do
       expected_work = FactoryBot.create(:work)
       expect {
         # when
-        post :create, edition: edition.attributes, existing_work: { id: expected_work.id + 1 }, work_option: 'existing'
+        post :create, params: { edition: edition.attributes, existing_work: { id: expected_work.id + 1 }, work_option: 'existing' }
       }.to change(Edition, :count).by(0).and change(Work, :count).by(0)
 
       # then
@@ -296,7 +296,7 @@ describe EditionsController do
       work = Work.new
       expect {
         # when
-        post :create, edition: edition.attributes, work: work.attributes
+        post :create, params: { edition: edition.attributes, work: work.attributes }
       }.to change(Edition, :count).by(0).and change(Work, :count).by(0)
 
       # then
@@ -308,7 +308,7 @@ describe EditionsController do
       work = FactoryBot.build(:work)
       expect {
         # when
-        post :create, edition: edition.attributes, work: work.attributes
+        post :create, params: { edition: edition.attributes, work: work.attributes }
       }.to change(Edition, :count).by(0).and change(Work, :count).by(0)
 
       # then
@@ -320,7 +320,7 @@ describe EditionsController do
       expected_work = FactoryBot.create(:work)
       expect {
         # when
-        post :create, edition: edition.attributes, existing_work: { id: expected_work.id }, work_option: 'existing'
+        post :create, params: { edition: edition.attributes, existing_work: { id: expected_work.id }, work_option: 'existing' }
       }.to change(Edition, :count).by(0).and change(Work, :count).by(0)
 
       # then
@@ -333,7 +333,7 @@ describe EditionsController do
 
       expect {
         # when
-        post :create, edition: expected_edition.attributes, work: expected_work.attributes
+        post :create, params: { edition: expected_edition.attributes, work: expected_work.attributes }
       }.to change(Edition, :count).by(1).and change(Work, :count).by(1)
 
       new_edition = Edition.last
@@ -356,7 +356,7 @@ describe EditionsController do
 
       expect {
         # when
-        post :create, edition: expected_edition.attributes, existing_work: { id: expected_work.id }, work_option: 'existing'
+        post :create, params: { edition: expected_edition.attributes, existing_work: { id: expected_work.id }, work_option: 'existing' }
       }.to change(Edition, :count).by(1).and change(Work, :count).by(0)
 
       new_edition = Edition.last
@@ -378,7 +378,7 @@ describe EditionsController do
 
       expect {
         # when
-        put :update, id: edition, edition: edition.attributes, work: work.attributes
+        put :update, params: { id: edition, edition: edition.attributes, work: work.attributes }
       }.to change(Edition, :count).by(0).and change(Work, :count).by(0)
 
       # then
@@ -392,7 +392,7 @@ describe EditionsController do
 
       expect {
         # when
-        put :update, id: edition, edition: edition.attributes, work: work.attributes
+        put :update, params: { id: edition, edition: edition.attributes, work: work.attributes }
       }.to change(Edition, :count).by(0).and change(Work, :count).by(0)
 
       # then
@@ -407,7 +407,7 @@ describe EditionsController do
 
       expect {
         # when
-        put :update, id: edition, edition: edition_attributes, work: work.attributes
+        put :update, params: { id: edition, edition: edition_attributes, work: work.attributes }
       }.to change(Edition, :count).by(0).and change(Work, :count).by(0)
 
       updated_edition = Edition.find(edition.id)

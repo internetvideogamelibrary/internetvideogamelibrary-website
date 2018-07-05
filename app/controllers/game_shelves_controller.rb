@@ -1,7 +1,7 @@
 class GameShelvesController < ApplicationController
   before_action :authenticate_user!
 
-  before_filter :xhr_only,
+  before_action :xhr_only,
                 only: [:add_edition, :add_expansion, :add_game, :remove_item]
 
   before_action :game_shelf_exist,

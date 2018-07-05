@@ -83,7 +83,7 @@ class ApplicationController < ActionController::Base
   def xhr_only
     return true if request.xhr?
 
-    render nothing: true, status: 400
+    head :bad_request
   end
 
   def clean_page_param

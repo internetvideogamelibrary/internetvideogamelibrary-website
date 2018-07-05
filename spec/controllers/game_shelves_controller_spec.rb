@@ -16,7 +16,7 @@ describe GameShelvesController do
   describe 'xhr filter' do
     it 'should return bad request if a non-xhr call is made' do
       game_shelf = FactoryBot.create(:game_shelf, user: @user)
-      put :add_edition, user_id: @user.id, id: game_shelf
+      put :add_edition, params: { user_id: @user.id, id: game_shelf }
       expect(response.code).to eq('400')
       expect(response.body).to eq('')
     end
@@ -24,14 +24,14 @@ describe GameShelvesController do
   describe 'GET#new' do
     it 'populates the @game_shelf variable with a new shelf' do
       # when
-      get :new, user_id: @user.id
+      get :new, params: { user_id: @user.id }
 
       # then
       expect(assigns(:game_shelf).attributes).to eq(GameShelf.new(user: @user).attributes)
     end
     it 'should render the new template' do
       # when
-      get :new, user_id: @user.id
+      get :new, params: { user_id: @user.id }
 
       # then
       expect(response).to render_template :new
@@ -42,7 +42,7 @@ describe GameShelvesController do
     it 'should create a custom shelf' do
       expected_title = 'new shelf'
       expect{
-        post :create, user_id: @user.id, game_shelf: { title: expected_title }
+        post :create, params: { user_id: @user.id, game_shelf: { title: expected_title } }
       }.to change(GameShelf, :count).by(1)
 
       new_shelf = GameShelf.last
@@ -60,7 +60,7 @@ describe GameShelvesController do
       FactoryBot.create(:edition)
 
       # when
-      get :index, user_id: @user.id
+      get :index, params: { user_id: @user.id }
 
       # then
       expect(response.code).to eq('302')
@@ -74,7 +74,7 @@ describe GameShelvesController do
       game_shelf = FactoryBot.create(:game_shelf, user: @user, shelf_type: GameShelf.shelf_types[:backlog])
 
       # when
-      get :show, user_id: @user.id, id: game_shelf
+      get :show, params: { user_id: @user.id, id: game_shelf }
 
       # then
       expect(assigns(:game_shelf)).to eq(game_shelf)
@@ -86,7 +86,7 @@ describe GameShelvesController do
       expected_shelf_items.sort! { |a, b| a.created_at <=> b.created_at }
 
       # when
-      get :show, user_id: @user.id, id: game_shelf
+      get :show, params: { user_id: @user.id, id: game_shelf }
 
       # then
       expect(assigns(:shelf_items)).to eq(expected_shelf_items)
@@ -102,7 +102,7 @@ describe GameShelvesController do
       end
 
       # when
-      get :show, user_id: @user.id, id: game_shelf, platform: platform.id
+      get :show, params: { user_id: @user.id, id: game_shelf, platform: platform.id }
 
       # then
       expect(assigns(:shelf_items)).to eq(expected_shelf_items)
@@ -117,7 +117,7 @@ describe GameShelvesController do
       game_shelves << FactoryBot.create(:game_shelf, user: @user, title: 'Played', shelf_type: GameShelf.shelf_types[:played])
 
       # when
-      get :show, user_id: @user.id, id: game_shelves[0]
+      get :show, params: { user_id: @user.id, id: game_shelves[0] }
 
       # then
       expect(assigns(:game_shelves)).to eq(game_shelves)
@@ -127,7 +127,7 @@ describe GameShelvesController do
       game_shelf = FactoryBot.create(:game_shelf, user: @user, shelf_type: GameShelf.shelf_types[:backlog])
 
       # when
-      get :show, user_id: @user.id, id: game_shelf
+      get :show, params: { user_id: @user.id, id: game_shelf }
 
       # then
       expect(response).to render_template :show
@@ -142,7 +142,7 @@ describe GameShelvesController do
 
       expect{
         # when
-        xhr :put, :add_edition, user_id: @user.id, id: game_shelf, edition_id: edition.id
+        put :add_edition, params: { user_id: @user.id, id: game_shelf, edition_id: edition.id }, xhr: true
       }.to change(ShelfItem, :count).by(1)
 
       shelf_item = game_shelf.shelf_items.first
@@ -161,7 +161,7 @@ describe GameShelvesController do
 
       expect{
         # when
-        xhr :put, :add_edition, user_id: @user.id, id: game_shelf, edition_id: edition.slug
+        put :add_edition, params: { user_id: @user.id, id: game_shelf, edition_id: edition.slug }, xhr: true
       }.to change(ShelfItem, :count).by(0)
 
       # then
@@ -179,7 +179,7 @@ describe GameShelvesController do
 
       expect{
         # when
-        xhr :put, :add_edition, user_id: @user.id, id: game_shelf
+        put :add_edition, params: { user_id: @user.id, id: game_shelf }, xhr: true
       }.to change(ShelfItem, :count).by(0)
 
       # then
@@ -197,7 +197,7 @@ describe GameShelvesController do
 
       expect{
         # when
-        xhr :put, :add_edition, user_id: @user.id, id: game_shelf.id + 1, edition_id: edition.id
+        put :add_edition, params: { user_id: @user.id, id: game_shelf.id + 1, edition_id: edition.id }, xhr: true
       }.to change(ShelfItem, :count).by(0)
 
       # then
@@ -215,7 +215,7 @@ describe GameShelvesController do
 
       expect{
         # when
-        xhr :put, :add_edition, user_id: @user.id, id: game_shelf_playing.id, edition_id: edition.id
+        put :add_edition, params: { user_id: @user.id, id: game_shelf_playing.id, edition_id: edition.id }, xhr: true
       }.to change(ShelfItem, :count).by(0)
 
       # then
@@ -235,7 +235,7 @@ describe GameShelvesController do
 
       expect{
         # when
-        xhr :put, :add_edition, user_id: @user.id, id: game_shelf_playing.id, edition_id: edition.id
+        put :add_edition, params: { user_id: @user.id, id: game_shelf_playing.id, edition_id: edition.id }, xhr: true
       }.to change(ShelfItem, :count).by(1)
 
       # then
@@ -255,12 +255,12 @@ describe GameShelvesController do
 
       expect{
         # when
-        xhr :put, :add_edition, user_id: @user.id, id: game_shelf_playing.id, edition_id: edition.id
+        put :add_edition, params: { user_id: @user.id, id: game_shelf_playing.id, edition_id: edition.id }, xhr: true
       }.to change(ShelfItem, :count).by(1)
 
       expect{
         # when
-        xhr :put, :add_edition, user_id: @user.id, id: game_shelf_playing.id, edition_id: edition.id
+        put :add_edition, params: { user_id: @user.id, id: game_shelf_playing.id, edition_id: edition.id }, xhr: true
       }.to change(ShelfItem, :count).by(0)
 
       # then
@@ -279,7 +279,7 @@ describe GameShelvesController do
 
       expect{
         # when
-        xhr :put, :add_expansion, user_id: @user.id, id: game_shelf, expansion_id: expansion.id
+        put :add_expansion, params: {  user_id: @user.id, id: game_shelf, expansion_id: expansion.id }, xhr: true
       }.to change(ShelfItem, :count).by(1)
 
       shelf_item = game_shelf.shelf_items.first
@@ -298,7 +298,7 @@ describe GameShelvesController do
 
       expect{
         # when
-        xhr :put, :add_expansion, user_id: @user.id, id: game_shelf, expansion_id: expansion.slug
+        put :add_expansion, params: {  user_id: @user.id, id: game_shelf, expansion_id: expansion.slug }, xhr: true
       }.to change(ShelfItem, :count).by(0)
 
       # then
@@ -316,7 +316,7 @@ describe GameShelvesController do
 
       expect{
         # when
-        xhr :put, :add_expansion, user_id: @user.id, id: game_shelf
+        put :add_expansion, params: {  user_id: @user.id, id: game_shelf }, xhr: true
       }.to change(ShelfItem, :count).by(0)
 
       # then
@@ -334,7 +334,7 @@ describe GameShelvesController do
 
       expect{
         # when
-        xhr :put, :add_expansion, user_id: @user.id, id: game_shelf.id + 1, expansion_id: expansion.id
+        put :add_expansion, params: {  user_id: @user.id, id: game_shelf.id + 1, expansion_id: expansion.id }, xhr: true
       }.to change(ShelfItem, :count).by(0)
 
       # then
@@ -352,7 +352,7 @@ describe GameShelvesController do
 
       expect{
         # when
-        xhr :put, :add_expansion, user_id: @user.id, id: game_shelf_playing.id, expansion_id: expansion.id
+        put :add_expansion, params: {  user_id: @user.id, id: game_shelf_playing.id, expansion_id: expansion.id }, xhr: true
       }.to change(ShelfItem, :count).by(0)
 
       # then
@@ -372,7 +372,7 @@ describe GameShelvesController do
 
       expect{
         # when
-        xhr :put, :add_expansion, user_id: @user.id, id: game_shelf_playing.id, expansion_id: expansion.id
+        put :add_expansion, params: {  user_id: @user.id, id: game_shelf_playing.id, expansion_id: expansion.id }, xhr: true
       }.to change(ShelfItem, :count).by(1)
 
       # then
@@ -392,7 +392,7 @@ describe GameShelvesController do
 
       expect{
         # when
-        xhr :put, :remove_item, user_id: @user.id, item_id: shelf_item.id
+        put :remove_item, params: {  user_id: @user.id, item_id: shelf_item.id }, xhr: true
       }.to change(ShelfItem, :count).by(-1)
       game_shelf.reload
 
@@ -408,7 +408,7 @@ describe GameShelvesController do
 
       expect{
         # when
-        xhr :put, :remove_item, user_id: @user.id, item_id: shelf_item.id
+        put :remove_item, params: {  user_id: @user.id, item_id: shelf_item.id }, xhr: true
       }.to change(ShelfItem, :count).by(-1)
       game_shelf.reload
 
@@ -424,7 +424,7 @@ describe GameShelvesController do
 
       expect{
         # when
-        xhr :put, :remove_item, user_id: @user.id
+        put :remove_item, params: {  user_id: @user.id }, xhr: true
       }.to change(ShelfItem, :count).by(0)
       game_shelf.reload
 
@@ -440,7 +440,7 @@ describe GameShelvesController do
 
       expect{
         # when
-        xhr :put, :remove_item, user_id: @user.id, item_id: shelf_item.id + 1
+        put :remove_item, params: {  user_id: @user.id, item_id: shelf_item.id + 1 }, xhr: true
       }.to change(ShelfItem, :count).by(0)
       game_shelf.reload
 
@@ -455,7 +455,7 @@ describe GameShelvesController do
       game_shelf_playing = FactoryBot.create(:game_shelf, :custom, user: @user)
 
       # when
-      get :edit, user_id: @user.id, id: game_shelf_playing.id
+      get :edit, params: {  user_id: @user.id, id: game_shelf_playing.id }
 
       game_shelf_playing.reload
       # then
@@ -466,7 +466,7 @@ describe GameShelvesController do
       game_shelf_playing = FactoryBot.create(:game_shelf, :custom, user: @user)
 
       # when
-      get :edit, user_id: @user.id, id: game_shelf_playing.id
+      get :edit, params: {  user_id: @user.id, id: game_shelf_playing.id }
 
       # then
       expect(response).to render_template :edit
@@ -480,7 +480,7 @@ describe GameShelvesController do
 
       expect {
         # when
-        put :update, id: game_shelf, user_id: @user, game_shelf: game_shelf.attributes
+        put :update, params: {  id: game_shelf, user_id: @user, game_shelf: game_shelf.attributes }
       }.to change(GameShelf, :count).by(0)
 
       # then
@@ -494,7 +494,7 @@ describe GameShelvesController do
 
       expect {
         # when
-        put :update, id: game_shelf, user_id: @user, game_shelf: game_shelf_attributes
+        put :update, params: {  id: game_shelf, user_id: @user, game_shelf: game_shelf_attributes }
       }.to change(GameShelf, :count).by(0)
 
       updated_game_shelf = GameShelf.find(game_shelf.id)
@@ -513,7 +513,7 @@ describe GameShelvesController do
 
       expect {
         # when
-        delete :destroy, id: game_shelf, user_id: @user
+        delete :destroy, params: {  id: game_shelf, user_id: @user }
       }.to change(GameShelf, :count).by(-1)
 
       expect { GameShelf.find(game_shelf.id) }.to raise_exception(ActiveRecord::RecordNotFound)
@@ -526,7 +526,7 @@ describe GameShelvesController do
 
       expect {
         # when
-        delete :destroy, id: game_shelf, user_id: @user
+        delete :destroy, params: {  id: game_shelf, user_id: @user }
       }.to change(GameShelf, :count).by(-1).and change(ShelfItem, :count).by(-1).and change(Edition, :count).by(0)
 
       expect { GameShelf.find(game_shelf.id) }.to raise_exception(ActiveRecord::RecordNotFound)
@@ -539,7 +539,7 @@ describe GameShelvesController do
 
       expect {
         # when
-        delete :destroy, id: game_shelf, user_id: @user
+        delete :destroy, params: {  id: game_shelf, user_id: @user }
       }.to change(GameShelf, :count).by(0)
 
       expect(GameShelf.find(game_shelf.id)).to eq(game_shelf)
