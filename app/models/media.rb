@@ -8,6 +8,6 @@
 #  updated_at :datetime
 #
 
-class Media < ActiveRecord::Base
+class Media < ApplicationRecord
   has_many :edition
 end

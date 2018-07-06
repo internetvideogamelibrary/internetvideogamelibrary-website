@@ -23,7 +23,7 @@
 #  role                   :integer
 #
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   enum role: [:user, :reviewer, :admin, :gm]
   after_initialize :set_default_role, if: :new_record?
 

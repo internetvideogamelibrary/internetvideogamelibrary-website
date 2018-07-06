@@ -10,13 +10,15 @@
 #  updated_at :datetime
 #
 
-class GameShelf < ActiveRecord::Base
+class GameShelf < ApplicationRecord
   enum shelf_types: [:wishlist, :backlog, :playing, :finished, :played, :custom]
 
   belongs_to :user
   has_many :shelf_items, :dependent => :delete_all
 
   validates :user, presence: true
+
+  scope :shelf_type_order, -> { order('shelf_type asc, id asc') }
 
   def contains(game)
     shelf_items.where(item_id: game.id).count > 0

@@ -8,6 +8,6 @@
 #  updated_at :datetime
 #
 
-class Region < ActiveRecord::Base
+class Region < ApplicationRecord
   has_many :edition
 end

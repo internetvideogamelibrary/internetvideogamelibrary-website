@@ -10,7 +10,7 @@
 #  priority      :integer
 #
 
-class Platform < ActiveRecord::Base
+class Platform < ApplicationRecord
   has_many :edition
 
   before_save :fix_display_title
