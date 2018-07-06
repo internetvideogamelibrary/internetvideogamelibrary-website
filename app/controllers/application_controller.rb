@@ -64,9 +64,7 @@ class ApplicationController < ActionController::Base
   end
 
   def deny_access
-    redirect_to :back, alert: 'Access denied.'
-  rescue ActionController::RedirectBackError
-    redirect_to '/', alert: 'Access denied.'
+    redirect_back alert: 'Access denied.', fallback_location: '/'
   end
 
   def query?

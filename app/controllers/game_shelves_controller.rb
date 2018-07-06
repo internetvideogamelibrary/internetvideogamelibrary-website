@@ -37,7 +37,7 @@ class GameShelvesController < ApplicationController
     else
       @shelf_items = ShelfItem.where(game_shelf_id: @game_shelf.id).paginate(page: params[:page]).order('created_at asc')
     end
-    @game_shelves = current_user.game_shelves -> { order 'shelf_type asc, id asc' }
+    @game_shelves = current_user.game_shelves.shelf_type_order
   end
 
   def add_game(game)
