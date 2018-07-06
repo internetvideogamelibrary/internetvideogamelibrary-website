@@ -37,5 +37,9 @@ FactoryBot.define do
     trait :game_maker do
       role :gm
     end
+
+    after(:build) do |user|
+      user.class.skip_callback(:commit, :after, :create_game_shelves, raise: false)
+    end
   end
 end
