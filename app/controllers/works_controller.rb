@@ -117,11 +117,15 @@ class WorksController < ApplicationController
     params.require(:work).permit(:original_title, :original_release_date)
   end
 
+  def split_params
+    params.require(:editions).permit(@work.editions.map {|e| e.id.to_s })
+  end
+
   def divide_keep_and_split_arrays(editions)
     split_editions = []
     keep_editions = []
 
-    editions.permit!.to_h.each do |e|
+    editions.each do |e|
       if e[1] == 'keep'
         keep_editions << e[0].to_i
       elsif e[1] == 'split'
@@ -146,9 +150,9 @@ class WorksController < ApplicationController
 
   def only_split_all_editions
     @work = Work.friendly.find(params[:id])
-    @editions = params.require(:editions)
+    @editions = split_params
 
-    keep_edition_ids, @split_edition_ids = divide_keep_and_split_arrays(@editions)
+    keep_edition_ids, @split_edition_ids = divide_keep_and_split_arrays(@editions.to_h)
 
     return false unless @split_edition_ids.empty? || keep_edition_ids.empty? || !contain_all_editions?(@split_edition_ids, keep_edition_ids, @work)
 

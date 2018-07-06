@@ -92,7 +92,6 @@ describe WorksController do
 
       editions = {}
       work1.editions.each_with_index do |ed, i|
-        item = [ed.id]
         if i.odd?
           editions[ed.id.to_s] = 'keep'
           expected_keep << ed
@@ -157,7 +156,7 @@ describe WorksController do
         if i.odd?
           editions[ed.id.to_s] = 'keep'
         else
-        editions[ed.id.to_s] = 'split'
+          editions[ed.id.to_s] = 'split'
         end
       end
 
