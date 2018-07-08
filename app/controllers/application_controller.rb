@@ -64,9 +64,7 @@ class ApplicationController < ActionController::Base
   end
 
   def deny_access
-    redirect_to :back, alert: 'Access denied.'
-  rescue ActionController::RedirectBackError
-    redirect_to '/', alert: 'Access denied.'
+    redirect_back alert: 'Access denied.', fallback_location: '/'
   end
 
   def query?
@@ -83,7 +81,7 @@ class ApplicationController < ActionController::Base
   def xhr_only
     return true if request.xhr?
 
-    render nothing: true, status: 400
+    head :bad_request
   end
 
   def clean_page_param

@@ -10,7 +10,7 @@
 #
 require 'babosa'
 
-class Work < ActiveRecord::Base
+class Work < ApplicationRecord
   include FriendlyId
   has_many :editions
 

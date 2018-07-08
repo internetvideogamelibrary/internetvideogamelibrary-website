@@ -23,7 +23,7 @@
 require 'babosa'
 require 'sanitize'
 
-class Edition < ActiveRecord::Base
+class Edition < ApplicationRecord
   include HashableParams
   include FriendlyId
   include MarkdownDescription

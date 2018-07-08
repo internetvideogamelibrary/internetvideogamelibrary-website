@@ -1,6 +1,6 @@
 require 'babosa'
 
-class Expansion < ActiveRecord::Base
+class Expansion < ApplicationRecord
   include FriendlyId
   include MarkdownDescription
 

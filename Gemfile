@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.4.4'
-gem 'rails', '4.2.10'
+gem 'rails', '5.0.7'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
@@ -48,7 +48,6 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'quiet_assets'
   gem 'rails_layout'
   gem 'spring-commands-rspec'
   gem 'web-console'
@@ -65,4 +64,5 @@ group :test do
   gem 'selenium-webdriver'
   gem 'simplecov', :require => false
   gem 'timecop'
+  gem 'rails-controller-testing'
 end
