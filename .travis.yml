@@ -11,10 +11,10 @@ cache:
         - vendor/assets/bower_components
         - node_modules
 rvm:
-    - 2.4.6
+    - 2.6.3
 bundler_args: --without production
 addons:
-  postgresql: "9.3"
+  postgresql: "9.6"
   apt:
     sources:
       - ubuntu-sdk-team
