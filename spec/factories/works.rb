@@ -16,7 +16,7 @@ FactoryBot.define do
 
     factory :work_with_editions do
       transient do
-        editions_count 1
+        editions_count { 1 }
       end
 
       after(:create) do |work, evaluator|
@@ -27,8 +27,8 @@ FactoryBot.define do
 
     factory :work_with_editions_and_expansions do
       transient do
-        editions_count 1
-        expansions_count 1
+        editions_count { 1 }
+        expansions_count { 1 }
       end
 
       after(:create) do |work, evaluator|

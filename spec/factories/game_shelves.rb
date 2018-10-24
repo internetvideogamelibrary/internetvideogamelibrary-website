@@ -13,16 +13,16 @@
 FactoryBot.define do
   factory :game_shelf do
     user
-    title 'MyString'
-    shelf_type GameShelf.shelf_types[:wishlist]
+    title { 'MyString' }
+    shelf_type { GameShelf.shelf_types[:wishlist] }
 
     trait :custom do
-      shelf_type GameShelf.shelf_types[:custom]
+      shelf_type { GameShelf.shelf_types[:custom] }
     end
 
     factory :game_shelf_with_shelf_items do
       transient do
-        shelf_items_count 1
+        shelf_items_count { 1 }
       end
 
       after(:create) do |game_shelf, evaluator|

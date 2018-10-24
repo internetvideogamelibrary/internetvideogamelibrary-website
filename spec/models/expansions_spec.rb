@@ -30,8 +30,6 @@ RSpec.describe Expansion, type: :model do
     markdown_description = %q(<h1>Title</h1>
 
 <p><em>Now</em></p>
-
-<p>var bogus = 1;</p>
 )
 
     # then

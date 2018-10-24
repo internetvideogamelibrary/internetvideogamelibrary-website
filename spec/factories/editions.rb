@@ -24,10 +24,10 @@
 FactoryBot.define do
   factory :edition do
     sequence(:title) { |n| "Edition #{n}" }
-    developer 'MyString'
-    publisher 'MyString'
+    developer { 'MyString' }
+    publisher { 'MyString' }
     sequence(:release_date) { |n| n.days.from_now }
-    description 'MyText'
+    description { 'MyText' }
     platform
     region
     work
