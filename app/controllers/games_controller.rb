@@ -53,7 +53,11 @@ class GamesController < ApplicationController
 
   private
 
+  def search_params
+    params.permit(:q, :page, :platform, :type, :id)
+  end
+
   def go_to_index_on_empty_query_string
-    redirect_to games_path(params.except('q')) unless params[:q].present?
+    redirect_to games_path(search_params.except('q')) unless search_params[:q].present?
   end
 end
