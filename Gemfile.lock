@@ -710,7 +710,7 @@ GEM
       multi_json
     erubi (1.7.1)
     erubis (2.7.0)
-    exception_notification (4.2.2)
+    exception_notification (4.3.0)
       actionmailer (>= 4.0, < 6)
       activesupport (>= 4.0, < 6)
     excon (0.62.0)
