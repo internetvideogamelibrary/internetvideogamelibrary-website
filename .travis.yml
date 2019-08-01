@@ -12,7 +12,13 @@ rvm:
     - 2.4.6
 bundler_args: --without production
 addons:
-      postgresql: "9.3"
+  postgresql: "9.3"
+  apt:
+    sources:
+      - ubuntu-sdk-team
+    packages:
+      - libqt5webkit5-dev
+      - qtdeclarative5-dev
 services:
       - elasticsearch
 before_install:
