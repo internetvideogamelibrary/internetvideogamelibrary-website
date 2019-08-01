@@ -1,7 +1,9 @@
+dist: trusty
 env:
   global:
     - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
     - COVERAGE=1
+    - QMAKE=/usr/lib/x86_64-linux-gnu/qt5/bin/qmake
 language: ruby
 cache:
     bundler: true
@@ -12,7 +14,13 @@ rvm:
     - 2.4.6
 bundler_args: --without production
 addons:
-      postgresql: "9.3"
+  postgresql: "9.3"
+  apt:
+    sources:
+      - ubuntu-sdk-team
+    packages:
+      - libqt5webkit5-dev
+      - qtdeclarative5-dev
 services:
       - elasticsearch
 before_install:
