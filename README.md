@@ -13,8 +13,8 @@ Ruby on Rails
 
 This application requires:
 
-- Ruby 2.4.6
-- Rails 5.0.7.2
+- Ruby 2.6.3
+- Rails 5.1.6
 
 License
 -------

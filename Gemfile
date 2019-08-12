@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '5.0.7.2'
+gem 'rails', '5.1.6'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
@@ -14,13 +14,15 @@ gem 'omniauth-facebook'
 gem 'koala'
 gem 'omniauth-google-oauth2'
 gem 'acts_as_follower'
-gem 'pg', '1.1.4'
+gem 'pg'
 gem 'pundit'
 gem 'annotate'
 gem 'active_link_to'
 gem 'gretel'
-gem 'paperclip'
-gem 'aws-sdk'
+
+gem 'paperclip' # used for managing image attachments
+gem 'aws-sdk-s3' # used for sending images to s3
+
 gem 'redcarpet'
 gem 'will_paginate-bootstrap'
 gem 'chewy', '~> 0.9.0'
@@ -28,8 +30,10 @@ gem 'friendly_id'
 gem 'babosa'
 gem 'nokogiri'
 gem 'exception_notification'
-gem 'sitemap_generator'
-gem 'fog'
+
+gem 'sitemap_generator' # used for generating sitemaps
+gem 'fog-aws' # used to send the sitemaps to s3
+
 gem 'figaro'
 gem 'addressable'
 gem 'responders'
