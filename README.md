@@ -14,7 +14,7 @@ Ruby on Rails
 This application requires:
 
 - Ruby 2.6.3
-- Rails 5.1.6
+- Rails 5.1.7
 
 License
 -------
