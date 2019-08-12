@@ -328,7 +328,10 @@ describe EditionsController do
     end
     it 'with valid new work and edition should save and redirect to new edition' do
       # given
-      expected_edition = FactoryBot.build(:edition, work: nil)
+      platform = create(:platform)
+      region = create(:region)
+      media = create(:medium)
+      expected_edition = FactoryBot.build(:edition, work: nil, platform: platform, region: region, media: media)
       expected_work = FactoryBot.build(:work)
 
       expect {
@@ -351,7 +354,10 @@ describe EditionsController do
     end
     it 'with valid new edition and existing work should save and redirect to new edition' do
       # given
-      expected_edition = FactoryBot.build(:edition, work: nil)
+      platform = create(:platform)
+      region = create(:region)
+      media = create(:medium)
+      expected_edition = FactoryBot.build(:edition, work: nil, platform: platform, region: region, media: media)
       expected_work = FactoryBot.create(:work)
 
       expect {
