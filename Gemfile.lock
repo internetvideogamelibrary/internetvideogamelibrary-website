@@ -1049,7 +1049,7 @@ GEM
       nokogiri (~> 1.5)
       optimist (~> 3.0)
     rdoc (6.0.4)
-    redcarpet (3.4.0)
+    redcarpet (3.5.0)
     ref (2.0.0)
     regexp_parser (1.5.1)
     representable (3.0.4)
