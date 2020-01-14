@@ -158,13 +158,13 @@ describe EditionsController do
       # given
       work1 = FactoryBot.create(:work_with_editions, editions_count: 6)
       edition = work1.editions.first
-      expected_editions = work1.editions.take(5)
+      expected_editions = work1.editions.last(5)
 
       # when
       get :show, params: { id: edition }
 
       # then
-      expect(assigns[:other_editions]).to eq(expected_editions)
+      expect(assigns[:other_editions]).to match_array(expected_editions)
     end
     it 'populates the @edition variable with the requested edition' do
       # given

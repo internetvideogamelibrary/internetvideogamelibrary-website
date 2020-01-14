@@ -100,8 +100,8 @@ describe WorksController do
           expected_split << ed
         end
       end
-      expected_new_work_release_date = expected_split.last.release_date
-      expected_old_work_release_date = expected_keep.last.release_date
+      expected_new_work_release_date = expected_split.sort_by(&:release_date).first.release_date
+      expected_old_work_release_date = expected_keep.sort_by(&:release_date).first.release_date
 
       expect {
         # when

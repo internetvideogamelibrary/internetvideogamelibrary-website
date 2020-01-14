@@ -208,8 +208,9 @@ describe GameShelvesController do
     it 'should change shelf item to other shelf' do
       # given
       edition = FactoryBot.create(:edition)
-      shelf_item = FactoryBot.create(:shelf_item, item: edition)
+      shelf_item = FactoryBot.build(:shelf_item, item: edition)
       game_shelf = FactoryBot.create(:game_shelf, user: @user, shelf_items: [shelf_item])
+      shelf_item.save!
       game_shelf_playing = FactoryBot.create(:game_shelf, user: @user, shelf_type: GameShelf.shelf_types[:playing])
       expected_edition = game_shelf.shelf_items.first.item
 
@@ -228,8 +229,9 @@ describe GameShelvesController do
     it 'should create other item if custom shelf' do
       # given
       edition = FactoryBot.create(:edition)
-      shelf_item = FactoryBot.create(:shelf_item, item: edition)
+      shelf_item = FactoryBot.build(:shelf_item, item: edition)
       game_shelf = FactoryBot.create(:game_shelf, user: @user, shelf_items: [shelf_item])
+      shelf_item.save!
       game_shelf_playing = FactoryBot.create(:game_shelf, :custom, user: @user)
       expected_edition = game_shelf.shelf_items.first.item
 
@@ -248,8 +250,9 @@ describe GameShelvesController do
     it 'should not add item twice if custom shelf' do
       # given
       edition = FactoryBot.create(:edition)
-      shelf_item = FactoryBot.create(:shelf_item, item: edition)
+      shelf_item = FactoryBot.build(:shelf_item, item: edition)
       game_shelf = FactoryBot.create(:game_shelf, user: @user, shelf_items: [shelf_item])
+      shelf_item.save!
       game_shelf_playing = FactoryBot.create(:game_shelf, :custom, user: @user)
       expected_edition = game_shelf.shelf_items.first.item
 
@@ -345,8 +348,9 @@ describe GameShelvesController do
     it 'should change shelf item to other shelf' do
       # given
       expansion = FactoryBot.create(:expansion)
-      shelf_item = FactoryBot.create(:shelf_item, item: expansion)
+      shelf_item = FactoryBot.build(:shelf_item, item: expansion)
       game_shelf = FactoryBot.create(:game_shelf, user: @user, shelf_items: [shelf_item])
+      shelf_item.save!
       game_shelf_playing = FactoryBot.create(:game_shelf, user: @user, shelf_type: GameShelf.shelf_types[:playing])
       expected_expansion = game_shelf.shelf_items.first.item
 
@@ -365,8 +369,9 @@ describe GameShelvesController do
     it 'should create other item if custom shelf' do
       # given
       expansion = FactoryBot.create(:expansion)
-      shelf_item = FactoryBot.create(:shelf_item, item: expansion)
+      shelf_item = FactoryBot.build(:shelf_item, item: expansion)
       game_shelf = FactoryBot.create(:game_shelf, user: @user, shelf_items: [shelf_item])
+      shelf_item.save!
       game_shelf_playing = FactoryBot.create(:game_shelf, :custom, user: @user)
       expected_expansion = game_shelf.shelf_items.first.item
 
@@ -387,8 +392,9 @@ describe GameShelvesController do
     it 'should remove a edition' do
       # given
       edition = FactoryBot.create(:edition)
-      shelf_item = FactoryBot.create(:shelf_item, item: edition)
+      shelf_item = FactoryBot.build(:shelf_item, item: edition)
       game_shelf = FactoryBot.create(:game_shelf, user: @user, shelf_items: [shelf_item])
+      shelf_item.save!
 
       expect{
         # when
@@ -403,8 +409,9 @@ describe GameShelvesController do
     it 'should remove a expansion' do
       # given
       expansion = FactoryBot.create(:expansion)
-      shelf_item = FactoryBot.create(:shelf_item, item: expansion)
+      shelf_item = FactoryBot.build(:shelf_item, item: expansion)
       game_shelf = FactoryBot.create(:game_shelf, user: @user, shelf_items: [shelf_item])
+      shelf_item.save!
 
       expect{
         # when
@@ -419,8 +426,9 @@ describe GameShelvesController do
     it 'should fail to remove a expansion without id' do
       # given
       expansion = FactoryBot.create(:expansion)
-      shelf_item = FactoryBot.create(:shelf_item, item: expansion)
+      shelf_item = FactoryBot.build(:shelf_item, item: expansion)
       game_shelf = FactoryBot.create(:game_shelf, user: @user, shelf_items: [shelf_item])
+      shelf_item.save!
 
       expect{
         # when
@@ -435,8 +443,9 @@ describe GameShelvesController do
     it 'should fail to remove a expansion with unknown id' do
       # given
       expansion = FactoryBot.create(:expansion)
-      shelf_item = FactoryBot.create(:shelf_item, item: expansion)
+      shelf_item = FactoryBot.build(:shelf_item, item: expansion)
       game_shelf = FactoryBot.create(:game_shelf, user: @user, shelf_items: [shelf_item])
+      shelf_item.save!
 
       expect{
         # when
@@ -521,8 +530,9 @@ describe GameShelvesController do
     it 'should remove given custom game shelf with games in it' do
       # given
       edition = FactoryBot.create(:edition)
-      shelf_item = FactoryBot.create(:shelf_item, item: edition)
+      shelf_item = FactoryBot.build(:shelf_item, item: edition)
       game_shelf = FactoryBot.create(:game_shelf, :custom, user: @user, shelf_items: [shelf_item])
+      shelf_item.save!
 
       expect {
         # when
