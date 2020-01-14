@@ -169,7 +169,7 @@ GEM
     ipaddress (0.8.3)
     jaro_winkler (1.5.4)
     jmespath (1.4.0)
-    json (2.2.0)
+    json (2.3.0)
     jwt (2.2.1)
     koala (3.0.0)
       addressable
@@ -342,7 +342,7 @@ GEM
     selenium-webdriver (3.142.6)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
-    simplecov (0.17.0)
+    simplecov (0.17.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
