@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe ShelfItem, type: :model do
   it 'has a valid factory' do
-    expect(FactoryBot.create(:shelf_item)).to be_valid
+    user = FactoryBot.create(:user)
+    wishlist = FactoryBot.create(:game_shelf, user: user)
+    expect(FactoryBot.create(:shelf_item, game_shelf: wishlist)).to be_valid
   end
 
   it 'should return a valid response for shelf_items_per_user_and_game' do

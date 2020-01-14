@@ -37,6 +37,7 @@ class Expansion < ApplicationRecord
     self.release_date = edition.release_date
     self.created_at = edition.created_at
     self.coverart = edition.coverart
+    self.edition = edition
   end
 
   def coverart_remote_url=(url_value)

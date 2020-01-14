@@ -17,7 +17,8 @@ describe GameShelvesHelper do
     it 'should return 0 when the item is not on the shelf' do
       # given
       game_shelf = FactoryBot.create(:game_shelf)
-      shelf_item = FactoryBot.create(:shelf_item)
+      another_shelf = FactoryBot.create(:game_shelf)
+      shelf_item = FactoryBot.create(:shelf_item, game_shelf: another_shelf)
 
       # when
       function_ret = item_on_shelf?(shelf_item, game_shelf)
@@ -66,7 +67,7 @@ describe GameShelvesHelper do
       # given
       shelf = FactoryBot.create(:game_shelf)
       user = shelf.user
-      game = FactoryBot.create(:shelf_item)
+      game = FactoryBot.create(:shelf_item, game_shelf: shelf)
 
       # when
       function_ret = add_user_game_shelf_path(user, shelf, game)

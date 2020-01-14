@@ -81,11 +81,11 @@ class WorksController < ApplicationController
         @older_keep = decide_older_edition(@older_keep, e)
       end
     end
-    @work.original_release_date = @older_keep
+    @work.original_release_date = @older_keep.release_date
     @work.slug = nil
     @work.save
 
-    @split_work = Work.new(original_title: @work.original_title, original_release_date: @older_split)
+    @split_work = Work.new(original_title: @work.original_title, original_release_date: @older_split.release_date)
     if @split_work.save
       split_editions.each do |e|
         e.work = @split_work
@@ -137,11 +137,12 @@ class WorksController < ApplicationController
 
   def decide_older_edition(older_edition, edition)
     if !older_edition.present?
-      return older_edition = edition.release_date
-    elsif edition.release_date < older_edition
-      return older_edition = edition.release_date
+      edition
+    elsif edition.release_date < older_edition.release_date
+      edition
+    else
+      older_edition
     end
-    older_edition
   end
 
   def contain_all_editions?(split_edition_ids, keep_edition_ids, work)
