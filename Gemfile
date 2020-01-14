@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '5.2.4.1'
+# The framework
+gem "rails", "~> 5.2.0"
+# Speeds up application boot
+gem "bootsnap"
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
@@ -57,6 +60,8 @@ group :development do
   gem 'spring-commands-rspec'
   gem 'web-console'
   gem 'spring'
+  # Required for rails file watcher
+  gem "listen"
 end
 group :production do
   gem 'rails_12factor'
