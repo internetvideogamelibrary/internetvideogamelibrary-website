@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # The framework
-gem "rails", "~> 5.2.0"
+gem "rails", "~> 5.2.4"
 # Speeds up application boot
 gem "bootsnap"
 gem 'sass-rails'
