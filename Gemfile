@@ -70,7 +70,6 @@ group :test do
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'database_cleaner'
-  gem 'launchy'
   gem 'selenium-webdriver'
   gem 'simplecov', :require => false
   gem 'timecop'
