@@ -28,7 +28,7 @@ gem 'aws-sdk-s3' # used for sending images to s3
 
 gem 'redcarpet'
 gem 'will_paginate-bootstrap'
-gem 'chewy', '~> 0.9.0'
+gem 'chewy', '~> 7.2.1'
 gem 'friendly_id'
 gem 'babosa'
 gem 'nokogiri'
