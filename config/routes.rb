@@ -41,6 +41,8 @@ Rails.application.routes.draw do
   resources :editions do
     collection do
       get 'existing_work'
+      get "import"
+      post "import"
     end
     member do
       get 'transform'

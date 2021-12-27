@@ -37,6 +37,10 @@ crumb :new_edition do
   link 'New edition', new_edition_path
   parent :games
 end
+crumb :import_edition do
+  link 'Import edition', import_editions_path
+  parent :games
+end
 
 crumb :transform_edition do |edition|
   link "Transforming edition #{edition.title} into DLC/Expansion", transform_edition_path(edition)
