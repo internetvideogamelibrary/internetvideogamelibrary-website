@@ -6,4 +6,7 @@ if Rails.env.production?
     secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
     s3_region: ENV['S3_REGION']
   }
+  Paperclip::HttpUrlProxyAdapter.register
+elsif Rails.env.development?
+  Paperclip::HttpUrlProxyAdapter.register
 end

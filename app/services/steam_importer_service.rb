@@ -28,10 +28,7 @@ class SteamImporterService
     edition.description = parsed_response.at_css("[class='game_description_snippet']").text.gsub(/[\t\r\n]/, "")
     edition.platform_id = Platform.find_by_title("PC").id
     edition.region_id = Region.find_by_title("Worldwide").id
-    #  coverart_file_name    :string(255)
-    #  coverart_content_type :string(255)
-    #  coverart_file_size    :integer
-    #  coverart_updated_at   :datetime
+    edition.coverart = parsed_response.at_css("[class='game_header_image_full']").attr("src")
     edition.media_id = Media.find_by_title("Steam (Digital Download)").id
 
     edition
