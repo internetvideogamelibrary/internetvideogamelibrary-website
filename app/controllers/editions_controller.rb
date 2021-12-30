@@ -27,7 +27,7 @@ class EditionsController < ApplicationController
   def import
     steam_url = steam_params[:steam_url]
     if steam_url
-      @edition = SteamImporterService.new.import_edition(steam_url)
+      @edition = SteamImporterService.new(steam_url).import_edition
       create_with_new_work(@edition.title, @edition.release_date)
     end
 
