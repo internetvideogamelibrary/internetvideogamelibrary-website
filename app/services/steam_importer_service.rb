@@ -40,7 +40,6 @@ class SteamImporterService
 
     def title
       @parsed_page.at_css("[id='appHubAppName']").text
-      raise StandardError
     end
 
     def developer
