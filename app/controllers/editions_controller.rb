@@ -28,6 +28,7 @@ class EditionsController < ApplicationController
     steam_url = params.permit(:steam_url)[:steam_url]
     if steam_url
       @edition = SteamImporterService.new.import_edition(steam_url)
+      create_with_new_work(@edition.title, @edition.release_date)
     end
 
   rescue SteamImporterService::SteamImporterServiceFetchError
@@ -56,8 +57,7 @@ class EditionsController < ApplicationController
       work = Work.friendly.find(params.require(:existing_work).permit(:id)[:id])
       create_with_existing_work(work: work)
     else
-      work = Work.new(work_params)
-      create_with_new_work(work)
+      create_with_new_work(work_params[:original_title], work_params[:original_release_date])
     end
   end
 
@@ -117,7 +117,12 @@ class EditionsController < ApplicationController
     params.require(:work).permit(:original_title, :original_release_date)
   end
 
-  def create_with_new_work(work)
+  def create_with_new_work(original_title, original_release_date)
+    work = Work.new(
+      original_title: original_title,
+      original_release_date: original_release_date
+    )
+
     work.transaction do
       work.save!
       @edition.work_id = work.id
