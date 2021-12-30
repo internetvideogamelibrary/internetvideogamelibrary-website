@@ -55,7 +55,7 @@ class SteamImporterService
     end
 
     def description
-      @parsed_page.at_css("[class='game_description_snippet']").text.gsub(/[\t\r\n]/, "")
+      ReverseMarkdown.convert @parsed_page.at_css("[id='game_area_description']")
     end
 
     def platform

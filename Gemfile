@@ -44,6 +44,8 @@ gem 'active_record_union'
 gem 'puma'
 gem 'sanitize'
 
+gem "reverse_markdown" # gem to import Steam's description to markdown
+
 group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'

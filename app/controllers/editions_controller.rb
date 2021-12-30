@@ -25,7 +25,7 @@ class EditionsController < ApplicationController
   end
 
   def import
-    steam_url = params.permit(:steam_url)[:steam_url]
+    steam_url = steam_params[:steam_url]
     if steam_url
       @edition = SteamImporterService.new.import_edition(steam_url)
       create_with_new_work(@edition.title, @edition.release_date)
@@ -115,6 +115,10 @@ class EditionsController < ApplicationController
 
   def work_params
     params.require(:work).permit(:original_title, :original_release_date)
+  end
+
+  def steam_params
+    params.permit(:steam_url)
   end
 
   def create_with_new_work(original_title, original_release_date)
