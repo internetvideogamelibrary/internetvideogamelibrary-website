@@ -1,0 +1,56 @@
+%div.block.hero.is-grey
+  %div.hero-body
+    %div.container
+      %p.title.is-2
+        Internet Video Game Library
+      %p.Subtitle
+        Welcome to Internet Video Game Library! Here you can keep track of your backlog and get information about all your games.
+      %p
+        = link_to new_user_registration_path, class: "button is-primary" do
+          Sign up now &raquo;
+
+%div.block
+  %div.columns
+    %div.column.is-4
+      %p.subtitle.is-4
+        All game releases in one place!
+      %p
+        Japanese, European, North American or Brazillian. All releases organized and linked so that you can easily navigate between one another.
+    %div.column.is-4
+      %p.subtitle.is-4
+        Custom lists
+      %p
+        We already prepared five lists for you: Wishlist, Backlog, Playing, Played and Finished. But if you want to keep track of the games you achieved 100%, you can create another list.
+    %div.column.is-4
+      %p.subtitle.is-4
+        Community built
+      %p
+        Everyone can sign up to edit and insert new games. This way, the database is always up-to-date. Ask to be a game master and you'll have all this super powers!
+  %div.columns
+    %div.column.is-4
+      %p.subtitle.is-4
+        Current status
+      %p
+        We currently have
+        = @work_count
+        unique games
+        = @editions_count
+        editions and
+        = @expansions_count
+        Expansions/DLC in our database!
+
+%div.block
+  %p.subtitle.is-4
+    New releases
+
+  %div.columns
+    - @new_releases.each_with_index do |game, i|
+      %div.column.is-2= render partial: "shared/games_index_view_object", locals: {game: game, user_shelves: @user_shelves}
+
+%div.block
+  %p.subtitle.is-4
+    Recently added games
+
+  %div.columns
+    - @games.each_with_index do |game, i|
+      %div.column.is-2= render partial: "shared/games_index_view_object", locals: {game: game, user_shelves: @user_shelves}

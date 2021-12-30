@@ -1,0 +1,47 @@
+- if user_signed_in?
+  %div.navbar-item.has-dropdown.is-hoverable
+    %a.navbar-link
+      %span.icon-text
+        %span.icon
+          %i.fa.fa-user
+        %span
+          - if current_user.name.present?
+            = current_user.name
+          - else
+            Logged in
+    %div.navbar-dropdown.is-right
+      = active_link_to user_game_shelves_path(current_user), class: "navbar-item" do
+        %span.icon-text
+          %span.icon
+            %i.fa.fa-book
+          %span
+            My games
+      = active_link_to edit_user_registration_path, class: "navbar-item" do
+        %span.icon-text
+          %span.icon
+            %i.fa.fa-edit
+          %span
+            Edit account
+      = active_link_to identities_users_path, class: "navbar-item" do
+        %span.icon-text
+          %span.icon
+            %i.fa.fa-link
+          %span
+            Your social networks
+      = active_link_to destroy_user_session_path, :method=>'delete', class: "navbar-item" do
+        %span.icon-text
+          %span.icon
+            %i.fa.fa-sign-out
+          %span
+            Sign out
+- else
+  %div.navbar-item
+    %div.buttons
+      = active_link_to new_user_session_path, class: "button is-primary" do
+        %span.icon-text
+          %span.icon
+            %i.fa.fa-sign-in
+          %span
+            Log in
+      = active_link_to new_user_registration_path, class: "button is-light" do
+        Sign up

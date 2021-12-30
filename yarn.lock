@@ -20,11 +20,6 @@
   resolved "https://registry.yarnpkg.com/@hotwired/turbo/-/turbo-7.1.0.tgz#27e44e0e3dc5bd1d4bda0766d579cf5a14091cd7"
   integrity sha512-Q8kGjqwPqER+CtpQudbH+3Zgs2X4zb6pBAlr6NsKTXadg45pAOvxI9i4QpuHbwSzR2+x87HUm+rot9F/Pe8rxA==
 
-"@popperjs/core@^2.11.0":
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.0.tgz#6734f8ebc106a0860dff7f92bf90df193f0935d7"
-  integrity sha512-zrsUxjLOKAzdewIDRWy9nsV1GQsKBCWaGwsZQlCgr6/q+vjyZhFgqedLfFBuI9anTPEUT4APq9Mu0SZBTzIcGQ==
-
 "@rails/actioncable@^6.0.0":
   version "6.1.4"
   resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-6.1.4.tgz#c3c5a9f8302c429af9722b6c50ab48049016d2a3"
@@ -43,17 +38,17 @@ binary-extensions@^2.0.0:
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-2.2.0.tgz#75f502eeaf9ffde42fc98829645be4ea76bd9e2d"
   integrity sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==
 
-bootstrap-sass@^3.3.6:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/bootstrap-sass/-/bootstrap-sass-3.4.1.tgz#6843c73b1c258a0ac5cb2cc6f6f5285b664a8e9a"
-  integrity sha512-p5rxsK/IyEDQm2CwiHxxUi0MZZtvVFbhWmyMOt4lLkA4bujDA1TGoKT0i1FKIWiugAdP+kK8T5KMDFIKQCLYIA==
-
 braces@~3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/braces/-/braces-3.0.2.tgz#3454e1a462ee8d599e236df336cd9ea4f8afe107"
   integrity sha512-b8um+L1RzM3WDSzvhm6gIz1yfTbBt6YTlcEKAvsmqCZZFw46z626lVj9j1yEPW33H5H+lBQpZMP1k8l+78Ha0A==
   dependencies:
     fill-range "^7.0.1"
+
+bulma@^0.9.3:
+  version "0.9.3"
+  resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.9.3.tgz#ddccb7436ebe3e21bf47afe01d3c43a296b70243"
+  integrity sha512-0d7GNW1PY4ud8TWxdNcP6Cc8Bu7MxcntD/RRLGWuiw/s0a9P+XlH/6QoOIrmbj6o8WWJzJYhytiu9nFjTszk1g==
 
 "chokidar@>=3.0.0 <4.0.0":
   version "3.5.2"

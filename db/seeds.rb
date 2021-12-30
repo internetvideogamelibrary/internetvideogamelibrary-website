@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -6,8 +8,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 Chewy.strategy(:atomic) do
-# user = CreateAdminService.new.call
-# puts 'CREATED ADMIN USER: ' << user.email
+  user = CreateAdminService.new.call
+  puts "CREATED ADMIN USER: #{user.email}"
 
   Platform.create(:title => "3DO")
   Platform.create(:title => "Acorn Archimedes")
@@ -129,7 +131,7 @@ Chewy.strategy(:atomic) do
   Platform.create(:title => "Zeebo")
   Platform.create(:title => "Zodiac")
 
-  puts 'CREATED A PLATFORM: ' << platform.title
+  puts "CREATED A PLATFORM: #{platform.title}"
 
   Region.create(:title => "Asia")
   Region.create(:title => "Australia")
@@ -140,7 +142,7 @@ Chewy.strategy(:atomic) do
   Region.create(:title => "South America")
   Region.create(:title => "Worldwide")
   Region.create(:title => "Brazil")
-  puts 'CREATED A REGION: ' << region.title
+  puts "CREATED A REGION: #{region.title}"
 
   Media.create(:title => 'Blu-Ray Disc')
   media = Media.create(:title => 'Cartridge')
@@ -159,7 +161,7 @@ Chewy.strategy(:atomic) do
   Media.create(:title => 'PlayStation Vita game card')
   Media.create(:title => 'Floppy Disk')
 
-  puts 'CREATED A MEDIA: ' << media.title
+  puts "CREATED A MEDIA: #{media.title}"
 
   Genre.create(:title => 'Action')
   Genre.create(:title => 'Adventure')
@@ -174,7 +176,7 @@ Chewy.strategy(:atomic) do
   Genre.create(:title => 'Strategy')
 
   work = Work.create(:original_title => 'Spelunker', :original_release_date => '1983-01-01')
-  puts 'CREATED A WORK (GAME): ' << work.original_title
+  puts "CREATED A WORK (GAME): #{work.original_title}"
   edition = Edition.create(:title => 'Spelunker', :developer => 'MicroGraphicImage', :publisher => 'Brøderbund', :release_date => '1985-12-6', :description => 'Who knows what fabulous treasures - and unspeakable dangers - await you in the world\'s deepest cave? This is one game you can really get into...and into...and into.
 
 Wander through miles of uncharted passageways, swinging on ropes and ladders, tumbling over subterranean falls and plunging to the very depths of the earth on an abandoned mine railroad. Deadly steam vents and boiling lava pits threaten you at every turn. Chattering bats and the spirits of dead Spelunkers beg you to join them, permanently.
@@ -184,8 +186,8 @@ Let\'s face it: you\'re in deep, deep trouble.
 * 6 levels of increasing challenge
 * Intricate subterranean caverns
 * Exciting sound effects', :platform_id => platform.id, :region_id => region.id, :work_id => work.id, :media_id => media.id, :status => Edition.statuses[:active])
-  puts 'CREATED A EDITION (GAME): ' << edition.title
+  puts "CREATED A EDITION (GAME): #{edition.title}"
 
   edition = Edition.create(:title => 'Spelunker', :developer => 'MicroGraphicImage', :publisher => 'Tozai Games', :release_date => '2008-03-17', :description => 'Wander through miles of uncharted caves in search of the legendary underground pyramid and its vast treasures. To complete your adventure, you will swing from ropes and ladders, run across unstable terrain and down ravines, as well as operate elevators, mining carts and rafts. You will collect keys, bombs, flares, jewels, sacks of gold coins, and other valuable items as you navigate the hazardous terrain. But beware of the scalding steam vents, poisonous bats, and the avenging spiririts of dead spelunkers that lurk in every corner of the massive underground labyrinth.', :platform_id => platform2.id, :region_id => region2.id, :work_id => work.id, :media_id => media2.id, :status => Edition.statuses[:active])
-  puts 'CREATED A EDITION (GAME): ' << edition.title
+  puts "CREATED A EDITION (GAME): #{edition.title}"
 end

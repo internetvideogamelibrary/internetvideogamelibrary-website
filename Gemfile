@@ -45,8 +45,8 @@ gem "omniauth-google-oauth2"
 gem "acts_as_follower"
 gem "pundit"
 gem "annotate"
-gem "active_link_to"
-gem "gretel"
+gem "active_link_to" # Used to generate active links automatically
+gem "gretel" # Used for generating the breadcrumbs
 
 gem "kt-paperclip" # used for managing image attachments
 gem "aws-sdk-s3" # used for sending images to s3
@@ -54,7 +54,7 @@ gem "aws-sdk-s3" # used for sending images to s3
 gem "redcarpet"
 gem "will_paginate-bootstrap"
 
-gem "chewy", "~> 0.9.0"
+gem "chewy", "~> 5.0"
 gem "elasticsearch", "~> 7.3.0"
 
 gem "friendly_id"
@@ -69,6 +69,9 @@ gem "addressable"
 gem "responders"
 gem "active_record_union"
 gem "sanitize"
+
+# Alternative templating system
+gem "haml"
 
 # net-smtp, net-imap and net-pop were removed from default gems in Ruby 3.1, but is used by the `mail` gem.
 # So we need to add them as dependencies until `mail` is fixed: https://github.com/mikel/mail/pull/1439

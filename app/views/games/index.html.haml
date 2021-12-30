@@ -1,0 +1,24 @@
+- content_for :title do
+  All games -
+  - if params[:page]
+    page #{params[:page]} -
+  Internet Video Game Library
+
+- breadcrumb :games
+
+%div.block
+  = form_tag games_path, :method => "get" do
+    %div.field.has-addons
+      %div.control
+        %div.select= select_tag(:platform, options_for_select(@platforms, params[:platform]), class: "select")
+      %div.control= button_tag("Go", class: "button is-primary")
+
+%div.columns.is-multiline
+  - @games.each_with_index do |game, i|
+    %div.column.is-2
+      = render partial: "shared/games_index_view_object", locals: {game: game, user_shelves: @user_shelves}
+= will_paginate @page_object, renderer: BootstrapPagination::Rails
+- if current_user.present? and current_user.game_maker_or_more?
+  = link_to("Add new game", new_edition_path)
+  |
+  = link_to("Import new game", import_editions_path)
