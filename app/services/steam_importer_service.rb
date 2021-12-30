@@ -1,14 +1,5 @@
 # frozen_string_literal: true
 
-require "net/http"
-require "nokogiri"
-require "date"
-
-require_relative "../models/work"
-require_relative "../models/platform"
-require_relative "../models/region"
-require_relative "../models/media"
-
 class SteamImporterService
   def self.import_edition(url:)
     uri = URI(url)
