@@ -27,14 +27,18 @@ class EditionsController < ApplicationController
   def import
     steam_url = params.permit(:steam_url)[:steam_url]
     if steam_url
-      @edition = SteamImporterService.import_edition(url: steam_url)
-      work = Work.new(
-        original_title: @edition.title,
-        original_release_date: @edition.release_date
-      )
-
-      create_with_new_work(work)
+      @edition = SteamImporterService.new.import_edition(steam_url)
     end
+
+  rescue SteamImporterService::SteamImporterServiceFetchError
+    flash[:error] = "Couldn't connect to Steam store"
+    render "import"
+  rescue SteamImporterService::SteamImporterServiceUrlError
+    flash[:error] = "There's something wrong with the store URL"
+    render "import"
+  rescue
+    flash[:error] = "There was an unknown error importing the edition"
+    render "import"
   end
 
   def existing_work
