@@ -33,7 +33,7 @@ class EditionsController < ApplicationController
         original_release_date: @edition.release_date
       )
 
-      create_with_new_work(work: work)
+      create_with_new_work(work)
     end
   end
 
@@ -53,7 +53,7 @@ class EditionsController < ApplicationController
       create_with_existing_work(work: work)
     else
       work = Work.new(work_params)
-      create_with_new_work(work: work)
+      create_with_new_work(work)
     end
   end
 
@@ -113,7 +113,7 @@ class EditionsController < ApplicationController
     params.require(:work).permit(:original_title, :original_release_date)
   end
 
-  def create_with_new_work(work:)
+  def create_with_new_work(work)
     work.transaction do
       work.save!
       @edition.work_id = work.id
