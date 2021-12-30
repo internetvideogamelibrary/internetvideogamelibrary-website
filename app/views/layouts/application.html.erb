@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title><%= content_for?(:title) ? yield(:title) : "Internet Video Game Library" %></title>
-		<meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Internet Video Game Library" %>">
-		<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-		<%= csrf_meta_tags %>
-		<%= favicon_link_tag 'favicon.ico' %>
-		<link href="https://cdn.jsdelivr.net/npm/fork-awesome@1.0.11/css/fork-awesome.min.css" rel="stylesheet" integrity="sha384-uuYw9QCBRSK1iU8peX/dvpGqv5uv83afJrv7ZBTX8tG7dB+HR6JUDl20dBl30UZO" crossorigin="anonymous">
-	</head>
-	<body class="<%= controller_name %> <%= action_name %>">
-		<%= render 'layouts/navigation' %>
-		<div class="container">
-			<%= render 'layouts/messages' %>
-			<%= breadcrumbs style: :bootstrap, separator: '' %>
-			<%= yield %>
-		</div>
-		<%= render 'layouts/support' %>
-	</body>
-	<footer class="footer">
-		<div class="container">
-			<p>&copy; Internet Video Game Library 2015 | <%= link_to "FAQ", "https://github.com/internetvideogamelibrary/internetvideogamelibrary-website/wiki/FAQ" %> | <%= link_to "About Us", about_path %></p>
-		<%= debug(params) if Rails.env.development? %>
-		</div>
-	</footer>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "Internet Video Game Library" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Internet Video Game Library" %>">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= favicon_link_tag 'favicon.ico' %>
+    <link href="https://cdn.jsdelivr.net/npm/fork-awesome@1.0.11/css/fork-awesome.min.css" rel="stylesheet" integrity="sha384-uuYw9QCBRSK1iU8peX/dvpGqv5uv83afJrv7ZBTX8tG7dB+HR6JUDl20dBl30UZO" crossorigin="anonymous">
+  </head>
+  <body class="<%= controller_name %> <%= action_name %>">
+    <%= render 'layouts/navigation' %>
+    <div class="container">
+      <%= render 'layouts/messages' %>
+      <%= breadcrumbs style: :bootstrap, separator: '' %>
+      <%= yield %>
+    </div>
+    <%= render 'layouts/support' %>
+  </body>
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; Internet Video Game Library 2015 | <%= link_to "FAQ", "https://github.com/internetvideogamelibrary/internetvideogamelibrary-website/wiki/FAQ" %> | <%= link_to "About Us", about_path %></p>
+    <%= debug(params) if Rails.env.development? %>
+    </div>
+  </footer>
 </html>

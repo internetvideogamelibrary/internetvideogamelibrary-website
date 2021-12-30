@@ -1,8 +1,11 @@
-require 'referral_spam_control'
+# frozen_string_literal: true
+
+require "referral_spam_control"
 
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  include PunditHelper
   protect_from_forgery with: :exception
 
   before_action :ignore_referral_spam, :fill_platforms, :clean_page_param, :clean_platform_param
