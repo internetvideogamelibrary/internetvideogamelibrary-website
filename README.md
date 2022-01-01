@@ -3,6 +3,10 @@ Internet Video Game library [![Code Climate](https://codeclimate.com/github/inte
 
 Internet Video Game Library is a website designed to help users to mantain a collection and tracking of games. It aims to allow users to input when they started and finished playing a game, and also to keep track how many games they played, challenge themselves to finish a number of games in a year, and play games they have bought but are still on their shelves.
 
+Code formatting
+-------
+This project uses rubocop for code formatting. You should set it up in your editor and also set up lefthook (with `lefthook install -a`) to get warnings when pushing a branch with rubocop issues.
+
 Setting up
 -------
 

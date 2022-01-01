@@ -83,14 +83,21 @@ gem "reverse_markdown" # gem to import Steam's description to markdown
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "debug", platforms: %i[mri mingw x64_mingw]
   gem "factory_bot_rails"
   gem "faker"
   gem "rspec-rails"
+
+  # .env loading
+  gem "dotenv-rails", require: "dotenv/rails-now"
+
+  # Code formatting facilities
+  gem "lefthook"
+  gem "pronto", require: false, github: "prontolabs/pronto", ref: "a84f946f155c5a95946d4a52131ca037789cda9e" # While a new release is not cut containing the default_commit functionality
+  gem "pronto-rubocop", require: false
   gem "rubocop", require: false
   gem "rubocop-performance", require: false
   gem "rubocop-rails", require: false
-  gem "dotenv-rails", require: "dotenv/rails-now"
 end
 
 group :development do
@@ -99,12 +106,12 @@ group :development do
 
   gem "better_errors"
   gem "binding_of_caller"
-  gem "rails_layout"
-  gem "spring-commands-rspec"
-  gem "spring"
+  gem "letter_opener"
   # Required for rails file watcher
   gem "listen"
-  gem "letter_opener"
+  gem "rails_layout"
+  gem "spring"
+  gem "spring-commands-rspec"
 end
 
 group :test do
