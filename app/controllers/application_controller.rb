@@ -87,6 +87,12 @@ class ApplicationController < ActionController::Base
     head :bad_request
   end
 
+  def turbo_stream_only
+    return true if request.format == :turbo_stream
+
+    head :bad_request
+  end
+
   def clean_page_param
     params.delete(:page) unless (Integer(params[:page]) rescue false)
   end

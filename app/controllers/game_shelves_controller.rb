@@ -1,8 +1,7 @@
 class GameShelvesController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :xhr_only,
-                only: [:add_edition, :add_expansion, :add_game, :remove_item]
+  before_action :turbo_stream_only, only: %i[add_edition add_expansion add_game remove_item]
 
   before_action :game_shelf_exist,
                 only: [:add_edition, :add_expansion, :show, :edit, :update, :destroy]
@@ -44,7 +43,7 @@ class GameShelvesController < ApplicationController
     game_shelf = GameShelf.find_by_id(params[:id])
     @shelf_item = add_game_to_shelf(game_shelf, game)
 
-    render json: { status: :success, shelf_item: @shelf_item }
+    show_dropdown_partial(game)
   end
 
   def add_edition
@@ -63,7 +62,7 @@ class GameShelvesController < ApplicationController
 
     shelf_item.destroy
 
-    render json: { status: :success, message: :shelf_item_removed }
+    show_dropdown_partial(@game)
   end
 
   def new
@@ -107,6 +106,13 @@ class GameShelvesController < ApplicationController
   end
 
   private
+
+    include GameShelvesHelper
+
+    def show_dropdown_partial(game)
+      user_shelves = GameShelf.user_shelves(current_user.id)
+      add_shelf_dropdown(current_user, user_shelves, game)
+    end
 
   def game_shelf_params
     params.require(:game_shelf).require(:title)
