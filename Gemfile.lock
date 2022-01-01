@@ -309,6 +309,8 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    reverse_markdown (2.1.1)
+      nokogiri
     rspec-core (3.9.2)
       rspec-support (~> 3.9.3)
     rspec-expectations (3.9.2)
@@ -452,6 +454,7 @@ DEPENDENCIES
   rails_layout
   redcarpet
   responders
+  reverse_markdown
   rspec-rails
   rubocop
   rubocop-performance

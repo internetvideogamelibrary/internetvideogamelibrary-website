@@ -1,9 +1,9 @@
 class EditionsController < ApplicationController
   before_action :authenticate_user!,
-                only: [:new, :create, :edit, :update]
+                only: [:new, :create, :edit, :update, :import]
 
   before_action :game_maker_only,
-                only: [:new, :create, :edit, :update, :transform, :do_transform]
+                only: [:new, :create, :edit, :update, :import, :transform, :do_transform]
 
   before_action :parent_edition_exists,
                 only: [:do_transform]
@@ -24,6 +24,24 @@ class EditionsController < ApplicationController
     @work = Work.new
   end
 
+  def import
+    steam_url = steam_params[:steam_url]
+    if steam_url
+      @edition = SteamImporterService.new(steam_url).import_edition
+      create_with_new_work(@edition.title, @edition.release_date)
+    end
+
+  rescue SteamImporterService::SteamImporterServiceFetchError
+    flash[:error] = "Couldn't connect to Steam store"
+    render "import"
+  rescue SteamImporterService::SteamImporterServiceUrlError
+    flash[:error] = "There's something wrong with the store URL"
+    render "import"
+  rescue
+    flash[:error] = "There was an unknown error importing the edition"
+    render "import"
+  end
+
   def existing_work
     @work = Work.new(work_params)
     @existing_work = Work.friendly.find(params.require(:existing_work).permit(:id)[:id])
@@ -35,10 +53,11 @@ class EditionsController < ApplicationController
   def create
     @edition = Edition.new(edition_params)
     work_option = params.permit(:work_option)[:work_option]
-    if work_option == 'existing'
-      create_with_existing_work
+    if work_option == "existing"
+      work = Work.friendly.find(params.require(:existing_work).permit(:id)[:id])
+      create_with_existing_work(work: work)
     else
-      create_with_new_work
+      create_with_new_work(work_params[:original_title], work_params[:original_release_date])
     end
   end
 
@@ -98,11 +117,19 @@ class EditionsController < ApplicationController
     params.require(:work).permit(:original_title, :original_release_date)
   end
 
-  def create_with_new_work
-    @work = Work.new(work_params)
-    @work.transaction do
-      @work.save!
-      @edition.work_id = @work.id
+  def steam_params
+    params.permit(:steam_url)
+  end
+
+  def create_with_new_work(original_title, original_release_date)
+    work = Work.new(
+      original_title: original_title,
+      original_release_date: original_release_date
+    )
+
+    work.transaction do
+      work.save!
+      @edition.work_id = work.id
       @edition.save!
       flash[:success] = 'Your edition was added!'
       redirect_to @edition
@@ -112,9 +139,8 @@ class EditionsController < ApplicationController
     render 'new'
   end
 
-  def create_with_existing_work
-    @work = Work.friendly.find(params.require(:existing_work).permit(:id)[:id])
-    @edition.work_id = @work.id
+  def create_with_existing_work(work:)
+    @edition.work_id = work.id
     @edition.save!
     flash[:success] = 'Your edition was added!'
     redirect_to @edition
