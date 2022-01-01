@@ -44,7 +44,7 @@ class EditionsController < ApplicationController
 
   def existing_work
     @work = Work.new(work_params)
-    @existing_work = Work.friendly.find(params.require(:existing_work).permit(:id)[:id])
+    @existing_work = Work.friendly.find(existing_work_params[:id])
     respond_to do |format|
       format.js
     end
@@ -52,9 +52,13 @@ class EditionsController < ApplicationController
 
   def create
     @edition = Edition.new(edition_params)
-    work_option = params.permit(:work_option)[:work_option]
-    if work_option == "existing"
-      work = Work.friendly.find(params.require(:existing_work).permit(:id)[:id])
+    if existing_work_params[:work_option] == "existing"
+      begin
+        work = Work.friendly.find(existing_work_params[:id])
+      rescue ActiveRecord::RecordNotFound
+        render "new"
+        return
+      end
       create_with_existing_work(work: work)
     else
       create_with_new_work(work_params[:original_title], work_params[:original_release_date])
@@ -109,6 +113,10 @@ class EditionsController < ApplicationController
 
   private
 
+    def existing_work_params
+      params.require(:existing_work).permit(:id).merge(params.permit(:work_option))
+    end
+
   def edition_params
     params.require(:edition).permit(:title, :developer, :publisher, :description, :release_date, :platform_id, :region_id, :coverart, :media_id, :delete_coverart)
   end
@@ -145,8 +153,6 @@ class EditionsController < ApplicationController
     flash[:success] = 'Your edition was added!'
     redirect_to @edition
 
-  rescue ActiveRecord::RecordNotFound
-    render 'new'
   rescue ActiveRecord::RecordInvalid
     render 'new'
   end
