@@ -1,8 +1,6 @@
 class GameShelvesController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :turbo_stream_only, only: %i[add_edition add_expansion add_game remove_item]
-
   before_action :game_shelf_exist,
                 only: [:add_edition, :add_expansion, :show, :edit, :update, :destroy]
 
