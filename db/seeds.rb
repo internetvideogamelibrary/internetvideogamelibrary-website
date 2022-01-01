@@ -8,8 +8,10 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 Chewy.strategy(:atomic) do
-  user = CreateAdminService.new.call
-  puts "CREATED ADMIN USER: #{user.email}"
+  if Rails.env.development?
+    user = CreateAdminService.new.call
+    puts "CREATED ADMIN USER: #{user.email}"
+  end
 
   Platform.create(:title => "3DO")
   Platform.create(:title => "Acorn Archimedes")

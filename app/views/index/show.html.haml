@@ -33,7 +33,7 @@
       %p
         We currently have
         = @work_count
-        unique games
+        unique games,
         = @editions_count
         editions and
         = @expansions_count
@@ -43,7 +43,7 @@
   %p.subtitle.is-4
     New releases
 
-  %div.columns
+  %div.columns#new_releases
     - @new_releases.each_with_index do |game, i|
       %div.column.is-2= render partial: "shared/games_index_view_object", locals: {game: game, user_shelves: @user_shelves}
 
@@ -51,6 +51,6 @@
   %p.subtitle.is-4
     Recently added games
 
-  %div.columns
+  %div.columns#recently_added_games
     - @games.each_with_index do |game, i|
       %div.column.is-2= render partial: "shared/games_index_view_object", locals: {game: game, user_shelves: @user_shelves}

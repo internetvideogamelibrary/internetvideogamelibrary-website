@@ -97,7 +97,7 @@ class GameShelvesController < ApplicationController
 
   def update
     @game_shelf = GameShelf.find_by_id(params[:id])
-    @game_shelf.update_attributes!(game_shelf_params)
+    @game_shelf.update(game_shelf_params)
     flash[:success] = 'Custom Shelf Updated!'
     redirect_to [@game_shelf.user, @game_shelf]
 

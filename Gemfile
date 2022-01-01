@@ -67,7 +67,7 @@ gem "fog-aws" # used to send the sitemaps to s3
 gem "figaro"
 gem "addressable"
 gem "responders"
-gem "active_record_union"
+gem "active_record_union" # Used for union query in ShelfItem
 gem "sanitize"
 
 # Alternative templating system
@@ -76,6 +76,8 @@ gem "haml"
 # net-smtp, net-imap and net-pop were removed from default gems in Ruby 3.1, but is used by the `mail` gem.
 # So we need to add them as dependencies until `mail` is fixed: https://github.com/mikel/mail/pull/1439
 gem "net-smtp"
+gem "net-pop"
+gem "net-imap"
 
 gem "reverse_markdown" # gem to import Steam's description to markdown
 
@@ -87,6 +89,8 @@ group :development, :test do
   gem "rspec-rails"
   gem "rubocop", require: false
   gem "rubocop-performance", require: false
+  gem "rubocop-rails", require: false
+  gem "dotenv-rails", require: "dotenv/rails-now"
 end
 
 group :development do
@@ -105,11 +109,12 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
   gem "database_cleaner"
   gem "rails-controller-testing"
-  gem "selenium-webdriver"
-  gem "simplecov", :require => false
   gem "timecop"
+
+  # Everything capybara related
+  gem "capybara"
+  gem "selenium-webdriver"
   gem "webdrivers"
 end

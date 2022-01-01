@@ -69,8 +69,8 @@ class EditionsController < ApplicationController
   def update
     @edition = Edition.friendly.find(params[:id])
     @work = @edition.work
-    @work.update_attributes!(work_params)
-    @edition.update_attributes!(edition_params)
+    @work.update!(work_params)
+    @edition.update!(edition_params)
     flash[:success] = 'Your changes were saved!'
     redirect_to @edition
 
