@@ -1,9 +1,9 @@
-require: rubocop-performance
+require:
+  - rubocop-performance
+  - rubocop-rails
 AllCops:
   TargetRubyVersion: 3.1
-  # RuboCop has a bunch of cops enabled by default. This setting tells RuboCop
-  # to ignore them, so only the ones explicitly set in this file are enabled.
-  DisabledByDefault: true
+  NewCops: enable
   Exclude:
     - '**/templates/**/*'
     - '**/vendor/**/*'
@@ -14,11 +14,16 @@ AllCops:
     - 'db/migrate/**/*.rb'
     - 'db/*.rb'
 
+Metrics:
+  Enabled: false
+
+Layout/LineLength:
+  Enabled: false
+
 # Align `end` with the matching keyword or starting expression except for
 # assignments, where it should be aligned with the LHS.
 Layout/EndAlignment:
   EnforcedStyleAlignWith: variable
-  AutoCorrect: true
 
 # Method definitions after `private` or `protected` isolated calls need one
 # extra level of indentation.
@@ -27,12 +32,10 @@ Layout/IndentationConsistency:
 
 Style/FrozenStringLiteralComment:
   EnforcedStyle: always
-  Exclude:
-    - 'actionview/test/**/*.builder'
-    - 'actionview/test/**/*.ruby'
-    - 'actionpack/test/**/*.builder'
-    - 'actionpack/test/**/*.ruby'
-    - 'activestorage/db/migrate/**/*.rb'
+
+# Use `foo { bar }` not `foo {bar}`.
+Layout/SpaceInsideBlockBraces:
+  EnforcedStyleForEmptyBraces: space
 
 # Check quotes usage according to lint rule below.
 Style/StringLiterals:
@@ -43,3 +46,12 @@ Style/RedundantReturn:
 
 Style/Semicolon:
   AllowAsExpressionSeparator: true
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+
+Style/RescueStandardError:
+  EnforcedStyle: implicit
+
+Style/SymbolArray:
+  MinSize: 1
