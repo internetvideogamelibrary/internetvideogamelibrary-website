@@ -58,7 +58,10 @@ class SteamImporterService
     end
 
     def description
-      ReverseMarkdown.convert parsed_page.at_css("[id='game_area_description']")
+      desc = parsed_page.at_css("[id='game_area_description']")
+      desc.search("h2")&.find { |h| "about this game".casecmp(h.text).zero? }&.remove
+      desc.search("img")&.remove
+      ReverseMarkdown.convert desc
     end
 
     def platform
