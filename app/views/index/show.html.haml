@@ -1,13 +1,15 @@
 %div.block.hero.is-grey
   %div.hero-body
     %div.container
-      %p.title.is-2
-        Internet Video Game Library
-      %p.Subtitle
-        Welcome to Internet Video Game Library! Here you can keep track of your backlog and get information about all your games.
-      %p
-        = link_to new_user_registration_path, class: "button is-primary" do
-          Sign up now &raquo;
+      %div.columns.is-vcentered
+        %div.column.is-5
+          %img{src: "logo-complete.png"}
+        %div.column.is-6.is-offset-1.content
+          %p
+            Welcome to Internet Video Game Library! Here you can keep track of your backlog and get information about all your games.
+          %p
+            = link_to new_user_registration_path, class: "button is-primary" do
+              Sign up now &raquo;
 
 %div.block
   %div.columns
