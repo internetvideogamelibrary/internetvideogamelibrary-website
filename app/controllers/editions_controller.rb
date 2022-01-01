@@ -52,7 +52,7 @@ class EditionsController < ApplicationController
 
   def create
     @edition = Edition.new(edition_params)
-    if existing_work_params[:work_option] == "existing"
+    if work_option_param[:work_option] == "existing"
       begin
         work = Work.friendly.find(existing_work_params[:id])
       rescue ActiveRecord::RecordNotFound
@@ -113,8 +113,12 @@ class EditionsController < ApplicationController
 
   private
 
+    def work_option_param
+      params.permit(:work_option)
+    end
+
     def existing_work_params
-      params.require(:existing_work).permit(:id).merge(params.permit(:work_option))
+      params.require(:existing_work).permit(:id)
     end
 
   def edition_params

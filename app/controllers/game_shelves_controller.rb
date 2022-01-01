@@ -24,6 +24,8 @@ class GameShelvesController < ApplicationController
 
   def index
     game_shelf = GameShelf.find_by(user_id: current_user.id, shelf_type: GameShelf.shelf_types[:backlog])
+    raise "Missing game shelf" if game_shelf.blank?
+
     redirect_to [current_user, game_shelf]
   end
 

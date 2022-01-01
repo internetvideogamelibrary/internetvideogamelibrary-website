@@ -41,5 +41,9 @@ FactoryBot.define do
     after(:build) do |user|
       user.class.skip_callback(:commit, :after, :create_game_shelves, raise: false)
     end
+
+    factory :user_with_shelves, parent: :user do
+      after(:create, &:create_game_shelves)
+    end
   end
 end

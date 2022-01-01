@@ -28,7 +28,7 @@
             %i.fa.fa-link
           %span
             Your social networks
-      = active_link_to destroy_user_session_path, :method=>'delete', class: "navbar-item" do
+      = active_link_to destroy_user_session_path, "method": "delete", "data-turbo-method": "delete", class: "navbar-item" do
         %span.icon-text
           %span.icon
             %i.fa.fa-sign-out
