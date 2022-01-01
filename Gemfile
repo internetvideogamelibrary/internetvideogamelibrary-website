@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 # The framework
 gem "rails", github: "rails/rails", branch: "7-0-stable"
-
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -28,7 +29,7 @@ gem "cssbundling-rails"
 gem "jbuilder"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -36,20 +37,20 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 gem "sassc-rails"
 
-gem "devise"
-gem "omniauth"
-gem "omniauth-twitter"
-gem "omniauth-facebook"
-gem "koala"
-gem "omniauth-google-oauth2"
-gem "acts_as_follower"
-gem "pundit"
-gem "annotate"
 gem "active_link_to" # Used to generate active links automatically
+gem "acts_as_follower"
+gem "annotate"
+gem "devise"
 gem "gretel" # Used for generating the breadcrumbs
+gem "koala"
+gem "omniauth"
+gem "omniauth-facebook"
+gem "omniauth-google-oauth2"
+gem "omniauth-twitter"
+gem "pundit"
 
-gem "kt-paperclip" # used for managing image attachments
 gem "aws-sdk-s3" # used for sending images to s3
+gem "kt-paperclip" # used for managing image attachments
 
 gem "redcarpet"
 gem "will_paginate-bootstrap"
@@ -57,27 +58,27 @@ gem "will_paginate-bootstrap"
 gem "chewy", "~> 5.0"
 gem "elasticsearch", "~> 7.3.0"
 
-gem "friendly_id"
 gem "babosa"
-gem "nokogiri"
 gem "exception_notification"
+gem "friendly_id"
+gem "nokogiri"
 
-gem "sitemap_generator" # used for generating sitemaps
-gem "fog-aws" # used to send the sitemaps to s3
-gem "figaro"
-gem "addressable"
-gem "responders"
 gem "active_record_union" # Used for union query in ShelfItem
+gem "addressable"
+gem "figaro"
+gem "fog-aws" # used to send the sitemaps to s3
+gem "responders"
 gem "sanitize"
+gem "sitemap_generator" # used for generating sitemaps
 
 # Alternative templating system
 gem "haml"
 
 # net-smtp, net-imap and net-pop were removed from default gems in Ruby 3.1, but is used by the `mail` gem.
 # So we need to add them as dependencies until `mail` is fixed: https://github.com/mikel/mail/pull/1439
-gem "net-smtp"
-gem "net-pop"
 gem "net-imap"
+gem "net-pop"
+gem "net-smtp"
 
 gem "reverse_markdown" # gem to import Steam's description to markdown
 

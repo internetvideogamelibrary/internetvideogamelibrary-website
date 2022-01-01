@@ -9,7 +9,7 @@ if Rails.env.production?
     secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
     s3_region: ENV["S3_REGION"]
   }
-  if ENV.has_key?("S3_CLOUDFRONT_HOST")
+  if ENV.key?("S3_CLOUDFRONT_HOST")
     Paperclip::Attachment.default_options.merge!(
       url: ":s3_alias_url",
       s3_host_alias: ENV["S3_CLOUDFRONT_HOST"]
