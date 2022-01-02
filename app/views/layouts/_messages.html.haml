@@ -1,0 +1,5 @@
+- flash.each do |name, msg|
+  - if msg.is_a? String
+    .notification{ class: "is-#{bulma_class_for(name)}" }
+      %button.delete
+      = msg

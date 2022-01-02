@@ -1,0 +1,65 @@
+- content_for :title do
+  = @expansion.title
+  \- Expansion/DLC of
+  =@edition.title
+  \-
+  =@edition.platform.title
+  \- Internet Video Game Library
+
+- breadcrumb :expansion, @expansion
+
+= turbo_frame_tag("expansion_#{@expansion.id}", "data-turbo-action": "advance") do
+  .tile.is-ancestor{ itemscope: "", itemtype: "http://schema.org/VideoGame" }
+    %meta{ itemprop: "applicationCategory", content: "Game" }
+    %meta{ itemprop: "url", content: request.original_url }
+    - @edition.genres.each do |g|
+      %meta{ itemprop: "genre", content: g.title }
+    .tile.is-3.is-parent
+      .tile.is-child
+        .card
+          .card-image
+            %figure.image
+              = image_tag @expansion.coverart.url(:medium), alt: "Cover art of #{@expansion.title} - #{@edition.platform.display_title}", itemprop: 'image'
+          .card-content
+            .media
+              .media-content
+                - if current_user.present?
+                  .columns
+                    .column.is-justify-content-center.is-flex
+                      = add_shelf_dropdown current_user, @user_shelves, @expansion, :no_margin => false
+
+                  .content
+                    %table.table
+                      %thead
+                        %tr
+                          %th.has-text-centered{colspan: 2}
+                            Game expansion information
+                      %tbody.has-text-centered
+                        - if @expansion.release_date.present?
+                          %tr
+                            %th
+                              Release date
+                            %td
+                              %span{ itemprop: "datePublished" }= @expansion.release_date.strftime('%d/%m/%Y')
+          - if current_user.present? and current_user.game_maker_or_more?
+            .card-footer.has-text-centered
+              .card-footer-item
+                = link_to "Edit this expansion", edit_edition_expansion_path(@edition, @expansion), "data-turbo-action": "advance"
+    .tile.is-vertical.is-parent
+      .tile.is-child
+        .box
+          .block
+            %p.title
+              %span{itemprop: "name"}= @expansion.title
+            %p.subtitle
+              %span{itemprop: "gamePlatform"}= @edition.platform.display_title
+              %br
+              Expansion/DLC of
+              %span{itemprop: "isPartOf", itemscope: "", itemtype:"http://schema.org/VideoGame" }
+                = link_to @edition, itemprop: 'url', target: "_top" do
+                  %meta{ itemprop: "applicationCategory", content: "Game" }
+                  %span{ itemprop: "name" }= @edition.title
+
+          .block
+            .content{ itemprop: "description" }
+              = @expansion.markdown_description

@@ -1,0 +1,16 @@
+%nav.navbar.is-dark{ aria: { label: "dropdown navigation" }, role: "navigation" }
+  %div.navbar-brand
+    = link_to root_path, class: "navbar-item" do
+      %img{src: "/logo.png"}
+      IVGLib
+    %a.navbar-burger{ aria: { label: "menu", expanded: "false" }, data: { target: "ivglibNavbar" }, role: "button" }
+      %span{aria: { hidden: true } }
+      %span{aria: { hidden: true } }
+      %span{aria: { hidden: true } }
+
+  %div.navbar-menu#ivglibNavbar
+    %div.navbar-start
+      = render "layouts/navigation_links"
+      = render "layouts/navigation_search"
+    %div.navbar-end
+      = render "layouts/right_navigation_links"

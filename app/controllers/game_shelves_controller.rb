@@ -1,9 +1,6 @@
 class GameShelvesController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :xhr_only,
-                only: [:add_edition, :add_expansion, :add_game, :remove_item]
-
   before_action :game_shelf_exist,
                 only: [:add_edition, :add_expansion, :show, :edit, :update, :destroy]
 
@@ -27,6 +24,8 @@ class GameShelvesController < ApplicationController
 
   def index
     game_shelf = GameShelf.find_by(user_id: current_user.id, shelf_type: GameShelf.shelf_types[:backlog])
+    raise "Missing game shelf" if game_shelf.blank?
+
     redirect_to [current_user, game_shelf]
   end
 
@@ -44,7 +43,7 @@ class GameShelvesController < ApplicationController
     game_shelf = GameShelf.find_by_id(params[:id])
     @shelf_item = add_game_to_shelf(game_shelf, game)
 
-    render json: { status: :success, shelf_item: @shelf_item }
+    show_dropdown_partial(game)
   end
 
   def add_edition
@@ -63,7 +62,7 @@ class GameShelvesController < ApplicationController
 
     shelf_item.destroy
 
-    render json: { status: :success, message: :shelf_item_removed }
+    show_dropdown_partial(@game)
   end
 
   def new
@@ -76,19 +75,20 @@ class GameShelvesController < ApplicationController
     @game_shelf.save!
     flash[:success] = 'Your new shelf was created!'
     redirect_to [@game_shelf.user, @game_shelf]
-
   rescue ActiveRecord::RecordInvalid
     render 'new'
   end
 
   def manage_custom
-    @custom_shelves = GameShelf.user_custom_shelves(current_user.id)
+    @custom_shelves = GameShelf.user_custom_shelves(current_user.id).includes(:user)
   end
 
   def destroy
-    user = @game_shelf.user
     @game_shelf.destroy!
-    redirect_to user_game_shelves_path(user)
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@game_shelf) }
+      format.html         { manage_custom_user_game_shelves_path(current_user) }
+    end
   end
 
   def edit
@@ -96,22 +96,25 @@ class GameShelvesController < ApplicationController
   end
 
   def update
-    @game_shelf = GameShelf.find_by_id(params[:id])
-    @game_shelf.update_attributes!(game_shelf_params)
-    flash[:success] = 'Custom Shelf Updated!'
-    redirect_to [@game_shelf.user, @game_shelf]
-
-  rescue ActionController::ParameterMissing
-    flash[:error] = 'Please fill all required fields'
-    render 'edit'
+    @game_shelf = GameShelf.find(params[:id])
+    @game_shelf.update!(game_shelf_params)
+    redirect_to manage_custom_user_game_shelves_path(current_user)
+  rescue ActiveRecord::RecordInvalid
+    render :edit, status: :unprocessable_entity
   end
 
   private
 
-  def game_shelf_params
-    params.require(:game_shelf).require(:title)
-    params.require(:game_shelf).permit(:title)
-  end
+    include GameShelvesHelper
+
+    def show_dropdown_partial(game)
+      user_shelves = GameShelf.user_shelves(current_user.id)
+      add_shelf_dropdown(current_user, user_shelves, game)
+    end
+
+    def game_shelf_params
+      params.require(:game_shelf).permit(:title)
+    end
 
   def add_base_shelf_item(game_shelf, game)
     shelf_item = ShelfItem.joins(:game_shelf).where('shelf_type != ? and user_id = ? and item_type = ? and item_id = ?', GameShelf.shelf_types[:custom], current_user.id, game.class.name, game.id).first

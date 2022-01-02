@@ -1,0 +1,179 @@
+= turbo_frame_tag("edition_#{@edition.id}", target: "_top", "data-turbo-action": "advance") do
+  = form_for @edition do |f|
+    .columns
+      .column.is-3
+        %article.message.is-warning
+          .message-body
+            .content
+              %h4
+                Guidelines
+              %ul
+                %li
+                  Be careful about duplicates. Search if the game edition you are trying to add is not already in our library.
+                %li
+                  The "game info" is about every edition of this game (in multiple platforms), while the edition info is exclusive to this edition
+                %li
+                  A DLC is not an edition. It should be filled in as a DLC/Expansion, by going into the edition and clicking on "new DLC/Expansion"
+        .tile.is-ancestor
+          .tile.is-parent.is-vertical{ data: { controller: "image-preview" } }
+            .tile.is-child
+              %p.subtitle.is-6.has-text-centered
+                Cover image for this edition
+
+            .tile.is-parent.is-vertical
+              .tile.is-child{ class: !@edition.coverart.exists? ? "is-hidden" : "", "data-image-preview-target": "visibility" }
+                %figure.image
+                  = image_tag @edition.coverart.url(:medium), "data-image-preview-target": "output"
+                .field
+                  .control
+                    %label.checkbox
+                      = f.check_box :delete_coverart
+                      Delete Image
+              .tile.is-child.is-flex.is-justify-content-center
+                .file
+                  %label.file-label
+                    = f.file_field :coverart, class: "file-input", "data-image-preview-target": "input", "data-action": "image-preview#read_url"
+                    %span.file-cta
+                      %span.file-icon
+                        %i.fa.fa-upload
+                      %span.file-label
+                        Choose a file…
+      .column
+        .content
+          %h3
+            Game edition info
+          %p
+            Information related to this edition: medium, developer, publisher
+        .field.is-horizontal
+          .field-label.is-normal
+            = f.label :title, class: "label"
+          .field-body
+            .field.is-expanded
+              .control.has-icons-right
+                = f.text_field :title, :required => true, :placeholder => "Pokémon: Red Version", class: "input #{@edition.errors[:title].present? ? "danger" : ""}"
+              - if @edition.errors[:title].present?
+                .help.is-danger
+                  = @edition.errors.full_messages_for(:title).join(",")
+
+        .field.is-horizontal
+          .field-label.is-normal
+            = f.label :developer, class: "label"
+          .field-body
+            .field.is-expanded
+              .control.has-icons-right
+                = f.text_field :developer, :required => true, :placeholder => "Game Freak", class: "input #{@edition.errors[:developer].present? ? "danger" : ""}"
+              - if @edition.errors[:developer].present?
+                .help.is-danger
+                  = @edition.errors.full_messages_for(:developer).join(",")
+
+        .field.is-horizontal
+          .field-label.is-normal
+            = f.label :publisher, class: "label"
+          .field-body
+            .field.is-expanded
+              .control.has-icons-right
+                = f.text_field :publisher, :required => true, :placeholder => "Nintendo", class: "input #{@edition.errors[:publisher].present? ? "danger" : ""}"
+              - if @edition.errors[:publisher].present?
+                .help.is-danger
+                  = @edition.errors.full_messages_for(:publisher).join(",")
+
+        .field.is-horizontal
+          .field-label.is-normal
+            = f.label :description, class: "label"
+          .field-body
+            .field.is-expanded
+              .control.has-icons-right
+                = f.text_area :description, cols: 40, rows: 20, required: true, :class => "textarea #{@edition.errors[:description].present? ? "danger" : ""}"
+              .help
+                %b
+                  **bold**
+                %i
+                  *italics*
+                \~~strikethrough~~
+                %span.quote
+                  &gt;quote
+              - if @edition.errors[:description].present?
+                .help.is-danger
+                  = @edition.errors.full_messages_for(:description).join(",")
+
+        .field.is-horizontal
+          .field-label.is-normal
+            = f.label :release_date, class: "label"
+          .field-body
+            .field.is-expanded
+              .control.has-icons-right
+                = f.date_field :release_date, :required => true, class: "input #{@edition.errors[:release_date].present? ? "danger" : ""}"
+              - if @edition.errors[:release_date].present?
+                .help.is-danger
+                  = @edition.errors.full_messages_for(:release_date).join(",")
+
+        .field.is-horizontal
+          .field-label.is-normal
+            = f.label :platform_id, class: "label"
+          .field-body
+            .field.is-expanded
+              .control.has-icons-right
+                .select
+                  = f.collection_select :platform_id, Platform.order(:priority, :display_title), :id, :display_title, {}, :class => @edition.errors[:platform_id].present? ? "danger" : ""
+              - if @edition.errors[:platform_id].present?
+                .help.is-danger
+                  = @edition.errors.full_messages_for(:platform_id).join(",")
+
+        .field.is-horizontal
+          .field-label.is-normal
+            = f.label :region_id, class: "label"
+          .field-body
+            .field.is-expanded
+              .control.has-icons-right
+                .select
+                  = f.collection_select :region_id, Region.order(:title),:id,:title, {}, :class => @edition.errors[:region_id].present? ? "danger" : ""
+              - if @edition.errors[:region_id].present?
+                .help.is-danger
+                  = @edition.errors.full_messages_for(:region_id).join(",")
+
+        .field.is-horizontal
+          .field-label.is-normal
+            = f.label :media_id, class: "label"
+          .field-body
+            .field.is-expanded
+              .control.has-icons-right
+                .select
+                  = f.collection_select :media_id, Media.order(:title),:id,:title, {}, :class => @edition.errors[:media_id].present? ? "danger" : ""
+              - if @edition.errors[:media_id].present?
+                .help.is-danger
+                  = @edition.errors.full_messages_for(:media_id).join(",")
+
+        = fields_for @work do |w|
+          - if @work.id.present?
+            = hidden_field_tag "existing_work[id]", @work.id
+          = hidden_field_tag "work_option", @work.id.present? ? "existing" : "new"
+          = w.hidden_field :id
+
+          .content
+            %h3
+              Game information
+            %p
+              Original title, characters, awards and setting apply to all editions related to this game.
+          .field.is-horizontal
+            .field-label.is-normal
+              = w.label :original_title, class: "label"
+            .field-body
+              .field.is-expanded
+                .control.has-icons-right
+                  = w.text_field :original_title, :required => true, :placeholder => "Pokémon: Red Version", class: "input #{@work.errors[:original_title].present? ? "danger" : ""}"
+                - if @edition.errors[:original_title].present?
+                  .help.is-danger
+                    = @work.errors.full_messages_for(:original_title).join(",")
+
+          .field.is-horizontal
+            .field-label.is-normal
+              = w.label :original_release_date, class: "label"
+            .field-body
+              .field.is-expanded
+                .control.has-icons-right
+                  = w.date_field :original_release_date, :required => true, class: "input #{@work.errors[:original_release_date].present? ? "danger" : ""}"
+                - if @work.errors[:original_release_date].present?
+                  .help.is-danger
+                    = @work.errors.full_messages_for(:original_release_date).join(",")
+
+        .control= f.submit "Update", class: "button is-primary"

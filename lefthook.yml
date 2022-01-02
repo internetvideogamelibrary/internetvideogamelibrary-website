@@ -1,0 +1,8 @@
+pre-push:
+  commands:
+    pronto:
+      run: pronto run --exit-code
+pre-commit:
+  commands:
+    pronto:
+      run: if [ $(git rev-parse --abbrev-ref HEAD) == "main" ]; then pronto run --exit-code; fi

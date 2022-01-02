@@ -29,7 +29,7 @@ class User < ApplicationRecord
 
   after_commit :create_game_shelves, on: :create
 
-  has_many :game_shelves, -> { order 'shelf_type asc, id asc' }
+  has_many :game_shelves, -> { order "shelf_type asc, id asc" }, inverse_of: :user, dependent: :restrict_with_exception
   acts_as_followable
   acts_as_follower
 

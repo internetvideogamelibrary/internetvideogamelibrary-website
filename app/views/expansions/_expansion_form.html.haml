@@ -1,0 +1,88 @@
+= turbo_frame_tag("expansion_#{@expansion.id}", target: "_top", "data-turbo-action": "advance") do
+  = form_for [@edition, @expansion] do |f|
+    .columns
+      .column.is-3
+        %article.message.is-warning
+          .message-body
+            .content
+              %h4
+                Guidelines
+              %ul
+                %li
+                  Be careful about duplicates. Search if the DLC/Expansion you are trying to add is not already in our library.
+                %li
+                  Only add DLCs or expansions that create new challenges in the game (e.g. Skyrim - Dragonborn). Do not add DLC that only add skins or themes (e.g. Magicka: Mega Villain Robes)
+                %li
+                  If you want to add a game, you should add a edition, not a DLC/Expansion.
+        .tile.is-ancestor
+          .tile.is-parent.is-vertical{ data: { controller: "image-preview" } }
+            .tile.is-child
+              %p.subtitle.is-6.has-text-centered
+                Cover image for this expansion
+
+            .tile.is-parent.is-vertical
+              .tile.is-child{ class: !@expansion.coverart.exists? ? "is-hidden" : "", "data-image-preview-target": "visibility" }
+                %figure.image
+                  = image_tag @expansion.coverart.url(:medium), "data-image-preview-target": "output"
+                .field
+                  .control
+                    %label.checkbox
+                      = f.check_box :delete_coverart
+                      Delete Image
+              .tile.is-child.is-flex.is-justify-content-center
+                .file
+                  %label.file-label
+                    = f.file_field :coverart, class: "file-input", "data-image-preview-target": "input", "data-action": "image-preview#read_url"
+                    %span.file-cta
+                      %span.file-icon
+                        %i.fa.fa-upload
+                      %span.file-label
+                        Choose a file…
+      .column
+        .content
+          %h3
+            Game expansion info
+          %p
+            Information related to this expansion: medium, developer, publisher
+        .field.is-horizontal
+          .field-label.is-normal
+            = f.label :title, class: "label"
+          .field-body
+            .field.is-expanded
+              .control.has-icons-right
+                = f.text_field :title, :required => true, :placeholder => "The Elder Scrolls V: Skyrim - Dragonborn", class: "input #{@expansion.errors[:title].present? ? "danger" : ""}"
+              - if @expansion.errors[:title].present?
+                .help.is-danger
+                  = @expansion.errors.full_messages_for(:title).join(",")
+
+        .field.is-horizontal
+          .field-label.is-normal
+            = f.label :description, class: "label"
+          .field-body
+            .field.is-expanded
+              .control.has-icons-right
+                = f.text_area :description, cols: 40, rows: 20, required: true, :class => "textarea #{@expansion.errors[:description].present? ? "danger" : ""}"
+              .help
+                %b
+                  **bold**
+                %i
+                  *italics*
+                \~~strikethrough~~
+                %span.quote
+                  &gt;quote
+              - if @expansion.errors[:description].present?
+                .help.is-danger
+                  = @expansion.errors.full_messages_for(:description).join(",")
+
+        .field.is-horizontal
+          .field-label.is-normal
+            = f.label :release_date, class: "label"
+          .field-body
+            .field.is-expanded
+              .control.has-icons-right
+                = f.date_field :release_date, :required => true, class: "input #{@expansion.errors[:release_date].present? ? "danger" : ""}"
+              - if @expansion.errors[:release_date].present?
+                .help.is-danger
+                  = @expansion.errors.full_messages_for(:release_date).join(",")
+
+        .control= f.submit "Update", class: "button is-primary"

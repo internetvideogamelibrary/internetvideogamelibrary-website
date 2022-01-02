@@ -57,6 +57,8 @@ class Edition < ApplicationRecord
   belongs_to :work
   belongs_to :media
 
+  accepts_nested_attributes_for :work
+
   has_many :expansions
   has_many :shelf_items, as: :item
 

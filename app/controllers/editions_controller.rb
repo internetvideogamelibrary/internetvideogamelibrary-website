@@ -25,26 +25,25 @@ class EditionsController < ApplicationController
   end
 
   def import
-    steam_url = steam_params[:steam_url]
-    if steam_url
-      @edition = SteamImporterService.new(steam_url).import_edition
+    @steam_url = steam_params[:steam_url]
+    if @steam_url
+      @edition = SteamImporterService.new(@steam_url).import_edition
       create_with_new_work(@edition.title, @edition.release_date)
     end
-
   rescue SteamImporterService::SteamImporterServiceFetchError
-    flash[:error] = "Couldn't connect to Steam store"
-    render "import"
+    @error = "Couldn't connect to Steam store"
+    render "import", status: :unprocessable_entity
   rescue SteamImporterService::SteamImporterServiceUrlError
-    flash[:error] = "There's something wrong with the store URL"
-    render "import"
+    @error = "There's something wrong with the store URL"
+    render "import", status: :unprocessable_entity
   rescue
-    flash[:error] = "There was an unknown error importing the edition"
-    render "import"
+    @error = "There was an unknown error importing the edition"
+    render "import", status: :unprocessable_entity
   end
 
   def existing_work
     @work = Work.new(work_params)
-    @existing_work = Work.friendly.find(params.require(:existing_work).permit(:id)[:id])
+    @existing_work = Work.friendly.find(existing_work_params[:id])
     respond_to do |format|
       format.js
     end
@@ -52,13 +51,19 @@ class EditionsController < ApplicationController
 
   def create
     @edition = Edition.new(edition_params)
-    work_option = params.permit(:work_option)[:work_option]
-    if work_option == "existing"
-      work = Work.friendly.find(params.require(:existing_work).permit(:id)[:id])
-      create_with_existing_work(work: work)
+    if work_option_param[:work_option] == "existing"
+      begin
+        work = Work.friendly.find(existing_work_params[:id])
+      rescue ActiveRecord::RecordNotFound
+        render "new"
+        return
+      end
+      create_with_existing_work(work:)
     else
       create_with_new_work(work_params[:original_title], work_params[:original_release_date])
     end
+  rescue ActionController::ParameterMissing
+    render "new", status: :unprocessable_entity
   end
 
   def edit
@@ -69,13 +74,11 @@ class EditionsController < ApplicationController
   def update
     @edition = Edition.friendly.find(params[:id])
     @work = @edition.work
-    @work.update_attributes!(work_params)
-    @edition.update_attributes!(edition_params)
-    flash[:success] = 'Your changes were saved!'
+    @edition.update!(edition_params.merge(work_attributes: work_params))
     redirect_to @edition
-
   rescue ActiveRecord::RecordInvalid
-    render 'edit'
+    @work = @edition.work
+    render "edit", status: :unprocessable_entity
   end
 
   def show
@@ -109,13 +112,21 @@ class EditionsController < ApplicationController
 
   private
 
-  def edition_params
-    params.require(:edition).permit(:title, :developer, :publisher, :description, :release_date, :platform_id, :region_id, :coverart, :media_id, :delete_coverart)
-  end
+    def work_option_param
+      params.permit(:work_option)
+    end
 
-  def work_params
-    params.require(:work).permit(:original_title, :original_release_date)
-  end
+    def existing_work_params
+      params.require(:existing_work).permit(:id)
+    end
+
+    def edition_params
+      params.require(:edition).permit(:title, :developer, :publisher, :description, :release_date, :platform_id, :region_id, :coverart, :media_id, :delete_coverart)
+    end
+
+    def work_params
+      params.require(:work).permit(:original_title, :original_release_date, :id)
+    end
 
   def steam_params
     params.permit(:steam_url)
@@ -144,11 +155,8 @@ class EditionsController < ApplicationController
     @edition.save!
     flash[:success] = 'Your edition was added!'
     redirect_to @edition
-
-  rescue ActiveRecord::RecordNotFound
-    render 'new'
   rescue ActiveRecord::RecordInvalid
-    render 'new'
+    render "new", status: :unprocessable_entity
   end
 
   def parent_edition_exists

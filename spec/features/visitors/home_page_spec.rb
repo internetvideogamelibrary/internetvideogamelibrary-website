@@ -2,7 +2,7 @@
 #   As a visitor
 #   I want to visit a home page
 #   So I can learn more about the website
-feature 'Home page' do
+feature "Home page" do
   # Scenario: Visit the home page
   #   Given I am a visitor
   #   When I visit the home page
@@ -32,35 +32,35 @@ feature 'Home page' do
     GamesIndex::Expansion.import [@expansion1.id]
   end
 
-  scenario 'visit the home page' do
+  scenario "visit the home page" do
     visit root_path
-    expect(page).to have_content 'Welcome'
+    expect(page).to have_content "Welcome"
   end
 
-  scenario 'check games counter' do
+  scenario "check games counter" do
     visit root_path
-    expect(page).to have_content 'We currently have 10 unique games, 11 editions and 1 Expansions/DLC in our database!'
+    expect(page).to have_content "We currently have 10 unique games, 11 editions and 1 Expansions/DLC in our database!"
   end
 
-  scenario 'check recently added games' do
+  scenario "check recently added games" do
     visit root_path
-    games = page.find('#recently_added_games')
-    expect(games).to have_css 'div.col-md-2:nth-of-type(1) div/a', text: @expansion1.title
-    expect(games).to have_css 'div.col-md-2:nth-of-type(2) div/a', text: @game9.title
-    expect(games).to have_css 'div.col-md-2:nth-of-type(3) div/a', text: @game8.title
-    expect(games).to have_css 'div.col-md-2:nth-of-type(4) div/a', text: @game7.title
-    expect(games).to have_css 'div.col-md-2:nth-of-type(5) div/a', text: @gameFuture.title
-    expect(games).to have_css 'div.col-md-2:nth-of-type(6) div/a', text: @game0.title
+    games = page.find("#recently_added_games")
+    expect(games).to have_css "div.column.is-2:nth-of-type(1) div/a", text: @expansion1.title
+    expect(games).to have_css "div.column.is-2:nth-of-type(2) div/a", text: @game9.title
+    expect(games).to have_css "div.column.is-2:nth-of-type(3) div/a", text: @game8.title
+    expect(games).to have_css "div.column.is-2:nth-of-type(4) div/a", text: @game7.title
+    expect(games).to have_css "div.column.is-2:nth-of-type(5) div/a", text: @gameFuture.title
+    expect(games).to have_css "div.column.is-2:nth-of-type(6) div/a", text: @game0.title
   end
 
-  scenario 'check new releases' do
+  scenario "check new releases" do
     visit root_path
-    games = page.find('#new_releases')
-    expect(games).to have_css 'div.col-md-2:nth-of-type(1) div/a', text: @game1.title
-    expect(games).to have_css 'div.col-md-2:nth-of-type(2) div/a', text: @game2.title
-    expect(games).to have_css 'div.col-md-2:nth-of-type(3) div/a', text: @game3.title
-    expect(games).to have_css 'div.col-md-2:nth-of-type(4) div/a', text: @game4.title
-    expect(games).to have_css 'div.col-md-2:nth-of-type(5) div/a', text: @game5.title
-    expect(games).to have_css 'div.col-md-2:nth-of-type(6) div/a', text: @game6.title
+    games = page.find("#new_releases")
+    expect(games).to have_css "div.column.is-2:nth-of-type(1) div/a", text: @game1.title
+    expect(games).to have_css "div.column.is-2:nth-of-type(2) div/a", text: @game2.title
+    expect(games).to have_css "div.column.is-2:nth-of-type(3) div/a", text: @game3.title
+    expect(games).to have_css "div.column.is-2:nth-of-type(4) div/a", text: @game4.title
+    expect(games).to have_css "div.column.is-2:nth-of-type(5) div/a", text: @game5.title
+    expect(games).to have_css "div.column.is-2:nth-of-type(6) div/a", text: @game6.title
   end
 end

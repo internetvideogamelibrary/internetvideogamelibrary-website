@@ -6,6 +6,11 @@ crumb :game_shelves do |user|
   link 'Game shelves', user_game_shelves_path(user)
 end
 
+crumb :manage_custom_game_shelves do |user|
+  link "Manage custom game shelves", manage_custom_user_game_shelves_path(user)
+  parent :game_shelves, user
+end
+
 crumb :game_shelf do |game_shelf|
   link game_shelf.title, user_game_shelf_path(game_shelf.user, game_shelf)
   parent :game_shelves, game_shelf.user

@@ -24,6 +24,15 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
+begin
+  GamesIndex.delete
+  WorksIndex.delete
+rescue => e
+  Rails.logger.error "Failed destroying one of the indexes, the error was: #{e}"
+end
+GamesIndex.create!
+WorksIndex.create!
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

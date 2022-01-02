@@ -1,0 +1,24 @@
+- content_for :title do
+  Results for "
+  = strip_tags params[:q]
+  " -
+  - if params[:page]
+    page #{params[:page]} -
+  Internet Video Game Library
+
+%div.block
+  %p.subtitle.is-4
+    Showing
+    = @qty
+    results (out of
+    = succeed ")" do
+      = @total
+    for
+    = surround '"' do
+      =strip_tags params[:q]
+
+%div.columns.is-multiline
+  - @games.each_with_index do |game, i|
+    %div.column.is-2
+      = render partial: "shared/games_index_view_object", locals: {game: game, user_shelves: @user_shelves}
+= will_paginate @page_object, renderer: BootstrapPagination::Rails

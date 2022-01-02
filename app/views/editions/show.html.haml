@@ -1,0 +1,175 @@
+- content_for :title do
+  =@edition.title
+  \-
+  =@edition.platform.title
+  \- Internet Video Game Library
+
+- breadcrumb :edition, @edition
+
+= turbo_frame_tag("edition_#{@edition.id}", "data-turbo-action": "advance") do
+  .tile.is-ancestor{ itemscope: "", itemtype: "http://schema.org/VideoGame" }
+    %meta{ itemprop: "applicationCategory", content: "Game" }
+    %meta{ itemprop: "url", content: request.original_url }
+    .tile.is-3.is-parent
+      .tile.is-child
+        .card
+          .card-image
+            %figure.image
+              = image_tag @edition.coverart.url(:medium), alt: "Cover art of #{@edition.title} - #{@edition.platform.display_title}", itemprop: 'image'
+          .card-content
+            .media
+              .media-content
+                - if current_user.present?
+                  .columns
+                    .column.is-justify-content-center.is-flex
+                      = add_shelf_dropdown current_user, @user_shelves, @edition, :no_margin => false
+
+                .content
+                  %table.table
+                    %thead
+                      %tr
+                        %th.has-text-centered{colspan: 2}
+                          Game information
+                    %tbody.has-text-centered
+                      %tr
+                        %th
+                          Original title
+                        %td
+                          = @edition.work.original_title
+                      - if @edition.work.original_release_date.present?
+                        %tr
+                          %th
+                            Original release date
+                          %td
+                            = @edition.work.original_release_date.strftime('%d/%m/%Y')
+                  .content
+                    %table.table
+                      %thead
+                        %tr
+                          %th.has-text-centered{colspan: 2}
+                            Game edition information
+                      %tbody.has-text-centered
+                        - if @edition.developer.present?
+                          %tr
+                            %th
+                              Developer
+                            %td{ itemscope: "", itemprop: "author", itemtype: "http://schema.org/Organization" }
+                              %span{ itemprop: "name"}= @edition.developer
+                        - if @edition.publisher.present?
+                          %tr
+                            %th
+                              Publisher
+                            %td{ itemscope: "", itemprop: "publisher", itemtype: "http://schema.org/Organization" }
+                              %span{ itemprop: "name" }= @edition.publisher
+                        %tr
+                          %th
+                            Region
+                          %td
+                            %span= @edition.region.title
+                        - if @edition.release_date.present?
+                          %tr
+                            %th
+                              Release date
+                            %td
+                              %span{ itemprop: "datePublished" }= @edition.release_date.strftime('%d/%m/%Y')
+                        %tr
+                          %th
+                            Media
+                          %td
+                            %span= @edition.media.title
+                        - if @edition.genres.present?
+                          %tr
+                            %th
+                              Genres
+                            %td
+                              != @edition.genres.map { |g| "<span itemprop=\"genre\">#{g.title}</span>" }.join(", ")
+          - if current_user.present? and current_user.game_maker_or_more?
+            .card-footer.has-text-centered
+              .card-footer-item
+                = link_to "Edit this edition", edit_edition_path(@edition), "data-turbo-action": "advance"
+              - if @edition.expansions.length == 0
+                .card-footer-item
+                  = link_to "Transform this edition into expansion", transform_edition_path(@edition), target: "_top"
+    .tile.is-vertical.is-parent
+      .tile.is-child
+        .box
+          .block
+            %p.title
+              %span{ itemprop: "name" }= @edition.title
+            %p.subtitle
+              %span{ itemprop: "gamePlatform" }= @edition.platform.display_title
+
+          .block
+            .content{ itemprop: "description" }
+              = @edition.markdown_description
+
+        .block
+          .card
+            .card-content
+              %p.subtitle
+                Other editions
+                - if @other_editions_count > 0
+                  - surround "(", ")" do
+                    = @other_editions_count
+
+              .columns
+                - if @other_editions_count.zero?
+                  .column
+                    None found.
+                - @other_editions.each do |other|
+                  .column.is-2
+                    .card
+                      .card-image
+                        %figure.image
+                          = link_to other, target: "_top" do
+                            = image_tag other.coverart.url(:medium), alt: "Cover art of #{other.title} - #{other.platform.display_title}"
+                      .card-content
+                        .media
+                          .media-content
+                            = link_to other, target: "_top" do
+                              %p.title.is-6= other.title
+                              %p.subtitle.is-6= other.platform.display_title
+            .card-footer
+              .card-footer-item
+                %span{itemprop: "isPartOf", itemscope: "", itemtype: "http://schema.org/VideoGame"}
+                  = link_to "All editions", @edition.work, itemprop: "url", target: "_top"
+                  %meta{ itemprop: "name", content: @edition.work.original_title }
+                  %meta{ itemprop: "applicationCategory", content: "Game" }
+              - if current_user.present? and current_user.game_maker_or_more?
+                .card-footer-item
+                  = link_to "Add new edition", new_edition_path(:work_id => @edition.work), target: "_top"
+                .card-footer-item
+                  = link_to "Import new edition", import_editions_path(:work_id => @edition.work), target: "_top"
+                .card-footer-item
+                  = link_to "Combine", combine_work_path(@edition.work), target: "_top"
+        .block
+          .card
+            .card-content
+              %p.subtitle
+                DLCs/Expansions
+                - if @edition.expansions.count > 0
+                  - surround "(", ")" do
+                    = @edition.expansions.count
+
+              .columns
+                - if @edition.expansions.count.zero?
+                  .column
+                    None found.
+                - @edition.expansions.each do |dlc|
+                  .column.is-2
+                    .card{ itemprop: "softwareAddOn", itemscope: "", itemtype: "http://schema.org/VideoGame" }
+                      .card-image
+                        %figure.image
+                          = link_to [@edition, dlc], target: "_top", itemprop: "url" do
+                            = image_tag dlc.coverart.url(:medium), alt: "Cover art of #{dlc.title} - #{dlc.edition.platform.display_title}"
+                          %meta{ itemprop:"applicationCategory", content: "Game"}
+                      .card-content
+                        .media
+                          .media-content
+                            = link_to [@edition, dlc], target: "_top" do
+                              %p.title.is-6= dlc.title
+                              %p.subtitle.is-6= dlc.edition.platform.display_title
+              - if current_user.present? and current_user.game_maker_or_more?
+                .card-footer
+                  .card-footer-item
+                    = link_to "Add DLC/Expansion", new_edition_expansion_path(@edition), target: "_top"

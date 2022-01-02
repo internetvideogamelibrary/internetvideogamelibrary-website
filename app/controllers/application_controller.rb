@@ -1,8 +1,11 @@
-require 'referral_spam_control'
+# frozen_string_literal: true
+
+require "referral_spam_control"
 
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  include PunditHelper
   protect_from_forgery with: :exception
 
   before_action :ignore_referral_spam, :fill_platforms, :clean_page_param, :clean_platform_param
@@ -20,11 +23,14 @@ class ApplicationController < ActionController::Base
   end
 
   def fill_platforms
-    @platforms = [['All', '']]
-    @platform_hash = { '' => 'All', nil => 'All' }
-    Platform.joins(:edition).group('platforms.id').having('count(editions.id) > ?', 0).order(:priority, :id).each do |p|
-      @platforms << [p.display_title, p.id]
-      @platform_hash[p.id.to_s] = p.display_title
+    @platforms, @platform_hash = Rails.cache.fetch("fill_platforms", expires_in: 1.hour) do
+      platforms = [["All", ""]]
+      platform_hash = { "" => "All", nil => "All" }
+      Platform.joins(:edition).group("platforms.id").having("count(editions.id) > ?", 0).order(:priority, :id).each do |p|
+        platforms << [p.display_title, p.id]
+        platform_hash[p.id.to_s] = p.display_title
+      end
+      next platforms, platform_hash
     end
   end
 
