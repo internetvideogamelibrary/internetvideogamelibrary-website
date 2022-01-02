@@ -21,4 +21,4 @@
   - @games.each_with_index do |game, i|
     %div.column.is-2
       = render partial: "shared/games_index_view_object", locals: {game: game, user_shelves: @user_shelves}
-= will_paginate @page_object, renderer: BootstrapPagination::Rails
+= bulma_will_paginate @page_object

@@ -17,7 +17,7 @@
   - @games.each_with_index do |game, i|
     %div.column.is-2
       = render partial: "shared/games_index_view_object", locals: {game: game, user_shelves: @user_shelves}
-= will_paginate @page_object, renderer: BootstrapPagination::Rails
+= bulma_will_paginate @page_object
 - if current_user.present? and current_user.game_maker_or_more?
   = link_to("Add new game", new_edition_path)
   |

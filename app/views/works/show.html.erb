@@ -47,4 +47,4 @@ All editions for <%=@work.original_title%>, <% if @work.original_release_date.pr
 </div>
 </span>
 
-<%= will_paginate @editions, renderer: BootstrapPagination::Rails %>
+<%= bulma_will_paginate @editions %>

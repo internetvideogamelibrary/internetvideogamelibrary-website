@@ -17,4 +17,4 @@ Results for "<%= strip_tags params[:q] %>" - <% if params[:page] %> page <%= par
 		<% end %>
 	</div>
 </div>
-<%= will_paginate @games, renderer: BootstrapPagination::Rails %>
+<%= bulma_will_paginate @games %>
