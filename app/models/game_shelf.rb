@@ -13,8 +13,8 @@
 class GameShelf < ApplicationRecord
   enum shelf_types: [:wishlist, :backlog, :playing, :finished, :played, :custom]
 
-  belongs_to :user
-  has_many :shelf_items, :dependent => :delete_all
+  belongs_to :user, inverse_of: :game_shelves
+  has_many :shelf_items, :dependent => :delete_all, inverse_of: :game_shelf
 
   validates :user, presence: true
   validates :title, presence: true

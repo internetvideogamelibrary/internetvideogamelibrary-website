@@ -1,6 +1,6 @@
 class ShelfItem < ApplicationRecord
   belongs_to :item, polymorphic: true
-  belongs_to :game_shelf
+  belongs_to :game_shelf, inverse_of: :shelf_items
 
   def self.unknown
     :item_unknown

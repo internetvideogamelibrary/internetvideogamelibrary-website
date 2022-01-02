@@ -81,7 +81,7 @@ class GameShelvesController < ApplicationController
   end
 
   def manage_custom
-    @custom_shelves = GameShelf.user_custom_shelves(current_user.id)
+    @custom_shelves = GameShelf.user_custom_shelves(current_user.id).includes(:user)
   end
 
   def destroy
