@@ -48,11 +48,11 @@ class ExpansionsController < ApplicationController
   def update
     @expansion = Expansion.friendly.find(params[:id])
     @edition = @expansion.edition
-    if @expansion.update_attributes(expansion_params)
+    if @expansion.update(expansion_params)
       flash[:success] = 'Your changes were saved!'
       redirect_to [@edition, @expansion]
     else
-      render 'edit'
+      render "edit", status: :unprocessable_entity
     end
   end
 

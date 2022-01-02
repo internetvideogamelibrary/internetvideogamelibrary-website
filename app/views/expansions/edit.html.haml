@@ -1,0 +1,9 @@
+- breadcrumb :edit_expansion, @expansion
+
+%p.title
+  Editing DLC/Expansion
+  = @expansion.title
+  %small
+    @edition.title
+
+= render "expansion_form"

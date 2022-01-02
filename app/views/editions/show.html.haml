@@ -95,12 +95,12 @@
         .box
           .block
             %p.title
-              %span{itemprop: "name"}= @edition.title
+              %span{ itemprop: "name" }= @edition.title
             %p.subtitle
-              %span{itemprop: "gamePlatform"}= @edition.platform.display_title
+              %span{ itemprop: "gamePlatform" }= @edition.platform.display_title
 
           .block
-            .content
+            .content{ itemprop: "description" }
               = @edition.markdown_description
 
         .block
