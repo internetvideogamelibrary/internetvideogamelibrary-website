@@ -55,7 +55,7 @@ Rails.application.configure do
   config.log_level = :info
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = %i[request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
@@ -92,4 +92,32 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.hosts << ENV["CANONICAL_HOST"]
+  # E-mails
+  config.action_mailer.default_url_options = { host: ENV["CANONICAL_HOST"] }
+
+  outgoing_email_address = ENV.fetch("SMTP_FROM_ADDRESS", "notifications@localhost")
+  outgoing_mail_domain   = Mail::Address.new(outgoing_email_address).domain
+  config.action_mailer.default_options = {
+    from: outgoing_email_address,
+    reply_to: ENV["SMTP_REPLY_TO"],
+    "Message-ID": -> { "<#{Mail.random_tag}@#{outgoing_mail_domain}>" }
+  }
+
+  config.action_mailer.smtp_settings = {
+    port: ENV["SMTP_PORT"],
+    address: ENV["SMTP_SERVER"],
+    user_name: ENV["SMTP_LOGIN"].presence,
+    password: ENV["SMTP_PASSWORD"].presence,
+    domain: ENV["SMTP_DOMAIN"],
+    authentication: ENV["SMTP_AUTH_METHOD"] == "none" ? nil : ENV["SMTP_AUTH_METHOD"] || :plain,
+    ca_file: ENV["SMTP_CA_FILE"].presence,
+    openssl_verify_mode: ENV["SMTP_OPENSSL_VERIFY_MODE"],
+    enable_starttls_auto: ENV["SMTP_ENABLE_STARTTLS_AUTO"] || true,
+    tls: ENV["SMTP_TLS"].presence,
+    ssl: ENV["SMTP_SSL"].presence
+  }
+
+  config.action_mailer.delivery_method = ENV.fetch("SMTP_DELIVERY_METHOD", "smtp").to_sym
 end
