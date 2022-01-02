@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import CombineEditionsController from "./combine_editions_controller.js"
+application.register("combine-editions", CombineEditionsController)
+
 import ImagePreviewController from "./image_preview_controller.js"
 application.register("image-preview", ImagePreviewController)

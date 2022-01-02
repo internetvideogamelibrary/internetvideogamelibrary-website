@@ -102,7 +102,7 @@ class WorksController < ApplicationController
     results = @search.search.only(:id)
     @same_work_data = []
     results.load.each do |w|
-      @same_work_data << w unless w.id == @work.id
+      @same_work_data << w
     end
   end
 

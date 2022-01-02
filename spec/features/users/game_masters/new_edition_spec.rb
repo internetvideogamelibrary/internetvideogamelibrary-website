@@ -57,7 +57,7 @@ feature "Add edition" do
     fill_in "Original title", with: expected_original_title
     fill_in "Original release date", with: expected_original_release_date
 
-    click_button "Save Changes"
+    click_button "Update"
 
     expect(page).to have_content("Your edition was added!")
     expect(page).to have_content("Original title #{expected_original_title}")

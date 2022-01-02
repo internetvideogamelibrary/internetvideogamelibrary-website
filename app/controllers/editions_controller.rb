@@ -59,10 +59,12 @@ class EditionsController < ApplicationController
         render "new"
         return
       end
-      create_with_existing_work(work: work)
+      create_with_existing_work(work:)
     else
       create_with_new_work(work_params[:original_title], work_params[:original_release_date])
     end
+  rescue ActionController::ParameterMissing
+    render "new", status: :unprocessable_entity
   end
 
   def edit
@@ -73,13 +75,11 @@ class EditionsController < ApplicationController
   def update
     @edition = Edition.friendly.find(params[:id])
     @work = @edition.work
-    @work.update!(work_params)
-    @edition.update!(edition_params)
-    flash[:success] = 'Your changes were saved!'
+    @edition.update!(edition_params.merge(work_attributes: work_params))
     redirect_to @edition
-
-  rescue ActiveRecord::RecordInvalid
-    render 'edit'
+  rescue ActiveRecord::RecordInvalid => e
+    @work = @edition.work
+    render "edit", status: :unprocessable_entity
   end
 
   def show
@@ -121,13 +121,13 @@ class EditionsController < ApplicationController
       params.require(:existing_work).permit(:id)
     end
 
-  def edition_params
-    params.require(:edition).permit(:title, :developer, :publisher, :description, :release_date, :platform_id, :region_id, :coverart, :media_id, :delete_coverart)
-  end
+    def edition_params
+      params.require(:edition).permit(:title, :developer, :publisher, :description, :release_date, :platform_id, :region_id, :coverart, :media_id, :delete_coverart)
+    end
 
-  def work_params
-    params.require(:work).permit(:original_title, :original_release_date)
-  end
+    def work_params
+      params.require(:work).permit(:original_title, :original_release_date, :id)
+    end
 
   def steam_params
     params.permit(:steam_url)
@@ -156,9 +156,8 @@ class EditionsController < ApplicationController
     @edition.save!
     flash[:success] = 'Your edition was added!'
     redirect_to @edition
-
   rescue ActiveRecord::RecordInvalid
-    render 'new'
+    render "new", status: :unprocessable_entity
   end
 
   def parent_edition_exists

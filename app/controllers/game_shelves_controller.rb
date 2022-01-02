@@ -75,7 +75,6 @@ class GameShelvesController < ApplicationController
     @game_shelf.save!
     flash[:success] = 'Your new shelf was created!'
     redirect_to [@game_shelf.user, @game_shelf]
-
   rescue ActiveRecord::RecordInvalid
     render 'new'
   end

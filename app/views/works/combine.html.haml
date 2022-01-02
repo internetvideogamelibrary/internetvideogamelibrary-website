@@ -1,0 +1,55 @@
+- breadcrumb :combine, @work
+
+= form_for @work, url: do_combine_work_path do |f|
+  .columns
+    .column.is-3
+      %article.message.is-warning
+        .message-body
+          .content
+            %h4
+              Guidelines
+            %p
+              %strong
+                Do combine:
+            %ul
+              %li
+                Old games being reedited in new platforms (i.e. Nintendo Virtual Console)
+              %li
+                Different regions of the same game (North America release and European release)
+            %p
+              %strong
+                Don't combine:
+            %ul
+              %li
+                N-in-1 games or boxed sets that include the given game.
+              %li
+                Adaptations that change stuff in the game (i.e. Pokémon Red vs FireRed)
+            %p
+              %strong
+                Be aware:
+              you can only combine games in which the original info (title and release date) are the same. Make sure this data is consistent so that you can combine.
+
+    .column.is-9{ data: { controller: "combine-editions" } }
+      - @same_work_data.each do |s|
+        .field
+          .control
+            %label.checkbox
+              = check_box_tag "work_ids[]", s.id, false, id: "work_id_#{s.id}", "data-combine-editions-target": "checkboxes", "data-action": "combine-editions#clicked"
+              %strong= s.original_title
+              - if s.original_release_date.present?
+                = surround "(", ")" do
+                  = s.original_release_date.strftime('%d/%m/%Y')
+            - s.editions.each do |e|
+              .block
+                = e.title
+                = surround "(", ")," do
+                  = e.platform.title
+                - if e.release_date.present?
+                  released on
+                  = e.release_date.strftime('%d/%m/%Y')
+                - else
+                  released
+                at #{e.region.title}
+                = link_to 'details', e
+                = link_to 'edit', edit_edition_path(e)
+      .control= f.submit "Combine", class: "button is-primary", disabled: "disabled", "data-combine-editions-target": "submit"
