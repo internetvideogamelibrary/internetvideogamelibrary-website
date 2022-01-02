@@ -6,21 +6,24 @@
 
 - breadcrumb :edition, @edition
 
-%div.tile.is-ancestor{ itemscope: "", itemtype: "http://schema.org/VideoGame" }
+.tile.is-ancestor{ itemscope: "", itemtype: "http://schema.org/VideoGame" }
   %meta{ itemprop: "applicationCategory", content: "Game" }
   %meta{ itemprop: "url", content: request.original_url }
-  %div.tile.is-3.is-parent
-    %div.tile.is-child
-      %div.card
-        %div.card-image
+  .tile.is-3.is-parent
+    .tile.is-child
+      .card
+        .card-image
           %figure.image
             = image_tag @edition.coverart.url(:medium), alt: "Cover art of #{@edition.title} - #{@edition.platform.display_title}", itemprop: 'image'
-            - if current_user.present?
-              = add_shelf_dropdown current_user, @user_shelves, @edition, :no_margin => false
-        %div.card-content
-          %div.media
-            %div.media-content
-              %div.content
+        .card-content
+          .media
+            .media-content
+              - if current_user.present?
+                .columns
+                  .column.is-justify-content-center.is-flex
+                    = add_shelf_dropdown current_user, @user_shelves, @edition, :no_margin => false
+
+              .content
                 %table.table
                   %thead
                     %tr
@@ -38,7 +41,7 @@
                           Original release date
                         %td
                           = @edition.work.original_release_date.strftime('%d/%m/%Y')
-                %div.content
+                .content
                   %table.table
                     %thead
                       %tr
@@ -79,97 +82,93 @@
                             Genres
                           %td
                             != @edition.genres.map { |g| "<span itemprop=\"genre\">#{g.title}</span>" }.join(", ")
-            -#
-                <%- if current_user.present? and current_user.game_maker_or_more? %>
-                    <div class="row">
-                        <%= link_to "Edit this edition", edit_edition_path(@edition) %>
-                    </div>
-                    <%- if @edition.expansions.length == 0 %>
-                        <div class="row">
-                            <%= link_to "Transform this edition into expansion", transform_edition_path(@edition) %>
-                        </div>
-                    <% end -%>
-                <% end -%>
-  %div.tile.is-vertical.is-parent
-    %div.tile.is-child
-      %div.box
-        %div.block
+        - if current_user.present? and current_user.game_maker_or_more?
+          .card-footer.has-text-centered
+            .card-footer-item
+              = link_to "Edit this edition", edit_edition_path(@edition)
+            - if @edition.expansions.length == 0
+              .card-footer-item
+                = link_to "Transform this edition into expansion", transform_edition_path(@edition)
+  .tile.is-vertical.is-parent
+    .tile.is-child
+      .box
+        .block
           %p.title
             %span{itemprop: "name"}= @edition.title
           %p.subtitle
             %span{itemprop: "gamePlatform"}= @edition.platform.display_title
 
-        %div.block
-          %div.content
+        .block
+          .content
             = @edition.markdown_description
 
-      %div.block
-        %div.card
-          %div.card-content
+      .block
+        .card
+          .card-content
             %p.subtitle
               Other editions
               - if @other_editions_count > 0
                 - surround "(", ")" do
                   = @other_editions_count
 
-            %div.columns
+            .columns
               - if @other_editions_count.zero?
-                %div.column
+                .column
                   None found.
               - @other_editions.each do |other|
-                %div.column.is-2
-                  %div.card
-                    %div.card-image
+                .column.is-2
+                  .card
+                    .card-image
                       %figure.image
                         = link_to other do
                           = image_tag other.coverart.url(:medium), alt: "Cover art of #{other.title} - #{other.platform.display_title}"
-                    %div.card-content
-                      %div.media
-                        %div.media-content
+                    .card-content
+                      .media
+                        .media-content
                           = link_to other do
                             %p.title.is-6= other.title
                             %p.subtitle.is-6= other.platform.display_title
-          %div.card-footer
-            %div.card-footer-item
+          .card-footer
+            .card-footer-item
               %span{itemprop: "isPartOf", itemscope: "", itemtype: "http://schema.org/VideoGame"}
                 = link_to "All editions", @edition.work, itemprop: "url"
                 %meta{ itemprop: "name", content: @edition.work.original_title }
                 %meta{ itemprop: "applicationCategory", content: "Game" }
             - if current_user.present? and current_user.game_maker_or_more?
-              %div.card-footer-item
+              .card-footer-item
                 = link_to "Add new edition", new_edition_path(:work_id => @edition.work)
-              %div.card-footer-item
+              .card-footer-item
                 = link_to "Import new edition", import_editions_path(:work_id => @edition.work)
-              %div.card-footer-item
+              .card-footer-item
                 = link_to "Combine", combine_work_path(@edition.work)
-      %div.block
-        %div.card
-          %div.card-content
+      .block
+        .card
+          .card-content
             %p.subtitle
               DLCs/Expansions
               - if @edition.expansions.count > 0
                 - surround "(", ")" do
                   = @edition.expansions.count
 
-            %div.columns
+            .columns
               - if @edition.expansions.count.zero?
-                %div.column
+                .column
                   None found.
               - @edition.expansions.each do |dlc|
-                %div.column.is-2
-                  %div.card{ itemprop: "softwareAddOn", itemscope: "", itemtype: "http://schema.org/VideoGame" }
-                    %div.card-image
+                .column.is-2
+                  .card{ itemprop: "softwareAddOn", itemscope: "", itemtype: "http://schema.org/VideoGame" }
+                    .card-image
                       %figure.image
                         = link_to [@edition, dlc], itemprop: "url" do
                           = image_tag dlc.coverart.url(:medium), alt: "Cover art of #{dlc.title} - #{dlc.edition.platform.display_title}"
                         %meta{ itemprop:"applicationCategory", content: "Game"}
-                    %div.card-content
-                      %div.media
-                        %div.media-content
+                    .card-content
+                      .media
+                        .media-content
                           = link_to [@edition, dlc] do
                             %p.title.is-6= dlc.title
                             %p.subtitle.is-6= dlc.edition.platform.display_title
             - if current_user.present? and current_user.game_maker_or_more?
-              %div.card-footer
-                %div.card-footer-item
+              .card-footer
+                .card-footer-item
                   = link_to "Add DLC/Expansion", new_edition_expansion_path(@edition)
