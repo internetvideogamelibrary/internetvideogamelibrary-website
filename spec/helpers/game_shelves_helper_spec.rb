@@ -49,7 +49,7 @@ describe GameShelvesHelper do
       function_ret = add_user_game_shelf_path(user, shelf, game)
 
       # then
-      expect(function_ret).to eq(add_edition_user_game_shelf_path(user, shelf, edition_id: game.id))
+      expect(function_ret).to eq(add_edition_user_game_shelf_path(user, shelf, edition_id: game.id, small_buttons: true))
     end
     it 'should return expansion path when the game is an expansion' do
       # given
@@ -61,7 +61,7 @@ describe GameShelvesHelper do
       function_ret = add_user_game_shelf_path(user, shelf, game)
 
       # then
-      expect(function_ret).to eq(add_expansion_user_game_shelf_path(user, shelf, expansion_id: game.id))
+      expect(function_ret).to eq(add_expansion_user_game_shelf_path(user, shelf, expansion_id: game.id, small_buttons: true))
     end
     it 'should return nil when the game is any other stuff' do
       # given
@@ -88,7 +88,7 @@ describe GameShelvesHelper do
       function_ret = href_user_game_shelf_path(user, shelf, game, shelf_item)
 
       # then
-      expect(function_ret).to eq(add_edition_user_game_shelf_path(user, shelf, edition_id: game.id))
+      expect(function_ret).to eq(add_edition_user_game_shelf_path(user, shelf, edition_id: game.id, small_buttons: true))
     end
     it 'should return add link when the game is not in given shelf' do
       # given
@@ -102,7 +102,7 @@ describe GameShelvesHelper do
       function_ret = href_user_game_shelf_path(user, shelf, game, shelf_item)
 
       # then
-      expect(function_ret).to eq(add_edition_user_game_shelf_path(user, shelf, edition_id: game.id))
+      expect(function_ret).to eq(add_edition_user_game_shelf_path(user, shelf, edition_id: game.id, small_buttons: true))
     end
     it 'should return remove link when the game is in given shelf' do
       # given
@@ -115,49 +115,7 @@ describe GameShelvesHelper do
       function_ret = href_user_game_shelf_path(user, shelf, game, shelf_item)
 
       # then
-      expect(function_ret).to eq(remove_item_user_game_shelves_path(user, item_id: shelf_item.id))
-    end
-  end
-  describe 'toggle_href_user_game_shelf_path' do
-    it 'should return incomplete remove link when the game is not in any shelf' do
-      # given
-      shelf = FactoryBot.create(:game_shelf)
-      user = shelf.user
-      shelf_item = nil
-      game = FactoryBot.create(:edition)
-
-      # when
-      function_ret = toggle_href_user_game_shelf_path(user, shelf, game, shelf_item)
-
-      # then
-      expect(function_ret).to eq(remove_item_user_game_shelves_path(user))
-    end
-    it 'should return incomplete remove link when the game is not in given shelf' do
-      # given
-      shelf = FactoryBot.create(:game_shelf)
-      user = shelf.user
-      shelf_with_items = FactoryBot.create(:game_shelf_with_shelf_items)
-      shelf_item = shelf_with_items.shelf_items.first
-      game = shelf_item.item
-
-      # when
-      function_ret = toggle_href_user_game_shelf_path(user, shelf, game, shelf_item)
-
-      # then
-      expect(function_ret).to eq(remove_item_user_game_shelves_path(user))
-    end
-    it 'should return add link when the game is in given shelf' do
-      # given
-      shelf = FactoryBot.create(:game_shelf_with_shelf_items)
-      user = shelf.user
-      shelf_item = shelf.shelf_items.first
-      game = shelf_item.item
-
-      # when
-      function_ret = toggle_href_user_game_shelf_path(user, shelf, game, shelf_item)
-
-      # then
-      expect(function_ret).to eq(add_edition_user_game_shelf_path(user, shelf, edition_id: game.id))
+      expect(function_ret).to eq(remove_item_user_game_shelves_path(user, item_id: shelf_item.id, small_buttons: true))
     end
   end
   describe 'add_shelf_dropdown' do

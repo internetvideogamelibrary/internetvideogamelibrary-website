@@ -109,7 +109,12 @@ class GameShelvesController < ApplicationController
 
     def show_dropdown_partial(game)
       user_shelves = GameShelf.user_shelves(current_user.id)
-      add_shelf_dropdown(current_user, user_shelves, game, small_buttons: params[:small_buttons] == "1")
+      small_buttons = begin
+        ActiveRecord::Type::Boolean.new.deserialize(params[:small_buttons])
+      rescue
+        true
+      end
+      add_shelf_dropdown(current_user, user_shelves, game, small_buttons:)
     end
 
     def game_shelf_params

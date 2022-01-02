@@ -7,19 +7,10 @@ module GameShelvesHelper
   end
 
   def href_user_game_shelf_path(user, shelf, game, shelf_item, small_buttons: true)
-    small_buttons = small_buttons ? 1 : 0
     if item_on_shelf?(shelf_item, shelf) == 0 || !shelf_item.present?
       add_user_game_shelf_path(user, shelf, game, small_buttons:)
     else
       remove_item_user_game_shelves_path(user, item_id: shelf_item.id, small_buttons:)
-    end
-  end
-
-  def toggle_href_user_game_shelf_path(user, shelf, game, shelf_item)
-    if item_on_shelf?(shelf_item, shelf) == 1
-      add_user_game_shelf_path(user, shelf, game)
-    else
-      remove_item_user_game_shelves_path(user)
     end
   end
 
