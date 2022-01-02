@@ -503,7 +503,7 @@ describe GameShelvesController do
       game_shelf_ignore = %w(id created_at updated_at title)
 
       # then
-      expect(response).to redirect_to([game_shelf.user, game_shelf])
+      expect(response).to redirect_to(manage_custom_user_game_shelves_path(@user))
       expect(updated_game_shelf.attributes.except(*game_shelf_ignore)).to eq(game_shelf_attributes.except(*game_shelf_ignore))
       expect(updated_game_shelf.title).to eq(game_shelf_attributes['title'])
     end

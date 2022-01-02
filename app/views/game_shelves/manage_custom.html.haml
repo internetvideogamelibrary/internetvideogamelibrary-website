@@ -5,45 +5,28 @@
 
 .tile.is-ancestor
   - @custom_shelves.each do |game_shelf|
-    .tile.is-parent.is-3
+    = turbo_frame_tag("game_shelf_#{game_shelf.id}", class: "tile is-parent is-3") do
       .tile.is-child
-        = turbo_frame_tag("custom_shelf_#{game_shelf.id}") do
-          .card
-            .card-content
-              .content
-                %h1
-                  = link_to(game_shelf.title, [game_shelf.user, game_shelf], "data-turbo-frame": "_top")
-                %p
-                  Created at
-                  = game_shelf.created_at.strftime('%d/%m/%Y')
-                %p
-                  Contains
-                  = game_shelf.shelf_items.count
-                  items.
-            .card-footer
-              = link_to(edit_user_game_shelf_path(game_shelf.user, game_shelf), class: "card-footer-item") do
-                %span.icon.is-small
-                  %i.fa.fa-edit
-                %span
-                  Edit
-              = link_to([game_shelf.user, game_shelf], data: { turbo_method: :delete, turbo_confirm: "Are you sure? This cannot be undone." }, class: "card-footer-item is-danger") do
-                %span.icon.is-small
-                  %i.fa.fa-trash-o
-                %span
-                  Delete
-
--#
-    %tr
-      %td= link_to(game_shelf.title, [game_shelf.user, game_shelf])
-      %td
-        = link_to(edit_user_game_shelf_path(game_shelf.user, game_shelf), class: "button is-primary") do
-          %span.icon.is-small
-            %i.fa.fa-edit
-          %span
-            Edit
-      %td
-        = link_to([game_shelf.user, game_shelf], data: { turbo_method: :delete, turbo_confirm: "Are you sure? This cannot be undone." }, class: "button is-danger") do
-          %span.icon.is-small
-            %i.fa.fa-trash-o
-          %span
-            Delete
+        .card
+          .card-content
+            .content
+              %h1
+                = link_to(game_shelf.title, [game_shelf.user, game_shelf], "data-turbo-frame": "_top")
+              %p
+                Contains
+                = game_shelf.shelf_items.count
+                items.
+              %p
+                Created at
+                = game_shelf.created_at.strftime('%d/%m/%Y')
+          .card-footer
+            = link_to(edit_user_game_shelf_path(game_shelf.user, game_shelf), class: "card-footer-item") do
+              %span.icon.is-small
+                %i.fa.fa-edit
+              %span
+                Edit
+            = link_to([game_shelf.user, game_shelf], data: { turbo_frame: "_top", turbo_method: :delete, turbo_confirm: "Are you sure? This cannot be undone." }, class: "card-footer-item is-danger") do
+              %span.icon.is-small
+                %i.fa.fa-trash-o
+              %span
+                Delete

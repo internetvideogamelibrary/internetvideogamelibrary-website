@@ -85,9 +85,11 @@ class GameShelvesController < ApplicationController
   end
 
   def destroy
-    user = @game_shelf.user
     @game_shelf.destroy!
-    redirect_to user_game_shelves_path(user)
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@game_shelf) }
+      format.html         { manage_custom_user_game_shelves_path(current_user) }
+    end
   end
 
   def edit
