@@ -40,7 +40,7 @@ class GameShelvesController < ApplicationController
   end
 
   def add_game(game)
-    game_shelf = GameShelf.find_by_id(params[:id])
+    game_shelf = GameShelf.find(params[:id])
     @shelf_item = add_game_to_shelf(game_shelf, game)
 
     show_dropdown_partial(game)
@@ -109,7 +109,7 @@ class GameShelvesController < ApplicationController
 
     def show_dropdown_partial(game)
       user_shelves = GameShelf.user_shelves(current_user.id)
-      add_shelf_dropdown(current_user, user_shelves, game)
+      add_shelf_dropdown(current_user, user_shelves, game, small_buttons: params[:small_buttons] == "1")
     end
 
     def game_shelf_params

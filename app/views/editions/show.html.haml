@@ -22,7 +22,7 @@
                 - if current_user.present?
                   .columns
                     .column.is-justify-content-center.is-flex
-                      = add_shelf_dropdown current_user, @user_shelves, @edition, :no_margin => false
+                      = add_shelf_dropdown current_user, @user_shelves, @edition, small_buttons: false
 
                 .content
                   %table.table

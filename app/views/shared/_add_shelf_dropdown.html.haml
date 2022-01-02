@@ -2,19 +2,19 @@
   %div.field.has-addons
     %div.control
       - if main_shelf_item.present? && item_on_shelf?(main_shelf_item, wishlist_shelf)
-        = form_tag href_user_game_shelf_path(user, main_shelf_item.game_shelf, game, main_shelf_item), method: :put do |f|
-          = button_tag main_shelf_item.game_shelf.title, class: "button is-small"
+        = form_tag href_user_game_shelf_path(user, main_shelf_item.game_shelf, game, main_shelf_item, small_buttons: small_buttons), method: :put do |f|
+          = button_tag main_shelf_item.game_shelf.title, class: "button #{small_buttons ? "is-small" : ""}"
       - else
-        = form_tag href_user_game_shelf_path(user, wishlist_shelf, game, main_shelf_item), method: :put do |f|
-          = button_tag "Add to Wishlist", class: "button is-primary is-small"
+        = form_tag href_user_game_shelf_path(user, wishlist_shelf, game, main_shelf_item, small_buttons: small_buttons), method: :put do |f|
+          = button_tag "Add to Wishlist", class: "button is-primary #{small_buttons ? "is-small" : ""}"
 
     %div.control
       %div.dropdown.is-hoverable
         %div.dropdown-trigger
-          %button.button.is-small{ aria: { haspopup: true, controls: "dropdown-menu-#{game.class.name}-#{game.id}" } }
+          %button.button{ aria: { haspopup: true, controls: "dropdown-menu-#{game.class.name}-#{game.id}" }, class: small_buttons ? "is-small" : "" }
             %span
               +
-            %span.icon.is-small
+            %span.icon{ class: small_buttons ? "is-small" : "" }
               %i.fa.fa-angle-down{ aria: { hidden: true } }
         %div.dropdown-menu{ id: "dropdown-menu-#{game.class.name}-#{game.id}", role: "menu" }
           %div.dropdown-content
@@ -22,12 +22,12 @@
               - next if shelf == main_shelf_item&.game_shelf
               %div.dropdown-item
                 - if shelf.custom_shelf?
-                  = form_tag href_user_game_shelf_path(user, shelf, game, other_shelf_items[shelf.id]), method: :put do |f|
-                    = button_tag class: "button is-ghost is-small" do
+                  = form_tag href_user_game_shelf_path(user, shelf, game, other_shelf_items[shelf.id], small_buttons: small_buttons), method: :put do |f|
+                    = button_tag class: "button is-ghost #{small_buttons ? "is-small" : ""}" do
                       - if shelf.custom_shelf? and other_shelf_items[shelf.id].present?
                         %span.icon
                           %i.fa.fa-check-square-o
                       %span= shelf.title
                 - else
-                  = form_tag href_user_game_shelf_path(user, shelf, game, main_shelf_item), method: :put do |f|
-                    = button_tag shelf.title, class: "button is-ghost is-small"
+                  = form_tag href_user_game_shelf_path(user, shelf, game, main_shelf_item, small_buttons: small_buttons), method: :put do |f|
+                    = button_tag shelf.title, class: "button is-ghost #{small_buttons ? "is-small" : ""}"
