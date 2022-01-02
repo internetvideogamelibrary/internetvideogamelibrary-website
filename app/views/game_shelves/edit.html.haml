@@ -1,0 +1,36 @@
+- breadcrumb :game_shelf, @game_shelf
+
+.tile.is-ancestor
+  .tile.is-parent.is-3
+    .tile.is-child
+      = turbo_frame_tag("custom_shelf_#{@game_shelf.id}", target: "_top") do
+        .card
+          = form_for [current_user, @game_shelf], method: :put do |f|
+            .card-content
+              - if @game_shelf.errors.any?
+                %article.message.is-danger
+                  .message-header
+                    = pluralize(@game_shelf.errors.count, "error")
+                    stopped this change from being saved:
+                  .message-body
+                    %ul
+                      - @game_shelf.errors.full_messages.each do |message|
+                        %li= message
+              .content
+                .block
+                  .control= f.text_field :title, class: "input"
+                %p
+                  Created at
+                  = @game_shelf.created_at.strftime('%d/%m/%Y')
+                %p
+                  Contains
+                  = @game_shelf.shelf_items.count
+                  items.
+            .card-footer
+              .card-footer-item
+                .control= f.submit "Update", class: "button is-primary"
+              = link_to([@game_shelf.user, @game_shelf], data: { turbo_method: :delete, turbo_confirm: "Are you sure? This cannot be undone." }, class: "card-footer-item is-danger") do
+                %span.icon.is-small
+                  %i.fa.fa-trash-o
+                %span
+                  Delete

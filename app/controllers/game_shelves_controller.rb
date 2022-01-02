@@ -95,14 +95,11 @@ class GameShelvesController < ApplicationController
   end
 
   def update
-    @game_shelf = GameShelf.find_by_id(params[:id])
-    @game_shelf.update(game_shelf_params)
-    flash[:success] = 'Custom Shelf Updated!'
-    redirect_to [@game_shelf.user, @game_shelf]
-
-  rescue ActionController::ParameterMissing
-    flash[:error] = 'Please fill all required fields'
-    render 'edit'
+    @game_shelf = GameShelf.find(params[:id])
+    @game_shelf.update!(game_shelf_params)
+    redirect_to manage_custom_user_game_shelves_path(current_user)
+  rescue ActiveRecord::RecordInvalid
+    render :edit, status: :unprocessable_entity
   end
 
   private
@@ -114,10 +111,9 @@ class GameShelvesController < ApplicationController
       add_shelf_dropdown(current_user, user_shelves, game)
     end
 
-  def game_shelf_params
-    params.require(:game_shelf).require(:title)
-    params.require(:game_shelf).permit(:title)
-  end
+    def game_shelf_params
+      params.require(:game_shelf).permit(:title)
+    end
 
   def add_base_shelf_item(game_shelf, game)
     shelf_item = ShelfItem.joins(:game_shelf).where('shelf_type != ? and user_id = ? and item_type = ? and item_id = ?', GameShelf.shelf_types[:custom], current_user.id, game.class.name, game.id).first

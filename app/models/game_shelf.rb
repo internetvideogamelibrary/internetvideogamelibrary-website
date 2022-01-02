@@ -17,6 +17,7 @@ class GameShelf < ApplicationRecord
   has_many :shelf_items, :dependent => :delete_all
 
   validates :user, presence: true
+  validates :title, presence: true
 
   scope :shelf_type_order, -> { order('shelf_type asc, id asc') }
 
