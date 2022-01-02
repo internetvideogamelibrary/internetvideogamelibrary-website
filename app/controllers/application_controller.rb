@@ -24,9 +24,9 @@ class ApplicationController < ActionController::Base
 
   def fill_platforms
     @platforms, @platform_hash = Rails.cache.fetch("fill_platforms", expires_in: 1.hour) do
-      platforms = [['All', '']]
-      platform_hash = { '' => 'All', nil => 'All' }
-      Platform.joins(:edition).group('platforms.id').having('count(editions.id) > ?', 0).order(:priority, :id).each do |p|
+      platforms = [["All", ""]]
+      platform_hash = { "" => "All", nil => "All" }
+      Platform.joins(:edition).group("platforms.id").having("count(editions.id) > ?", 0).order(:priority, :id).each do |p|
         platforms << [p.display_title, p.id]
         platform_hash[p.id.to_s] = p.display_title
       end

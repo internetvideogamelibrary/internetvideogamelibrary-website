@@ -77,7 +77,7 @@ class EditionsController < ApplicationController
     @work = @edition.work
     @edition.update!(edition_params.merge(work_attributes: work_params))
     redirect_to @edition
-  rescue ActiveRecord::RecordInvalid => e
+  rescue ActiveRecord::RecordInvalid
     @work = @edition.work
     render "edit", status: :unprocessable_entity
   end
