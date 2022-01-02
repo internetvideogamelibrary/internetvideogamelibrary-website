@@ -1,0 +1,25 @@
+- breadcrumb :import_edition
+
+%p.title
+  Import a new game
+
+- if @error.present?
+  %article.message.is-danger
+    .message-header
+      An error happened while importing:
+    .message-body
+      %ul
+        %li= @error
+= form_with do |f|
+  %p.title
+    Steam
+  %p
+    Paste the game URL:
+  .field.is-horizontal
+    .field-label.is-normal
+      = f.label :steam_url, "URL:", class: "label"
+    .field-body
+      .field.is-expanded
+        .control
+          = f.text_field :steam_url, value: @steam_url, required: true, class: "input", id: :steam_url, placeholder: "https://store.steampowered.com/app/504230/Celeste/"
+  .control= f.submit "Update", class: "button is-primary"
