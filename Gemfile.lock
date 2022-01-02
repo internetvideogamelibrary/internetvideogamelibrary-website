@@ -98,6 +98,12 @@ GIT
       thor (~> 1.0)
       zeitwerk (~> 2.5)
 
+GIT
+  remote: https://github.com/renatolond/hcaptcha.git
+  revision: 63dd97290824c1aead2f7317b8bab086b5c7e0ef
+  specs:
+    hcaptcha (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -540,6 +546,7 @@ DEPENDENCIES
   friendly_id
   gretel
   haml
+  hcaptcha!
   jbuilder
   jsbundling-rails
   koala

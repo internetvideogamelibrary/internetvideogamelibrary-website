@@ -1,0 +1,44 @@
+.columns.is-centered
+  .column.is-4
+    %p.title
+      Log in
+    %p
+      You're one step away from keeping info about your collection of games!
+    = form_for(resource, :as => resource_name, :url => session_path(resource_name), data: { turbo: "false" }) do |f|
+      = devise_error_messages!
+      .field
+        .control
+          = f.label :email, class: :label
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: "input"
+
+      .field
+        .control
+          = f.label :password, class: :label
+          = f.password_field :password, autocomplete: "off", class: "input"
+
+      .control= f.submit "Log in", class: "button is-primary"
+      - if devise_mapping.recoverable?
+        = link_to "Forgot password?", new_password_path(resource_name)
+      - if devise_mapping.registerable?
+        = link_to 'Create new account', new_registration_path(resource_name)
+      .field
+        .control
+          = link_to user_google_oauth2_omniauth_authorize_path, class: 'button', title: "Sign in with Google", rel: "nofollow" do
+            %span.icon
+              %i.fa.fa-google
+            %span
+              Login with Google
+      .field
+        .control
+          = link_to user_facebook_omniauth_authorize_path, class: 'button', title: "Sign in with Facebook", rel: "nofollow" do
+            %span.icon
+              %i.fa.fa-facebook
+            %span
+              Login with Facebook
+      .field
+        .control
+          = link_to user_twitter_omniauth_authorize_path, class: 'button', title: "Sign in with Twitter", rel: "nofollow" do
+            %span.icon
+              %i.fa.fa-twitter
+            %span
+              Login with Twitter

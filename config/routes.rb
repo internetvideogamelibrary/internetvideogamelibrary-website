@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks", registrations: "users/registrations" }
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], as: :finish_signup
   resources :users, except: %i[show index] do
     resources :game_shelves do
