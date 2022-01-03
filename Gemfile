@@ -55,7 +55,7 @@ gem "kt-paperclip" # used for managing image attachments
 gem "redcarpet"
 gem "will_paginate"
 
-gem "chewy", "~> 5.0"
+gem "chewy", "~> 7.2"
 gem "elasticsearch", "~> 7.3.0"
 
 gem "babosa"
