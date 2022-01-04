@@ -26,8 +26,8 @@ class ShelfItem < ApplicationRecord
   end
 
   def self.shelf_items_from_shelf_with_platform(game_shelf_id, platform_id)
-    shelf_items_editions_from_shelf_with_platform(game_shelf_id, platform_id).union(
-      shelf_items_expansions_from_shelf_with_platform(game_shelf_id, platform_id))
+    shelf_items_editions_from_shelf_with_platform(game_shelf_id, platform_id).union(shelf_items_expansions_from_shelf_with_platform(game_shelf_id, platform_id))
+                                                                             .includes(item: [:platform, :region, { edition: %i[platform region] }])
   end
 
   def self.shelf_items_per_user_and_game(user_id, game_class, game_id)

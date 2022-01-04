@@ -123,7 +123,7 @@
                     %th
                       Added on
                 %tbody
-                  - if @shelf_items.count == 0
+                  - if @shelf_items.load.empty?
                     %tr.has-text-centered
                       %td{colspan: 6}
                         No items found.
