@@ -1,0 +1,98 @@
+- breadcrumb :game_shelf, @game_shelf
+%div.block
+  %p.subtitle.is-4
+    Games in
+    = @game_shelf.title
+
+.tile.is-ancestor
+  .tile.is-parent
+    .tile.is-child.is-3
+      .pr-2
+        %aside.menu
+          %p.menu-label
+            Game shelves
+          %ul.menu-list
+            - @game_shelves.reject { |v| v.custom_shelf? }.each do |gs|
+              = link_to([gs.user, gs], class: gs == @game_shelf ? "is-active" : "") do
+                = gs.title
+                = surround "(", ")" do
+                  = gs.shelf_items.count
+          %p.menu-label
+            Custom game shelves
+          %ul.menu-list
+            - @game_shelves.select { |v| v.custom_shelf? }.each do |gs|
+              = link_to([gs.user, gs], class: gs == @game_shelf ? "is-active" : "") do
+                = gs.title
+                = surround "(", ")" do
+                  = gs.shelf_items.count
+          %p.menu-label
+            Actions
+          %ul.menu-list
+            = link_to "Add custom shelf", new_user_game_shelf_path(@game_shelf.user)
+            = link_to "Manage custom shelves", manage_custom_user_game_shelves_path(@game_shelf.user)
+
+    .tile.is-child
+      .columns.is-multiline
+        .column.is-12
+          = form_tag user_game_shelf_path(@game_shelf.user, @game_shelf), method: "get" do
+            .field.has-addons
+              %control
+                .select= select_tag(:platform, options_for_select(@platforms, params[:platform]), class: "select")
+              %div.control= button_tag("Filter", class: "button is-primary")
+        - if @shelf_items.count == 0
+          .column.has-text-centered
+            No items found.
+        - else
+          - @shelf_items.map(&:item).each do |e|
+            .column.is-3
+              .card
+                - if e.instance_of?(Edition)
+                  .card-image
+                    %figure.image
+                      = link_to(e) do
+                        = image_tag e.coverart.url(:medium), alt: "Cover art of #{e.title} - #{e.platform.display_title}", itemprop: 'image'
+                  .card-content
+                    %p
+                      %strong
+                        = link_to(e.title, e)
+                      %small
+                        = e.platform.display_title
+                    %p
+                      %small
+                        = e.region.title
+                      %small
+                        = e.release_date.strftime('%d/%m/%Y') if e.release_date.present?
+
+                    %p
+                      %small
+                        Added to this list in
+                        = e.created_at.strftime('%d/%m/%Y')
+                    .columns
+                      .column.is-justify-content-center.is-flex
+                        = add_shelf_dropdown current_user, @game_shelves, e, small_buttons: false
+                - elsif e.instance_of?(Expansion)
+                  .card-image
+                    %figure.image
+                      = link_to([e.edition, e]) do
+                        = image_tag e.coverart.url(:thumb), alt: "Cover art of #{e.title} - #{e.edition.platform.display_title}", itemprop: 'image'
+                  .card-content
+                    %p
+                      %strong
+                        = link_to(e.title, [e.edition, e])
+                      %small
+                        = e.edition.platform.display_title
+                    %p
+                      %small
+                        = e.edition.region.title
+                      %small
+                        = e.edition.release_date.strftime('%d/%m/%Y') if e.release_date.present?
+
+                    %p
+                      %small
+                        Added to this list in
+                        = e.created_at.strftime('%d/%m/%Y')
+
+                    .columns
+                      .column.is-justify-content-center.is-flex
+                        = add_shelf_dropdown current_user, @game_shelves, e, small_buttons: false
+      = bulma_will_paginate @shelf_items

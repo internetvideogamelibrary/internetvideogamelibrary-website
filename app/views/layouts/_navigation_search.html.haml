@@ -1,8 +1,7 @@
 %div.navbar-item
-  = form_tag search_games_path, :method => "get" do
+  = form_tag search_games_path, method: "get", target: "_top", "data-turbo-action": "advance" do
     %div.field.has-addons
       %div.control
         %div.select= select_tag(:platform, options_for_select(@platforms, params[:platform]), class: "select")
-      %input#platform{ type: "hidden", name: "platform", value: params[:platform] }
       %div.control= text_field_tag :q, params[:q], class: "input", placeholder: "Search term..."
       %div.control= button_tag("Go", class: "button is-primary")
