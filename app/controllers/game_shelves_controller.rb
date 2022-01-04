@@ -29,12 +29,19 @@ class GameShelvesController < ApplicationController
     redirect_to [current_user, game_shelf]
   end
 
+  # We show 4 items per line, so we want to show a multiple of that
+  ITEMS_PER_PAGE = 4 * 7
   def show
+    @style = if params[:style] == "table"
+      :table
+    else
+      :cards
+    end
     @game_shelf = GameShelf.find_by_id(params[:id])
     if params[:platform].to_s != ''
-      @shelf_items = ShelfItem.shelf_items_from_shelf_with_platform(@game_shelf.id, params[:platform]).paginate(page: params[:page]).order('created_at asc')
+      @shelf_items = ShelfItem.shelf_items_from_shelf_with_platform(@game_shelf.id, params[:platform]).paginate(page: params[:page], per_page: ITEMS_PER_PAGE).order("created_at asc")
     else
-      @shelf_items = ShelfItem.where(game_shelf_id: @game_shelf.id).paginate(page: params[:page]).order('created_at asc')
+      @shelf_items = ShelfItem.where(game_shelf_id: @game_shelf.id).paginate(page: params[:page], per_page: ITEMS_PER_PAGE).order("created_at asc")
     end
     @game_shelves = current_user.game_shelves.shelf_type_order
   end
