@@ -1,0 +1,14 @@
+.columns.is-centered
+  .column.is-4
+    %p.title
+      Forgot your password?
+    %p
+      We'll send password reset instructions.
+    = form_for(resource, as: resource_name, url: password_path(resource_name), data: { turbo: "false" }) do |f|
+      = devise_error_messages!
+      .field
+        .control
+          = f.label :email, class: :label
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: "input"
+
+      .control= f.submit "Reset password", class: "button is-primary"
