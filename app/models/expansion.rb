@@ -22,7 +22,7 @@ class Expansion < ApplicationRecord
     ]
   end
 
-  has_attached_file :coverart, styles: { medium: '300x300>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
+  has_attached_file :coverart, styles: { medium: "385x512>", thumb: "100x133>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :coverart, content_type: %r{\Aimage\/.*\Z}
 
   has_many :shelf_items, as: :item
