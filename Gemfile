@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 # The framework
-gem "rails", github: "rails/rails", branch: "7-0-stable"
+gem "rails", "~> 7.0.1"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
