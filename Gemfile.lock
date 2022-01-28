@@ -178,9 +178,9 @@ GEM
       faraday (~> 1)
       multi_json
     erubi (1.10.0)
-    exception_notification (4.1.1)
-      actionmailer (>= 3.0.4)
-      activesupport (>= 3.0.4)
+    exception_notification (4.5.0)
+      actionmailer (>= 5.2, < 8)
+      activesupport (>= 5.2, < 8)
     excon (0.89.0)
     factory_bot (6.2.0)
       activesupport (>= 5.0.0)
