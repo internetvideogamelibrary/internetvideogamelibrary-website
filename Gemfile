@@ -84,6 +84,8 @@ gem "reverse_markdown" # gem to import Steam's description to markdown
 
 gem "hcaptcha", github: "renatolond/hcaptcha"
 
+gem "i18n", "~> 1.8.11" # Locked on 1.8.11 because >1.9.x breaks with chewy 5.x, should be fixed if bump above 7.2.4
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri mingw x64_mingw]

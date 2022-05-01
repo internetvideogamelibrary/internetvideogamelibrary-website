@@ -266,7 +266,7 @@ GEM
       addressable
       faraday
       json (>= 1.8)
-    kt-paperclip (7.0.1)
+    kt-paperclip (7.1.1)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
       marcel (~> 1.0.1)
@@ -547,6 +547,7 @@ DEPENDENCIES
   gretel
   haml
   hcaptcha!
+  i18n (~> 1.8.11)
   jbuilder
   jsbundling-rails
   koala
