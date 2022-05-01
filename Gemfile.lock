@@ -249,7 +249,7 @@ GEM
     httparty (0.20.0)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
-    i18n (1.10.0)
+    i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     io-console (0.5.11)
     io-wait (0.2.1)
@@ -549,6 +549,7 @@ DEPENDENCIES
   gretel
   haml
   hcaptcha!
+  i18n (~> 1.8.11)
   jbuilder
   jsbundling-rails
   koala
