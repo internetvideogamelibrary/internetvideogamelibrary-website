@@ -56,7 +56,7 @@ gem "redcarpet"
 gem "will_paginate"
 
 gem "chewy", "~> 5.0"
-gem "elasticsearch", "~> 7.13.3"
+gem "elasticsearch", "~> 8.3.0"
 
 gem "babosa"
 gem "exception_notification"
