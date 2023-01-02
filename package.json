@@ -5,7 +5,7 @@
     "@hotwired/stimulus": "^3.0.1",
     "@hotwired/turbo-rails": "^7.1.1",
     "bulma": "^0.9.3",
-    "esbuild": "^0.14.38",
+    "esbuild": "^0.16.13",
     "sass": "^1.49.9"
   },
   "scripts": {
